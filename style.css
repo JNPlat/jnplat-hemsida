@@ -681,88 +681,66 @@ section {
    ========================================================= */
 
 .contact-section {
-  position:
-    relative;
-
-  overflow:
-    hidden;
+  position: relative;
+  overflow: hidden;
 
   /*
-    Kontaktsektionen fyller resten av sidan.
-    Bilden följer exakt denna sektion.
+    Hela kontaktsektionen är själva bakgrundsytan.
+    Bilden fyller hela sektionen från överkant till underkant.
   */
-  min-height:
-    calc(100vh - 82px);
+  min-height: calc(100vh - 82px);
 
-  padding:
-    100px 0 110px;
+  padding: 0;
 
-  background:
-    var(--bg-light);
+  background: var(--bg-light);
 
-  border-top:
-    1px solid var(--line);
+  border-top: 1px solid var(--line);
 }
 
 
 /* =========================================================
    KONTAKTBILD
-   HELA KONTAKTSEKTIONEN
+   HELA SEKTIONENS BAKGRUND
    ========================================================= */
 
 .contact-logo {
-  position:
-    absolute !important;
+  position: absolute !important;
 
-  z-index:
-    1;
+  z-index: 0;
 
-  inset:
-    0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
-  width:
-    100% !important;
+  width: 100% !important;
+  height: 100% !important;
 
-  height:
-    100% !important;
+  margin: 0 !important;
 
-  margin:
-    0 !important;
+  overflow: hidden;
 
-  overflow:
-    hidden;
-
-  pointer-events:
-    none;
+  pointer-events: none;
 }
 
 .contact-logo img {
-  position:
-    absolute;
+  position: absolute;
 
-  inset:
-    0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
-  width:
-    100vw !important;
+  width: 100% !important;
+  height: 100% !important;
 
-  height:
-    100% !important;
+  max-width: none !important;
+  max-height: none !important;
 
-  max-width:
-    none !important;
+  object-fit: cover;
+  object-position: center;
 
-  max-height:
-    none !important;
-
-  object-fit:
-    cover;
-
-  object-position:
-    center;
-
-  opacity:
-    1;
+  opacity: 1;
 }
 
 
@@ -771,99 +749,82 @@ section {
    ========================================================= */
 
 .contact-layout {
-  position:
-    relative;
+  position: relative;
 
-  z-index:
-    2;
+  z-index: 2;
 
-  min-height:
-    calc(100vh - 82px);
+  min-height: calc(100vh - 82px);
 
-  display:
-    block;
+  display: flex;
+  align-items: stretch;
 }
 
 
 /* =========================================================
-   KONTAKT – BEIGE TEXTYTA
+   KONTAKT – BEIGE PANEL
    ========================================================= */
 
 .contact-left {
-  position:
-    relative;
+  position: relative;
 
-  z-index:
-    3;
+  z-index: 3;
 
-  width:
-    54%;
+  /*
+    Panelen börjar vid webbläsarens vänsterkant.
+    Texten ligger fortfarande i linje med resten av sidan.
+  */
+  width: calc(50vw + (var(--max-width) / 2));
 
-  max-width:
-    720px;
+  max-width: none;
 
-  min-height:
-    calc(100vh - 82px);
+  min-height: calc(100vh - 82px);
 
-  padding:
-    0 70px 0 0;
+  padding-top: 100px;
+  padding-right: 70px;
+  padding-bottom: 110px;
+  padding-left: max(
+    0px,
+    calc((100vw - var(--max-width)) / 2)
+  );
 
-  display:
-    flex;
+  display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
-  justify-content:
-    center;
+  justify-content: center;
 
-  background:
-    var(--bg-light);
+  background: var(--bg-light);
 }
 
 
 /* =========================================================
-   MJUK ÖVERGÅNG FRÅN TEXTYTA TILL BILD
+   MJUK ÖVERGÅNG FRÅN BEIGE TILL BILD
    ========================================================= */
 
 .contact-left::after {
-  content:
-    "";
+  content: "";
 
-  position:
-    absolute;
+  position: absolute;
 
-  top:
-    0;
+  top: 0;
+  right: -360px;
 
-  right:
-    -300px;
+  width: 390px;
+  height: 100%;
 
-  width:
-    340px;
-
-  height:
-    100%;
-
-  pointer-events:
-    none;
+  pointer-events: none;
 
   background:
     linear-gradient(
       to right,
 
       var(--bg-light) 0%,
-
-      var(--bg-light) 15%,
+      var(--bg-light) 14%,
 
       rgba(248, 245, 239, 0.98) 28%,
-
       rgba(248, 245, 239, 0.90) 40%,
-
       rgba(248, 245, 239, 0.68) 53%,
-
       rgba(248, 245, 239, 0.43) 66%,
-
       rgba(248, 245, 239, 0.20) 81%,
 
       rgba(248, 245, 239, 0) 100%
@@ -876,14 +837,11 @@ section {
    ========================================================= */
 
 .contact-left h2 {
-  position:
-    relative;
+  position: relative;
 
-  z-index:
-    4;
+  z-index: 4;
 
-  margin:
-    0 0 28px;
+  margin: 0 0 28px;
 
   font-size:
     clamp(
@@ -892,42 +850,31 @@ section {
       70px
     );
 
-  line-height:
-    1;
+  line-height: 1;
 
-  font-weight:
-    400;
+  font-weight: 400;
 
-  letter-spacing:
-    -0.03em;
+  letter-spacing: -0.03em;
 }
 
 .contact-intro {
-  position:
-    relative;
+  position: relative;
 
-  z-index:
-    4;
+  z-index: 4;
 
-  max-width:
-    560px;
+  max-width: 560px;
 
-  margin:
-    0 0 55px;
+  margin: 0 0 55px;
 
-  font-size:
-    24px;
+  font-size: 24px;
 
-  line-height:
-    1.5;
+  line-height: 1.5;
 }
 
 .contact-details {
-  position:
-    relative;
+  position: relative;
 
-  z-index:
-    4;
+  z-index: 4;
 
   width:
     min(
@@ -935,51 +882,38 @@ section {
       500px
     );
 
-  border-top:
-    1px solid var(--line);
+  border-top: 1px solid var(--line);
 }
 
 .contact-item {
-  padding:
-    17px 0;
+  padding: 17px 0;
 
-  border-bottom:
-    1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 
 .contact-item span {
-  display:
-    block;
+  display: block;
 
-  margin-bottom:
-    3px;
+  margin-bottom: 3px;
 
-  font-size:
-    14px;
+  font-size: 14px;
 
-  font-weight:
-    500;
+  font-weight: 500;
 
-  letter-spacing:
-    0.08em;
+  letter-spacing: 0.08em;
 
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
 
-  color:
-    var(--muted);
+  color: var(--muted);
 }
 
 .contact-item a,
 .contact-item p {
-  margin:
-    0;
+  margin: 0;
 
-  font-size:
-    21px;
+  font-size: 21px;
 
-  line-height:
-    1.3;
+  line-height: 1.3;
 }
 
 .contact-item a {
@@ -988,8 +922,7 @@ section {
 }
 
 .contact-item a:hover {
-  color:
-    var(--copper);
+  color: var(--copper);
 }
 
 
@@ -1282,110 +1215,67 @@ section {
      ===================================================== */
 
   .contact-section {
-    min-height:
-      0;
+    min-height: 0;
 
-    padding:
-      75px 0 0;
+    padding: 0;
   }
 
   .contact-layout {
-    min-height:
-      0;
+    min-height: 0;
 
-    display:
-      block;
+    display: block;
   }
 
   .contact-left {
-    width:
-      100%;
+    width: 100%;
 
-    max-width:
-      none;
+    max-width: none;
 
-    min-height:
-      0;
+    min-height: 0;
 
     padding:
-      0;
+      75px 0 75px;
 
-    background:
-      var(--bg-light);
+    background: var(--bg-light);
   }
 
   .contact-left::after {
-    display:
-      none;
+    display: none;
   }
 
   .contact-left h2 {
-    font-size:
-      50px;
+    font-size: 50px;
   }
 
   .contact-intro {
-    font-size:
-      21px;
+    font-size: 21px;
 
-    margin-bottom:
-      40px;
+    margin-bottom: 40px;
   }
 
   .contact-details {
-    width:
-      100%;
+    width: 100%;
   }
 
   .contact-logo {
-    position:
-      absolute !important;
+    position: absolute !important;
 
-    inset:
-      0;
+    inset: 0;
 
-    width:
-      100% !important;
+    width: 100% !important;
+    height: 100% !important;
 
-    height:
-      100% !important;
+    margin: 0 !important;
 
-    margin:
-      0 !important;
-
-    z-index:
-      1;
+    z-index: 1;
   }
 
   .contact-logo img {
-    width:
-      100vw !important;
+    width: 100% !important;
+    height: 100% !important;
 
-    height:
-      100% !important;
-
-    object-fit:
-      cover;
-
-    -webkit-mask-image:
-      linear-gradient(
-        to bottom,
-        transparent 0%,
-        transparent 12%,
-        rgba(0, 0, 0, 0.35) 28%,
-        black 48%
-      );
-
-    mask-image:
-      linear-gradient(
-        to bottom,
-        transparent 0%,
-        transparent 12%,
-        rgba(0, 0, 0, 0.35) 28%,
-        black 48%
-      );
-  }
-}
+    object-fit: cover;
+  }}
 
 
 /* =========================================================
