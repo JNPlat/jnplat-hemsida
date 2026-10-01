@@ -683,8 +683,17 @@ section {
 
   overflow: hidden;
 
-  background:
-    var(--bg-light);
+  background-image:
+    url("images/St Johannes.png");
+
+  background-size:
+    cover;
+
+  background-position:
+    center center;
+
+  background-repeat:
+    no-repeat;
 
   border-top:
     1px solid var(--line);
@@ -692,51 +701,12 @@ section {
 
 
 /* =========================================================
-   KONTAKTBILD
+   GAMLA KONTAKTBILDEN STÄNGS AV
    ========================================================= */
 
 .contact-background {
-  position: absolute !important;
-
-  top: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  left: 0 !important;
-
-  width: 100% !important;
-  height: 100% !important;
-
-  z-index: 1;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  overflow: hidden;
-
-  pointer-events: none;
-}
-
-.contact-background img {
-  position: absolute !important;
-
-  top: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  left: 0 !important;
-
-  width: 100% !important;
-  height: 100% !important;
-
-  max-width: none !important;
-  max-height: none !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  display: block !important;
-
-  object-fit: cover !important;
-  object-position: center !important;
+  display:
+    none !important;
 }
 
 
@@ -755,6 +725,7 @@ section {
     calc(100vh - 82px);
 
   margin: 0;
+
   padding-top:
     100px;
 
@@ -770,7 +741,7 @@ section {
     );
 
   padding-right:
-    100px;
+    80px;
 
   display:
     flex;
@@ -784,7 +755,7 @@ section {
 
 
 /* =========================================================
-   MJUK FADE
+   KORT OCH TYDLIG FADE
    ========================================================= */
 
 .contact-panel::after {
@@ -793,9 +764,9 @@ section {
   position: absolute;
 
   top: 0;
-  right: -420px;
+  right: -210px;
 
-  width: 440px;
+  width: 230px;
   height: 100%;
 
   pointer-events: none;
@@ -805,14 +776,11 @@ section {
       to right,
 
       var(--bg-light) 0%,
-      var(--bg-light) 12%,
+      var(--bg-light) 35%,
 
-      rgba(248, 245, 239, 0.99) 25%,
-      rgba(248, 245, 239, 0.94) 37%,
-      rgba(248, 245, 239, 0.78) 50%,
-      rgba(248, 245, 239, 0.56) 63%,
-      rgba(248, 245, 239, 0.32) 76%,
-      rgba(248, 245, 239, 0.12) 89%,
+      rgba(248, 245, 239, 0.95) 55%,
+      rgba(248, 245, 239, 0.68) 68%,
+      rgba(248, 245, 239, 0.28) 82%,
 
       rgba(248, 245, 239, 0) 100%
     );
@@ -1240,55 +1208,9 @@ section {
   .contact-section {
     min-height:
       0;
-  }
 
-  .contact-background {
-    position:
-      absolute !important;
-
-    top:
-      0 !important;
-
-    right:
-      0 !important;
-
-    bottom:
-      0 !important;
-
-    left:
-      0 !important;
-
-    width:
-      100% !important;
-
-    height:
-      100% !important;
-  }
-
-  .contact-background img {
-    position:
-      absolute !important;
-
-    top:
-      0 !important;
-
-    right:
-      0 !important;
-
-    bottom:
-      0 !important;
-
-    left:
-      0 !important;
-
-    width:
-      100% !important;
-
-    height:
-      100% !important;
-
-    object-fit:
-      cover !important;
+    background-position:
+      center center;
   }
 
   .contact-panel {
