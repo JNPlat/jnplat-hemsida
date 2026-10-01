@@ -35,9 +35,7 @@ html {
 
 body {
   margin: 0;
-
   background: var(--bg);
-
   color: var(--text);
 
   font-family:
@@ -47,7 +45,6 @@ body {
 
   font-style: normal;
   font-weight: 400;
-
   line-height: 1.6;
 }
 
@@ -95,8 +92,7 @@ h6 {
       var(--max-width)
     );
 
-  margin:
-    0 auto;
+  margin: 0 auto;
 }
 
 
@@ -155,7 +151,6 @@ h6 {
 
 .brand img {
   width: 100%;
-
   height: auto;
 
   object-fit: contain;
@@ -182,7 +177,6 @@ h6 {
   padding: 8px 0;
 
   font-size: 17px;
-
   font-weight: 400;
 
   letter-spacing: 0.01em;
@@ -248,7 +242,6 @@ h6 {
     var(--copper-dark);
 
   font-size: 17px;
-
   font-weight: 500;
 
   transition:
@@ -294,6 +287,7 @@ section {
 
 /* =========================================================
    HEM
+   FULL BREDD + FULL HÖJD
    ========================================================= */
 
 .hero-section {
@@ -303,50 +297,65 @@ section {
   min-height:
     620px;
 
-  padding:
-    28px 0 34px;
+  padding: 0;
 
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: stretch;
+
+  overflow: hidden;
 }
 
 .hero-grid {
-  width: 100%;
+  width: 100vw;
   height: 100%;
 
-  display:
-    grid;
+  max-width: none;
+
+  margin-left:
+    calc((100% - 100vw) / 2);
+
+  display: grid;
 
   grid-template-columns:
-    minmax(0, 0.9fr)
-    minmax(0, 1.1fr);
+    50% 50%;
 
-  gap:
-    65px;
+  gap: 0;
 
-  align-items:
-    stretch;
+  align-items: stretch;
 }
+
+
+/* =========================================================
+   HEM - TEXT
+   ========================================================= */
 
 .hero-content {
   width: 100%;
+  max-width: none;
 
-  max-width:
-    560px;
+  padding:
+    60px
+    clamp(40px, 7vw, 120px)
+    60px
+    clamp(40px, 7vw, 120px);
 
-  margin:
-    auto 0;
+  display: flex;
 
-  align-self:
-    center;
+  flex-direction: column;
+
+  justify-content: center;
+
+  background:
+    var(--bg);
 }
 
 .hero-content h1 {
   margin:
     0 0 26px;
+
+  max-width:
+    620px;
 
   font-size:
     clamp(
@@ -367,7 +376,7 @@ section {
 
 .hero-text {
   max-width:
-    550px;
+    560px;
 
   margin:
     0;
@@ -384,26 +393,15 @@ section {
 
 
 /* =========================================================
-   HERO BILD
+   HEM - BILD
+   FYLLER HELA HÖGER SIDAN
    ========================================================= */
 
 .hero-image {
   width: 100%;
   height: 100%;
 
-  min-height: 0;
-
-  display:
-    flex;
-
-  align-items:
-    stretch;
-
-  justify-content:
-    stretch;
-
-  overflow:
-    hidden;
+  overflow: hidden;
 }
 
 .hero-image img {
@@ -422,19 +420,46 @@ section {
 
 /* =========================================================
    TJÄNSTER
+   FULL BREDD + FULL HÖJD
    ========================================================= */
 
 .services-section {
-  padding:
-    115px 0;
+  min-height:
+    calc(100vh - 82px);
+
+  padding: 0;
 
   background:
     var(--bg);
+
+  display: flex;
+
+  align-items: stretch;
+
+  overflow: hidden;
+}
+
+.services-section > .container {
+  width: 100vw;
+  max-width: none;
+
+  margin:
+    0 0 0
+    calc((100% - 100vw) / 2);
+
+  display: flex;
+
+  align-items: stretch;
 }
 
 .services-grid {
-  display:
-    grid;
+  width: 100%;
+  height: 100%;
+
+  min-height:
+    calc(100vh - 82px);
+
+  display: grid;
 
   grid-template-columns:
     repeat(
@@ -442,50 +467,52 @@ section {
       minmax(0, 1fr)
     );
 
-  gap:
-    24px;
+  gap: 0;
+
+  align-items: stretch;
 }
 
+
+/* =========================================================
+   TJÄNSTEKORT
+   ========================================================= */
+
 .service-card {
-  display:
-    flex;
+  display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
-  min-width:
-    0;
+  min-width: 0;
+  height: 100%;
 
   background:
     var(--card);
 
-  overflow:
-    hidden;
+  overflow: hidden;
 }
 
+
+/* =========================================================
+   TJÄNSTEBILD
+   BILDEN FYLLER ALL LEDIG YTA
+   ========================================================= */
+
 .service-image {
-  width:
-    100%;
+  width: 100%;
 
-  aspect-ratio:
-    16 / 9;
+  flex:
+    1 1 auto;
 
-  flex-shrink:
-    0;
+  min-height: 0;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 }
 
 .service-image img {
-  width:
-    100%;
+  width: 100%;
+  height: 100%;
 
-  height:
-    100%;
-
-  max-width:
-    none;
+  max-width: none;
 
   object-fit:
     cover;
@@ -512,13 +539,17 @@ section {
    ========================================================= */
 
 .service-info {
-  padding:
-    28px 24px 32px;
+  flex:
+    0 0 auto;
 
   min-height:
     205px;
 
-  flex: 1;
+  padding:
+    28px 30px 32px;
+
+  background:
+    var(--card);
 }
 
 .service-info h3 {
@@ -573,68 +604,76 @@ section {
 
 /* =========================================================
    AKTUELLT
+   FULL BREDD + FULL HÖJD
    ========================================================= */
 
 .current-section {
   min-height:
     calc(100vh - 82px);
 
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  padding:
-    0;
+  padding: 0;
 
   background:
     var(--bg);
+
+  display: flex;
+
+  align-items: stretch;
+
+  overflow: hidden;
+}
+
+.current-section > .container {
+  width: 100vw;
+  max-width: none;
+
+  margin:
+    0 0 0
+    calc((100% - 100vw) / 2);
+
+  display: flex;
+
+  align-items: stretch;
 }
 
 .current-project {
   width: 100%;
+  min-height:
+    calc(100vh - 82px);
 
-  display:
-    grid;
+  display: grid;
 
   grid-template-columns:
-    minmax(0, 1.3fr)
-    minmax(320px, 0.7fr);
+    60% 40%;
 
-  gap:
-    70px;
+  gap: 0;
 
-  align-items:
-    stretch;
+  align-items: stretch;
 }
 
+
+/* =========================================================
+   AKTUELLT - BILD
+   FYLLER HELA VÄNSTRA SIDAN
+   ========================================================= */
+
 .current-image {
-  width:
-    100%;
+  width: 100%;
+  height: 100%;
 
-  height:
-    100%;
+  min-height: 0;
 
-  min-height:
-    430px;
-
-  overflow:
-    hidden;
+  overflow: hidden;
 
   background:
     #ddd5ca;
 }
 
 .current-image img {
-  width:
-    100%;
+  width: 100%;
+  height: 100%;
 
-  height:
-    100%;
-
-  max-width:
-    none;
+  max-width: none;
 
   object-fit:
     cover;
@@ -643,12 +682,27 @@ section {
     center;
 }
 
-.current-content {
-  max-width:
-    480px;
 
-  align-self:
-    center;
+/* =========================================================
+   AKTUELLT - TEXT
+   ========================================================= */
+
+.current-content {
+  width: 100%;
+  max-width: none;
+
+  padding:
+    60px
+    clamp(40px, 6vw, 100px);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  background:
+    var(--bg);
 }
 
 .current-content h2 {
@@ -657,9 +711,9 @@ section {
 
   font-size:
     clamp(
-      30px,
-      3vw,
-      45px
+      40px,
+      4vw,
+      60px
     );
 
   line-height:
@@ -673,6 +727,9 @@ section {
 }
 
 .current-content p {
+  max-width:
+    520px;
+
   margin:
     0 0 28px;
 
@@ -695,6 +752,9 @@ section {
 
   gap:
     10px;
+
+  width:
+    fit-content;
 
   font-size:
     18px;
@@ -724,6 +784,7 @@ section {
 
 /* =========================================================
    KONTAKT
+   FULL BREDD + FULL HÖJD
    ========================================================= */
 
 .contact-section {
@@ -747,7 +808,7 @@ section {
 
 /* =========================================================
    KONTAKTBILD
-   HÖGER DEL AV HELA SEKTIONEN
+   HELA HÖGER SIDAN
    ========================================================= */
 
 .contact-background {
@@ -784,13 +845,12 @@ section {
   object-position:
     center;
 
-  display:
-    block;
+  display: block;
 }
 
 
 /* =========================================================
-   BEIGE KONTAKTPANEL
+   KONTAKTPANEL
    ========================================================= */
 
 .contact-panel {
@@ -820,24 +880,12 @@ section {
   padding-right:
     100px;
 
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: center;
 
   background:
     var(--bg-light);
-}
-
-
-/* =========================================================
-   INGEN FADE
-   ========================================================= */
-
-.contact-panel::after {
-  display:
-    none;
 }
 
 
@@ -1017,9 +1065,11 @@ section {
       20px;
   }
 
-  .hero-grid {
-    gap:
-      40px;
+  /* HEM */
+
+  .hero-content {
+    padding:
+      50px;
   }
 
   .hero-content h1 {
@@ -1031,10 +1081,7 @@ section {
       );
   }
 
-  .services-grid {
-    gap:
-      20px;
-  }
+  /* TJÄNSTER */
 
   .service-info {
     padding:
@@ -1047,9 +1094,6 @@ section {
   .service-info h3 {
     font-size:
       24px;
-
-    font-weight:
-      400 !important;
   }
 
   .service-info p {
@@ -1057,14 +1101,23 @@ section {
       17px;
   }
 
-  .current-project {
-    gap:
+  /* AKTUELLT */
+
+  .current-content {
+    padding:
       50px;
   }
 
-  .current-image {
-    min-height:
-      380px;
+  .current-content h2 {
+    font-size:
+      45px;
+  }
+
+  /* KONTAKT */
+
+  .contact-background {
+    left:
+      62%;
   }
 
   .contact-panel {
@@ -1073,11 +1126,6 @@ section {
 
     padding-right:
       60px;
-  }
-
-  .contact-background {
-    left:
-      62%;
   }
 }
 
@@ -1133,7 +1181,7 @@ section {
 
 
   /* =====================================================
-     HERO
+     HEM
      ===================================================== */
 
   .hero-section {
@@ -1144,12 +1192,21 @@ section {
       0;
 
     padding:
-      45px 0 80px;
+      0;
+
+    overflow:
+      visible;
   }
 
   .hero-grid {
+    width:
+      100%;
+
     height:
       auto;
+
+    margin-left:
+      0;
 
     display:
       flex;
@@ -1158,18 +1215,15 @@ section {
       column;
 
     gap:
-      40px;
-
-    align-items:
-      stretch;
+      0;
   }
 
   .hero-content {
-    max-width:
-      none;
+    width:
+      100%;
 
-    margin:
-      0;
+    padding:
+      60px 16px 60px;
   }
 
   .hero-content h1 {
@@ -1210,6 +1264,9 @@ section {
     height:
       auto;
 
+    aspect-ratio:
+      auto;
+
     object-fit:
       cover;
   }
@@ -1220,11 +1277,31 @@ section {
      ===================================================== */
 
   .services-section {
+    min-height:
+      0;
+
     padding:
-      90px 0;
+      0;
+
+    overflow:
+      visible;
+  }
+
+  .services-section > .container {
+    width:
+      100%;
+
+    margin:
+      0;
   }
 
   .services-grid {
+    width:
+      100%;
+
+    min-height:
+      0;
+
     grid-template-columns:
       repeat(
         2,
@@ -1232,23 +1309,36 @@ section {
       );
 
     gap:
-      18px;
+      1px;
+  }
+
+  .service-card {
+    height:
+      auto;
+
+    min-height:
+      520px;
+  }
+
+  .service-image {
+    height:
+      340px;
+
+    flex:
+      0 0 340px;
   }
 
   .service-info {
+    min-height:
+      180px;
+
     padding:
       21px 18px 25px;
-
-    min-height:
-      190px;
   }
 
   .service-info h3 {
     font-size:
       23px;
-
-    font-weight:
-      400 !important;
   }
 
   .service-info p {
@@ -1263,13 +1353,30 @@ section {
 
   .current-section {
     min-height:
-      auto;
+      0;
 
     padding:
-      90px 0;
+      0;
+
+    overflow:
+      visible;
+  }
+
+  .current-section > .container {
+    width:
+      100%;
+
+    margin:
+      0;
   }
 
   .current-project {
+    width:
+      100%;
+
+    min-height:
+      0;
+
     display:
       flex;
 
@@ -1277,7 +1384,7 @@ section {
       column;
 
     gap:
-      35px;
+      0;
 
     align-items:
       stretch;
@@ -1290,19 +1397,30 @@ section {
     height:
       auto;
 
-    min-height:
-      0;
-
     aspect-ratio:
       16 / 10;
   }
 
+  .current-image img {
+    width:
+      100%;
+
+    height:
+      100%;
+
+    object-fit:
+      cover;
+  }
+
   .current-content {
+    width:
+      100%;
+
     max-width:
       none;
 
-    align-self:
-      auto;
+    padding:
+      70px 16px;
   }
 
   .current-content h2 {
@@ -1318,40 +1436,52 @@ section {
   .contact-section {
     min-height:
       0;
+
+    display:
+      flex;
+
+    flex-direction:
+      column;
   }
 
   .contact-background {
     position:
-      absolute;
+      relative;
 
     top:
-      0;
+      auto;
 
     right:
-      0;
+      auto;
 
     bottom:
-      0;
+      auto;
 
     left:
-      0;
+      auto;
 
     width:
       100%;
 
     height:
-      100%;
+      auto;
+
+    order:
+      2;
   }
 
   .contact-background img {
+    position:
+      relative;
+
     width:
       100%;
 
     height:
-      100%;
+      auto;
 
     object-fit:
-      cover;
+      contain;
 
     object-position:
       center;
@@ -1365,18 +1495,16 @@ section {
       0;
 
     padding:
-      75px 16px 75px;
+      70px 16px 70px;
 
     display:
       block;
 
+    order:
+      1;
+
     background:
       var(--bg-light);
-  }
-
-  .contact-panel::after {
-    display:
-      none;
   }
 
   .contact-content {
@@ -1415,7 +1543,20 @@ section {
       1fr;
 
     gap:
-      24px;
+      1px;
+  }
+
+  .service-card {
+    min-height:
+      0;
+  }
+
+  .service-image {
+    height:
+      300px;
+
+    flex:
+      0 0 300px;
   }
 
   .service-info {
@@ -1429,9 +1570,6 @@ section {
   .service-info h3 {
     font-size:
       25px;
-
-    font-weight:
-      400 !important;
   }
 
   .service-info p {
@@ -1490,9 +1628,9 @@ section {
       76px;
   }
 
-  .hero-section {
+  .hero-content {
     padding:
-      45px 0 75px;
+      45px 12px 55px;
   }
 
   .hero-content h1 {
@@ -1505,18 +1643,22 @@ section {
       18px;
   }
 
-  .services-section,
-  .current-section {
-    padding:
-      75px 0;
+  .service-image {
+    height:
+      260px;
+
+    flex:
+      0 0 260px;
   }
 
   .service-info h3 {
     font-size:
       24px;
+  }
 
-    font-weight:
-      400 !important;
+  .current-content {
+    padding:
+      60px 12px;
   }
 
   .current-content h2 {
@@ -1526,7 +1668,7 @@ section {
 
   .contact-panel {
     padding:
-      60px 12px 60px;
+      60px 12px;
   }
 
   .contact-content h2 {
