@@ -412,7 +412,7 @@ section {
     115px 0;
 
   background:
-    var(--bg);
+    #e7dfd3;
 }
 
 .services-grid {
@@ -437,7 +437,7 @@ section {
     0;
 
   background:
-    var(--card);
+    var(--bg-light);
 
   overflow:
     hidden;
@@ -694,9 +694,6 @@ section {
 
   background-repeat:
     no-repeat;
-
-  border-top:
-    1px solid var(--line);
 }
 
 
