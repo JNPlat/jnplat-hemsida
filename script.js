@@ -13,97 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const headerContact =
     document.querySelector(".header-contact");
 
-  const sections =
-    document.querySelectorAll(
-      "#hem, #tjanster, #aktuellt, #kontakt"
-    );
+  const sections = [
+    document.querySelector("#hem"),
+    document.querySelector("#tjanster"),
+    document.querySelector("#aktuellt"),
+    document.querySelector("#kontakt")
+  ].filter(Boolean);
 
 
   /* =====================================================
-     LOGO → TOPPEN
-     ===================================================== */
-
-  if (brand) {
-
-    brand.addEventListener("click", (event) => {
-
-      event.preventDefault();
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    });
-
-  }
-
-
-  /* =====================================================
-     NAVIGATION → MJUK SCROLL
-     ===================================================== */
-
-  navLinks.forEach((link) => {
-
-    link.addEventListener("click", (event) => {
-
-      const targetId =
-        link.getAttribute("href");
-
-      const target =
-        document.querySelector(targetId);
-
-      if (!target) {
-        return;
-      }
-
-      event.preventDefault();
-
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    });
-
-  });
-
-
-  /* =====================================================
-     KONTAKT → MJUK SCROLL
-     ===================================================== */
-
-  if (headerContact) {
-
-    headerContact.addEventListener(
-      "click",
-      (event) => {
-
-        const targetId =
-          headerContact.getAttribute("href");
-
-        const target =
-          document.querySelector(targetId);
-
-        if (!target) {
-          return;
-        }
-
-        event.preventDefault();
-
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-
-      }
-    );
-
-  }
-
-
-  /* =====================================================
-     AKTIV MENY VID SCROLL
+     AKTIV MENY
      ===================================================== */
 
   const setActiveSection = (sectionId) => {
@@ -149,77 +68,160 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =====================================================
-     INTERSECTION OBSERVER
+     BESTÄM VILKEN SEKTION MAN ÄR I
      ===================================================== */
 
-  const observer =
-    new IntersectionObserver(
-      (entries) => {
+  const updateActiveSection = () => {
 
-        const visibleSections =
-          entries
-            .filter(
-              (entry) => entry.isIntersecting
-            )
-            .sort(
-              (a, b) =>
-                b.intersectionRatio -
-                a.intersectionRatio
-            );
+    const headerHeight = 82;
 
-        if (
-          visibleSections.length > 0
-        ) {
+    /*
+      Den här linjen bestämmer var på skärmen
+      vi anser att nästa sektion har blivit aktiv.
+    */
 
-          setActiveSection(
-            visibleSections[0].target.id
-          );
+    const activationPoint =
+      window.scrollY +
+      headerHeight +
+      120;
 
-        }
 
-      },
-      {
-        root: null,
+    let activeSection = sections[0];
 
-        rootMargin:
-          "-25% 0px -55% 0px",
 
-        threshold: [
-          0,
-          0.1,
-          0.25,
-          0.5
-        ]
+    sections.forEach((section) => {
+
+      const sectionTop =
+        section.offsetTop;
+
+      if (
+        activationPoint >= sectionTop
+      ) {
+
+        activeSection = section;
+
+      }
+
+    });
+
+
+    if (activeSection) {
+
+      setActiveSection(
+        activeSection.id
+      );
+
+    }
+
+  };
+
+
+  /* =====================================================
+     LOGGA → TOPPEN
+     ===================================================== */
+
+  if (brand) {
+
+    brand.addEventListener(
+      "click",
+      (event) => {
+
+        event.preventDefault();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
       }
     );
 
+  }
 
-  sections.forEach((section) => {
 
-    observer.observe(section);
+  /* =====================================================
+     NAVIGATION → MJUK SCROLL
+     ===================================================== */
+
+  navLinks.forEach((link) => {
+
+    link.addEventListener(
+      "click",
+      (event) => {
+
+        const targetId =
+          link.getAttribute("href");
+
+        const target =
+          document.querySelector(targetId);
+
+        if (!target) {
+          return;
+        }
+
+        event.preventDefault();
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }
+    );
 
   });
 
 
   /* =====================================================
-     TOPPLÄGE → HEM
+     KONTAKT → MJUK SCROLL
+     ===================================================== */
+
+  if (headerContact) {
+
+    headerContact.addEventListener(
+      "click",
+      (event) => {
+
+        const targetId =
+          headerContact.getAttribute("href");
+
+        const target =
+          document.querySelector(targetId);
+
+        if (!target) {
+          return;
+        }
+
+        event.preventDefault();
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     SCROLL
      ===================================================== */
 
   window.addEventListener(
     "scroll",
-    () => {
-
-      if (window.scrollY < 120) {
-
-        setActiveSection("hem");
-
-      }
-
-    },
+    updateActiveSection,
     {
       passive: true
     }
   );
 
+
+  /* =====================================================
+     STARTLÄGE
+     ===================================================== */
+
+  updateActiveSection();
 
 });
