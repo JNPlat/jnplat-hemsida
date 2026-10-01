@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     HEADER – BLIR MINDRE VID SCROLL
+     HEADER – MINSKAS VID SCROLL
   ========================================= */
 
   const header =
@@ -11,15 +11,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (header) {
 
+    let compact = false;
+
+
     const updateHeader = () => {
 
-      if (window.scrollY > 80) {
+      const scrollY = window.scrollY;
+
+
+      /*
+       * När vi scrollar ner:
+       * över 80 px = kompakt
+       */
+
+      if (!compact && scrollY > 80) {
+
+        compact = true;
 
         header.classList.add(
           "header-compact"
         );
 
-      } else {
+      }
+
+
+      /*
+       * När vi scrollar hela vägen
+       * tillbaka upp:
+       * under 20 px = normalt
+       */
+
+      if (compact && scrollY < 20) {
+
+        compact = false;
 
         header.classList.remove(
           "header-compact"
@@ -33,7 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener(
       "scroll",
       updateHeader,
-      { passive: true }
+      {
+        passive: true
+      }
     );
 
 
