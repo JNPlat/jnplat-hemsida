@@ -1,61 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =========================
-     MOBILMENY
-  ========================= */
 
-  const menuButton =
-    document.querySelector(".menu-toggle");
-
-  const nav =
-    document.querySelector(".nav");
-
-
-  if (menuButton && nav) {
-
-    menuButton.addEventListener("click", () => {
-
-      const open =
-        nav.classList.toggle("open");
-
-      menuButton.setAttribute(
-        "aria-expanded",
-        String(open)
-      );
-
-    });
-
-
-    nav.querySelectorAll("a").forEach(link => {
-
-      link.addEventListener("click", () => {
-
-        nav.classList.remove("open");
-
-        menuButton.setAttribute(
-          "aria-expanded",
-          "false"
-        );
-
-      });
-
-    });
-
-  }
-
-
-  /* =========================
-     KOMPAKT HEADER VID SCROLL
-  ========================= */
+  /* =========================================
+     HEADER – BLIR MINDRE VID SCROLL
+  ========================================= */
 
   const header =
     document.querySelector(".site-header");
 
 
   if (header) {
-
-    let ticking = false;
-
 
     const updateHeader = () => {
 
@@ -73,24 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
 
-      ticking = false;
     };
 
 
     window.addEventListener(
       "scroll",
-      () => {
-
-        if (!ticking) {
-
-          window.requestAnimationFrame(
-            updateHeader
-          );
-
-          ticking = true;
-        }
-
-      },
+      updateHeader,
       { passive: true }
     );
 
@@ -100,126 +42,151 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* =========================
-     LIGHTBOX
-  ========================= */
 
-  const lightbox =
-    document.querySelector("#lightbox");
+  /* =========================================
+     DROPDOWN-MENY
+  ========================================= */
 
-  const lightboxImage =
-    document.querySelector(".lightbox-image");
+  const menuButton =
+    document.querySelector(".menu-toggle");
 
-  const lightboxTitle =
-    document.querySelector(".lightbox-title");
-
-  const lightboxLocation =
-    document.querySelector(".lightbox-location");
-
-  const closeButton =
-    document.querySelector(".lightbox-close");
+  const nav =
+    document.querySelector(".nav");
 
 
-  const projects =
-    document.querySelectorAll(
-      "[data-lightbox]"
+  if (menuButton && nav) {
+
+
+    menuButton.addEventListener(
+      "click",
+      () => {
+
+        const isOpen =
+          nav.classList.toggle("open");
+
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          String(isOpen)
+        );
+
+
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen
+            ? "Stäng meny"
+            : "Öppna meny"
+        );
+
+      }
     );
 
 
+    nav
+      .querySelectorAll("a")
+      .forEach((link) => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            nav.classList.remove(
+              "open"
+            );
+
+
+            menuButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+
+            menuButton.setAttribute(
+              "aria-label",
+              "Öppna meny"
+            );
+
+          }
+        );
+
+      });
+
+  }
+
+
+
+  /* =========================================
+     REFERENSER – MODAL
+  ========================================= */
+
+  const modal =
+    document.querySelector(".project-modal");
+
+  const modalTitle =
+    document.querySelector("#modal-title");
+
+  const modalLocation =
+    document.querySelector("#modal-location");
+
+  const modalDescription =
+    document.querySelector("#modal-description");
+
+  const modalClose =
+    document.querySelector(".modal-close");
+
+  const modalBackdrop =
+    document.querySelector(".modal-backdrop");
+
+  const projects =
+    document.querySelectorAll(".project");
+
+
   if (
-    lightbox &&
-    lightboxImage &&
-    lightboxTitle &&
-    lightboxLocation
+    modal &&
+    modalTitle &&
+    modalLocation &&
+    modalDescription
   ) {
 
 
-    const openLightbox = project => {
-
-      const image =
-        project.dataset.image;
-
-      const title =
-        project.dataset.title || "";
-
-      const location =
-        project.dataset.location || "";
-
-
-      lightboxImage.src = image;
-
-      lightboxImage.alt = title;
-
-      lightboxTitle.textContent =
-        title;
-
-      lightboxLocation.textContent =
-        location;
-
-
-      lightbox.classList.add("open");
-
-      lightbox.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-
-      document.body.classList.add(
-        "lightbox-open"
-      );
-
-
-      if (closeButton) {
-        closeButton.focus();
-      }
-
-    };
-
-
-    const closeLightbox = () => {
-
-      lightbox.classList.remove(
-        "open"
-      );
-
-      lightbox.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-      document.body.classList.remove(
-        "lightbox-open"
-      );
-
-    };
-
-
-    projects.forEach(project => {
+    projects.forEach((project) => {
 
       project.addEventListener(
         "click",
         () => {
 
-          openLightbox(project);
+          const title =
+            project.dataset.title || "";
 
-        }
-      );
+          const location =
+            project.dataset.location || "";
+
+          const description =
+            project.dataset.description || "";
 
 
-      project.addEventListener(
-        "keydown",
-        event => {
+          modalTitle.textContent =
+            title;
 
-          if (
-            event.key === "Enter" ||
-            event.key === " "
-          ) {
+          modalLocation.textContent =
+            location;
 
-            event.preventDefault();
+          modalDescription.textContent =
+            description;
 
-            openLightbox(project);
 
-          }
+          modal.classList.add(
+            "open"
+          );
+
+          modal.setAttribute(
+            "aria-hidden",
+            "false"
+          );
+
+          document.body.classList.add(
+            "modal-open"
+          );
 
         }
       );
@@ -227,42 +194,54 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    if (closeButton) {
+    const closeModal = () => {
 
-      closeButton.addEventListener(
+      modal.classList.remove(
+        "open"
+      );
+
+      modal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.classList.remove(
+        "modal-open"
+      );
+
+    };
+
+
+    if (modalClose) {
+
+      modalClose.addEventListener(
         "click",
-        closeLightbox
+        closeModal
       );
 
     }
 
 
-    lightbox.addEventListener(
-      "click",
-      event => {
+    if (modalBackdrop) {
 
-        if (
-          event.target === lightbox
-        ) {
+      modalBackdrop.addEventListener(
+        "click",
+        closeModal
+      );
 
-          closeLightbox();
-
-        }
-
-      }
-    );
+    }
 
 
     document.addEventListener(
       "keydown",
-      event => {
+      (event) => {
 
         if (
           event.key === "Escape" &&
-          lightbox.classList.contains("open")
+          modal.classList.contains("open")
         ) {
 
-          closeLightbox();
+          closeModal();
 
         }
 
