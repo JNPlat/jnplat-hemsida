@@ -60,14 +60,13 @@ button {
 
 .site-header {
   position: fixed;
-
   top: 0;
   left: 0;
   right: 0;
 
   z-index: 1000;
 
-  height: 150px;
+  height: 110px;
 
   background: rgba(244, 240, 232, 0.97);
 
@@ -76,12 +75,11 @@ button {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
-  transition:
-    height 0.35s ease;
+  transition: height 0.3s ease;
 }
 
 .nav-wrap {
-  height: 150px;
+  height: 110px;
 
   display: flex;
   align-items: center;
@@ -89,8 +87,7 @@ button {
 
   position: relative;
 
-  transition:
-    height 0.35s ease;
+  transition: height 0.3s ease;
 }
 
 
@@ -102,17 +99,18 @@ button {
   display: flex;
   align-items: center;
 
-  width: 285px;
-  height: 135px;
+  width: 250px;
 
-  transition:
-    width 0.35s ease,
-    height 0.35s ease;
+  flex-shrink: 0;
+
+  transition: width 0.3s ease;
 }
 
 .brand img {
+  display: block;
+
   width: 100%;
-  height: 100%;
+  height: auto;
 
   object-fit: contain;
 }
@@ -174,13 +172,13 @@ button {
 
 
 /* =========================================
-   DROPDOWN
+   DROPDOWN-MENY
 ========================================= */
 
 .nav {
   position: absolute;
 
-  top: 136px;
+  top: 96px;
   right: 0;
 
   width: 240px;
@@ -231,16 +229,15 @@ button {
 ========================================= */
 
 .site-header.header-compact {
-  height: 82px;
+  height: 78px;
 }
 
 .site-header.header-compact .nav-wrap {
-  height: 82px;
+  height: 78px;
 }
 
 .site-header.header-compact .brand {
   width: 165px;
-  height: 72px;
 }
 
 .site-header.header-compact .header-contact {
@@ -248,7 +245,7 @@ button {
 }
 
 .site-header.header-compact .nav {
-  top: 68px;
+  top: 64px;
 }
 
 
@@ -257,7 +254,7 @@ button {
 ========================================= */
 
 main {
-  padding-top: 150px;
+  padding-top: 110px;
 }
 
 
@@ -874,32 +871,30 @@ p {
   /* HEADER */
 
   .site-header {
-    height: 105px;
+    height: 92px;
   }
 
   .nav-wrap {
-    height: 105px;
+    height: 92px;
   }
 
   .brand {
-    width: 220px;
-    height: 96px;
+    width: 205px;
   }
 
 
-  /* COMPACT MOBILE */
+  /* KOMPAKT */
 
   .site-header.header-compact {
-    height: 72px;
+    height: 68px;
   }
 
   .site-header.header-compact .nav-wrap {
-    height: 72px;
+    height: 68px;
   }
 
   .site-header.header-compact .brand {
     width: 135px;
-    height: 62px;
   }
 
 
@@ -914,21 +909,21 @@ p {
   }
 
 
-  /* MAIN */
-
-  main {
-    padding-top: 105px;
-  }
-
-
-  /* MENU */
+  /* MENY */
 
   .nav {
-    top: 91px;
+    top: 78px;
   }
 
   .site-header.header-compact .nav {
-    top: 58px;
+    top: 54px;
+  }
+
+
+  /* MAIN */
+
+  main {
+    padding-top: 92px;
   }
 
 
@@ -977,7 +972,7 @@ p {
   }
 
 
-  /* CURRENT */
+  /* AKTUELLT */
 
   .current,
   .contact {
@@ -989,7 +984,7 @@ p {
   }
 
 
-  /* REFERENCES */
+  /* REFERENSER */
 
   .project-grid {
     grid-template-columns: 1fr;
