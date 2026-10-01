@@ -89,12 +89,14 @@ h6 {
    ========================================================= */
 
 .container {
-  width: min(
-    calc(100% - 64px),
-    var(--max-width)
-  );
+  width:
+    min(
+      calc(100% - 64px),
+      var(--max-width)
+    );
 
-  margin: 0 auto;
+  margin:
+    0 auto;
 }
 
 
@@ -153,6 +155,7 @@ h6 {
 
 .brand img {
   width: 100%;
+
   height: auto;
 
   object-fit: contain;
@@ -684,6 +687,9 @@ section {
   overflow:
     hidden;
 
+  min-height:
+    620px;
+
   padding:
     100px 0 110px;
 
@@ -694,27 +700,28 @@ section {
     1px solid var(--line);
 }
 
+
+/* =========================================================
+   KONTAKTLAYOUT
+   ========================================================= */
+
 .contact-layout {
+  position:
+    relative;
+
+  z-index:
+    2;
+
   min-height:
     510px;
 
   display:
-    grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(400px, 0.9fr);
-
-  gap:
-    70px;
-
-  align-items:
-    stretch;
+    block;
 }
 
 
 /* =========================================================
-   KONTAKT – VÄNSTER
+   KONTAKT – TEXT
    ========================================================= */
 
 .contact-left {
@@ -722,7 +729,10 @@ section {
     relative;
 
   z-index:
-    2;
+    3;
+
+  width:
+    52%;
 
   max-width:
     600px;
@@ -838,47 +848,54 @@ section {
 
 
 /* =========================================================
-   KONTAKT – ST JOHANNES
+   KONTAKTBILD
+   HELA SEKTIONEN SOM BAKGRUND
    ========================================================= */
 
 .contact-logo {
-  width:
-    100%;
+  position:
+    absolute;
 
-  min-height:
-    510px;
+  z-index:
+    1;
+
+  top:
+    0;
+
+  bottom:
+    0;
+
+  left:
+    0;
+
+  width:
+    100vw;
 
   height:
     100%;
 
-  position:
-    relative;
-
-  display:
-    flex;
-
-  align-items:
-    stretch;
-
-  justify-content:
-    flex-end;
+  margin:
+    0;
 
   overflow:
     hidden;
 
-  /*
-    Gör att bilden går hela vägen
-    till högerkanten av webbläsaren.
-  */
-  margin-right:
-    calc(
-      (100vw - 100%) / -2
-    );
+  pointer-events:
+    none;
 }
 
 .contact-logo img {
+  position:
+    absolute;
+
+  top:
+    0;
+
+  right:
+    0;
+
   width:
-    100%;
+    100vw;
 
   height:
     100%;
@@ -895,28 +912,38 @@ section {
   object-position:
     center;
 
+  opacity:
+    1;
+
   /*
-    Mjuk övergång från bakgrunden
-    in i bilden på vänster sida.
+    Mjuk fade från vänster.
+    Bilden ligger bakom texten.
   */
+
   -webkit-mask-image:
     linear-gradient(
       to right,
       transparent 0%,
-      rgba(0, 0, 0, 0.05) 7%,
-      rgba(0, 0, 0, 0.45) 17%,
-      rgba(0, 0, 0, 0.82) 28%,
-      black 40%
+      rgba(0, 0, 0, 0.02) 10%,
+      rgba(0, 0, 0, 0.07) 20%,
+      rgba(0, 0, 0, 0.18) 32%,
+      rgba(0, 0, 0, 0.40) 44%,
+      rgba(0, 0, 0, 0.66) 56%,
+      rgba(0, 0, 0, 0.88) 68%,
+      black 78%
     );
 
   mask-image:
     linear-gradient(
       to right,
       transparent 0%,
-      rgba(0, 0, 0, 0.05) 7%,
-      rgba(0, 0, 0, 0.45) 17%,
-      rgba(0, 0, 0, 0.82) 28%,
-      black 40%
+      rgba(0, 0, 0, 0.02) 10%,
+      rgba(0, 0, 0, 0.07) 20%,
+      rgba(0, 0, 0, 0.18) 32%,
+      rgba(0, 0, 0, 0.40) 44%,
+      rgba(0, 0, 0, 0.66) 56%,
+      rgba(0, 0, 0, 0.88) 68%,
+      black 78%
     );
 }
 
@@ -998,18 +1025,14 @@ section {
       50px;
   }
 
-  .contact-layout {
-    grid-template-columns:
-      minmax(0, 1fr)
-      minmax(330px, 0.8fr);
-
-    gap:
-      45px;
+  .contact-left {
+    width:
+      57%;
   }
 
-  .contact-logo {
-    min-height:
-      510px;
+  .contact-logo img {
+    object-position:
+      center;
   }
 }
 
@@ -1064,7 +1087,9 @@ section {
   }
 
 
-  /* HERO */
+  /* =====================================================
+     HERO
+     ===================================================== */
 
   .hero-section {
     height:
@@ -1133,7 +1158,9 @@ section {
   }
 
 
-  /* TJÄNSTER */
+  /* =====================================================
+     TJÄNSTER
+     ===================================================== */
 
   .services-section {
     padding:
@@ -1173,7 +1200,9 @@ section {
   }
 
 
-  /* AKTUELLT */
+  /* =====================================================
+     AKTUELLT
+     ===================================================== */
 
   .current-section {
     padding:
@@ -1205,11 +1234,16 @@ section {
   }
 
 
-  /* KONTAKT */
+  /* =====================================================
+     KONTAKT
+     ===================================================== */
 
   .contact-section {
+    min-height:
+      0;
+
     padding:
-      75px 0 80px;
+      75px 0 0;
   }
 
   .contact-layout {
@@ -1217,19 +1251,13 @@ section {
       0;
 
     display:
-      flex;
-
-    flex-direction:
-      column;
-
-    gap:
-      45px;
-
-    align-items:
-      stretch;
+      block;
   }
 
   .contact-left {
+    width:
+      100%;
+
     max-width:
       none;
   }
@@ -1253,24 +1281,42 @@ section {
   }
 
   .contact-logo {
-    min-height:
-      320px;
+    position:
+      relative;
+
+    top:
+      auto;
+
+    right:
+      auto;
+
+    bottom:
+      auto;
+
+    left:
+      auto;
 
     width:
       100vw;
+
+    height:
+      360px;
+
+    min-height:
+      360px;
 
     margin-left:
       calc(
         (100% - 100vw) / 2
       );
 
-    margin-right:
-      0;
+    margin-top:
+      50px;
   }
 
   .contact-logo img {
     width:
-      100%;
+      100vw;
 
     height:
       100%;
@@ -1280,18 +1326,18 @@ section {
 
     -webkit-mask-image:
       linear-gradient(
-        to right,
+        to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.45) 12%,
-        black 30%
+        rgba(0, 0, 0, 0.35) 15%,
+        black 35%
       );
 
     mask-image:
       linear-gradient(
-        to right,
+        to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.45) 12%,
-        black 30%
+        rgba(0, 0, 0, 0.35) 15%,
+        black 35%
       );
   }
 }
@@ -1419,7 +1465,7 @@ section {
 
   .contact-section {
     padding:
-      60px 0 70px;
+      60px 0 0;
   }
 
   .contact-left h2 {
@@ -1433,8 +1479,11 @@ section {
   }
 
   .contact-logo {
+    height:
+      280px;
+
     min-height:
-      260px;
+      280px;
   }
 
   .contact-logo img {
