@@ -328,7 +328,7 @@ section {
     65px;
 
   align-items:
-    center;
+    stretch;
 }
 
 .hero-content {
@@ -338,7 +338,10 @@ section {
     560px;
 
   margin:
-    0 auto;
+    auto 0;
+
+  align-self:
+    center;
 }
 
 .hero-content h1 {
@@ -379,21 +382,25 @@ section {
     var(--muted);
 }
 
+
+/* =========================================================
+   HERO BILD
+   ========================================================= */
+
 .hero-image {
   width: 100%;
   height: 100%;
 
-  max-height:
-    calc(100vh - 144px);
+  min-height: 0;
 
   display:
     flex;
 
   align-items:
-    center;
+    stretch;
 
   justify-content:
-    center;
+    stretch;
 
   overflow:
     hidden;
@@ -403,8 +410,10 @@ section {
   width: 100%;
   height: 100%;
 
+  max-width: none;
+
   object-fit:
-    contain;
+    cover;
 
   object-position:
     center;
@@ -439,7 +448,10 @@ section {
 
 .service-card {
   display:
-    block;
+    flex;
+
+  flex-direction:
+    column;
 
   min-width:
     0;
@@ -458,6 +470,9 @@ section {
   aspect-ratio:
     16 / 9;
 
+  flex-shrink:
+    0;
+
   overflow:
     hidden;
 }
@@ -469,8 +484,14 @@ section {
   height:
     100%;
 
+  max-width:
+    none;
+
   object-fit:
     cover;
+
+  object-position:
+    center;
 
   transform:
     scale(1);
@@ -496,6 +517,8 @@ section {
 
   min-height:
     205px;
+
+  flex: 1;
 }
 
 .service-info h3 {
@@ -570,6 +593,8 @@ section {
 }
 
 .current-project {
+  width: 100%;
+
   display:
     grid;
 
@@ -581,15 +606,18 @@ section {
     70px;
 
   align-items:
-    center;
+    stretch;
 }
 
 .current-image {
   width:
     100%;
 
-  aspect-ratio:
-    16 / 10;
+  height:
+    100%;
+
+  min-height:
+    430px;
 
   overflow:
     hidden;
@@ -605,13 +633,22 @@ section {
   height:
     100%;
 
+  max-width:
+    none;
+
   object-fit:
     cover;
+
+  object-position:
+    center;
 }
 
 .current-content {
   max-width:
     480px;
+
+  align-self:
+    center;
 }
 
 .current-content h2 {
@@ -741,11 +778,14 @@ section {
 
   max-width: none;
 
-  object-fit: cover;
+  object-fit:
+    cover;
 
-  object-position: center;
+  object-position:
+    center;
 
-  display: block;
+  display:
+    block;
 }
 
 
@@ -780,9 +820,11 @@ section {
   padding-right:
     100px;
 
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
   background:
     var(--bg-light);
@@ -794,7 +836,8 @@ section {
    ========================================================= */
 
 .contact-panel::after {
-  display: none;
+  display:
+    none;
 }
 
 
@@ -1019,6 +1062,11 @@ section {
       50px;
   }
 
+  .current-image {
+    min-height:
+      380px;
+  }
+
   .contact-panel {
     width:
       62%;
@@ -1111,11 +1159,17 @@ section {
 
     gap:
       40px;
+
+    align-items:
+      stretch;
   }
 
   .hero-content {
     max-width:
       none;
+
+    margin:
+      0;
   }
 
   .hero-content h1 {
@@ -1139,11 +1193,14 @@ section {
   }
 
   .hero-image {
+    width:
+      100%;
+
     height:
       auto;
 
-    max-height:
-      none;
+    min-height:
+      0;
   }
 
   .hero-image img {
@@ -1152,6 +1209,9 @@ section {
 
     height:
       auto;
+
+    object-fit:
+      cover;
   }
 
 
@@ -1223,9 +1283,26 @@ section {
       stretch;
   }
 
+  .current-image {
+    width:
+      100%;
+
+    height:
+      auto;
+
+    min-height:
+      0;
+
+    aspect-ratio:
+      16 / 10;
+  }
+
   .current-content {
     max-width:
       none;
+
+    align-self:
+      auto;
   }
 
   .current-content h2 {
