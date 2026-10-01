@@ -1,32 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-
   /* =========================================
-     HEADER – MINSKAS VID SCROLL
+     HEADER
   ========================================= */
 
   const header =
     document.querySelector(".site-header");
 
+  let headerCompact = false;
 
   if (header) {
-
-    let compact = false;
-
 
     const updateHeader = () => {
 
       const scrollY = window.scrollY;
 
+      if (scrollY > 80 && !headerCompact) {
 
-      /*
-       * När vi scrollar ner:
-       * över 80 px = kompakt
-       */
-
-      if (!compact && scrollY > 80) {
-
-        compact = true;
+        headerCompact = true;
 
         header.classList.add(
           "header-compact"
@@ -34,16 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
 
+      if (scrollY <= 20 && headerCompact) {
 
-      /*
-       * När vi scrollar hela vägen
-       * tillbaka upp:
-       * under 20 px = normalt
-       */
-
-      if (compact && scrollY < 20) {
-
-        compact = false;
+        headerCompact = false;
 
         header.classList.remove(
           "header-compact"
@@ -68,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-
   /* =========================================
      DROPDOWN-MENY
   ========================================= */
@@ -81,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   if (menuButton && nav) {
-
 
     menuButton.addEventListener(
       "click",
@@ -126,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
               "false"
             );
 
-
             menuButton.setAttribute(
               "aria-label",
               "Öppna meny"
@@ -140,31 +121,44 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-
   /* =========================================
-     REFERENSER – MODAL
+     REFERENS-MODAL
   ========================================= */
 
   const modal =
-    document.querySelector(".project-modal");
+    document.querySelector(
+      ".project-modal"
+    );
 
   const modalTitle =
-    document.querySelector("#modal-title");
+    document.querySelector(
+      "#modal-title"
+    );
 
   const modalLocation =
-    document.querySelector("#modal-location");
+    document.querySelector(
+      "#modal-location"
+    );
 
   const modalDescription =
-    document.querySelector("#modal-description");
+    document.querySelector(
+      "#modal-description"
+    );
 
   const modalClose =
-    document.querySelector(".modal-close");
+    document.querySelector(
+      ".modal-close"
+    );
 
   const modalBackdrop =
-    document.querySelector(".modal-backdrop");
+    document.querySelector(
+      ".modal-backdrop"
+    );
 
   const projects =
-    document.querySelectorAll(".project");
+    document.querySelectorAll(
+      ".project"
+    );
 
 
   if (
@@ -175,49 +169,43 @@ document.addEventListener("DOMContentLoaded", () => {
   ) {
 
 
-    projects.forEach((project) => {
+    projects.forEach(
+      (project) => {
 
-      project.addEventListener(
-        "click",
-        () => {
+        project.addEventListener(
+          "click",
+          () => {
 
-          const title =
-            project.dataset.title || "";
+            modalTitle.textContent =
+              project.dataset.title || "";
 
-          const location =
-            project.dataset.location || "";
+            modalLocation.textContent =
+              project.dataset.location || "";
 
-          const description =
-            project.dataset.description || "";
-
-
-          modalTitle.textContent =
-            title;
-
-          modalLocation.textContent =
-            location;
-
-          modalDescription.textContent =
-            description;
+            modalDescription.textContent =
+              project.dataset.description || "";
 
 
-          modal.classList.add(
-            "open"
-          );
+            modal.classList.add(
+              "open"
+            );
 
-          modal.setAttribute(
-            "aria-hidden",
-            "false"
-          );
 
-          document.body.classList.add(
-            "modal-open"
-          );
+            modal.setAttribute(
+              "aria-hidden",
+              "false"
+            );
 
-        }
-      );
 
-    });
+            document.body.classList.add(
+              "modal-open"
+            );
+
+          }
+        );
+
+      }
+    );
 
 
     const closeModal = () => {
@@ -226,10 +214,12 @@ document.addEventListener("DOMContentLoaded", () => {
         "open"
       );
 
+
       modal.setAttribute(
         "aria-hidden",
         "true"
       );
+
 
       document.body.classList.remove(
         "modal-open"
