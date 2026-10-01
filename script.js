@@ -27,6 +27,92 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
+     AKTIV MENYFLIK VID SCROLL
+  ========================================= */
+
+  const navLinks = document.querySelectorAll(
+    ".main-nav a"
+  );
+
+  const sections = [
+    {
+      id: "om-oss",
+      link: document.querySelector(
+        '.main-nav a[href="#om-oss"]'
+      )
+    },
+    {
+      id: "tjanster",
+      link: document.querySelector(
+        '.main-nav a[href="#tjanster"]'
+      )
+    },
+    {
+      id: "referenser",
+      link: document.querySelector(
+        '.main-nav a[href="#referenser"]'
+      )
+    }
+  ];
+
+
+  const updateActiveNav = () => {
+
+    const scrollPosition =
+      window.scrollY + 180;
+
+    let activeSection = null;
+
+    sections.forEach((section) => {
+
+      const element =
+        document.getElementById(section.id);
+
+      if (!element) return;
+
+      if (
+        scrollPosition >=
+        element.offsetTop
+      ) {
+
+        activeSection = section;
+
+      }
+
+    });
+
+
+    navLinks.forEach((link) => {
+
+      link.classList.remove("active");
+
+    });
+
+
+    if (
+      activeSection &&
+      activeSection.link
+    ) {
+
+      activeSection.link.classList.add(
+        "active"
+      );
+
+    }
+
+  };
+
+
+  window.addEventListener(
+    "scroll",
+    updateActiveNav,
+    { passive: true }
+  );
+
+  updateActiveNav();
+
+
+  /* =========================================
      REFERENS-MODAL
   ========================================= */
 
@@ -48,15 +134,69 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalBackdrop =
     document.querySelector(".modal-backdrop");
 
+  const modalContent =
+    document.querySelector(".modal-content");
+
   const projects =
     document.querySelectorAll(".project");
 
+
+  /* =========================================
+     MODAL-STYLING
+  ========================================= */
+
+  const modalStyle =
+    document.createElement("style");
+
+  modalStyle.textContent = `
+
+    .main-nav a.active {
+      color: var(--copper-dark);
+    }
+
+    .main-nav a.active::after {
+      transform: scaleX(1);
+    }
+
+    .modal-project-image {
+      width: 100%;
+      max-height: 65vh;
+      object-fit: contain;
+      margin-bottom: 28px;
+      background: #e8e1d6;
+    }
+
+    .modal-content {
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @media (max-width: 800px) {
+
+      .modal-project-image {
+        max-height: 50vh;
+        margin-bottom: 22px;
+      }
+
+    }
+
+  `;
+
+  document.head.appendChild(
+    modalStyle
+  );
+
+
+  /* =========================================
+     ÖPPNA REFERENSPROJEKT
+  ========================================= */
 
   if (
     modal &&
     modalTitle &&
     modalLocation &&
-    modalDescription
+    modalDescription &&
+    modalContent
   ) {
 
     projects.forEach(
@@ -66,6 +206,8 @@ document.addEventListener("DOMContentLoaded", () => {
           "click",
           () => {
 
+            /* Hämta information */
+
             modalTitle.textContent =
               project.dataset.title || "";
 
@@ -74,6 +216,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
             modalDescription.textContent =
               project.dataset.description || "";
+
+
+            /* Hämta bilden */
+
+            const projectImage =
+              project.querySelector("img");
+
+
+            /* Ta bort eventuell gammal bild */
+
+            const oldImage =
+              modalContent.querySelector(
+                ".modal-project-image"
+              );
+
+            if (oldImage) {
+              oldImage.remove();
+            }
+
+
+            /* Lägg in den nya bilden */
+
+            if (projectImage) {
+
+              const modalImage =
+                document.createElement("img");
+
+              modalImage.className =
+                "modal-project-image";
+
+              modalImage.src =
+                projectImage.src;
+
+              modalImage.alt =
+                projectImage.alt || "";
+
+              /*
+                Bilden läggs först i popupen,
+                precis under stängknappen.
+              */
+
+              modalContent.insertBefore(
+                modalImage,
+                modalContent.querySelector(
+                  ".modal-location"
+                )
+              );
+
+            }
+
+
+            /* Öppna */
 
             modal.classList.add("open");
 
