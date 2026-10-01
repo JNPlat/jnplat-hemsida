@@ -719,7 +719,7 @@ section {
 
   z-index: 2;
 
-  width: 58%;
+  width: 50%;
 
   min-height:
     calc(100vh - 82px);
@@ -741,7 +741,7 @@ section {
     );
 
   padding-right:
-    80px;
+    55px;
 
   display:
     flex;
@@ -755,7 +755,7 @@ section {
 
 
 /* =========================================================
-   KORT OCH TYDLIG FADE
+   KORT FADE MOT BILDEN
    ========================================================= */
 
 .contact-panel::after {
@@ -764,9 +764,9 @@ section {
   position: absolute;
 
   top: 0;
-  right: -210px;
+  right: -190px;
 
-  width: 230px;
+  width: 200px;
   height: 100%;
 
   pointer-events: none;
@@ -776,11 +776,11 @@ section {
       to right,
 
       var(--bg-light) 0%,
-      var(--bg-light) 35%,
+      var(--bg-light) 30%,
 
-      rgba(248, 245, 239, 0.95) 55%,
-      rgba(248, 245, 239, 0.68) 68%,
-      rgba(248, 245, 239, 0.28) 82%,
+      rgba(248, 245, 239, 0.96) 45%,
+      rgba(248, 245, 239, 0.72) 60%,
+      rgba(248, 245, 239, 0.38) 75%,
 
       rgba(248, 245, 239, 0) 100%
     );
@@ -996,10 +996,10 @@ section {
 
   .contact-panel {
     width:
-      62%;
+      55%;
 
     padding-right:
-      60px;
+      45px;
   }
 }
 
