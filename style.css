@@ -553,8 +553,17 @@ section {
    ========================================================= */
 
 .current-section {
+  min-height:
+    calc(100vh - 82px);
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
   padding:
-    125px 0;
+    0;
 
   background:
     var(--bg);
@@ -1214,6 +1223,9 @@ section {
      ===================================================== */
 
   .current-section {
+    min-height:
+      auto;
+
     padding:
       90px 0;
   }
