@@ -710,15 +710,18 @@ section {
 
 /* =========================================================
    KONTAKTBILD
-   HELA SEKTIONEN
+   HÖGER DEL AV HELA SEKTIONEN
    ========================================================= */
 
 .contact-background {
   position: absolute;
 
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 58%;
 
-  width: 100%;
+  width: auto;
   height: 100%;
 
   z-index: 1;
@@ -787,40 +790,11 @@ section {
 
 
 /* =========================================================
-   MJUK FADE
+   INGEN FADE
    ========================================================= */
 
 .contact-panel::after {
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-
-  right: -420px;
-
-  width: 440px;
-
-  height: 100%;
-
-  pointer-events: none;
-
-  background:
-    linear-gradient(
-      to right,
-
-      var(--bg-light) 0%,
-      var(--bg-light) 12%,
-
-      rgba(248, 245, 239, 0.99) 25%,
-      rgba(248, 245, 239, 0.94) 37%,
-      rgba(248, 245, 239, 0.78) 50%,
-      rgba(248, 245, 239, 0.56) 63%,
-      rgba(248, 245, 239, 0.32) 76%,
-      rgba(248, 245, 239, 0.12) 89%,
-
-      rgba(248, 245, 239, 0) 100%
-    );
+  display: none;
 }
 
 
@@ -1052,6 +1026,11 @@ section {
     padding-right:
       60px;
   }
+
+  .contact-background {
+    left:
+      62%;
+  }
 }
 
 
@@ -1268,7 +1247,16 @@ section {
     position:
       absolute;
 
-    inset:
+    top:
+      0;
+
+    right:
+      0;
+
+    bottom:
+      0;
+
+    left:
       0;
 
     width:
