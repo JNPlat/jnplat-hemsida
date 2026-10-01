@@ -8,40 +8,26 @@ document.addEventListener(
        ===================================================== */
 
     const brand =
-      document.querySelector(
-        ".brand"
-      );
+      document.querySelector(".brand");
 
 
     const navLinks =
-      document.querySelectorAll(
-        ".nav-link"
-      );
+      document.querySelectorAll(".nav-link");
 
 
     const headerContact =
-      document.querySelector(
-        ".header-contact"
-      );
+      document.querySelector(".header-contact");
 
 
     const sections = [
 
-      document.querySelector(
-        "#hem"
-      ),
+      document.querySelector("#hem"),
 
-      document.querySelector(
-        "#tjanster"
-      ),
+      document.querySelector("#tjanster"),
 
-      document.querySelector(
-        "#aktuellt"
-      ),
+      document.querySelector("#aktuellt"),
 
-      document.querySelector(
-        "#kontakt"
-      )
+      document.querySelector("#kontakt")
 
     ].filter(Boolean);
 
@@ -51,47 +37,38 @@ document.addEventListener(
        AKTIV SEKTION
        ===================================================== */
 
-    function setActiveSection(
-      sectionId
-    ) {
+    function setActiveSection(sectionId) {
 
 
-      /* NAVIGATION */
+      navLinks.forEach((link) => {
 
-      navLinks.forEach(
-        (link) => {
-
-          const active =
-            link.dataset.section ===
-            sectionId;
+        const active =
+          link.dataset.section === sectionId;
 
 
-          link.classList.toggle(
-            "active",
-            active
+        link.classList.toggle(
+          "active",
+          active
+        );
+
+
+        if (active) {
+
+          link.setAttribute(
+            "aria-current",
+            "page"
           );
 
+        } else {
 
-          if (active) {
-
-            link.setAttribute(
-              "aria-current",
-              "page"
-            );
-
-          } else {
-
-            link.removeAttribute(
-              "aria-current"
-            );
-
-          }
+          link.removeAttribute(
+            "aria-current"
+          );
 
         }
-      );
 
+      });
 
-      /* KONTAKTA OSS */
 
       if (headerContact) {
 
@@ -114,20 +91,15 @@ document.addEventListener(
 
 
       const headerHeight =
-        82;
+        window.innerWidth <= 480
+          ? 76
+          : 82;
 
-
-      /*
-         Aktiv punkt på sidan.
-         När en sektion passerar denna punkt
-         blir den aktiv i headern.
-      */
 
       const activationPoint =
         headerHeight +
         (
-          window.innerHeight *
-          0.30
+          window.innerHeight * 0.30
         );
 
 
@@ -135,45 +107,34 @@ document.addEventListener(
         sections[0];
 
 
-      sections.forEach(
-        (section) => {
+      sections.forEach((section) => {
 
-          const rect =
-            section.getBoundingClientRect();
+        const rect =
+          section.getBoundingClientRect();
 
 
-          if (
-            rect.top <=
-            activationPoint
-          ) {
+        if (
+          rect.top <= activationPoint
+        ) {
 
-            activeSection =
-              section;
-
-          }
+          activeSection =
+            section;
 
         }
-      );
 
+      });
 
-      /*
-         När man faktiskt når botten
-         ska Kontakt alltid vara aktiv.
-      */
 
       const atBottom =
         window.innerHeight +
         window.scrollY >=
-        document.documentElement
-          .scrollHeight - 5;
+        document.documentElement.scrollHeight - 5;
 
 
       if (atBottom) {
 
         const contactSection =
-          document.querySelector(
-            "#kontakt"
-          );
+          document.querySelector("#kontakt");
 
 
         if (contactSection) {
@@ -215,8 +176,7 @@ document.addEventListener(
 
             top: 0,
 
-            behavior:
-              "smooth"
+            behavior: "smooth"
 
           });
 
@@ -231,51 +191,45 @@ document.addEventListener(
        NAVIGATION
        ===================================================== */
 
-    navLinks.forEach(
-      (link) => {
+    navLinks.forEach((link) => {
 
-        link.addEventListener(
-          "click",
-          (event) => {
-
-
-            const targetId =
-              link.getAttribute(
-                "href"
-              );
+      link.addEventListener(
+        "click",
+        (event) => {
 
 
-            const target =
-              document.querySelector(
-                targetId
-              );
+          const targetId =
+            link.getAttribute("href");
 
 
-            if (!target) {
-
-              return;
-
-            }
-
-
-            event.preventDefault();
+          const target =
+            document.querySelector(
+              targetId
+            );
 
 
-            target.scrollIntoView({
+          if (!target) {
 
-              behavior:
-                "smooth",
-
-              block:
-                "start"
-
-            });
+            return;
 
           }
-        );
 
-      }
-    );
+
+          event.preventDefault();
+
+
+          target.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "start"
+
+          });
+
+        }
+      );
+
+    });
 
 
 
@@ -308,11 +262,9 @@ document.addEventListener(
 
           target.scrollIntoView({
 
-            behavior:
-              "smooth",
+            behavior: "smooth",
 
-            block:
-              "start"
+            block: "start"
 
           });
 
