@@ -6,8 +6,6 @@
   --bg: #f3eee6;
   --bg-light: #f8f5ef;
 
-  --dark: #302923;
-
   --text: #302a24;
   --muted: #766d63;
 
@@ -15,7 +13,6 @@
   --copper-light: #b78968;
   --copper-dark: #704936;
 
-  --cream: #f3eee6;
   --white: #fffdf9;
 
   --line: rgba(48, 42, 36, 0.14);
@@ -215,9 +212,9 @@ a {
 
   border: 1px solid var(--copper);
 
-  color: var(--copper-dark);
-
   background: transparent;
+
+  color: var(--copper-dark);
 
   font-family:
     Arial,
@@ -300,9 +297,6 @@ section {
   align-items: center;
 }
 
-
-/* HERO TEXT */
-
 .hero-content {
   width: 100%;
 
@@ -335,9 +329,6 @@ section {
 
   color: var(--muted);
 }
-
-
-/* HERO IMAGE */
 
 .hero-image {
   width: 100%;
@@ -379,12 +370,6 @@ section {
   color: var(--text);
 }
 
-
-/*
-   Fyra lika stora bilder.
-   Inga mellanrum.
-*/
-
 .services-grid {
   display: grid;
 
@@ -407,8 +392,6 @@ section {
   min-width: 0;
 
   text-align: center;
-
-  transition: none;
 }
 
 
@@ -417,8 +400,6 @@ section {
    ========================================================= */
 
 .service-image {
-  position: relative;
-
   width: 100%;
 
   aspect-ratio: 16 / 9;
@@ -437,20 +418,20 @@ section {
 
   object-fit: cover;
 
-  transition: none;
+  transform: scale(1);
+
+  transition:
+    transform 0.4s ease;
 }
 
 
 /*
-   Ingen zoom eller rörelse.
+   Liten exklusiv förstoring.
+   Bilden stannar inom sin ruta.
 */
 
-.service-card:hover {
-  transform: none;
-}
-
 .service-card:hover .service-image img {
-  transform: none;
+  transform: scale(1.035);
 }
 
 
@@ -459,19 +440,17 @@ section {
    ========================================================= */
 
 .service-card h3 {
-  position: relative;
-
-  display: block;
-
   margin: 18px 0 0;
 
   padding: 0;
 
-  font-size: 17px;
+  font-size: 19px;
 
   line-height: 1.2;
 
-  font-weight: 400;
+  font-weight: 700;
+
+  text-align: center;
 
   color: var(--text);
 
@@ -481,7 +460,7 @@ section {
 
 
 /*
-   Endast textfärg ändras.
+   Endast färgen ändras.
 */
 
 .service-card:hover h3 {
@@ -619,7 +598,11 @@ section {
 
 
 /*
-   LOGGAN CENTRERAD BAKOM KONTAKTEN
+   LOGGAN BAKOM VÄNSTERKOLUMNEN
+
+   Centrerad ungefär bakom:
+   "Kontakta oss"
+   och texten under.
 */
 
 .contact-section::before {
@@ -629,14 +612,15 @@ section {
 
   z-index: 0;
 
-  width: 480px;
-  height: 480px;
+  width: 390px;
+  height: 390px;
 
-  left: 50%;
+  left: 25%;
+
   top: 50%;
 
   transform:
-    translate(-50%, -43%);
+    translate(-50%, -50%);
 
   background-image:
     url("logo/J.Norberg%20Brun%20Enkel.svg");
@@ -647,7 +631,7 @@ section {
 
   background-size: contain;
 
-  opacity: 0.045;
+  opacity: 0.075;
 
   pointer-events: none;
 }
@@ -659,7 +643,9 @@ section {
 }
 
 
-/* CONTACT HEADING */
+/* =========================================================
+   CONTACT HEADING
+   ========================================================= */
 
 .contact-heading {
   margin-bottom: 30px;
@@ -679,7 +665,9 @@ section {
 }
 
 
-/* CONTACT CONTENT */
+/* =========================================================
+   CONTACT CONTENT
+   ========================================================= */
 
 .contact-content {
   display: grid;
@@ -801,7 +789,7 @@ section {
   }
 
   .service-card h3 {
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .current-project {
@@ -813,8 +801,10 @@ section {
   }
 
   .contact-section::before {
-    width: 390px;
-    height: 390px;
+    width: 340px;
+    height: 340px;
+
+    left: 25%;
   }
 }
 
@@ -940,7 +930,7 @@ section {
   }
 
   .service-card h3 {
-    font-size: 17px;
+    font-size: 18px;
   }
 
 
@@ -1002,14 +992,14 @@ section {
   }
 
   .contact-section::before {
-    width: 330px;
-    height: 330px;
+    width: 300px;
+    height: 300px;
 
     left: 50%;
 
     top: 60%;
 
-    opacity: 0.04;
+    opacity: 0.065;
   }
 }
 
@@ -1077,7 +1067,7 @@ section {
   }
 
   .service-card h3 {
-    font-size: 18px;
+    font-size: 19px;
 
     margin-top: 15px;
   }
@@ -1099,9 +1089,13 @@ section {
   }
 
   .contact-section::before {
-    width: 280px;
-    height: 280px;
+    width: 260px;
+    height: 260px;
+
+    left: 50%;
 
     top: 62%;
+
+    opacity: 0.06;
   }
 }
