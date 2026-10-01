@@ -687,8 +687,12 @@ section {
   overflow:
     hidden;
 
+  /*
+    Kontaktsektionen fyller resten av sidan.
+    Bilden följer exakt denna sektion.
+  */
   min-height:
-    620px;
+    calc(100vh - 82px);
 
   padding:
     100px 0 110px;
@@ -703,36 +707,27 @@ section {
 
 /* =========================================================
    KONTAKTBILD
-   BILDEN FYLLER HELA SEKTIONEN
+   HELA KONTAKTSEKTIONEN
    ========================================================= */
 
 .contact-logo {
   position:
-    absolute;
+    absolute !important;
 
   z-index:
     1;
 
-  top:
-    0;
-
-  left:
-    0;
-
-  right:
-    0;
-
-  bottom:
+  inset:
     0;
 
   width:
-    100%;
+    100% !important;
 
   height:
-    100%;
+    100% !important;
 
   margin:
-    0;
+    0 !important;
 
   overflow:
     hidden;
@@ -745,23 +740,20 @@ section {
   position:
     absolute;
 
-  top:
-    0;
-
-  right:
+  inset:
     0;
 
   width:
-    100%;
+    100vw !important;
 
   height:
-    100%;
+    100% !important;
 
   max-width:
-    none;
+    none !important;
 
   max-height:
-    none;
+    none !important;
 
   object-fit:
     cover;
@@ -786,7 +778,7 @@ section {
     2;
 
   min-height:
-    510px;
+    calc(100vh - 82px);
 
   display:
     block;
@@ -794,7 +786,7 @@ section {
 
 
 /* =========================================================
-   KONTAKT – TEXT RUTA
+   KONTAKT – BEIGE TEXTYTA
    ========================================================= */
 
 .contact-left {
@@ -811,7 +803,7 @@ section {
     720px;
 
   min-height:
-    510px;
+    calc(100vh - 82px);
 
   padding:
     0 70px 0 0;
@@ -831,7 +823,7 @@ section {
 
 
 /* =========================================================
-   MJUK ÖVERGÅNG FRÅN RUTA TILL BILD
+   MJUK ÖVERGÅNG FRÅN TEXTYTA TILL BILD
    ========================================================= */
 
 .contact-left::after {
@@ -845,10 +837,10 @@ section {
     0;
 
   right:
-    -180px;
+    -300px;
 
   width:
-    220px;
+    340px;
 
   height:
     100%;
@@ -859,11 +851,21 @@ section {
   background:
     linear-gradient(
       to right,
+
       var(--bg-light) 0%,
-      rgba(248, 245, 239, 0.98) 18%,
-      rgba(248, 245, 239, 0.82) 35%,
-      rgba(248, 245, 239, 0.55) 52%,
-      rgba(248, 245, 239, 0.25) 72%,
+
+      var(--bg-light) 15%,
+
+      rgba(248, 245, 239, 0.98) 28%,
+
+      rgba(248, 245, 239, 0.90) 40%,
+
+      rgba(248, 245, 239, 0.68) 53%,
+
+      rgba(248, 245, 239, 0.43) 66%,
+
+      rgba(248, 245, 239, 0.20) 81%,
+
       rgba(248, 245, 239, 0) 100%
     );
 }
@@ -1337,28 +1339,19 @@ section {
 
   .contact-logo {
     position:
-      absolute;
+      absolute !important;
 
-    top:
+    inset:
       0;
-
-    left:
-      0;
-
-    right:
-      0;
-
-    bottom:
-      auto;
 
     width:
-      100%;
+      100% !important;
 
     height:
-      100%;
+      100% !important;
 
     margin:
-      0;
+      0 !important;
 
     z-index:
       1;
@@ -1366,10 +1359,10 @@ section {
 
   .contact-logo img {
     width:
-      100%;
+      100vw !important;
 
     height:
-      100%;
+      100% !important;
 
     object-fit:
       cover;
