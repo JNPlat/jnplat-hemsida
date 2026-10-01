@@ -20,6 +20,22 @@
   >
 
   <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
     rel="stylesheet"
     href="style.css"
   >
@@ -42,8 +58,6 @@
     <div class="container nav-wrap">
 
 
-      <!-- LOGO -->
-
       <a
         class="brand"
         href="#top"
@@ -57,8 +71,6 @@
 
       </a>
 
-
-      <!-- NAVIGATION -->
 
       <nav
         class="main-nav"
@@ -94,8 +106,6 @@
       </nav>
 
 
-      <!-- KONTAKT -->
-
       <a
         href="#kontakt"
         class="header-contact"
@@ -104,9 +114,7 @@
 
         Kontakta oss
 
-        <span>
-          →
-        </span>
+        <span>→</span>
 
       </a>
 
@@ -132,16 +140,12 @@
       <div class="container hero-grid">
 
 
-        <!-- TEXT -->
-
         <div class="hero-content">
 
           <h1>
-
             Traditionellt<br>
             hantverk i<br>
             Stockholm.
-
           </h1>
 
 
@@ -157,8 +161,6 @@
 
         </div>
 
-
-        <!-- HERO-BILD -->
 
         <div class="hero-image">
 
@@ -190,8 +192,6 @@
         <div class="services-grid">
 
 
-          <!-- BYGGNADSPLÅTSLAGERI -->
-
           <a
             href="#tjanster"
             class="service-card"
@@ -213,7 +213,6 @@
                 Byggnadsplåtslageri
               </h3>
 
-
               <p>
                 Plåtarbeten för tak, fasader och
                 byggnadsdetaljer med fokus på precision,
@@ -225,8 +224,6 @@
           </a>
 
 
-
-          <!-- KOPPARSLAGERI -->
 
           <a
             href="#tjanster"
@@ -249,7 +246,6 @@
                 Kopparslageri
               </h3>
 
-
               <p>
                 Traditionellt koppararbete för tak,
                 detaljer och utsmyckningar, utfört med
@@ -261,8 +257,6 @@
           </a>
 
 
-
-          <!-- RESTAURERING -->
 
           <a
             href="#tjanster"
@@ -285,7 +279,6 @@
                 Restaurering
               </h3>
 
-
               <p>
                 Restaurering av kulturhistoriska byggnader
                 och detaljer där hänsyn tas till befintligt
@@ -297,8 +290,6 @@
           </a>
 
 
-
-          <!-- SPECIALPROJEKT -->
 
           <a
             href="#tjanster"
@@ -320,7 +311,6 @@
               <h3>
                 Specialprojekt
               </h3>
-
 
               <p>
                 Skräddarsydda arbeten i plåt och koppar –
@@ -353,13 +343,8 @@
       <div class="container">
 
 
-        <a
-          href="#aktuellt"
-          class="current-project"
-        >
+        <div class="current-project">
 
-
-          <!-- BILD -->
 
           <div class="current-image">
 
@@ -370,8 +355,6 @@
 
           </div>
 
-
-          <!-- TEXT -->
 
           <div class="current-content">
 
@@ -390,20 +373,23 @@
             </p>
 
 
-            <span class="read-more">
+            <a
+              class="read-more"
+              href="https://sv.wikipedia.org/wiki/Villa_Bergabo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
 
               Läs mer om projektet
 
-              <span>
-                →
-              </span>
+              <span>→</span>
 
-            </span>
+            </a>
 
           </div>
 
 
-        </a>
+        </div>
 
       </div>
 
@@ -420,39 +406,25 @@
       id="kontakt"
     >
 
-      <div class="container">
+      <div class="container contact-layout">
 
 
-        <!-- RUBRIK -->
+        <!-- VÄNSTER: ALL TEXT -->
 
-        <div class="contact-heading">
+        <div class="contact-left">
+
 
           <h2>
             Kontakta oss
           </h2>
 
-        </div>
 
+          <p class="contact-intro">
+            Har du ett projekt inom plåt, koppar eller
+            restaurering? Kontakta mig gärna för att
+            diskutera arbetet.
+          </p>
 
-        <!-- KONTAKTINNEHÅLL -->
-
-        <div class="contact-content">
-
-
-          <!-- VÄNSTER -->
-
-          <div class="contact-intro">
-
-            <p>
-              Har du ett projekt inom plåt, koppar eller
-              restaurering? Kontakta mig gärna för att
-              diskutera arbetet.
-            </p>
-
-          </div>
-
-
-          <!-- HÖGER -->
 
           <div class="contact-details">
 
@@ -499,6 +471,21 @@
           </div>
 
         </div>
+
+
+
+        <!-- HÖGER: LOGGAN -->
+
+        <div class="contact-logo">
+
+          <img
+            src="logo/J.Norberg%20Brun%20Enkel.svg"
+            alt=""
+            aria-hidden="true"
+          >
+
+        </div>
+
 
       </div>
 
