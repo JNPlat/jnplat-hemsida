@@ -682,70 +682,116 @@ section {
 
 .contact-section {
   position: relative;
-  overflow: hidden;
 
-  min-height: calc(100vh - 82px);
+  min-height:
+    calc(100vh - 82px);
+
+  margin: 0;
   padding: 0;
 
-  background-color: var(--bg-light);
-  background-image: url("images/IMG_2829.jpeg");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  overflow: hidden;
 
-  border-top: 1px solid var(--line);
+  background:
+    var(--bg-light);
+
+  border-top:
+    1px solid var(--line);
 }
 
-.contact-layout {
-  position: relative;
-  z-index: 2;
+
+/* =========================================================
+   KONTAKTBILD
+   HELA SEKTIONEN
+   ========================================================= */
+
+.contact-background {
+  position: absolute;
+
+  inset: 0;
 
   width: 100%;
+  height: 100%;
+
+  z-index: 1;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.contact-background img {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
   max-width: none;
-  margin: 0;
 
-  min-height: calc(100vh - 82px);
+  object-fit: cover;
 
-  display: flex;
-  align-items: stretch;
+  object-position: center;
+
+  display: block;
 }
 
-.contact-logo {
-  display: none !important;
-}
 
-.contact-left {
+/* =========================================================
+   BEIGE KONTAKTPANEL
+   ========================================================= */
+
+.contact-panel {
   position: relative;
-  z-index: 3;
 
-  width: 56%;
-  max-width: none;
+  z-index: 2;
 
-  min-height: calc(100vh - 82px);
+  width: 58%;
 
-  padding-top: 100px;
-  padding-right: 70px;
-  padding-bottom: 110px;
-  padding-left: max(
-    32px,
-    calc((100vw - var(--max-width)) / 2)
-  );
+  min-height:
+    calc(100vh - 82px);
+
+  padding-top:
+    100px;
+
+  padding-bottom:
+    110px;
+
+  padding-left:
+    max(
+      32px,
+      calc(
+        (100vw - var(--max-width)) / 2
+      )
+    );
+
+  padding-right:
+    100px;
 
   display: flex;
-  flex-direction: column;
-  justify-content: center;
 
-  background: var(--bg-light);
+  align-items: center;
+
+  background:
+    var(--bg-light);
 }
 
-.contact-left::after {
+
+/* =========================================================
+   MJUK FADE
+   ========================================================= */
+
+.contact-panel::after {
   content: "";
 
   position: absolute;
+
   top: 0;
+
   right: -420px;
 
   width: 440px;
+
   height: 100%;
 
   pointer-events: none;
@@ -753,22 +799,45 @@ section {
   background:
     linear-gradient(
       to right,
+
       var(--bg-light) 0%,
-      var(--bg-light) 16%,
-      rgba(248, 245, 239, 0.98) 30%,
-      rgba(248, 245, 239, 0.91) 42%,
-      rgba(248, 245, 239, 0.70) 55%,
-      rgba(248, 245, 239, 0.45) 68%,
-      rgba(248, 245, 239, 0.22) 82%,
+      var(--bg-light) 12%,
+
+      rgba(248, 245, 239, 0.99) 25%,
+      rgba(248, 245, 239, 0.94) 37%,
+      rgba(248, 245, 239, 0.78) 50%,
+      rgba(248, 245, 239, 0.56) 63%,
+      rgba(248, 245, 239, 0.32) 76%,
+      rgba(248, 245, 239, 0.12) 89%,
+
       rgba(248, 245, 239, 0) 100%
     );
 }
 
-.contact-left h2 {
-  position: relative;
-  z-index: 4;
 
-  margin: 0 0 28px;
+/* =========================================================
+   KONTAKTINNEHÅLL
+   ========================================================= */
+
+.contact-content {
+  position: relative;
+
+  z-index: 3;
+
+  width: 100%;
+
+  max-width:
+    560px;
+}
+
+
+/* =========================================================
+   KONTAKT RUBRIK
+   ========================================================= */
+
+.contact-content h2 {
+  margin:
+    0 0 28px;
 
   font-size:
     clamp(
@@ -777,66 +846,116 @@ section {
       70px
     );
 
-  line-height: 1;
-  font-weight: 400;
-  letter-spacing: -0.03em;
+  line-height:
+    1;
+
+  font-weight:
+    400;
+
+  font-style:
+    normal;
+
+  letter-spacing:
+    -0.03em;
 }
+
+
+/* =========================================================
+   KONTAKT INTRO
+   ========================================================= */
 
 .contact-intro {
-  position: relative;
-  z-index: 4;
+  margin:
+    0 0 55px;
 
-  max-width: 560px;
-  margin: 0 0 55px;
+  max-width:
+    560px;
 
-  font-size: 24px;
-  line-height: 1.5;
+  font-size:
+    24px;
+
+  line-height:
+    1.5;
+
+  font-weight:
+    400;
+
+  font-style:
+    normal;
 }
 
+
+/* =========================================================
+   KONTAKTUPPGIFTER
+   ========================================================= */
+
 .contact-details {
-  position: relative;
-  z-index: 4;
+  width: 100%;
 
-  width:
-    min(
-      100%,
-      500px
-    );
+  max-width:
+    500px;
 
-  border-top: 1px solid var(--line);
+  border-top:
+    1px solid var(--line);
 }
 
 .contact-item {
-  padding: 17px 0;
-  border-bottom: 1px solid var(--line);
+  padding:
+    17px 0;
+
+  border-bottom:
+    1px solid var(--line);
 }
 
 .contact-item span {
-  display: block;
-  margin-bottom: 3px;
+  display:
+    block;
 
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  margin-bottom:
+    3px;
 
-  color: var(--muted);
+  font-size:
+    14px;
+
+  font-weight:
+    500;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+
+  color:
+    var(--muted);
 }
 
 .contact-item a,
 .contact-item p {
-  margin: 0;
+  margin:
+    0;
 
-  font-size: 21px;
-  line-height: 1.3;
+  font-size:
+    21px;
+
+  line-height:
+    1.3;
+
+  font-weight:
+    400;
+
+  font-style:
+    normal;
 }
 
 .contact-item a {
-  transition: color 0.25s ease;
+  transition:
+    color 0.25s ease;
 }
 
 .contact-item a:hover {
-  color: var(--copper);
+  color:
+    var(--copper);
 }
 
 
@@ -917,12 +1036,12 @@ section {
       50px;
   }
 
-  .contact-left {
+  .contact-panel {
     width:
-      60%;
+      62%;
 
     padding-right:
-      50px;
+      60px;
   }
 }
 
@@ -1129,48 +1248,81 @@ section {
      ===================================================== */
 
   .contact-section {
-    min-height: 0;
-    padding: 0;
-
-    background-size: cover;
-    background-position: center bottom;
+    min-height:
+      0;
   }
 
-  .contact-layout {
-    width: 100%;
-    max-width: none;
-    min-height: 0;
-    margin: 0;
+  .contact-background {
+    position:
+      absolute;
 
-    display: block;
+    inset:
+      0;
+
+    width:
+      100%;
+
+    height:
+      100%;
   }
 
-  .contact-left {
-    width: 100%;
-    max-width: none;
-    min-height: 0;
+  .contact-background img {
+    width:
+      100%;
+
+    height:
+      100%;
+
+    object-fit:
+      cover;
+
+    object-position:
+      center;
+  }
+
+  .contact-panel {
+    width:
+      100%;
+
+    min-height:
+      0;
 
     padding:
       75px 16px 75px;
 
-    background: var(--bg-light);
+    display:
+      block;
+
+    background:
+      var(--bg-light);
   }
 
-  .contact-left::after {
-    display: none;
+  .contact-panel::after {
+    display:
+      none;
   }
 
-  .contact-left h2 {
-    font-size: 50px;
+  .contact-content {
+    max-width:
+      none;
+  }
+
+  .contact-content h2 {
+    font-size:
+      50px;
   }
 
   .contact-intro {
-    font-size: 21px;
-    margin-bottom: 40px;
+    font-size:
+      21px;
+
+    margin-bottom:
+      40px;
   }
 
   .contact-details {
-    width: 100%;
+    max-width:
+      none;
   }
 }
 
@@ -1295,12 +1447,12 @@ section {
       34px;
   }
 
-  .contact-section {
+  .contact-panel {
     padding:
-      60px 0 0;
+      60px 12px 60px;
   }
 
-  .contact-left h2 {
+  .contact-content h2 {
     font-size:
       45px;
   }
