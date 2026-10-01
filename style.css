@@ -10,17 +10,13 @@
 :root {
 
   --bg: #f3eee6;
-
   --bg-light: #f8f5ef;
-
   --card: #e9e2d7;
 
   --text: #302a24;
-
   --muted: #766d63;
 
   --copper: #9a6747;
-
   --copper-dark: #704936;
 
   --white: #fffdf9;
@@ -644,8 +640,12 @@ section {
   line-height:
     1.1;
 
+  /* INTE BOLD */
   font-weight:
-    400;
+    400 !important;
+
+  font-style:
+    normal !important;
 
   letter-spacing:
     -0.015em;
@@ -1051,7 +1051,7 @@ section {
     100%;
 
   min-height:
-    500px;
+    420px;
 
   display:
     flex;
@@ -1062,6 +1062,9 @@ section {
   justify-content:
     center;
 
+  overflow:
+    hidden;
+
 }
 
 
@@ -1070,11 +1073,11 @@ section {
   width:
     min(
       100%,
-      560px
+      430px
     );
 
   max-height:
-    500px;
+    380px;
 
   height:
     auto;
@@ -1083,7 +1086,7 @@ section {
     contain;
 
   opacity:
-    0.10;
+    0.16;
 
 }
 
@@ -1177,6 +1180,9 @@ section {
     font-size:
       24px;
 
+    font-weight:
+      400 !important;
+
   }
 
 
@@ -1211,7 +1217,10 @@ section {
   .contact-logo img {
 
     max-width:
-      470px;
+      430px;
+
+    max-height:
+      380px;
 
   }
 
@@ -1415,6 +1424,9 @@ section {
     font-size:
       23px;
 
+    font-weight:
+      400 !important;
+
   }
 
 
@@ -1537,7 +1549,7 @@ section {
   .contact-logo {
 
     min-height:
-      300px;
+      260px;
 
     order:
       2;
@@ -1550,8 +1562,11 @@ section {
     width:
       85%;
 
+    max-width:
+      430px;
+
     max-height:
-      360px;
+      300px;
 
   }
 
@@ -1591,6 +1606,9 @@ section {
 
     font-size:
       25px;
+
+    font-weight:
+      400 !important;
 
   }
 
@@ -1707,6 +1725,9 @@ section {
     font-size:
       24px;
 
+    font-weight:
+      400 !important;
+
   }
 
 
@@ -1745,7 +1766,7 @@ section {
   .contact-logo {
 
     min-height:
-      260px;
+      220px;
 
   }
 
@@ -1753,7 +1774,10 @@ section {
   .contact-logo img {
 
     width:
-      90%;
+      80%;
+
+    max-height:
+      260px;
 
   }
 
