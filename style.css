@@ -702,6 +702,79 @@ section {
 
 
 /* =========================================================
+   KONTAKTBILD
+   BILDEN FYLLER HELA SEKTIONEN
+   ========================================================= */
+
+.contact-logo {
+  position:
+    absolute;
+
+  z-index:
+    1;
+
+  top:
+    0;
+
+  left:
+    0;
+
+  right:
+    0;
+
+  bottom:
+    0;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  margin:
+    0;
+
+  overflow:
+    hidden;
+
+  pointer-events:
+    none;
+}
+
+.contact-logo img {
+  position:
+    absolute;
+
+  top:
+    0;
+
+  right:
+    0;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  max-width:
+    none;
+
+  max-height:
+    none;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+
+  opacity:
+    1;
+}
+
+
+/* =========================================================
    KONTAKTLAYOUT
    ========================================================= */
 
@@ -721,7 +794,7 @@ section {
 
 
 /* =========================================================
-   KONTAKT – TEXT
+   KONTAKT – TEXT RUTA
    ========================================================= */
 
 .contact-left {
@@ -732,10 +805,16 @@ section {
     3;
 
   width:
-    52%;
+    54%;
 
   max-width:
-    600px;
+    720px;
+
+  min-height:
+    510px;
+
+  padding:
+    0 70px 0 0;
 
   display:
     flex;
@@ -745,9 +824,62 @@ section {
 
   justify-content:
     center;
+
+  background:
+    var(--bg-light);
 }
 
+
+/* =========================================================
+   MJUK ÖVERGÅNG FRÅN RUTA TILL BILD
+   ========================================================= */
+
+.contact-left::after {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  top:
+    0;
+
+  right:
+    -180px;
+
+  width:
+    220px;
+
+  height:
+    100%;
+
+  pointer-events:
+    none;
+
+  background:
+    linear-gradient(
+      to right,
+      var(--bg-light) 0%,
+      rgba(248, 245, 239, 0.98) 18%,
+      rgba(248, 245, 239, 0.82) 35%,
+      rgba(248, 245, 239, 0.55) 52%,
+      rgba(248, 245, 239, 0.25) 72%,
+      rgba(248, 245, 239, 0) 100%
+    );
+}
+
+
+/* =========================================================
+   KONTAKT – RUBRIK
+   ========================================================= */
+
 .contact-left h2 {
+  position:
+    relative;
+
+  z-index:
+    4;
+
   margin:
     0 0 28px;
 
@@ -769,6 +901,12 @@ section {
 }
 
 .contact-intro {
+  position:
+    relative;
+
+  z-index:
+    4;
+
   max-width:
     560px;
 
@@ -783,6 +921,12 @@ section {
 }
 
 .contact-details {
+  position:
+    relative;
+
+  z-index:
+    4;
+
   width:
     min(
       100%,
@@ -844,107 +988,6 @@ section {
 .contact-item a:hover {
   color:
     var(--copper);
-}
-
-
-/* =========================================================
-   KONTAKTBILD
-   HELA SEKTIONEN SOM BAKGRUND
-   ========================================================= */
-
-.contact-logo {
-  position:
-    absolute;
-
-  z-index:
-    1;
-
-  top:
-    0;
-
-  bottom:
-    0;
-
-  left:
-    0;
-
-  width:
-    100vw;
-
-  height:
-    100%;
-
-  margin:
-    0;
-
-  overflow:
-    hidden;
-
-  pointer-events:
-    none;
-}
-
-.contact-logo img {
-  position:
-    absolute;
-
-  top:
-    0;
-
-  right:
-    0;
-
-  width:
-    100vw;
-
-  height:
-    100%;
-
-  max-width:
-    none;
-
-  max-height:
-    none;
-
-  object-fit:
-    cover;
-
-  object-position:
-    center;
-
-  opacity:
-    1;
-
-  /*
-    Mjuk fade från vänster.
-    Bilden ligger bakom texten.
-  */
-
-  -webkit-mask-image:
-    linear-gradient(
-      to right,
-      transparent 0%,
-      rgba(0, 0, 0, 0.02) 10%,
-      rgba(0, 0, 0, 0.07) 20%,
-      rgba(0, 0, 0, 0.18) 32%,
-      rgba(0, 0, 0, 0.40) 44%,
-      rgba(0, 0, 0, 0.66) 56%,
-      rgba(0, 0, 0, 0.88) 68%,
-      black 78%
-    );
-
-  mask-image:
-    linear-gradient(
-      to right,
-      transparent 0%,
-      rgba(0, 0, 0, 0.02) 10%,
-      rgba(0, 0, 0, 0.07) 20%,
-      rgba(0, 0, 0, 0.18) 32%,
-      rgba(0, 0, 0, 0.40) 44%,
-      rgba(0, 0, 0, 0.66) 56%,
-      rgba(0, 0, 0, 0.88) 68%,
-      black 78%
-    );
 }
 
 
@@ -1027,12 +1070,10 @@ section {
 
   .contact-left {
     width:
-      57%;
-  }
+      58%;
 
-  .contact-logo img {
-    object-position:
-      center;
+    padding-right:
+      50px;
   }
 }
 
@@ -1260,6 +1301,20 @@ section {
 
     max-width:
       none;
+
+    min-height:
+      0;
+
+    padding:
+      0;
+
+    background:
+      var(--bg-light);
+  }
+
+  .contact-left::after {
+    display:
+      none;
   }
 
   .contact-left h2 {
@@ -1282,41 +1337,36 @@ section {
 
   .contact-logo {
     position:
-      relative;
+      absolute;
 
     top:
-      auto;
+      0;
+
+    left:
+      0;
 
     right:
-      auto;
+      0;
 
     bottom:
       auto;
 
-    left:
-      auto;
-
     width:
-      100vw;
+      100%;
 
     height:
-      360px;
+      100%;
 
-    min-height:
-      360px;
+    margin:
+      0;
 
-    margin-left:
-      calc(
-        (100% - 100vw) / 2
-      );
-
-    margin-top:
-      50px;
+    z-index:
+      1;
   }
 
   .contact-logo img {
     width:
-      100vw;
+      100%;
 
     height:
       100%;
@@ -1328,16 +1378,18 @@ section {
       linear-gradient(
         to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.35) 15%,
-        black 35%
+        transparent 12%,
+        rgba(0, 0, 0, 0.35) 28%,
+        black 48%
       );
 
     mask-image:
       linear-gradient(
         to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.35) 15%,
-        black 35%
+        transparent 12%,
+        rgba(0, 0, 0, 0.35) 28%,
+        black 48%
       );
   }
 }
@@ -1476,18 +1528,5 @@ section {
   .contact-intro {
     font-size:
       19px;
-  }
-
-  .contact-logo {
-    height:
-      280px;
-
-    min-height:
-      280px;
-  }
-
-  .contact-logo img {
-    width:
-      100%;
   }
 }
