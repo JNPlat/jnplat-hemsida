@@ -18,6 +18,7 @@
 
   <!-- HEADER -->
   <header class="site-header" id="top">
+
     <div class="container nav-wrap">
 
       <a
@@ -32,24 +33,58 @@
       </a>
 
       <nav class="main-nav" aria-label="Huvudmeny">
-        <a href="#top">Hem</a>
-        <a href="#tjanster">Tjänster</a>
-        <a href="#aktuellt">Aktuellt</a>
+
+        <a
+          href="#hem"
+          class="nav-link active"
+          data-section="hem"
+        >
+          Hem
+        </a>
+
+        <a
+          href="#tjanster"
+          class="nav-link"
+          data-section="tjanster"
+        >
+          Tjänster
+        </a>
+
+        <a
+          href="#aktuellt"
+          class="nav-link"
+          data-section="aktuellt"
+        >
+          Aktuellt
+        </a>
+
       </nav>
 
-      <a href="#kontakt" class="header-contact">
+      <a
+        href="#kontakt"
+        class="header-contact"
+        data-section="kontakt"
+      >
         Kontakt
         <span>→</span>
       </a>
 
     </div>
+
   </header>
 
 
   <main>
 
-    <!-- HEM -->
-    <section class="hero-section" id="hem">
+    <!-- =====================================================
+         HEM
+         ===================================================== -->
+
+    <section
+      class="hero-section"
+      id="hem"
+    >
+
       <div class="container hero-grid">
 
         <div class="hero-content">
@@ -70,100 +105,155 @@
 
         </div>
 
+
         <div class="hero-image">
+
           <img
             src="images/Hero bild.JPG"
             alt="Plåtslageriarbete på tak i Stockholm"
           >
+
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- TJÄNSTER -->
-    <section class="services-section" id="tjanster">
-      <div class="container">
+    <!-- =====================================================
+         TJÄNSTER
+         ===================================================== -->
 
-        <div class="section-heading">
-          <h2>Tjänster</h2>
-        </div>
+    <section
+      class="services-section"
+      id="tjanster"
+    >
+
+      <div class="container">
 
         <div class="services-grid">
 
-          <a href="byggnadsplatslageri.html" class="service-card">
+          <a
+            href="#tjanster"
+            class="service-card"
+          >
+
             <div class="service-image">
+
               <img
                 src="images/Byggnadsplåtslageri.png"
                 alt="Byggnadsplåtslageri"
               >
+
             </div>
 
-            <h3>Byggnadsplåtslageri</h3>
+            <h3>
+              Byggnadsplåtslageri
+            </h3>
+
           </a>
 
 
-          <a href="kopparslageri.html" class="service-card">
+          <a
+            href="#tjanster"
+            class="service-card"
+          >
+
             <div class="service-image">
+
               <img
                 src="images/Kopparslageri.png"
                 alt="Kopparslageri"
               >
+
             </div>
 
-            <h3>Kopparslageri</h3>
+            <h3>
+              Kopparslageri
+            </h3>
+
           </a>
 
 
-          <a href="restaurering.html" class="service-card">
+          <a
+            href="#tjanster"
+            class="service-card"
+          >
+
             <div class="service-image">
+
               <img
                 src="images/Restaurering.png"
                 alt="Restaurering"
               >
+
             </div>
 
-            <h3>Restaurering</h3>
+            <h3>
+              Restaurering
+            </h3>
+
           </a>
 
 
-          <a href="specialprojekt.html" class="service-card">
+          <a
+            href="#tjanster"
+            class="service-card"
+          >
+
             <div class="service-image">
+
               <img
                 src="images/Specialprojekt.jpg"
                 alt="Specialprojekt"
               >
+
             </div>
 
-            <h3>Specialprojekt</h3>
+            <h3>
+              Specialprojekt
+            </h3>
+
           </a>
 
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- AKTUELLT -->
-    <section class="current-section" id="aktuellt">
+    <!-- =====================================================
+         AKTUELLT
+         ===================================================== -->
+
+    <section
+      class="current-section"
+      id="aktuellt"
+    >
+
       <div class="container">
 
-        <div class="section-heading">
-          <h2>Aktuellt</h2>
-        </div>
-
-        <a href="villa-bergabo.html" class="current-project">
+        <a
+          href="#aktuellt"
+          class="current-project"
+        >
 
           <div class="current-image">
+
             <img
               src="images/Aktuellt.jpg"
               alt="Villa Bergabo i Stockholm"
             >
+
           </div>
+
 
           <div class="current-content">
 
-            <h3>Restaurering av Villa Bergabo</h3>
+            <h2>
+              Restaurering av Villa Bergabo
+            </h2>
 
             <p>
               Just nu arbetar jag med restaureringen av
@@ -174,7 +264,8 @@
             </p>
 
             <span class="read-more">
-              Läs mer om projektet <span>→</span>
+              Läs mer om projektet
+              <span>→</span>
             </span>
 
           </div>
@@ -182,45 +273,80 @@
         </a>
 
       </div>
+
     </section>
 
 
-    <!-- KONTAKT -->
-    <section class="contact-section" id="kontakt">
+    <!-- =====================================================
+         KONTAKT
+         ===================================================== -->
+
+    <section
+      class="contact-section"
+      id="kontakt"
+    >
+
       <div class="container">
 
-        <div class="section-heading">
-          <h2>Kontakt</h2>
+        <div class="contact-heading">
+
+          <h2>
+            Kontakt
+          </h2>
+
         </div>
+
 
         <div class="contact-content">
 
           <div class="contact-intro">
+
             <p>
               Har du ett projekt inom plåt, koppar eller restaurering?
               Kontakta mig gärna för att diskutera arbetet.
             </p>
+
           </div>
+
 
           <div class="contact-details">
 
             <div class="contact-item">
-              <span>Telefon</span>
+
+              <span>
+                Telefon
+              </span>
+
               <a href="tel:+46700000000">
                 070-000 00 00
               </a>
+
             </div>
 
+
             <div class="contact-item">
-              <span>E-post</span>
+
+              <span>
+                E-post
+              </span>
+
               <a href="mailto:john@jnplat.se">
                 john@jnplat.se
               </a>
+
             </div>
 
+
             <div class="contact-item">
-              <span>Verksamhetsområde</span>
-              <p>Stockholm</p>
+
+              <span>
+                Verksamhetsområde
+              </span>
+
+              <p>
+                Stockholm
+              </p>
+
             </div>
 
           </div>
@@ -228,6 +354,7 @@
         </div>
 
       </div>
+
     </section>
 
   </main>
