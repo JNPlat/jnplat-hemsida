@@ -6,15 +6,20 @@
   --bg: #f3eee6;
   --bg-light: #f8f5ef;
 
+  --dark: #302923;
+  --dark-deep: #27211d;
+
   --text: #302a24;
   --muted: #766d63;
 
   --copper: #9a6747;
+  --copper-light: #b78968;
   --copper-dark: #704936;
 
-  --line: rgba(48, 42, 36, 0.14);
-
+  --cream: #f3eee6;
   --white: #fffdf9;
+
+  --line: rgba(48, 42, 36, 0.14);
 
   --max-width: 1320px;
 }
@@ -368,7 +373,9 @@ section {
 .services-section {
   padding: 115px 0;
 
-  background: var(--bg-light);
+  background: var(--dark-deep);
+
+  color: var(--cream);
 }
 
 .services-grid {
@@ -381,33 +388,51 @@ section {
 }
 
 
-/* SERVICE CARD */
+/* =========================================================
+   SERVICE CARD
+   ========================================================= */
 
 .service-card {
   display: block;
 
-  padding: 0;
-
-  transition:
-    transform 0.25s ease;
+  transition: none;
 }
 
 
-/* IMAGE FRAME */
+/* =========================================================
+   SERVICE IMAGE
+   ========================================================= */
 
 .service-image {
+  position: relative;
+
   width: 100%;
 
   aspect-ratio: 16 / 9;
 
   overflow: hidden;
 
-  background: #ddd5ca;
+  background: #211c18;
+
+  margin-bottom: 17px;
 
   border:
-    1px solid rgba(112, 73, 54, 0.38);
+    1px solid rgba(183, 137, 104, 0.75);
 
-  margin-bottom: 14px;
+  padding: 5px;
+}
+
+.service-image::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 5px;
+
+  border:
+    1px solid rgba(183, 137, 104, 0.38);
+
+  pointer-events: none;
 }
 
 .service-image img {
@@ -417,16 +442,13 @@ section {
 
   object-fit: cover;
 
-  /*
-     Ingen rörelse.
-     Bilderna är helt statiska.
-  */
-
   transition: none;
 }
 
 
-/* SERVICE TITLE */
+/* =========================================================
+   SERVICE TITLE
+   ========================================================= */
 
 .service-card h3 {
   position: relative;
@@ -435,7 +457,7 @@ section {
 
   margin: 0;
 
-  padding: 7px 10px 8px;
+  padding: 7px 11px 8px;
 
   overflow: hidden;
 
@@ -445,15 +467,13 @@ section {
 
   font-weight: 400;
 
-  color: var(--text);
+  color: var(--cream);
 
   isolation: isolate;
+
+  transition:
+    color 0.25s ease;
 }
-
-
-/*
-   Bakgrunden rullar ut bakom texten
-*/
 
 .service-card h3::before {
   content: "";
@@ -476,11 +496,6 @@ section {
     transform 0.35s ease;
 }
 
-.service-card h3 {
-  transition:
-    color 0.25s ease;
-}
-
 .service-card:hover h3 {
   color: var(--white);
 }
@@ -492,7 +507,7 @@ section {
 
 
 /*
-   Ingen bildförflyttning vid hover
+   Bilderna rör sig aldrig.
 */
 
 .service-card:hover {
@@ -510,6 +525,8 @@ section {
 
 .current-section {
   padding: 125px 0;
+
+  background: var(--bg);
 }
 
 .current-project {
@@ -543,10 +560,6 @@ section {
   height: 100%;
 
   object-fit: cover;
-
-  /*
-     Aktuellt-bilden är också helt statisk.
-  */
 
   transition: none;
 }
@@ -636,7 +649,8 @@ section {
 
 
 /*
-   LOGGAN SOM BAKGRUND
+   LOGGAN I BAKGRUNDEN
+   Vänster sida, mindre och diskret.
 */
 
 .contact-section::before {
@@ -646,10 +660,10 @@ section {
 
   z-index: 0;
 
-  width: 680px;
-  height: 680px;
+  width: 430px;
+  height: 430px;
 
-  right: 5%;
+  left: -55px;
 
   top: 50%;
 
@@ -665,7 +679,7 @@ section {
 
   background-size: contain;
 
-  opacity: 0.065;
+  opacity: 0.055;
 
   pointer-events: none;
 }
@@ -697,13 +711,7 @@ section {
 }
 
 
-/*
-   CONTACT CONTENT
-
-   Högerkolumnen lyfts upp så att
-   kontaktinformationen börjar i
-   höjd med rubriken "Kontakt".
-*/
+/* CONTACT CONTENT */
 
 .contact-content {
   display: grid;
@@ -837,10 +845,10 @@ section {
   }
 
   .contact-section::before {
-    width: 520px;
-    height: 520px;
+    width: 340px;
+    height: 340px;
 
-    right: -20px;
+    left: -80px;
   }
 }
 
@@ -1030,14 +1038,14 @@ section {
   }
 
   .contact-section::before {
-    width: 360px;
-    height: 360px;
+    width: 260px;
+    height: 260px;
 
-    right: -70px;
+    left: -70px;
 
     top: 65%;
 
-    opacity: 0.05;
+    opacity: 0.045;
   }
 }
 
