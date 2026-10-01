@@ -68,17 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =====================================================
-     BESTÄM VILKEN SEKTION MAN ÄR I
+     BESTÄM AKTIV SEKTION
      ===================================================== */
 
   const updateActiveSection = () => {
 
     const headerHeight = 82;
-
-    /*
-      Den här linjen bestämmer var på skärmen
-      vi anser att nästa sektion har blivit aktiv.
-    */
 
     const activationPoint =
       window.scrollY +
@@ -173,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =====================================================
-     KONTAKT → MJUK SCROLL
+     KONTAKTA OSS → MJUK SCROLL
      ===================================================== */
 
   if (headerContact) {
