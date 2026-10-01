@@ -7,7 +7,6 @@
   --bg-light: #f8f5ef;
 
   --dark: #302923;
-  --dark-deep: #27211d;
 
   --text: #302a24;
   --muted: #766d63;
@@ -218,6 +217,8 @@ a {
 
   color: var(--copper-dark);
 
+  background: transparent;
+
   font-family:
     Arial,
     Helvetica,
@@ -373,10 +374,16 @@ section {
 .services-section {
   padding: 115px 0;
 
-  background: var(--dark-deep);
+  background: var(--bg-light);
 
-  color: var(--cream);
+  color: var(--text);
 }
+
+
+/*
+   Fyra lika stora bilder.
+   Inga mellanrum.
+*/
 
 .services-grid {
   display: grid;
@@ -384,7 +391,9 @@ section {
   grid-template-columns:
     repeat(4, minmax(0, 1fr));
 
-  gap: 18px;
+  gap: 0;
+
+  width: 100%;
 }
 
 
@@ -394,6 +403,10 @@ section {
 
 .service-card {
   display: block;
+
+  min-width: 0;
+
+  text-align: center;
 
   transition: none;
 }
@@ -412,27 +425,9 @@ section {
 
   overflow: hidden;
 
-  background: #211c18;
+  background: #ddd5ca;
 
-  margin-bottom: 17px;
-
-  border:
-    1px solid rgba(183, 137, 104, 0.75);
-
-  padding: 5px;
-}
-
-.service-image::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 5px;
-
-  border:
-    1px solid rgba(183, 137, 104, 0.38);
-
-  pointer-events: none;
+  margin: 0;
 }
 
 .service-image img {
@@ -446,68 +441,8 @@ section {
 }
 
 
-/* =========================================================
-   SERVICE TITLE
-   ========================================================= */
-
-.service-card h3 {
-  position: relative;
-
-  display: inline-block;
-
-  margin: 0;
-
-  padding: 7px 11px 8px;
-
-  overflow: hidden;
-
-  font-size: 17px;
-
-  line-height: 1.15;
-
-  font-weight: 400;
-
-  color: var(--cream);
-
-  isolation: isolate;
-
-  transition:
-    color 0.25s ease;
-}
-
-.service-card h3::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  z-index: -1;
-
-  background: var(--copper);
-
-  transform:
-    scaleX(0);
-
-  transform-origin:
-    left center;
-
-  transition:
-    transform 0.35s ease;
-}
-
-.service-card:hover h3 {
-  color: var(--white);
-}
-
-.service-card:hover h3::before {
-  transform:
-    scaleX(1);
-}
-
-
 /*
-   Bilderna rör sig aldrig.
+   Ingen zoom eller rörelse.
 */
 
 .service-card:hover {
@@ -516,6 +451,41 @@ section {
 
 .service-card:hover .service-image img {
   transform: none;
+}
+
+
+/* =========================================================
+   SERVICE TITLE
+   ========================================================= */
+
+.service-card h3 {
+  position: relative;
+
+  display: block;
+
+  margin: 18px 0 0;
+
+  padding: 0;
+
+  font-size: 17px;
+
+  line-height: 1.2;
+
+  font-weight: 400;
+
+  color: var(--text);
+
+  transition:
+    color 0.25s ease;
+}
+
+
+/*
+   Endast textfärg ändras.
+*/
+
+.service-card:hover h3 {
+  color: var(--copper);
 }
 
 
@@ -649,8 +619,7 @@ section {
 
 
 /*
-   LOGGAN I BAKGRUNDEN
-   Vänster sida, mindre och diskret.
+   LOGGAN CENTRERAD BAKOM KONTAKTEN
 */
 
 .contact-section::before {
@@ -660,15 +629,14 @@ section {
 
   z-index: 0;
 
-  width: 430px;
-  height: 430px;
+  width: 480px;
+  height: 480px;
 
-  left: -55px;
-
+  left: 50%;
   top: 50%;
 
   transform:
-    translateY(-50%);
+    translate(-50%, -43%);
 
   background-image:
     url("logo/J.Norberg%20Brun%20Enkel.svg");
@@ -679,7 +647,7 @@ section {
 
   background-size: contain;
 
-  opacity: 0.055;
+  opacity: 0.045;
 
   pointer-events: none;
 }
@@ -845,10 +813,8 @@ section {
   }
 
   .contact-section::before {
-    width: 340px;
-    height: 340px;
-
-    left: -80px;
+    width: 390px;
+    height: 390px;
   }
 }
 
@@ -971,8 +937,6 @@ section {
   .services-grid {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
-
-    gap: 35px 18px;
   }
 
   .service-card h3 {
@@ -1038,14 +1002,14 @@ section {
   }
 
   .contact-section::before {
-    width: 260px;
-    height: 260px;
+    width: 330px;
+    height: 330px;
 
-    left: -70px;
+    left: 50%;
 
-    top: 65%;
+    top: 60%;
 
-    opacity: 0.045;
+    opacity: 0.04;
   }
 }
 
@@ -1110,12 +1074,12 @@ section {
 
   .services-grid {
     grid-template-columns: 1fr;
-
-    gap: 38px;
   }
 
   .service-card h3 {
     font-size: 18px;
+
+    margin-top: 15px;
   }
 
   .current-content h2 {
@@ -1132,5 +1096,12 @@ section {
 
   .contact-intro p {
     font-size: 19px;
+  }
+
+  .contact-section::before {
+    width: 280px;
+    height: 280px;
+
+    top: 62%;
   }
 }
