@@ -412,7 +412,7 @@ section {
     115px 0;
 
   background:
-    #e7dfd3;
+    var(--bg);
 }
 
 .services-grid {
@@ -437,7 +437,7 @@ section {
     0;
 
   background:
-    var(--bg-light);
+    var(--card);
 
   overflow:
     hidden;
@@ -689,8 +689,9 @@ section {
   background-size:
     cover;
 
+  /* Prioritera vänstra delen av bilden */
   background-position:
-    center center;
+    left center;
 
   background-repeat:
     no-repeat;
@@ -716,7 +717,7 @@ section {
 
   z-index: 2;
 
-  width: 50%;
+  width: 48%;
 
   min-height:
     calc(100vh - 82px);
@@ -738,7 +739,7 @@ section {
     );
 
   padding-right:
-    55px;
+    45px;
 
   display:
     flex;
@@ -761,9 +762,9 @@ section {
   position: absolute;
 
   top: 0;
-  right: -190px;
+  right: -125px;
 
-  width: 200px;
+  width: 135px;
   height: 100%;
 
   pointer-events: none;
@@ -773,11 +774,11 @@ section {
       to right,
 
       var(--bg-light) 0%,
-      var(--bg-light) 30%,
+      var(--bg-light) 32%,
 
-      rgba(248, 245, 239, 0.96) 45%,
-      rgba(248, 245, 239, 0.72) 60%,
-      rgba(248, 245, 239, 0.38) 75%,
+      rgba(248, 245, 239, 0.94) 48%,
+      rgba(248, 245, 239, 0.66) 65%,
+      rgba(248, 245, 239, 0.28) 82%,
 
       rgba(248, 245, 239, 0) 100%
     );
@@ -993,10 +994,10 @@ section {
 
   .contact-panel {
     width:
-      55%;
+      52%;
 
     padding-right:
-      45px;
+      40px;
   }
 }
 
@@ -1207,7 +1208,7 @@ section {
       0;
 
     background-position:
-      center center;
+      left center;
   }
 
   .contact-panel {
