@@ -22,22 +22,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =====================================================
-     AKTIV MENY
+     AKTIV SEKTION
      ===================================================== */
 
-  const setActiveSection = (sectionId) => {
+  function setActiveSection(sectionId) {
 
     navLinks.forEach((link) => {
 
-      const isActive =
+      const active =
         link.dataset.section === sectionId;
 
       link.classList.toggle(
         "active",
-        isActive
+        active
       );
 
-      if (isActive) {
+      if (active) {
 
         link.setAttribute(
           "aria-current",
@@ -55,6 +55,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
+    /*
+       Kontakta oss har ingen .nav-link,
+       därför hanteras den separat.
+    */
+
     if (headerContact) {
 
       headerContact.classList.toggle(
@@ -64,43 +69,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-  };
+  }
 
 
   /* =====================================================
-     BESTÄM AKTIV SEKTION
+     BESTÄM VILKEN SEKTION SOM ÄR AKTIV
      ===================================================== */
 
-  const updateActiveSection = () => {
+  function updateActiveSection() {
 
-    const scrollPosition =
-      window.scrollY;
-
-    const viewportHeight =
-      window.innerHeight;
-
-    const documentHeight =
-      document.documentElement.scrollHeight;
-
+    const headerHeight = 82;
 
     /*
-       När man är längst ner på sidan ska
-       Kontakt alltid vara aktiv.
+       Punkten ungefär 1/3 ner på skärmen.
+       Den sektion som passerat den punkten
+       räknas som aktiv.
     */
 
-    if (
-      scrollPosition + viewportHeight >=
-      documentHeight - 80
-    ) {
-
-      setActiveSection("kontakt");
-
-      return;
-    }
-
-
     const activationPoint =
-      scrollPosition + 180;
+      headerHeight +
+      (window.innerHeight * 0.30);
 
 
     let activeSection =
@@ -109,9 +97,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sections.forEach((section) => {
 
+      const rect =
+        section.getBoundingClientRect();
+
+
       if (
-        activationPoint >=
-        section.offsetTop
+        rect.top <= activationPoint
       ) {
 
         activeSection =
@@ -122,6 +113,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
+    /*
+       Om vi är längst ner:
+       Kontakt ska alltid vara aktiv.
+    */
+
+    const bottomReached =
+      window.innerHeight +
+      window.scrollY >=
+      document.documentElement.scrollHeight - 5;
+
+
+    if (bottomReached) {
+
+      const contactSection =
+        document.querySelector("#kontakt");
+
+      if (contactSection) {
+
+        activeSection =
+          contactSection;
+
+      }
+
+    }
+
+
     if (activeSection) {
 
       setActiveSection(
@@ -130,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-  };
+  }
 
 
   /* =====================================================
@@ -157,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =====================================================
-     NAVIGATION → MJUK SCROLL
+     NAVIGATION
      ===================================================== */
 
   navLinks.forEach((link) => {
@@ -190,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =====================================================
-     KONTAKTA OSS → MJUK SCROLL
+     KONTAKTA OSS
      ===================================================== */
 
   if (headerContact) {
@@ -199,11 +216,8 @@ document.addEventListener("DOMContentLoaded", () => {
       "click",
       (event) => {
 
-        const targetId =
-          headerContact.getAttribute("href");
-
         const target =
-          document.querySelector(targetId);
+          document.querySelector("#kontakt");
 
         if (!target) {
           return;
@@ -246,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =====================================================
-     STARTLÄGE
+     START
      ===================================================== */
 
   updateActiveSection();
