@@ -2,13 +2,6 @@
    J. NORBERG PLÅTSLAGERI AB
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap');
-
-
-/* =========================================================
-   VARIABLES
-   ========================================================= */
-
 :root {
   --cream: #f4efe7;
   --cream-light: #f8f4ed;
@@ -21,11 +14,8 @@
   --brown: #3c2b22;
   --brown-light: #654b3c;
 
-  --black: #171513;
-  --white: #ffffff;
-
   --max-width: 1500px;
-  --header-height: 92px;
+  --header-height: 100px;
 
   --font-display: "Cormorant Garamond", serif;
 }
@@ -66,8 +56,7 @@ h3,
 h4,
 p,
 a,
-span,
-button {
+span {
   font-style: normal;
 }
 
@@ -80,15 +69,6 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
-button {
-  font-family: inherit;
-}
-
-
-/* =========================================================
-   TYPOGRAPHY
-   ========================================================= */
 
 h1,
 h2,
@@ -103,18 +83,16 @@ h4 {
 
 p {
   font-weight: 400;
-  line-height: 1.55;
 }
 
 
 /* =========================================================
-   CONTAINER
+   GENERAL CONTAINER
    ========================================================= */
 
 .container {
   width: 100%;
   max-width: var(--max-width);
-
   margin: 0 auto;
   padding-left: 42px;
   padding-right: 42px;
@@ -127,7 +105,6 @@ p {
 
 .site-header {
   position: fixed;
-
   top: 0;
   left: 0;
 
@@ -139,14 +116,13 @@ p {
   display: flex;
   align-items: center;
 
-  background: rgba(244, 239, 231, 0.97);
+  background: rgba(244, 239, 231, 0.98);
 
-  border-bottom:
-    1px solid rgba(112, 70, 50, 0.15);
+  border-bottom: 1px solid rgba(112, 70, 50, 0.15);
 }
 
 .nav-wrap {
-  height: var(--header-height);
+  height: 100%;
 
   display: flex;
   align-items: center;
@@ -166,9 +142,9 @@ p {
 
 .brand img {
   width: auto;
-  height: 64px;
+  height: 62px;
 
-  max-width: 220px;
+  max-width: 230px;
 
   object-fit: contain;
 }
@@ -182,7 +158,7 @@ p {
   display: flex;
   align-items: center;
 
-  gap: 34px;
+  gap: 38px;
 
   margin-left: auto;
 }
@@ -198,7 +174,7 @@ p {
   color: var(--brown);
 
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 400;
   font-style: normal;
 
@@ -212,7 +188,7 @@ p {
 
   left: 0;
   right: 0;
-  bottom: 22px;
+  bottom: 21px;
 
   height: 1px;
 
@@ -221,8 +197,7 @@ p {
   transform: scaleX(0);
   transform-origin: center;
 
-  transition:
-    transform 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 .nav-link:hover,
@@ -246,19 +221,29 @@ p {
   display: inline-flex;
   align-items: center;
 
-  gap: 9px;
+  gap: 10px;
 
-  margin-left: 46px;
+  margin-left: 48px;
 
   height: var(--header-height);
 
   color: var(--brown);
 
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 400;
+  font-style: normal;
 
   white-space: nowrap;
+}
+
+.header-contact span {
+  display: inline-block;
+
+  font-size: 22px;
+  line-height: 1;
+
+  transition: transform 0.25s ease;
 }
 
 .header-contact::after {
@@ -268,7 +253,7 @@ p {
 
   left: 0;
   right: 0;
-  bottom: 22px;
+  bottom: 21px;
 
   height: 1px;
 
@@ -277,8 +262,7 @@ p {
   transform: scaleX(0);
   transform-origin: center;
 
-  transition:
-    transform 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 .header-contact:hover,
@@ -291,53 +275,28 @@ p {
   transform: scaleX(1);
 }
 
-.header-contact span {
-  display: inline-block;
-
-  font-size: 21px;
-  line-height: 1;
-
-  transition:
-    transform 0.25s ease;
-}
-
 .header-contact:hover span {
   transform: translateX(4px);
 }
 
 
 /* =========================================================
-   MAIN / ANCHORS
-   ========================================================= */
-
-main {
-  padding-top: var(--header-height);
-}
-
-section {
-  scroll-margin-top: var(--header-height);
-}
-
-
-/* =========================================================
-   HEM
+   HERO / HEM
    ========================================================= */
 
 .hero-section {
-  position: relative;
-
-  min-height:
-    calc(100vh - var(--header-height));
+  width: 100%;
+  min-height: 100vh;
 
   display: flex;
   align-items: center;
+
+  padding-top: var(--header-height);
 
   background: var(--cream);
 }
 
 .hero-grid {
-  width: 100%;
-
   display: grid;
 
   grid-template-columns:
@@ -348,8 +307,8 @@ section {
 
   align-items: center;
 
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 75px;
+  padding-bottom: 75px;
 }
 
 .hero-content {
@@ -361,11 +320,8 @@ section {
 
   color: var(--brown);
 
-  font-size:
-    clamp(58px, 6vw, 94px);
-
+  font-size: clamp(58px, 6vw, 94px);
   line-height: 0.95;
-
   letter-spacing: -0.02em;
 
   font-weight: 400;
@@ -379,7 +335,6 @@ section {
   color: var(--brown-light);
 
   font-size: 25px;
-
   line-height: 1.45;
 }
 
@@ -402,7 +357,9 @@ section {
    ========================================================= */
 
 .services-section {
-  padding-top: 110px;
+  width: 100%;
+
+  padding-top: 100px;
   padding-bottom: 120px;
 
   background: var(--cream-light);
@@ -420,6 +377,8 @@ section {
 .service-card {
   min-width: 0;
 
+  display: block;
+
   background: var(--cream-dark);
 
   overflow: hidden;
@@ -431,8 +390,6 @@ section {
   aspect-ratio: 16 / 9;
 
   overflow: hidden;
-
-  background: #ddd;
 }
 
 .service-image img {
@@ -442,7 +399,7 @@ section {
   object-fit: cover;
 
   transition:
-    transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .service-card:hover .service-image img {
@@ -450,18 +407,15 @@ section {
 }
 
 .service-info {
-  padding:
-    27px 27px 31px;
+  padding: 27px 27px 31px;
 }
 
 .service-info h3 {
-  margin:
-    0 0 14px;
+  margin: 0 0 14px;
 
   color: var(--brown);
 
   font-size: 31px;
-
   line-height: 1.05;
 
   font-weight: 400;
@@ -473,7 +427,6 @@ section {
   color: var(--brown-light);
 
   font-size: 20px;
-
   line-height: 1.45;
 }
 
@@ -483,12 +436,8 @@ section {
    ========================================================= */
 
 .current-section {
-  position: relative;
+  width: 100%;
 
-  /*
-     Mindre toppmarginal så att klick på "Aktuellt"
-     inte lämnar en stor tom yta ovanför bilden.
-  */
   padding-top: 35px;
   padding-bottom: 120px;
 
@@ -497,32 +446,33 @@ section {
 
 .current-project {
   width: 100%;
+  max-width: 1350px;
+
+  margin: 0 auto;
 
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1.25fr)
-    minmax(320px, 0.75fr);
+    minmax(0, 1.15fr)
+    minmax(0, 0.75fr);
 
-  gap: 74px;
+  gap: 70px;
 
   align-items: center;
 }
 
 
-/* ---------------------------------------------------------
-   AKTUELLT — BILD
-   --------------------------------------------------------- */
+/* =========================================================
+   AKTUELLT BILD
+   ========================================================= */
 
 .current-image {
   position: relative;
 
-  /*
-     Bara en liten förskjutning nedåt.
-  */
-  top: 25px;
-
   width: 100%;
+  max-width: 760px;
+
+  margin: 0;
 
   overflow: hidden;
 }
@@ -535,8 +485,7 @@ section {
 
   object-fit: cover;
 
-  transition:
-    transform 0.6s ease;
+  transition: transform 0.6s ease;
 }
 
 .current-image:hover img {
@@ -544,188 +493,63 @@ section {
 }
 
 
-/* ---------------------------------------------------------
-   AKTUELLT — TEXT
-   --------------------------------------------------------- */
+/* =========================================================
+   AKTUELLT TEXT
+   ========================================================= */
 
 .current-content {
+  width: 100%;
   max-width: 500px;
 
   margin: 0;
-
   padding: 0;
 }
 
 .current-content h2 {
-  margin:
-    0 0 22px;
+  margin: 0 0 25px;
 
   color: var(--brown);
 
-  font-size:
-    clamp(50px, 5vw, 78px);
-
+  font-size: clamp(58px, 5vw, 78px);
   line-height: 1;
 
   font-weight: 400;
 }
 
 .current-content p {
-  margin:
-    0 0 28px;
+  margin: 0;
 
   color: var(--brown-light);
 
   font-size: 22px;
-
   line-height: 1.55;
 }
 
 .read-more {
   display: inline-flex;
-
   align-items: center;
 
-  gap: 8px;
+  gap: 9px;
 
-  color: var(--copper-dark);
+  margin-top: 32px;
 
-  font-size: 18px;
+  color: var(--brown-light);
+
+  font-size: 19px;
+
+  transition: color 0.2s ease;
 }
 
 .read-more span {
-  transition:
-    transform 0.25s ease;
+  transition: transform 0.25s ease;
+}
+
+.read-more:hover {
+  color: var(--copper-dark);
 }
 
 .read-more:hover span {
-  transform:
-    translateX(4px);
-}
-
-
-/* =========================================================
-   REFERENSER
-   ========================================================= */
-
-.references-section {
-  padding-top: 120px;
-  padding-bottom: 130px;
-
-  background: var(--cream-light);
-}
-
-.references-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
-  gap: 24px;
-}
-
-.reference-item {
-  position: relative;
-
-  cursor: pointer;
-
-  overflow: hidden;
-
-  background: var(--cream-dark);
-}
-
-.reference-item img {
-  width: 100%;
-  height: 100%;
-
-  aspect-ratio: 4 / 3;
-
-  object-fit: cover;
-
-  transition:
-    transform 0.6s ease;
-}
-
-.reference-item:hover img {
-  transform: scale(1.035);
-}
-
-
-/* =========================================================
-   IMAGE MODAL
-   ========================================================= */
-
-.reference-modal {
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 2000;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 40px;
-
-  background:
-    rgba(23, 21, 19, 0.94);
-
-  opacity: 0;
-  visibility: hidden;
-
-  transition:
-    opacity 0.3s ease,
-    visibility 0.3s ease;
-}
-
-.reference-modal.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.reference-modal-content {
-  position: relative;
-
-  max-width: 1200px;
-  max-height: 90vh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.reference-modal-content img {
-  display: block;
-
-  max-width: 100%;
-  max-height: 82vh;
-
-  width: auto;
-  height: auto;
-
-  object-fit: contain;
-}
-
-.reference-modal-close {
-  position: absolute;
-
-  top: -48px;
-  right: 0;
-
-  width: 38px;
-  height: 38px;
-
-  border: 0;
-
-  background: transparent;
-
-  color: var(--white);
-
-  font-family: Arial, sans-serif;
-  font-size: 30px;
-
-  cursor: pointer;
+  transform: translateX(4px);
 }
 
 
@@ -734,9 +558,9 @@ section {
    ========================================================= */
 
 .contact-section {
-  position: relative;
-
   width: 100%;
+
+  min-height: 620px;
 
   display: grid;
 
@@ -744,27 +568,19 @@ section {
     48%
     52%;
 
-  /*
-     Låt vänstersidan bestämma sektionens höjd.
-  */
-  align-items: stretch;
-
   background: var(--cream-dark);
-
-  overflow: hidden;
 }
 
 
 /* =========================================================
-   KONTAKT — TEXT
+   KONTAKT TEXTDEL
    ========================================================= */
 
 .contact-panel {
   grid-column: 1;
   grid-row: 1;
 
-  position: relative;
-  z-index: 2;
+  min-width: 0;
 
   display: flex;
   align-items: center;
@@ -774,64 +590,52 @@ section {
 
 .contact-content {
   width: 100%;
+  max-width: 650px;
 
-  max-width: 620px;
-
-  padding:
-    70px 60px 70px 42px;
+  padding: 70px 55px 70px 42px;
 }
 
 .contact-content h2 {
-  margin:
-    0 0 28px;
+  margin: 0 0 28px;
 
   color: var(--brown);
 
-  font-size:
-    clamp(54px, 5vw, 80px);
-
+  font-size: clamp(58px, 5vw, 82px);
   line-height: 0.95;
 
   font-weight: 400;
 }
 
 .contact-intro {
-  max-width: 530px;
+  max-width: 570px;
 
-  margin:
-    0 0 48px;
+  margin: 0 0 48px;
 
   color: var(--brown-light);
 
   font-size: 23px;
-
   line-height: 1.5;
 }
 
 .contact-details {
   display: flex;
-
   flex-direction: column;
 
-  gap: 24px;
+  gap: 30px;
 }
 
 .contact-item {
   display: flex;
-
   flex-direction: column;
 
-  gap: 3px;
+  gap: 4px;
 }
 
 .contact-item span {
-  color: var(--copper-dark);
+  color: var(--brown-light);
 
   font-size: 18px;
-
   line-height: 1.2;
-
-  font-weight: 500;
 }
 
 .contact-item a,
@@ -840,35 +644,28 @@ section {
 
   color: var(--brown);
 
-  font-size: 26px;
-
+  font-size: 23px;
   line-height: 1.25;
-
-  font-weight: 400;
 }
 
 .contact-item a {
-  transition:
-    color 0.25s ease;
+  transition: color 0.2s ease;
 }
 
 .contact-item a:hover {
-  color: var(--copper);
+  color: var(--copper-dark);
 }
 
 
 /* =========================================================
-   KONTAKT — BILD
+   KONTAKTBILD
    ========================================================= */
 
 /*
-   StJohannes.JPG är stående.
-
-   Viktigt:
-   - hela bilden visas
-   - ingen crop
-   - bilden fyller INTE hela höjden
-   - bilden skalas ner till ungefär kontakttextens höjd
+   Bilden ligger i hela högra halvan.
+   Ingen marginal mot toppen.
+   Ingen marginal mot botten.
+   Ingen marginal mot höger.
 */
 
 .contact-background {
@@ -876,14 +673,10 @@ section {
   grid-row: 1;
 
   width: 100%;
+  height: 100%;
 
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  padding:
-    45px 55px;
+  min-width: 0;
+  min-height: 620px;
 
   overflow: hidden;
 
@@ -893,38 +686,45 @@ section {
 .contact-background img {
   display: block;
 
-  width: auto;
+  width: 100%;
+  height: 100%;
 
-  /*
-     Detta är den viktiga ändringen.
-     Bilden blir cirka lika hög som kontaktinnehållet.
-  */
-  height: 520px;
+  max-width: none;
 
-  max-width: 100%;
-  max-height: 100%;
-
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center center;
 }
 
 
 /* =========================================================
-   FOOTER
+   DESKTOP — EXTRA BREDA SKÄRMAR
    ========================================================= */
 
-footer {
-  display: none;
+@media (min-width: 1600px) {
+
+  .container {
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+
+  .current-project {
+    max-width: 1400px;
+  }
+
+  .current-image {
+    max-width: 790px;
+  }
 }
 
 
 /* =========================================================
-   LARGE TABLET
+   TABLET
    ========================================================= */
 
-@media (max-width: 1200px) {
+@media (max-width: 1100px) {
 
   :root {
-    --header-height: 84px;
+    --header-height: 92px;
   }
 
   .container {
@@ -950,7 +750,15 @@ footer {
   }
 
   .hero-grid {
-    gap: 50px;
+    gap: 45px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(52px, 6vw, 76px);
+  }
+
+  .hero-text {
+    font-size: 22px;
   }
 
   .services-grid {
@@ -958,12 +766,11 @@ footer {
   }
 
   .service-info {
-    padding:
-      23px 22px 27px;
+    padding: 22px 20px 25px;
   }
 
   .service-info h3 {
-    font-size: 28px;
+    font-size: 27px;
   }
 
   .service-info p {
@@ -971,106 +778,42 @@ footer {
   }
 
   .current-project {
-    gap: 50px;
-  }
+    max-width: 100%;
 
-  .contact-content {
-    padding-left: 30px;
-    padding-right: 40px;
-  }
-
-  .contact-background {
-    padding:
-      40px;
-  }
-
-  .contact-background img {
-    height: 500px;
-  }
-}
-
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 950px) {
-
-  .hero-grid {
     grid-template-columns:
-      1fr;
+      minmax(0, 1.1fr)
+      minmax(0, 0.8fr);
 
-    gap: 50px;
-
-    padding-top: 70px;
-    padding-bottom: 80px;
+    gap: 45px;
   }
 
-  .hero-content {
-    max-width: 700px;
+  .current-content h2 {
+    font-size: 60px;
   }
 
-  .hero-image {
-    max-width: 900px;
-  }
-
-  .services-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-
-    gap: 24px;
-  }
-
-  .references-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-  .current-project {
-    grid-template-columns:
-      1fr;
-
-    gap: 40px;
-
-    align-items: start;
-  }
-
-  .current-image {
-    top: 25px;
-  }
-
-  .current-content {
-    max-width: 800px;
-
-    margin-top: 20px;
+  .current-content p {
+    font-size: 20px;
   }
 
   .contact-section {
-    grid-template-columns:
-      45%
-      55%;
+    grid-template-columns: 48% 52%;
+    min-height: 560px;
+  }
+
+  .contact-background {
+    min-height: 560px;
   }
 
   .contact-content {
-    padding:
-      60px 30px 60px 30px;
+    padding: 55px 40px 55px 30px;
   }
 
   .contact-content h2 {
-    font-size: 60px;
+    font-size: 65px;
   }
 
   .contact-intro {
     font-size: 21px;
-  }
-
-  .contact-background {
-    padding:
-      30px;
-  }
-
-  .contact-background img {
-    height: 470px;
   }
 }
 
@@ -1082,15 +825,7 @@ footer {
 @media (max-width: 800px) {
 
   :root {
-    --header-height: 74px;
-  }
-
-  .site-header {
-    height: var(--header-height);
-  }
-
-  .nav-wrap {
-    height: var(--header-height);
+    --header-height: 82px;
   }
 
   .container {
@@ -1098,14 +833,25 @@ footer {
     padding-right: 20px;
   }
 
-  .brand img {
-    height: 51px;
 
-    max-width: 175px;
+  /* HEADER */
+
+  .site-header {
+    height: var(--header-height);
+  }
+
+  .nav-wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .brand img {
+    height: 50px;
+    max-width: 185px;
   }
 
   .main-nav {
-    gap: 17px;
+    gap: 16px;
   }
 
   .nav-link {
@@ -1115,11 +861,11 @@ footer {
   }
 
   .nav-link::after {
-    bottom: 17px;
+    bottom: 16px;
   }
 
   .header-contact {
-    margin-left: 20px;
+    margin-left: 18px;
 
     height: var(--header-height);
 
@@ -1127,11 +873,11 @@ footer {
   }
 
   .header-contact::after {
-    bottom: 17px;
+    bottom: 16px;
   }
 
   .header-contact span {
-    display: none;
+    font-size: 18px;
   }
 
 
@@ -1139,49 +885,64 @@ footer {
 
   .hero-section {
     min-height: auto;
+
+    padding-top: var(--header-height);
   }
 
   .hero-grid {
-    padding-top: 60px;
-    padding-bottom: 70px;
+    display: flex;
+    flex-direction: column;
 
-    gap: 42px;
+    gap: 45px;
+
+    align-items: stretch;
+
+    padding-top: 55px;
+    padding-bottom: 75px;
+  }
+
+  .hero-content {
+    max-width: none;
   }
 
   .hero-content h1 {
-    font-size:
-      clamp(
-        52px,
-        14vw,
-        72px
-      );
+    margin-bottom: 22px;
+
+    font-size: clamp(48px, 13vw, 68px);
+    line-height: 0.98;
   }
 
   .hero-text {
+    max-width: none;
+
     font-size: 21px;
+    line-height: 1.45;
+  }
+
+  .hero-image {
+    width: 100%;
   }
 
 
   /* SERVICES */
 
   .services-section {
-    padding-top: 85px;
-    padding-bottom: 90px;
+    padding-top: 70px;
+    padding-bottom: 80px;
   }
 
   .services-grid {
     grid-template-columns: 1fr;
 
-    gap: 22px;
+    gap: 24px;
   }
 
   .service-info {
-    padding:
-      23px 22px 27px;
+    padding: 23px 22px 27px;
   }
 
   .service-info h3 {
-    font-size: 30px;
+    font-size: 29px;
   }
 
   .service-info p {
@@ -1193,26 +954,31 @@ footer {
 
   .current-section {
     padding-top: 35px;
-    padding-bottom: 90px;
+    padding-bottom: 80px;
   }
 
   .current-project {
-    grid-template-columns:
-      1fr;
+    display: flex;
+    flex-direction: column;
 
-    gap: 0;
+    gap: 42px;
+
+    align-items: stretch;
   }
 
   .current-image {
-    top: 20px;
+    width: 100%;
+    max-width: none;
   }
 
   .current-content {
-    margin-top: 60px;
+    max-width: none;
   }
 
   .current-content h2 {
-    font-size: 54px;
+    margin-bottom: 22px;
+
+    font-size: clamp(52px, 14vw, 72px);
   }
 
   .current-content p {
@@ -1220,26 +986,13 @@ footer {
   }
 
 
-  /* REFERENCES */
-
-  .references-section {
-    padding-top: 85px;
-    padding-bottom: 90px;
-  }
-
-  .references-grid {
-    grid-template-columns: 1fr;
-
-    gap: 20px;
-  }
-
-
-  /* CONTACT */
+  /* KONTAKT */
 
   .contact-section {
     display: flex;
-
     flex-direction: column;
+
+    min-height: 0;
   }
 
   .contact-panel {
@@ -1251,49 +1004,35 @@ footer {
   .contact-content {
     max-width: none;
 
-    padding:
-      70px 20px;
+    padding: 65px 20px 65px;
   }
 
   .contact-content h2 {
-    font-size: 58px;
+    font-size: clamp(52px, 14vw, 72px);
   }
 
   .contact-intro {
     font-size: 21px;
-
-    margin-bottom: 42px;
-  }
-
-  .contact-details {
-    gap: 25px;
-  }
-
-  .contact-item span {
-    font-size: 17px;
-  }
-
-  .contact-item a,
-  .contact-item p {
-    font-size: 24px;
   }
 
   .contact-background {
     order: 2;
 
     width: 100%;
+    height: auto;
 
-    padding:
-      30px 20px 60px;
+    min-height: 0;
+
+    padding: 0;
+
+    overflow: hidden;
   }
 
   .contact-background img {
-    width: auto;
-
+    width: 100%;
     height: auto;
 
-    max-width: 100%;
-    max-height: 620px;
+    max-width: none;
 
     object-fit: contain;
   }
@@ -1304,17 +1043,16 @@ footer {
    SMALL MOBILE
    ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 560px) {
 
-  .container {
-    padding-left: 18px;
-    padding-right: 18px;
+  .nav-wrap {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .brand img {
     height: 45px;
-
-    max-width: 145px;
+    max-width: 155px;
   }
 
   .main-nav {
@@ -1322,18 +1060,26 @@ footer {
   }
 
   .nav-link {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .header-contact {
     margin-left: 12px;
 
+    font-size: 15px;
+  }
+
+  .header-contact span {
     font-size: 16px;
   }
 
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
   .hero-grid {
-    padding-top: 55px;
-    padding-bottom: 60px;
+    padding-top: 45px;
   }
 
   .hero-content h1 {
@@ -1341,30 +1087,15 @@ footer {
   }
 
   .hero-text {
-    font-size: 20px;
+    font-size: 19px;
   }
 
-  .services-section,
-  .references-section {
-    padding-top: 72px;
-    padding-bottom: 78px;
+  .service-info h3 {
+    font-size: 27px;
   }
 
-  .current-section {
-    padding-top: 30px;
-    padding-bottom: 80px;
-  }
-
-  .current-image {
-    top: 15px;
-  }
-
-  .current-content {
-    margin-top: 50px;
-  }
-
-  .current-content h2 {
-    font-size: 49px;
+  .service-info p {
+    font-size: 18px;
   }
 
   .current-content p {
@@ -1372,93 +1103,16 @@ footer {
   }
 
   .contact-content {
-    padding:
-      65px 18px;
-  }
-
-  .contact-content h2 {
-    font-size: 51px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .contact-intro {
-    font-size: 20px;
+    font-size: 19px;
   }
 
   .contact-item a,
   .contact-item p {
-    font-size: 22px;
-  }
-}
-
-
-/* =========================================================
-   VERY SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 430px) {
-
-  .container {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  .brand img {
-    height: 41px;
-
-    max-width: 125px;
-  }
-
-  .main-nav {
-    gap: 9px;
-  }
-
-  .nav-link,
-  .header-contact {
-    font-size: 14px;
-  }
-
-  .header-contact {
-    margin-left: 8px;
-  }
-
-  .hero-content h1 {
-    font-size: 46px;
-  }
-
-  .hero-text {
-    font-size: 19px;
-  }
-
-  .service-info h3 {
-    font-size: 28px;
-  }
-
-  .contact-content h2 {
-    font-size: 47px;
-  }
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    transition-duration:
-      0.01ms !important;
-
-    animation-duration:
-      0.01ms !important;
-
-    animation-iteration-count:
-      1 !important;
+    font-size: 21px;
   }
 }
