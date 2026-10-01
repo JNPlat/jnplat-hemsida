@@ -73,27 +73,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const updateActiveSection = () => {
 
-    const headerHeight = 82;
+    const scrollPosition =
+      window.scrollY;
+
+    const viewportHeight =
+      window.innerHeight;
+
+    const documentHeight =
+      document.documentElement.scrollHeight;
+
+
+    /*
+       När man är längst ner på sidan ska
+       Kontakt alltid vara aktiv.
+    */
+
+    if (
+      scrollPosition + viewportHeight >=
+      documentHeight - 80
+    ) {
+
+      setActiveSection("kontakt");
+
+      return;
+    }
+
 
     const activationPoint =
-      window.scrollY +
-      headerHeight +
-      120;
+      scrollPosition + 180;
 
 
-    let activeSection = sections[0];
+    let activeSection =
+      sections[0];
 
 
     sections.forEach((section) => {
 
-      const sectionTop =
-        section.offsetTop;
-
       if (
-        activationPoint >= sectionTop
+        activationPoint >=
+        section.offsetTop
       ) {
 
-        activeSection = section;
+        activeSection =
+          section;
 
       }
 
@@ -210,6 +232,16 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       passive: true
     }
+  );
+
+
+  /* =====================================================
+     RESIZE
+     ===================================================== */
+
+  window.addEventListener(
+    "resize",
+    updateActiveSection
   );
 
 
