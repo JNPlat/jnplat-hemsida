@@ -3,6 +3,10 @@
    ========================================================= */
 
 
+/* =========================================================
+   VARIABLER
+   ========================================================= */
+
 :root {
 
   --bg: #f3eee6;
@@ -17,14 +21,16 @@
 
   --copper: #9a6747;
 
-  --copper-light: #b78968;
-
   --copper-dark: #704936;
 
   --white: #fffdf9;
 
-  --line:
-    rgba(48, 42, 36, 0.14);
+  --line: rgba(
+    48,
+    42,
+    36,
+    0.14
+  );
 
   --max-width: 1320px;
 
@@ -56,9 +62,15 @@ body {
     var(--text);
 
   font-family:
+    "Cormorant Garamond",
     Georgia,
-    "Times New Roman",
     serif;
+
+  font-style:
+    normal;
+
+  font-weight:
+    400;
 
   line-height:
     1.6;
@@ -80,6 +92,36 @@ a {
   color: inherit;
 
   text-decoration: none;
+
+}
+
+
+/* =========================================================
+   ALL TEXT — CORMORANT UPRIGHT
+   ========================================================= */
+
+body,
+button,
+input,
+textarea,
+select,
+a,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-style:
+    normal;
 
 }
 
@@ -152,7 +194,7 @@ a {
 
 
 /* =========================================================
-   HEADER LOGO
+   LOGO HEADER
    ========================================================= */
 
 .brand {
@@ -202,16 +244,11 @@ a {
 
   padding: 8px 0;
 
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-size: 17px;
 
-  font-size: 14px;
+  font-weight: 400;
 
-  font-weight: 500;
-
-  letter-spacing: 0.03em;
+  letter-spacing: 0.01em;
 
   color:
     var(--text);
@@ -242,7 +279,8 @@ a {
 }
 
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
 
   color:
     var(--copper-dark);
@@ -259,7 +297,7 @@ a {
 
 
 /* =========================================================
-   KONTAKTA OSS – HEADER
+   HEADER KONTAKT
    ========================================================= */
 
 .header-contact {
@@ -276,7 +314,7 @@ a {
 
   gap: 9px;
 
-  padding: 9px 15px;
+  padding: 8px 15px;
 
   border:
     1px solid var(--copper);
@@ -287,16 +325,9 @@ a {
   color:
     var(--copper-dark);
 
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-size: 17px;
 
-  font-size: 13px;
-
-  font-weight: 600;
-
-  letter-spacing: 0.04em;
+  font-weight: 500;
 
   transition:
     background 0.25s ease,
@@ -307,7 +338,7 @@ a {
 
 .header-contact span {
 
-  font-size: 16px;
+  font-size: 19px;
 
   transition:
     transform 0.25s ease;
@@ -355,7 +386,7 @@ section {
 
 
 /* =========================================================
-   HEM / HERO
+   HEM
    ========================================================= */
 
 .hero-section {
@@ -398,10 +429,6 @@ section {
 
 }
 
-
-/* =========================================================
-   HERO TEXT
-   ========================================================= */
 
 .hero-content {
 
@@ -449,20 +476,16 @@ section {
     0;
 
   font-size:
-    18px;
+    20px;
 
   line-height:
-    1.65;
+    1.55;
 
   color:
     var(--muted);
 
 }
 
-
-/* =========================================================
-   HERO IMAGE
-   ========================================================= */
 
 .hero-image {
 
@@ -515,9 +538,6 @@ section {
   background:
     var(--bg);
 
-  color:
-    var(--text);
-
 }
 
 
@@ -535,15 +555,8 @@ section {
   gap:
     24px;
 
-  width:
-    100%;
-
 }
 
-
-/* =========================================================
-   SERVICE CARD
-   ========================================================= */
 
 .service-card {
 
@@ -562,10 +575,6 @@ section {
 }
 
 
-/* =========================================================
-   SERVICE IMAGE
-   ========================================================= */
-
 .service-image {
 
   width:
@@ -576,9 +585,6 @@ section {
 
   overflow:
     hidden;
-
-  background:
-    #ddd5ca;
 
 }
 
@@ -603,10 +609,6 @@ section {
 }
 
 
-/* =========================================================
-   SERVICE IMAGE HOVER
-   ========================================================= */
-
 .service-card:hover
 .service-image img {
 
@@ -617,7 +619,7 @@ section {
 
 
 /* =========================================================
-   SERVICE INFO
+   TJÄNSTETEXT
    ========================================================= */
 
 .service-info {
@@ -631,23 +633,19 @@ section {
 }
 
 
-/* =========================================================
-   SERVICE TITLE
-   ========================================================= */
-
 .service-info h3 {
 
   margin:
     0 0 20px;
 
   font-size:
-    23px;
+    27px;
 
   line-height:
-    1.15;
+    1.1;
 
   font-weight:
-    700;
+    400;
 
   letter-spacing:
     -0.015em;
@@ -670,10 +668,6 @@ section {
 }
 
 
-/* =========================================================
-   SERVICE TEXT
-   ========================================================= */
-
 .service-info p {
 
   margin:
@@ -683,10 +677,10 @@ section {
     290px;
 
   font-size:
-    16px;
+    18px;
 
   line-height:
-    1.65;
+    1.5;
 
   color:
     var(--muted);
@@ -741,15 +735,6 @@ section {
   background:
     #ddd5ca;
 
-  border:
-    1px solid
-    rgba(
-      112,
-      73,
-      54,
-      0.25
-    );
-
 }
 
 
@@ -763,18 +748,6 @@ section {
 
   object-fit:
     cover;
-
-  transition:
-    none;
-
-}
-
-
-.current-project:hover
-.current-image img {
-
-  transform:
-    none;
 
 }
 
@@ -817,10 +790,10 @@ section {
     0 0 28px;
 
   font-size:
-    18px;
+    20px;
 
   line-height:
-    1.75;
+    1.6;
 
   color:
     var(--muted);
@@ -839,22 +812,14 @@ section {
   gap:
     10px;
 
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
   font-size:
-    14px;
+    18px;
 
   font-weight:
-    600;
+    500;
 
   color:
     var(--copper-dark);
-
-  letter-spacing:
-    0.03em;
 
 }
 
@@ -867,8 +832,7 @@ section {
 }
 
 
-.current-project:hover
-.read-more {
+.read-more:hover {
 
   color:
     var(--copper);
@@ -876,8 +840,7 @@ section {
 }
 
 
-.current-project:hover
-.read-more span {
+.read-more:hover span {
 
   transform:
     translateX(4px);
@@ -898,7 +861,7 @@ section {
     hidden;
 
   padding:
-    75px 0 90px;
+    100px 0 110px;
 
   background:
     var(--bg-light);
@@ -910,132 +873,68 @@ section {
 
 
 /* =========================================================
-   KONTAKTLOGGA
+   KONTAKTLAYOUT
    ========================================================= */
 
-/*
-   Loggan ligger bakom vänsterkolumnen,
-   centrerad ungefär bakom rubriken och texten.
-*/
+.contact-layout {
 
-.contact-section::before {
-
-  content:
-    "";
-
-  position:
-    absolute;
-
-  z-index:
-    0;
-
-  width:
-    390px;
-
-  height:
-    390px;
-
-  left:
-    25%;
-
-  top:
-    50%;
-
-  transform:
-    translate(
-      -50%,
-      -50%
-    );
-
-  background-image:
-    url(
-      "logo/J.Norberg%20Brun%20Enkel.svg"
-    );
-
-  background-repeat:
-    no-repeat;
-
-  background-position:
-    center;
-
-  background-size:
-    contain;
-
-  opacity:
-    0.075;
-
-  pointer-events:
-    none;
-
-}
-
-
-.contact-section
-> .container {
-
-  position:
-    relative;
-
-  z-index:
-    1;
-
-}
-
-
-/* =========================================================
-   CONTACT HEADING
-   ========================================================= */
-
-.contact-heading {
-
-  margin-bottom:
-    30px;
-
-}
-
-
-.contact-heading h2 {
-
-  margin:
-    0;
-
-  font-size:
-    clamp(
-      42px,
-      4vw,
-      58px
-    );
-
-  line-height:
-    1.05;
-
-  font-weight:
-    400;
-
-  letter-spacing:
-    -0.025em;
-
-}
-
-
-/* =========================================================
-   CONTACT CONTENT
-   ========================================================= */
-
-.contact-content {
+  min-height:
+    510px;
 
   display:
     grid;
 
   grid-template-columns:
     minmax(0, 1fr)
-    minmax(300px, 0.7fr);
+    minmax(400px, 0.9fr);
 
   gap:
-    80px;
+    70px;
 
   align-items:
-    start;
+    center;
+
+}
+
+
+/* =========================================================
+   VÄNSTER KONTAKT
+   ========================================================= */
+
+.contact-left {
+
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  max-width:
+    600px;
+
+}
+
+
+.contact-left h2 {
+
+  margin:
+    0 0 28px;
+
+  font-size:
+    clamp(
+      50px,
+      5vw,
+      70px
+    );
+
+  line-height:
+    1;
+
+  font-weight:
+    400;
+
+  letter-spacing:
+    -0.03em;
 
 }
 
@@ -1043,29 +942,27 @@ section {
 .contact-intro {
 
   max-width:
-    550px;
-
-}
-
-
-.contact-intro p {
+    560px;
 
   margin:
-    0;
+    0 0 55px;
 
   font-size:
-    22px;
+    24px;
 
   line-height:
-    1.55;
+    1.5;
 
 }
 
 
 .contact-details {
 
-  margin-top:
-    -88px;
+  width:
+    min(
+      100%,
+      500px
+    );
 
   border-top:
     1px solid var(--line);
@@ -1076,7 +973,7 @@ section {
 .contact-item {
 
   padding:
-    16px 0;
+    17px 0;
 
   border-bottom:
     1px solid var(--line);
@@ -1090,24 +987,19 @@ section {
     block;
 
   margin-bottom:
-    4px;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+    3px;
 
   font-size:
-    10px;
+    14px;
 
   font-weight:
-    600;
+    500;
+
+  letter-spacing:
+    0.08em;
 
   text-transform:
     uppercase;
-
-  letter-spacing:
-    0.1em;
 
   color:
     var(--muted);
@@ -1122,10 +1014,10 @@ section {
     0;
 
   font-size:
-    18px;
+    21px;
 
   line-height:
-    1.35;
+    1.3;
 
 }
 
@@ -1142,6 +1034,56 @@ section {
 
   color:
     var(--copper);
+
+}
+
+
+/* =========================================================
+   LOGGA TILL HÖGER
+   ========================================================= */
+
+.contact-logo {
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-height:
+    500px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+}
+
+
+.contact-logo img {
+
+  width:
+    min(
+      100%,
+      560px
+    );
+
+  max-height:
+    500px;
+
+  height:
+    auto;
+
+  object-fit:
+    contain;
+
+  opacity:
+    0.10;
 
 }
 
@@ -1211,14 +1153,6 @@ section {
   }
 
 
-  .hero-text {
-
-    font-size:
-      17px;
-
-  }
-
-
   .services-grid {
 
     gap:
@@ -1241,10 +1175,7 @@ section {
   .service-info h3 {
 
     font-size:
-      21px;
-
-    margin-bottom:
-      16px;
+      24px;
 
   }
 
@@ -1252,7 +1183,7 @@ section {
   .service-info p {
 
     font-size:
-      15px;
+      17px;
 
   }
 
@@ -1265,24 +1196,22 @@ section {
   }
 
 
-  .contact-content {
+  .contact-layout {
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(330px, 0.8fr);
 
     gap:
-      50px;
+      45px;
 
   }
 
 
-  .contact-section::before {
+  .contact-logo img {
 
-    width:
-      340px;
-
-    height:
-      340px;
-
-    left:
-      25%;
+    max-width:
+      470px;
 
   }
 
@@ -1307,16 +1236,7 @@ section {
   }
 
 
-  /* HEADER */
-
-  .site-header {
-
-    height:
-      82px;
-
-  }
-
-
+  .site-header,
   .nav-wrap {
 
     height:
@@ -1350,15 +1270,13 @@ section {
       16px;
 
     padding:
-      8px 12px;
+      7px 12px;
 
     font-size:
-      12px;
+      16px;
 
   }
 
-
-  /* MAIN */
 
   main {
 
@@ -1398,9 +1316,6 @@ section {
     gap:
       40px;
 
-    align-items:
-      stretch;
-
   }
 
 
@@ -1408,9 +1323,6 @@ section {
 
     max-width:
       none;
-
-    margin:
-      0;
 
   }
 
@@ -1436,10 +1348,7 @@ section {
       none;
 
     font-size:
-      18px;
-
-    line-height:
-      1.65;
+      19px;
 
   }
 
@@ -1462,9 +1371,6 @@ section {
 
     height:
       auto;
-
-    object-fit:
-      contain;
 
   }
 
@@ -1507,10 +1413,7 @@ section {
   .service-info h3 {
 
     font-size:
-      19px;
-
-    margin-bottom:
-      14px;
+      23px;
 
   }
 
@@ -1518,10 +1421,7 @@ section {
   .service-info p {
 
     font-size:
-      14px;
-
-    line-height:
-      1.6;
+      16px;
 
   }
 
@@ -1564,15 +1464,7 @@ section {
   .current-content h2 {
 
     font-size:
-      36px;
-
-  }
-
-
-  .current-content p {
-
-    font-size:
-      17px;
+      38px;
 
   }
 
@@ -1582,70 +1474,84 @@ section {
   .contact-section {
 
     padding:
-      70px 0 80px;
+      75px 0 80px;
 
   }
 
 
-  .contact-heading {
+  .contact-layout {
 
-    margin-bottom:
-      30px;
+    min-height:
+      0;
 
-  }
+    display:
+      flex;
 
-
-  .contact-heading h2 {
-
-    font-size:
-      48px;
-
-  }
-
-
-  .contact-content {
-
-    grid-template-columns:
-      1fr;
+    flex-direction:
+      column;
 
     gap:
-      45px;
+      55px;
+
+    align-items:
+      stretch;
 
   }
 
 
-  .contact-intro p {
+  .contact-left {
+
+    max-width:
+      none;
+
+  }
+
+
+  .contact-left h2 {
+
+    font-size:
+      50px;
+
+  }
+
+
+  .contact-intro {
 
     font-size:
       21px;
+
+    margin-bottom:
+      40px;
 
   }
 
 
   .contact-details {
 
-    margin-top:
-      0;
+    width:
+      100%;
 
   }
 
 
-  .contact-section::before {
+  .contact-logo {
+
+    min-height:
+      300px;
+
+    order:
+      2;
+
+  }
+
+
+  .contact-logo img {
 
     width:
-      300px;
+      85%;
 
-    height:
-      300px;
-
-    left:
-      50%;
-
-    top:
-      60%;
-
-    opacity:
-      0.065;
+    max-height:
+      360px;
 
   }
 
@@ -1684,7 +1590,7 @@ section {
   .service-info h3 {
 
     font-size:
-      22px;
+      25px;
 
   }
 
@@ -1695,7 +1601,7 @@ section {
       none;
 
     font-size:
-      16px;
+      17px;
 
   }
 
@@ -1713,14 +1619,7 @@ section {
   }
 
 
-  .site-header {
-
-    height:
-      76px;
-
-  }
-
-
+  .site-header,
   .nav-wrap {
 
     height:
@@ -1746,10 +1645,10 @@ section {
       12px;
 
     padding:
-      7px 10px;
+      6px 10px;
 
     font-size:
-      11px;
+      14px;
 
   }
 
@@ -1757,7 +1656,7 @@ section {
   .header-contact span {
 
     font-size:
-      14px;
+      16px;
 
   }
 
@@ -1789,7 +1688,7 @@ section {
   .hero-text {
 
     font-size:
-      17px;
+      18px;
 
   }
 
@@ -1806,7 +1705,7 @@ section {
   .service-info h3 {
 
     font-size:
-      22px;
+      24px;
 
   }
 
@@ -1814,7 +1713,7 @@ section {
   .current-content h2 {
 
     font-size:
-      32px;
+      34px;
 
   }
 
@@ -1827,15 +1726,15 @@ section {
   }
 
 
-  .contact-heading h2 {
+  .contact-left h2 {
 
     font-size:
-      43px;
+      45px;
 
   }
 
 
-  .contact-intro p {
+  .contact-intro {
 
     font-size:
       19px;
@@ -1843,22 +1742,18 @@ section {
   }
 
 
-  .contact-section::before {
+  .contact-logo {
+
+    min-height:
+      260px;
+
+  }
+
+
+  .contact-logo img {
 
     width:
-      260px;
-
-    height:
-      260px;
-
-    left:
-      50%;
-
-    top:
-      62%;
-
-    opacity:
-      0.06;
+      90%;
 
   }
 
