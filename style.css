@@ -686,15 +686,23 @@ section {
   background-image:
     url("images/StJohannes.JPG");
 
+  /*
+     Bilden är stående.
+     Vi visar hela bredden proportionerligt
+     och börjar från toppen så att de fina
+     tegelvalven kommer med.
+  */
   background-size:
-    cover;
+    100% auto;
 
-  /* Prioritera vänstra delen av bilden */
   background-position:
-    left center;
+    left top;
 
   background-repeat:
     no-repeat;
+
+  background-color:
+    var(--bg-light);
 }
 
 
@@ -1207,8 +1215,11 @@ section {
     min-height:
       0;
 
+    background-size:
+      100% auto;
+
     background-position:
-      left center;
+      left top;
   }
 
   .contact-panel {
