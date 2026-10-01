@@ -1,6 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================
+     LOGO → TOPPEN
+  ========================================= */
+
+  const brand =
+    document.querySelector(".brand");
+
+  if (brand) {
+
+    brand.addEventListener(
+      "click",
+      (event) => {
+
+        event.preventDefault();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      }
+    );
+
+  }
+
+
+  /* =========================================
      REFERENS-MODAL
   ========================================= */
 
@@ -67,6 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
+    /* =========================================
+       STÄNG MODAL
+    ========================================= */
+
     const closeModal = () => {
 
       modal.classList.remove("open");
@@ -102,6 +132,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
+    /* =========================================
+       ESC → STÄNG
+    ========================================= */
 
     document.addEventListener(
       "keydown",
