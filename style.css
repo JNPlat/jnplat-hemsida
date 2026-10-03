@@ -1,19 +1,23 @@
 /* =========================================================
-   ROOT
+   J. NORBERG PLÅTSLAGERI AB
    ========================================================= */
 
 :root {
   --bg: #f3eee6;
   --bg-light: #f8f5ef;
   --card: #e9e2d7;
+
   --text: #302a24;
   --muted: #766d63;
+
   --copper: #9a6747;
   --copper-dark: #704936;
+
   --white: #fffdf9;
+
   --line: rgba(48, 42, 36, 0.14);
+
   --max-width: 1320px;
-  --header-height: 82px;
 }
 
 
@@ -31,27 +35,65 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 400;
-  overflow-x: hidden;
+
+  background:
+    var(--bg);
+
+  color:
+    var(--text);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-style:
+    normal;
+
+  font-weight:
+    400;
+
+  line-height:
+    1.6;
 }
 
 img {
-  display: block;
-  max-width: 100%;
+  display:
+    block;
+
+  max-width:
+    100%;
 }
 
 a {
-  color: inherit;
+  color:
+    inherit;
+
+  text-decoration:
+    none;
 }
 
+body,
 button,
 input,
 textarea,
-select {
-  font: inherit;
+select,
+a,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-style:
+    normal;
 }
 
 
@@ -60,13 +102,14 @@ select {
    ========================================================= */
 
 .container {
-  width: min(
-    calc(100% - 48px),
-    var(--max-width)
-  );
+  width:
+    min(
+      calc(100% - 64px),
+      var(--max-width)
+    );
 
-  margin-left: auto;
-  margin-right: auto;
+  margin:
+    0 auto;
 }
 
 
@@ -75,134 +118,226 @@ select {
    ========================================================= */
 
 .site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position:
+    fixed;
 
-  z-index: 1000;
+  top:
+    0;
 
-  min-height: var(--header-height);
+  left:
+    0;
+
+  right:
+    0;
+
+  z-index:
+    1000;
+
+  height:
+    82px;
 
   background:
-    rgba(248, 245, 239, 0.94);
-
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+    rgba(243, 238, 230, 0.96);
 
   border-bottom:
     1px solid var(--line);
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
 }
 
 .nav-wrap {
-  min-height: 82px;
+  height:
+    82px;
 
-  display: flex;
-  align-items: center;
+  display:
+    flex;
 
-  padding:
-    10px 0;
+  align-items:
+    center;
+
+  position:
+    relative;
 }
 
+
+/* =========================================================
+   HEADER LOGO
+   ========================================================= */
+
 .brand {
-  width: clamp(
-    175px,
-    18vw,
-    235px
-  );
+  display:
+    flex;
 
-  flex: 0 0 auto;
+  align-items:
+    center;
 
-  display: block;
+  flex-shrink:
+    0;
+
+  width:
+    235px;
 }
 
 .brand img {
-  width: 100%;
-  height: auto;
+  width:
+    100%;
+
+  height:
+    auto;
+
+  object-fit:
+    contain;
 }
 
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
 .main-nav {
-  margin-left: clamp(
-    22px,
-    3vw,
-    38px
-  );
+  display:
+    flex;
 
-  display: flex;
-  align-items: center;
+  align-items:
+    center;
 
-  gap: clamp(
-    16px,
-    2.2vw,
-    30px
-  );
+  gap:
+    34px;
+
+  margin-left:
+    38px;
 }
 
 .nav-link {
-  position: relative;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
+  position:
+    relative;
 
   padding:
     8px 0;
 
-  color: var(--text);
-  text-decoration: none;
+  font-size:
+    17px;
 
-  font-size: 18px;
-  line-height: 1;
+  font-weight:
+    400;
 
-  white-space: nowrap;
+  letter-spacing:
+    0.01em;
+
+  color:
+    var(--text);
 }
 
 .nav-link::after {
-  content: "";
+  content:
+    "";
 
-  position: absolute;
+  position:
+    absolute;
 
-  left: 0;
-  right: 0;
-  bottom: 1px;
+  left:
+    0;
 
-  height: 1px;
+  bottom:
+    2px;
 
-  background: var(--copper);
+  width:
+    0;
 
-  transform:
-    scaleX(0);
+  height:
+    1px;
 
-  transform-origin:
+  background:
+    var(--copper);
+
+  transition:
+    width 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color:
+    var(--copper-dark);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width:
+    100%;
+}
+
+
+/* =========================================================
+   HEADER KONTAKT
+   ========================================================= */
+
+.header-contact {
+  position:
+    fixed;
+
+  top:
+    20px;
+
+  right:
+    24px;
+
+  display:
+    inline-flex;
+
+  align-items:
     center;
+
+  gap:
+    9px;
+
+  padding:
+    8px 15px;
+
+  border:
+    1px solid var(--copper);
+
+  background:
+    transparent;
+
+  color:
+    var(--copper-dark);
+
+  font-size:
+    17px;
+
+  font-weight:
+    500;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.header-contact span {
+  font-size:
+    19px;
 
   transition:
     transform 0.25s ease;
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
+.header-contact:hover,
+.header-contact.active {
+  background:
+    var(--copper);
+
+  color:
+    var(--white);
+}
+
+.header-contact:hover span,
+.header-contact.active span {
   transform:
-    scaleX(1);
-}
-
-.header-contact {
-  padding:
-    9px 13px;
-
-  border:
-    1px solid var(--copper);
-
-  color: var(--copper-dark);
-}
-
-.header-contact::after {
-  display: none;
-}
-
-.header-contact span {
-  font-size: 20px;
-  line-height: 1;
+    translateX(3px);
 }
 
 
@@ -211,322 +346,234 @@ select {
    ========================================================= */
 
 main {
-  padding-top: var(--header-height);
+  padding-top:
+    82px;
 }
 
 section {
-  scroll-margin-top: var(--header-height);
+  scroll-margin-top:
+    82px;
 }
 
 
 /* =========================================================
-   HEM / HERO
+   HEM
    ========================================================= */
 
 .hero-section {
-  min-height: 0;
+  height:
+    calc(100vh - 82px);
 
-  padding: 0;
+  min-height:
+    620px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  padding:
+    0;
 
-  overflow: visible;
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    stretch;
+
+  overflow:
+    hidden;
 }
 
 .hero-grid {
-  width: 100vw;
+  width:
+    100vw;
 
-  min-height:
-    calc(100vh - var(--header-height));
+  height:
+    calc(100% - 105px);
 
-  max-width: none;
+  flex:
+    1 1 auto;
+
+  max-width:
+    none;
 
   margin-left:
     calc((100% - 100vw) / 2);
 
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
     50% 50%;
 
-  gap: 0;
+  gap:
+    0;
 
-  align-items: stretch;
-
-  height: auto;
+  align-items:
+    stretch;
 }
 
+
+/* =========================================================
+   HEM - TEXT
+   ========================================================= */
+
 .hero-content {
-  min-width: 0;
+  width:
+    100%;
+
+  max-width:
+    none;
 
   padding:
     60px
     clamp(40px, 7vw, 120px);
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display:
+    flex;
 
-  background: var(--bg);
+  flex-direction:
+    column;
+
+  justify-content:
+    center;
+
+  background:
+    var(--bg);
 }
 
 .hero-content h1 {
   margin:
-    0 0 28px;
+    0 0 26px;
 
-  color: var(--text);
+  max-width:
+    620px;
 
   font-size:
-    clamp(62px, 6vw, 94px);
+    clamp(
+      52px,
+      5.4vw,
+      80px
+    );
 
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: -0.025em;
+  line-height:
+    0.98;
+
+  font-weight:
+    400;
+
+  letter-spacing:
+    -0.045em;
 }
 
 .hero-text {
-  max-width: 700px;
+  max-width:
+    560px;
 
   margin:
-    0 0 22px;
-
-  color: var(--text);
+    0;
 
   font-size:
-    clamp(20px, 1.5vw, 24px);
+    20px;
 
-  line-height: 1.45;
-}
+  line-height:
+    1.55;
 
-.hero-text:last-child {
-  margin-bottom: 0;
-}
-
-.hero-image {
-  min-height: 500px;
-
-  overflow: hidden;
-
-  background: var(--card);
-}
-
-.hero-image img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
+  color:
+    var(--muted);
 }
 
 
 /* =========================================================
-   REFERENSER
+   HEM - BILD
    ========================================================= */
 
-.references-section {
-  width: 100%;
+.hero-image {
+  width:
+    100%;
+
+  height:
+    100%;
+
+  overflow:
+    hidden;
+}
+
+.hero-image img {
+  width:
+    100%;
+
+  height:
+    100%;
+
+  max-width:
+    none;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+}
+
+
+/* =========================================================
+   ÖVERGÅNGSBAND
+   ========================================================= */
+
+.section-band {
+  width:
+    100%;
+
+  min-height:
+    105px;
+
+  flex:
+    0 0 105px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
 
   padding:
-    88px 0 92px;
+    20px 40px;
 
-  background: var(--bg-light);
+  background:
+    var(--bg-light);
 
   border-top:
     1px solid var(--line);
 
   border-bottom:
     1px solid var(--line);
+
+  text-align:
+    center;
 }
 
-.references-heading {
-  margin-bottom: 38px;
-}
-
-.references-heading h2 {
-  margin:
-    0 0 15px;
-
+.section-band span {
   font-size:
-    clamp(48px, 5vw, 72px);
-
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-
-.references-heading p {
-  max-width: 760px;
-
-  margin: 0;
-
-  color: var(--muted);
-
-  font-size: 20px;
-  line-height: 1.45;
-}
-
-.references-carousel {
-  display: grid;
-
-  grid-template-columns:
-    auto
-    minmax(0, 1fr)
-    auto;
-
-  align-items: center;
-
-  gap: 22px;
-}
-
-.references-viewport {
-  width: 100%;
-  min-width: 0;
-
-  overflow: hidden;
-}
-
-.references-track {
-  display: flex;
-
-  width: 100%;
-
-  gap: 12px;
-
-  overflow: visible;
-
-  transition:
-    transform 0.45s ease;
-}
-
-.reference-card {
-  min-width: 0;
-
-  min-height: 275px;
-
-  padding:
-    25px 22px 24px;
-
-  display: flex;
-  flex-direction: column;
-
-  background: var(--card);
-
-  border:
-    1px solid rgba(48, 42, 36, 0.08);
-
-  flex:
-    0 0 calc(
-      (100% - 48px) / 5
+    clamp(
+      22px,
+      2.1vw,
+      30px
     );
-}
 
-.reference-placeholder {
-  margin-bottom: 22px;
+  line-height:
+    1.2;
 
-  color: var(--copper-dark);
+  font-weight:
+    400;
 
-  font-size: 11px;
-  letter-spacing: 0.12em;
-}
+  letter-spacing:
+    0.01em;
 
-.reference-quote {
-  margin:
-    0 0 28px;
-
-  font-size: 19px;
-  line-height: 1.35;
-}
-
-.reference-person {
-  margin-top: auto;
-
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.reference-person strong {
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.reference-person span {
-  color: var(--muted);
-
-  font-size: 14px;
-}
-
-.reference-empty {
-  width: 100%;
-  min-height: 275px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 30px;
-
-  background: var(--card);
-
-  border:
-    1px solid rgba(48, 42, 36, 0.08);
-
-  text-align: center;
-
-  color: var(--muted);
-
-  font-size: 18px;
-}
-
-.reference-empty p {
-  margin: 0;
-}
-
-.reference-arrow {
-  width: 44px;
-  height: 44px;
-
-  flex:
-    0 0 44px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0;
-
-  border:
-    1px solid var(--copper);
-
-  background: transparent;
-
-  color: var(--copper-dark);
-
-  font-size: 24px;
-
-  cursor: pointer;
-
-  visibility: hidden;
-  opacity: 0;
-
-  pointer-events: none;
-
-  transition:
-    opacity 0.2s ease,
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.reference-arrow.visible {
-  visibility: visible;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.reference-arrow:hover {
-  background: var(--copper);
-  color: var(--white);
+  color:
+    var(--copper-dark);
 }
 
 
@@ -535,23 +582,55 @@ section {
    ========================================================= */
 
 .services-section {
-  min-height: 0;
+  min-height:
+    calc(100vh - 82px);
 
-  overflow: visible;
+  padding:
+    0;
 
-  background: var(--bg);
+  background:
+    var(--bg);
+
+  display:
+    flex;
+
+  align-items:
+    stretch;
+
+  overflow:
+    hidden;
 }
 
 .services-section > .container {
-  width: 100%;
-  max-width: none;
-  margin: 0;
+  width:
+    100vw;
+
+  max-width:
+    none;
+
+  margin:
+    0 0 0
+    calc((100% - 100vw) / 2);
+
+  display:
+    flex;
+
+  align-items:
+    stretch;
 }
 
 .services-grid {
-  width: 100%;
+  width:
+    100%;
 
-  display: grid;
+  height:
+    100%;
+
+  min-height:
+    calc(100vh - 82px);
+
+  display:
+    grid;
 
   grid-template-columns:
     repeat(
@@ -559,80 +638,152 @@ section {
       minmax(0, 1fr)
     );
 
-  gap: 0;
+  gap:
+    0;
 
-  align-items: start;
+  align-items:
+    stretch;
 }
+
+
+/* =========================================================
+   TJÄNSTEKORT
+   ========================================================= */
 
 .service-card {
-  display: flex;
-  flex-direction: column;
+  display:
+    flex;
 
-  min-width: 0;
+  flex-direction:
+    column;
 
-  height: auto;
+  min-width:
+    0;
 
-  background: var(--card);
+  height:
+    100%;
 
-  overflow: hidden;
+  background:
+    var(--card);
+
+  overflow:
+    hidden;
 }
 
+
+/* =========================================================
+   TJÄNSTEBILD
+   ========================================================= */
+
 .service-image {
-  width: 100%;
+  width:
+    100%;
 
-  aspect-ratio:
-    16 / 9;
+  flex:
+    1 1 auto;
 
-  overflow: hidden;
+  min-height:
+    0;
 
-  background: var(--bg-light);
+  overflow:
+    hidden;
 }
 
 .service-image img {
-  width: 100%;
-  height: 100%;
+  width:
+    100%;
 
-  object-fit: contain;
+  height:
+    100%;
+
+  max-width:
+    none;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+
+  transform:
+    scale(1);
 
   transition:
-    transform 0.5s ease;
+    transform 0.45s ease;
 }
 
-.service-card:hover .service-image img {
-  transform: scale(1.025);
+.service-card:hover
+.service-image img {
+  transform:
+    scale(1.035);
 }
+
+
+/* =========================================================
+   TJÄNSTETEXT
+   ========================================================= */
 
 .service-info {
   flex:
     0 0 auto;
 
-  min-height: 205px;
+  min-height:
+    205px;
 
   padding:
     28px 30px 32px;
 
-  background: var(--card);
+  background:
+    var(--card);
 }
 
 .service-info h3 {
   margin:
-    0 0 13px;
+    0 0 20px;
 
-  font-size: 27px;
+  font-size:
+    27px;
 
-  font-weight: 400;
+  line-height:
+    1.1;
 
-  line-height: 1.05;
+  font-weight:
+    400 !important;
+
+  font-style:
+    normal !important;
+
+  letter-spacing:
+    -0.015em;
+
+  color:
+    var(--text);
+
+  transition:
+    color 0.25s ease;
+}
+
+.service-card:hover
+.service-info h3 {
+  color:
+    var(--copper);
 }
 
 .service-info p {
-  margin: 0;
+  margin:
+    0;
 
-  color: var(--text);
+  max-width:
+    290px;
 
-  font-size: 18px;
+  font-size:
+    18px;
 
-  line-height: 1.4;
+  line-height:
+    1.5;
+
+  color:
+    var(--muted);
 }
 
 
@@ -641,59 +792,138 @@ section {
    ========================================================= */
 
 .current-section {
-  min-height: 0;
+  min-height:
+    calc(100vh - 82px);
 
-  overflow: visible;
+  padding:
+    0;
 
-  background: var(--bg-light);
+  background:
+    var(--bg);
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    stretch;
+
+  overflow:
+    hidden;
 }
 
 .current-section > .container {
-  width: 100%;
-  max-width: none;
-  margin: 0;
+  width:
+    100vw;
+
+  max-width:
+    none;
+
+  margin:
+    0 0 0
+    calc((100% - 100vw) / 2);
+
+  flex:
+    1 1 auto;
+
+  display:
+    flex;
+
+  align-items:
+    stretch;
 }
 
 .current-project {
-  width: 100%;
+  width:
+    100%;
 
-  display: grid;
+  min-height:
+    0;
+
+  flex:
+    1 1 auto;
+
+  display:
+    grid;
 
   grid-template-columns:
     60% 40%;
 
-  align-items: stretch;
+  gap:
+    0;
+
+  align-items:
+    stretch;
 }
 
+
+/* =========================================================
+   AKTUELLT - BILD
+   ========================================================= */
+
 .current-image {
-  min-height: 560px;
+  width:
+    100%;
 
-  overflow: hidden;
+  height:
+    100%;
 
-  background: var(--card);
+  min-height:
+    0;
+
+  overflow:
+    hidden;
+
+  background:
+    #ddd5ca;
 }
 
 .current-image img {
-  width: 100%;
-  height: 100%;
+  width:
+    100%;
 
-  object-fit: cover;
+  height:
+    100%;
+
+  max-width:
+    none;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
 }
 
+
+/* =========================================================
+   AKTUELLT - TEXT
+   ========================================================= */
+
 .current-content {
+  width:
+    100%;
+
+  max-width:
+    none;
+
   padding:
-    90px
-    clamp(
-      32px,
-      5vw,
-      85px
-    );
+    60px
+    clamp(40px, 6vw, 100px);
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display:
+    flex;
 
-  background: var(--bg-light);
+  flex-direction:
+    column;
+
+  justify-content:
+    center;
+
+  background:
+    var(--bg);
 }
 
 .current-content h2 {
@@ -701,47 +931,70 @@ section {
     0 0 24px;
 
   font-size:
-    clamp(46px, 5vw, 70px);
+    clamp(
+      40px,
+      4vw,
+      60px
+    );
 
-  font-weight: 400;
+  line-height:
+    1.1;
 
-  line-height: 1;
+  font-weight:
+    400;
+
+  letter-spacing:
+    -0.02em;
 }
 
 .current-content p {
-  max-width: 620px;
+  max-width:
+    520px;
 
   margin:
     0 0 28px;
 
-  font-size: 21px;
+  font-size:
+    20px;
 
-  line-height: 1.45;
+  line-height:
+    1.6;
+
+  color:
+    var(--muted);
 }
 
 .read-more {
-  display: inline-flex;
-  align-items: center;
+  display:
+    inline-flex;
 
-  width: fit-content;
+  align-items:
+    center;
 
-  gap: 10px;
+  gap:
+    10px;
 
-  color: var(--copper-dark);
+  width:
+    fit-content;
 
-  text-decoration: none;
+  font-size:
+    18px;
 
-  font-size: 18px;
+  font-weight:
+    500;
 
-  border-bottom:
-    1px solid var(--copper);
-
-  padding-bottom: 4px;
+  color:
+    var(--copper-dark);
 }
 
 .read-more span {
   transition:
-    transform 0.2s ease;
+    transform 0.25s ease;
+}
+
+.read-more:hover {
+  color:
+    var(--copper);
 }
 
 .read-more:hover span {
@@ -751,146 +1004,120 @@ section {
 
 
 /* =========================================================
-   OM J. NORBERG
-   ========================================================= */
-
-.about-section {
-  min-height: 0;
-
-  background: var(--bg);
-}
-
-.about-section > .container {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-}
-
-.about-grid {
-  width: 100%;
-
-  display: grid;
-
-  grid-template-columns:
-    50% 50%;
-
-  align-items: stretch;
-}
-
-.about-image {
-  min-height: 560px;
-
-  overflow: hidden;
-
-  background: var(--card);
-}
-
-.about-image img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-.about-content {
-  padding:
-    90px
-    clamp(
-      32px,
-      6vw,
-      100px
-    );
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  background: var(--bg);
-}
-
-.about-content h2 {
-  margin:
-    0 0 24px;
-
-  font-size:
-    clamp(48px, 5vw, 70px);
-
-  font-weight: 400;
-
-  line-height: 1;
-}
-
-.about-content p {
-  max-width: 680px;
-
-  margin:
-    0 0 28px;
-
-  font-size: 21px;
-
-  line-height: 1.45;
-}
-
-
-/* =========================================================
    KONTAKT
    ========================================================= */
 
 .contact-section {
-  position: relative;
+  position:
+    relative;
 
   min-height:
-    calc(100vh - var(--header-height));
+    calc(100vh - 82px);
 
-  margin: 0;
+  margin:
+    0;
 
-  padding: 0;
+  padding:
+    0;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  background: var(--bg-light);
+  background:
+    var(--bg-light);
 
   border-top:
     1px solid var(--line);
 }
 
+
+/* =========================================================
+   KONTAKTBILD
+   ========================================================= */
+
 .contact-background {
-  position: absolute;
+  position:
+    absolute;
 
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 58%;
+  top:
+    0;
 
-  z-index: 1;
+  right:
+    0;
 
-  overflow: hidden;
+  bottom:
+    0;
 
-  pointer-events: none;
+  left:
+    58%;
+
+  width:
+    auto;
+
+  height:
+    100%;
+
+  z-index:
+    1;
+
+  overflow:
+    hidden;
+
+  pointer-events:
+    none;
 }
 
 .contact-background img {
-  width: 100%;
-  height: 100%;
+  position:
+    absolute;
 
-  object-fit: cover;
-  object-position: center;
+  inset:
+    0;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  max-width:
+    none;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+
+  display:
+    block;
 }
 
+
+/* =========================================================
+   KONTAKTPANEL
+   ========================================================= */
+
 .contact-panel {
-  position: relative;
+  position:
+    relative;
 
-  z-index: 2;
+  z-index:
+    2;
 
-  width: 58%;
+  width:
+    58%;
 
   min-height:
-    calc(100vh - var(--header-height));
+    calc(100vh - 82px);
 
-  padding:
-    100px
-    100px
-    110px
+  padding-top:
+    100px;
+
+  padding-bottom:
+    110px;
+
+  padding-left:
     max(
       32px,
       calc(
@@ -898,90 +1125,136 @@ section {
       )
     );
 
-  display: flex;
-  align-items: center;
+  padding-right:
+    100px;
 
-  background: var(--bg-light);
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  background:
+    var(--bg-light);
 }
+
+
+/* =========================================================
+   KONTAKTINNEHÅLL
+   ========================================================= */
 
 .contact-content {
-  width: 100%;
-  max-width: 700px;
+  position:
+    relative;
+
+  z-index:
+    3;
+
+  width:
+    100%;
+
+  max-width:
+    560px;
 }
 
-.contact-content h2 {
-  margin:
-    0 0 24px;
 
-  font-size:
-    clamp(48px, 5vw, 72px);
-
-  font-weight: 400;
-
-  line-height: 1;
-}
+/* =========================================================
+   KONTAKT INTRO
+   ========================================================= */
 
 .contact-intro {
-  max-width: 650px;
-
   margin:
-    0 0 50px;
+    0 0 55px;
 
-  font-size: 23px;
+  max-width:
+    560px;
 
-  line-height: 1.4;
+  font-size:
+    24px;
+
+  line-height:
+    1.5;
+
+  font-weight:
+    400;
+
+  font-style:
+    normal;
 }
 
+
+/* =========================================================
+   KONTAKTUPPGIFTER
+   ========================================================= */
+
 .contact-details {
-  width: 100%;
-  max-width: 620px;
+  width:
+    100%;
 
-  display: grid;
+  max-width:
+    500px;
 
-  grid-template-columns:
-    repeat(
-      3,
-      minmax(0, 1fr)
-    );
-
-  gap: 30px;
+  border-top:
+    1px solid var(--line);
 }
 
 .contact-item {
-  min-width: 0;
+  padding:
+    17px 0;
+
+  border-bottom:
+    1px solid var(--line);
 }
 
-.contact-item > span {
-  display: block;
+.contact-item span {
+  display:
+    block;
 
-  margin-bottom: 8px;
+  margin-bottom:
+    3px;
 
-  color: var(--muted);
+  font-size:
+    14px;
 
-  font-size: 15px;
+  font-weight:
+    500;
 
-  text-transform: uppercase;
+  letter-spacing:
+    0.08em;
 
-  letter-spacing: 0.08em;
+  text-transform:
+    uppercase;
+
+  color:
+    var(--muted);
 }
 
 .contact-item a,
 .contact-item p {
-  display: block;
+  margin:
+    0;
 
-  margin: 0;
+  font-size:
+    21px;
 
-  color: var(--text);
+  line-height:
+    1.3;
 
-  text-decoration: none;
+  font-weight:
+    400;
 
-  font-size: 20px;
+  font-style:
+    normal;
+}
 
-  line-height: 1.3;
+.contact-item a {
+  transition:
+    color 0.25s ease;
 }
 
 .contact-item a:hover {
-  color: var(--copper-dark);
+  color:
+    var(--copper);
 }
 
 
@@ -989,74 +1262,105 @@ section {
    TABLET
    ========================================================= */
 
-@media (max-width: 1100px) {
+@media (max-width: 1050px) {
+
+  .container {
+    width:
+      min(
+        calc(100% - 48px),
+        var(--max-width)
+      );
+  }
+
+  .brand {
+    width:
+      205px;
+  }
 
   .main-nav {
-    gap: 18px;
+    gap:
+      24px;
+
+    margin-left:
+      28px;
   }
 
-  .nav-link {
-    font-size: 17px;
+  .header-contact {
+    right:
+      20px;
   }
+
+
+  /* HEM */
 
   .hero-content {
     padding:
-      50px
-      55px;
+      50px;
   }
 
   .hero-content h1 {
     font-size:
-      clamp(56px, 6vw, 78px);
-  }
-
-  .hero-text {
-    font-size: 20px;
-  }
-
-  .service-info {
-    padding:
-      25px 22px 28px;
-  }
-
-  .service-info h3 {
-    font-size: 24px;
-  }
-
-  .service-info p {
-    font-size: 17px;
-  }
-
-  .current-content {
-    padding:
-      70px 55px;
-  }
-
-  .about-content {
-    padding:
-      70px 55px;
-  }
-
-  .contact-panel {
-    padding:
-      80px 60px 90px
-      max(
-        30px,
-        calc(
-          (100vw - var(--max-width)) / 2
-        )
+      clamp(
+        46px,
+        6.5vw,
+        68px
       );
   }
 
-  .contact-details {
-    gap: 20px;
+
+  /* TJÄNSTER */
+
+  .service-info {
+    padding:
+      24px 22px 28px;
+
+    min-height:
+      190px;
   }
 
+  .service-info h3 {
+    font-size:
+      24px;
+  }
+
+  .service-info p {
+    font-size:
+      17px;
+  }
+
+
+  /* AKTUELLT */
+
+  .current-content {
+    padding:
+      50px;
+  }
+
+  .current-content h2 {
+    font-size:
+      45px;
+  }
+
+
+  /* KONTAKT */
+
+  .contact-background {
+    left:
+      62%;
+  }
+
+  .contact-panel {
+    width:
+      62%;
+
+    padding-right:
+      60px;
+  }
 }
 
 
 /* =========================================================
-   TABLET / MOBIL
+   MOBILE
    ========================================================= */
 
 @media (max-width: 800px) {
@@ -1069,65 +1373,60 @@ section {
       );
   }
 
-
-  /* =====================================================
-     HEADER
-     ===================================================== */
-
-  .site-header {
-    min-height: 0;
-  }
-
+  .site-header,
   .nav-wrap {
-    min-height: 0;
-
-    padding:
-      10px 0
-      9px;
-
-    flex-wrap: wrap;
-
-    row-gap: 6px;
+    height:
+      82px;
   }
 
   .brand {
-    width: 180px;
-
-    flex:
-      0 0 100%;
+    width:
+      190px;
   }
 
   .main-nav {
-    width: 100%;
-
-    margin-left: 0;
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    justify-content: center;
-
-    gap:
-      2px 18px;
-  }
-
-  .nav-link {
-    padding:
-      5px 0;
-
-    font-size: 15px;
+    display:
+      none;
   }
 
   .header-contact {
-    padding:
-      5px 9px;
+    top:
+      21px;
 
-    font-size: 15px;
+    right:
+      16px;
+
+    padding:
+      7px 12px;
+
+    font-size:
+      16px;
   }
 
-  .header-contact span {
-    font-size: 17px;
+  main {
+    padding-top:
+      82px;
+  }
+
+
+  /* =====================================================
+     ÖVERGÅNGSBAND
+     ===================================================== */
+
+  .section-band {
+    min-height:
+      90px;
+
+    flex:
+      0 0 90px;
+
+    padding:
+      20px 16px;
+  }
+
+  .section-band span {
+    font-size:
+      21px;
   }
 
 
@@ -1136,32 +1435,53 @@ section {
      ===================================================== */
 
   .hero-section {
-    min-height: 0;
+    height:
+      auto;
+
+    min-height:
+      0;
+
+    padding:
+      0;
+
+    overflow:
+      visible;
   }
 
   .hero-grid {
-    width: 100%;
+    width:
+      100%;
 
-    min-height: 0;
+    height:
+      auto;
 
-    margin-left: 0;
+    margin-left:
+      0;
 
-    display: flex;
+    flex:
+      0 0 auto;
 
-    flex-direction: column;
+    display:
+      flex;
+
+    flex-direction:
+      column;
+
+    gap:
+      0;
   }
 
   .hero-content {
-    width: 100%;
+    width:
+      100%;
 
     padding:
-      60px
-      16px
-      55px;
+      60px 16px;
   }
 
   .hero-content h1 {
-    margin-bottom: 24px;
+    margin-bottom:
+      24px;
 
     font-size:
       clamp(
@@ -1172,101 +1492,36 @@ section {
   }
 
   .hero-text {
-    max-width: none;
+    max-width:
+      none;
 
-    font-size: 19px;
+    font-size:
+      19px;
   }
 
   .hero-image {
-    width: 100%;
+    width:
+      100%;
 
-    min-height: 0;
+    height:
+      auto;
 
-    height: auto;
+    min-height:
+      0;
   }
 
   .hero-image img {
-    width: 100%;
+    width:
+      100%;
 
-    height: auto;
-
-    aspect-ratio: auto;
-
-    object-fit: cover;
-  }
-
-
-  /* =====================================================
-     REFERENSER
-     ===================================================== */
-
-  .references-section {
-    padding:
-      65px 0
-      70px;
-  }
-
-  .references-heading {
-    margin-bottom: 30px;
-  }
-
-  .references-heading h2 {
-    font-size: 42px;
-  }
-
-  .references-heading p {
-    font-size: 18px;
-  }
-
-  .references-carousel {
-    grid-template-columns:
-      auto
-      minmax(0, 1fr)
+    height:
       auto;
 
-    gap: 8px;
-  }
+    aspect-ratio:
+      auto;
 
-  .reference-card {
-    min-height: 260px;
-
-    padding:
-      20px
-      17px
-      20px;
-
-    flex:
-      0 0 calc(
-        (100% - 12px) / 2
-      );
-  }
-
-  .reference-placeholder {
-    margin-bottom: 16px;
-
-    font-size: 10px;
-  }
-
-  .reference-quote {
-    font-size: 17px;
-  }
-
-  .reference-person strong {
-    font-size: 16px;
-  }
-
-  .reference-person span {
-    font-size: 13px;
-  }
-
-  .reference-arrow {
-    width: 38px;
-
-    height: 38px;
-
-    flex-basis: 38px;
-
-    font-size: 21px;
+    object-fit:
+      cover;
   }
 
 
@@ -1275,19 +1530,30 @@ section {
      ===================================================== */
 
   .services-section {
-    min-height: 0;
+    min-height:
+      0;
 
-    overflow: visible;
+    padding:
+      0;
+
+    overflow:
+      visible;
   }
 
   .services-section > .container {
-    width: 100%;
+    width:
+      100%;
 
-    margin: 0;
+    margin:
+      0;
   }
 
   .services-grid {
-    width: 100%;
+    width:
+      100%;
+
+    min-height:
+      0;
 
     grid-template-columns:
       repeat(
@@ -1295,41 +1561,42 @@ section {
         minmax(0, 1fr)
       );
 
-    gap: 1px;
-
-    align-items: stretch;
+    gap:
+      1px;
   }
 
   .service-card {
-    height: 100%;
+    height:
+      auto;
+
+    min-height:
+      520px;
   }
 
   .service-image {
-    aspect-ratio:
-      16 / 9;
+    height:
+      340px;
+
+    flex:
+      0 0 340px;
   }
 
   .service-info {
-    flex:
-      1 1 auto;
-
-    min-height: 0;
+    min-height:
+      180px;
 
     padding:
-      21px
-      18px
-      25px;
-
-    display: flex;
-    flex-direction: column;
+      21px 18px 25px;
   }
 
   .service-info h3 {
-    font-size: 23px;
+    font-size:
+      23px;
   }
 
   .service-info p {
-    font-size: 16px;
+    font-size:
+      16px;
   }
 
 
@@ -1338,99 +1605,86 @@ section {
      ===================================================== */
 
   .current-section {
-    min-height: 0;
+    min-height:
+      0;
 
-    overflow: visible;
+    padding:
+      0;
+
+    overflow:
+      visible;
   }
 
   .current-section > .container {
-    width: 100%;
+    width:
+      100%;
 
-    margin: 0;
+    margin:
+      0;
+
+    flex:
+      0 0 auto;
   }
 
   .current-project {
-    width: 100%;
+    width:
+      100%;
 
-    display: flex;
+    min-height:
+      0;
 
-    flex-direction: column;
+    flex:
+      0 0 auto;
+
+    display:
+      flex;
+
+    flex-direction:
+      column;
+
+    gap:
+      0;
+
+    align-items:
+      stretch;
   }
 
   .current-image {
-    width: 100%;
+    width:
+      100%;
 
-    min-height: 0;
+    height:
+      auto;
 
     aspect-ratio:
       16 / 10;
   }
 
   .current-image img {
-    width: 100%;
+    width:
+      100%;
 
-    height: 100%;
+    height:
+      100%;
 
-    object-fit: cover;
+    object-fit:
+      cover;
   }
 
   .current-content {
-    width: 100%;
+    width:
+      100%;
+
+    max-width:
+      none;
 
     padding:
-      70px
-      16px;
+      70px 16px;
   }
 
   .current-content h2 {
-    font-size: 38px;
-  }
-
-
-  /* =====================================================
-     OM J. NORBERG
-     ===================================================== */
-
-  .about-section {
-    min-height: 0;
-  }
-
-  .about-grid {
-    width: 100%;
-
-    display: flex;
-
-    flex-direction: column;
-  }
-
-  .about-image {
-    width: 100%;
-
-    min-height: 0;
-
-    aspect-ratio:
-      16 / 10;
-  }
-
-  .about-image img {
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-  }
-
-  .about-content {
-    width: 100%;
-
-    padding:
-      65px
-      16px
-      70px;
-  }
-
-  .about-content h2 {
-    font-size: 42px;
+    font-size:
+      38px;
   }
 
 
@@ -1439,479 +1693,256 @@ section {
      ===================================================== */
 
   .contact-section {
-    min-height: 0;
+    min-height:
+      0;
 
-    display: flex;
+    display:
+      flex;
 
-    flex-direction: column;
-
-    overflow: visible;
+    flex-direction:
+      column;
   }
 
   .contact-background {
-    display: none;
+    position:
+      relative;
+
+    top:
+      auto;
+
+    right:
+      auto;
+
+    bottom:
+      auto;
+
+    left:
+      auto;
+
+    width:
+      100%;
+
+    height:
+      auto;
+
+    order:
+      2;
+  }
+
+  .contact-background img {
+    position:
+      relative;
+
+    width:
+      100%;
+
+    height:
+      auto;
+
+    object-fit:
+      contain;
+
+    object-position:
+      center;
   }
 
   .contact-panel {
-    width: 100%;
+    width:
+      100%;
 
-    min-height: 0;
+    min-height:
+      0;
 
     padding:
-      65px
-      16px
-      70px;
+      70px 16px;
 
-    display: block;
+    display:
+      block;
+
+    order:
+      1;
+
+    background:
+      var(--bg-light);
   }
 
   .contact-content {
-    max-width: none;
-  }
-
-  .contact-content h2 {
-    font-size: 42px;
+    max-width:
+      none;
   }
 
   .contact-intro {
-    font-size: 21px;
+    font-size:
+      21px;
 
-    margin-bottom: 40px;
+    margin-bottom:
+      40px;
   }
 
   .contact-details {
-    max-width: none;
-
-    grid-template-columns:
-      1fr;
+    max-width:
+      none;
   }
-
 }
 
 
 /* =========================================================
-   MOBIL
+   SMALL MOBILE
    ========================================================= */
 
 @media (max-width: 540px) {
+
+  .services-grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      1px;
+  }
+
+  .service-card {
+    min-height:
+      0;
+  }
+
+  .service-image {
+    height:
+      300px;
+
+    flex:
+      0 0 300px;
+  }
+
+  .service-info {
+    min-height:
+      auto;
+
+    padding:
+      24px 22px 28px;
+  }
+
+  .service-info h3 {
+    font-size:
+      25px;
+  }
+
+  .service-info p {
+    max-width:
+      none;
+
+    font-size:
+      17px;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
 
   .container {
     width:
       calc(100% - 24px);
   }
 
+  .site-header,
   .nav-wrap {
-    padding:
-      8px 0
-      8px;
+    height:
+      76px;
   }
 
   .brand {
-    width: 165px;
-  }
-
-  .main-nav {
-    gap:
-      2px 12px;
-  }
-
-  .nav-link {
-    font-size: 14px;
+    width:
+      165px;
   }
 
   .header-contact {
-    padding:
-      4px 8px;
+    top:
+      19px;
 
-    font-size: 14px;
+    right:
+      12px;
+
+    padding:
+      6px 10px;
+
+    font-size:
+      14px;
   }
 
   .header-contact span {
-    font-size: 16px;
+    font-size:
+      16px;
+  }
+
+  main {
+    padding-top:
+      76px;
+  }
+
+  .section-band {
+    min-height:
+      82px;
+
+    flex:
+      0 0 82px;
+
+    padding:
+      18px 12px;
+  }
+
+  .section-band span {
+    font-size:
+      19px;
   }
 
   .hero-content {
     padding:
-      45px
-      12px
-      55px;
+      45px 12px 55px;
   }
 
   .hero-content h1 {
-    font-size: 46px;
+    font-size:
+      46px;
   }
 
   .hero-text {
-    font-size: 18px;
-  }
-
-  .references-section {
-    padding:
-      55px 0
-      60px;
-  }
-
-  .references-heading h2 {
-    font-size: 38px;
-  }
-
-  .references-heading p {
-    font-size: 17px;
-  }
-
-  .reference-card {
-    min-height: 280px;
-
-    padding:
-      18px
-      14px
+    font-size:
       18px;
+  }
+
+  .service-image {
+    height:
+      260px;
 
     flex:
-      0 0 calc(
-        (100% - 12px) / 2
-      );
-  }
-
-  .reference-arrow {
-    width: 34px;
-
-    height: 34px;
-
-    flex-basis: 34px;
-
-    font-size: 19px;
-  }
-
-  .reference-empty {
-    min-height: 220px;
-
-    font-size: 17px;
-  }
-
-  .service-info {
-    min-height: 0;
-
-    padding:
-      24px
-      18px
-      28px;
+      0 0 260px;
   }
 
   .service-info h3 {
-    font-size: 24px;
-  }
-
-  .service-info p {
-    max-width: none;
-
-    font-size: 17px;
+    font-size:
+      24px;
   }
 
   .current-content {
     padding:
-      60px
-      12px;
+      60px 12px;
   }
 
   .current-content h2 {
-    font-size: 34px;
-  }
-
-  .about-content {
-    padding:
-      55px
-      12px
-      65px;
-  }
-
-  .about-content h2 {
-    font-size: 38px;
-  }
-
-  .about-content p {
-    font-size: 18px;
+    font-size:
+      34px;
   }
 
   .contact-panel {
     padding:
-      55px
-      12px
-      65px;
-  }
-
-  .contact-content h2 {
-    font-size: 38px;
+      60px 12px;
   }
 
   .contact-intro {
-    font-size: 19px;
+    font-size:
+      19px;
   }
-
-}
-
-
-/* =========================================================
-   VERY SMALL SCREENS
-   ========================================================= */
-
-@media (max-width: 360px) {
-
-  .main-nav {
-    gap:
-      2px 9px;
-  }
-
-  .nav-link {
-    font-size: 13px;
-  }
-
-  .header-contact {
-    padding:
-      4px 7px;
-  }
-
-  .brand {
-    width: 150px;
-  }
-
-}
-
-
-/* =========================================================
-   SENASTE RESPONSIVA JUSTERINGAR
-   ========================================================= */
-
-/*
-  Hero får växa med innehållet istället för att kunna klippa
-  text på mindre skärmar eller lägre skärmhöjd.
-*/
-
-.hero-section {
-  min-height: 0;
-}
-
-.hero-grid {
-  min-height:
-    calc(100vh - var(--header-height));
-
-  height: auto;
-
-  align-items: stretch;
-}
-
-.hero-content {
-  min-width: 0;
-}
-
-
-/* =========================================================
-   REFERENSER – HORISONTELL CAROUSEL
-   ========================================================= */
-
-.references-track {
-  display: flex;
-
-  width: 100%;
-
-  gap: 12px;
-
-  overflow: visible;
-
-  transition:
-    transform 0.45s ease;
-}
-
-.references-viewport {
-  overflow: hidden;
-}
-
-.references-page {
-  display: none !important;
-}
-
-.reference-card {
-  flex:
-    0 0 calc(
-      (100% - 48px) / 5
-    );
-}
-
-.reference-empty {
-  width: 100%;
-
-  min-height: 275px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  padding: 30px;
-
-  background: var(--card);
-
-  border:
-    1px solid rgba(48, 42, 36, 0.08);
-
-  text-align: center;
-
-  color: var(--muted);
-
-  font-size: 18px;
-}
-
-.reference-arrow {
-  visibility: hidden;
-
-  opacity: 0;
-
-  pointer-events: none;
-
-  transition:
-    opacity 0.2s ease;
-}
-
-.reference-arrow.visible {
-  visibility: visible;
-
-  opacity: 1;
-
-  pointer-events: auto;
-}
-
-
-/* =========================================================
-   TJÄNSTER – JÄMNA TEXTFÄLT PÅ MOBIL
-   ========================================================= */
-
-@media (max-width: 800px) {
-
-  .services-grid {
-    align-items: stretch;
-  }
-
-  .service-card {
-    height: 100%;
-  }
-
-  .service-info {
-    flex:
-      1 1 auto;
-
-    min-height: 0;
-
-    display: flex;
-
-    flex-direction: column;
-  }
-
-
-  /*
-    Alla fem navigationslänkar ligger kvar på mobilen.
-    Loggan ligger ovanför navigationen.
-  */
-
-  .site-header {
-    min-height: 0;
-  }
-
-  .nav-wrap {
-    flex-direction: row;
-
-    align-items: center;
-  }
-
-  .brand {
-    width: 180px;
-
-    flex:
-      0 0 100%;
-  }
-
-  .main-nav {
-    width: 100%;
-
-    flex:
-      0 0 100%;
-  }
-
-
-  /*
-    Kontaktbilden är helt dold på mobil.
-  */
-
-  .contact-background {
-    display: none;
-  }
-
-  .contact-panel {
-    width: 100%;
-
-    min-height: 0;
-  }
-
-}
-
-
-/* =========================================================
-   REFERENSER – MOBIL
-   ========================================================= */
-
-@media (max-width: 540px) {
-
-  .reference-card {
-    flex-basis:
-      calc(
-        (100% - 12px) / 2
-      );
-  }
-
-  .reference-empty {
-    min-height: 220px;
-
-    font-size: 17px;
-  }
-
-}
-
-
-/* =========================================================
-   REFERENSER – MINDRE DESKTOP
-   ========================================================= */
-
-@media (min-width: 801px) and (max-width: 1100px) {
-
-  .reference-card {
-    flex-basis:
-      calc(
-        (100% - 36px) / 4
-      );
-  }
-
-}
-
-
-/* =========================================================
-   KONTAKT – SAMMA HÖJD PÅ DESKTOP
-   ========================================================= */
-
-@media (min-width: 801px) {
-
-  .contact-section {
-    min-height:
-      calc(100vh - var(--header-height));
-
-    overflow: visible;
-  }
-
-  .contact-panel {
-    min-height:
-      calc(100vh - var(--header-height));
-  }
-
-  .contact-background {
-    bottom: 0;
-  }
-
 }
