@@ -318,78 +318,35 @@ document.addEventListener(
     let currentReferenceIndex = 0;
 
 
-    function getVisibleReferenceCount() {
+    /* =====================================================
+       REFERENSMÅTT
 
-      if (
-        window.innerWidth <= 800
-      ) {
+       Varje kort kan nu ha en egen bredd.
+       Vi räknar därför ut den faktiska bredden
+       på varje kort och dess position i raden.
+       ===================================================== */
 
-        return 2;
-
-      }
-
-
-      if (
-        window.innerWidth <= 1150
-      ) {
-
-        return 4;
-
-      }
-
-
-      return 5;
-
-    }
-
-
-    function updateReferenceCarousel() {
+    function getReferenceMetrics() {
 
       if (!referenceTrack) {
-        return;
+
+        return {
+          cards: [],
+          gap: 0,
+          viewportWidth: 0,
+          totalWidth: 0,
+          offsets: []
+        };
+
       }
 
 
-      referenceCards =
+      const cards =
         Array.from(
           referenceTrack.querySelectorAll(
             ".reference-card"
           )
         );
-
-
-      if (
-        !referenceCards.length
-      ) {
-
-        return;
-
-      }
-
-
-      const visible =
-        getVisibleReferenceCount();
-
-
-      const maxIndex =
-        Math.max(
-          0,
-          referenceCards.length -
-          visible
-        );
-
-
-      currentReferenceIndex =
-        Math.min(
-          currentReferenceIndex,
-          maxIndex
-        );
-
-
-      const cardWidth =
-        referenceCards[0]
-          .getBoundingClientRect()
-          .width;
 
 
       const gap =
@@ -400,11 +357,130 @@ document.addEventListener(
         ) || 0;
 
 
+      const viewport =
+        referenceTrack.parentElement;
+
+
+      const viewportWidth =
+        viewport
+          ? viewport.getBoundingClientRect().width
+          : 0;
+
+
+      const offsets = [];
+
+      let offset = 0;
+
+
+      cards.forEach(
+        (card, index) => {
+
+          offsets[index] =
+            offset;
+
+
+          offset +=
+            card.getBoundingClientRect().width;
+
+
+          if (
+            index <
+            cards.length - 1
+          ) {
+
+            offset +=
+              gap;
+
+          }
+
+        }
+      );
+
+
+      return {
+        cards,
+        gap,
+        viewportWidth,
+        totalWidth:
+          offset,
+        offsets
+      };
+
+    }
+
+
+    /* =====================================================
+       UPPDATERA REFERENSCAROUSEL
+       ===================================================== */
+
+    function updateReferenceCarousel() {
+
+      if (!referenceTrack) {
+        return;
+      }
+
+
+      const metrics =
+        getReferenceMetrics();
+
+
+      referenceCards =
+        metrics.cards;
+
+
+      if (
+        !referenceCards.length
+      ) {
+        return;
+      }
+
+
+      /*
+        Hur långt raden maximalt kan flyttas.
+      */
+
+      const maxOffset =
+        Math.max(
+          0,
+          metrics.totalWidth -
+          metrics.viewportWidth
+        );
+
+
+      /*
+        Varje kort är ett eget steg eftersom korten
+        nu kan ha olika bredder.
+      */
+
+      const maxIndex =
+        Math.max(
+          0,
+          referenceCards.length - 1
+        );
+
+
+      currentReferenceIndex =
+        Math.min(
+          currentReferenceIndex,
+          maxIndex
+        );
+
+
+      const requestedOffset =
+        metrics.offsets[
+          currentReferenceIndex
+        ] || 0;
+
+
+      /*
+        Se till att vi aldrig flyttar raden längre
+        än vad som faktiskt behövs.
+      */
+
       const offset =
-        currentReferenceIndex *
-        (
-          cardWidth +
-          gap
+        Math.min(
+          requestedOffset,
+          maxOffset
         );
 
 
@@ -412,9 +488,14 @@ document.addEventListener(
         `translateX(-${offset}px)`;
 
 
+      /*
+        Visa pilarna endast om det faktiskt finns
+        mer innehåll än viewporten rymmer.
+      */
+
       const hasOverflow =
-        referenceCards.length >
-        visible;
+        metrics.totalWidth >
+        metrics.viewportWidth + 1;
 
 
       if (referencePrev) {
@@ -469,15 +550,10 @@ document.addEventListener(
         "click",
         () => {
 
-          const visible =
-            getVisibleReferenceCount();
-
-
           const maxIndex =
             Math.max(
               0,
-              referenceCards.length -
-              visible
+              referenceCards.length - 1
             );
 
 
@@ -510,15 +586,10 @@ document.addEventListener(
         "click",
         () => {
 
-          const visible =
-            getVisibleReferenceCount();
-
-
           const maxIndex =
             Math.max(
               0,
-              referenceCards.length -
-              visible
+              referenceCards.length - 1
             );
 
 
