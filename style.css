@@ -843,23 +843,15 @@ section {
 }
 
 
-/* =========================================================
-   KOPPARSLAGERI – OXÖGAT I FOKUS
-   ========================================================= */
-
-.service-card:nth-child(2)
-.service-image img {
-  object-position:
-    50% 43%;
-}
-
-
 .service-info {
   flex:
-    0 0 auto;
+    0 0 245px;
+
+  height:
+    245px;
 
   min-height:
-    205px;
+    245px;
 
   padding:
     28px 30px 32px;
@@ -1585,9 +1577,6 @@ section {
   .service-info {
     padding:
       24px 22px 28px;
-
-    min-height:
-      190px;
   }
 
   .service-info h3 {
@@ -1990,15 +1979,15 @@ section {
       cover;
   }
 
-  .service-card:nth-child(2)
-  .service-image img {
-    object-position:
-      50% 43%;
-  }
-
   .service-info {
     width:
       100%;
+
+    flex:
+      0 0 auto;
+
+    height:
+      auto;
 
     min-height:
       0;
