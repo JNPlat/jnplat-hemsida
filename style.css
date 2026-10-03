@@ -896,7 +896,6 @@ section {
     scale(1.035);
 }
 
-
 .service-info {
   /* Textdelen har samma andel av varje kort oavsett innehåll. */
   flex:
@@ -1985,90 +1984,174 @@ section {
   }
 
 
-   /* =====================================================
+  /* =====================================================
      TJÄNSTER – MOBIL
      ===================================================== */
 
   .services-section {
+    width: 100%;
+
     height: auto;
+
     min-height: 0;
+
     padding: 0;
+
+    display: block;
+
     overflow: visible;
   }
 
   .services-section > .container {
     width: 100%;
+
+    max-width: none;
+
     margin: 0;
+
+    display: block;
   }
 
   .services-grid {
     width: 100%;
+
     height: auto;
+
     min-height: 0;
 
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
+    display: block;
 
-    align-items: stretch;
+    margin: 0;
+
+    padding: 0;
   }
 
   .service-card {
+    display: block;
+
     width: 100%;
+
     height: auto;
+
     min-height: 0;
 
-    display: flex;
-    flex-direction: column;
+    margin: 0;
+
+    padding: 0;
+
+    background:
+      var(--card);
 
     overflow: visible;
   }
 
   .service-image {
+    display: block;
+
     width: 100%;
+
     height: auto;
 
-    aspect-ratio: 16 / 9;
+    aspect-ratio:
+      19 / 6;
 
     flex: none;
+
+    min-height: 0;
 
     overflow: hidden;
   }
 
   .service-image img {
+    display: block;
+
     width: 100%;
+
     height: 100%;
 
-    object-fit: cover;
-    object-position: center;
+    max-width: none;
+
+    object-fit:
+      cover;
+
+    object-position:
+      center;
+
+    transform:
+      none;
+  }
+
+  .service-card:hover
+  .service-image img {
+    transform:
+      none;
   }
 
   .service-info {
+    display: block;
+
+    position: relative;
+
     width: 100%;
+
     height: auto;
+
     min-height: 0;
-
-    flex: none;
-
-    padding: 24px 18px 28px;
-
-    overflow: visible;
-  }
-
-  .service-info h3 {
-    margin: 0 0 20px;
-
-    font-size: 25px;
-    line-height: 1.1;
-  }
-
-  .service-info p {
-    max-width: none;
 
     margin: 0;
 
-    font-size: 17px;
-    line-height: 1.5;
+    padding:
+      24px 18px 30px;
+
+    background:
+      var(--card);
+
+    overflow: visible;
+
+    visibility: visible;
+
+    opacity: 1;
+  }
+
+  .service-info h3 {
+    display: block;
+
+    margin:
+      0 0 18px;
+
+    font-size:
+      25px;
+
+    line-height:
+      1.1;
+
+    font-weight:
+      400 !important;
+
+    font-style:
+      normal !important;
+
+    color:
+      var(--text);
+  }
+
+  .service-info p {
+    display: block;
+
+    max-width:
+      none;
+
+    margin:
+      0;
+
+    font-size:
+      17px;
+
+    line-height:
+      1.5;
+
+    color:
+      var(--muted);
   }
 
 
