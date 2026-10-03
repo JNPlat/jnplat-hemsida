@@ -230,7 +230,6 @@ h6 {
 
 /*
    Aktiv länk.
-
    På mobil ska :hover inte kunna ligga kvar efter ett tryck.
 */
 
@@ -1158,6 +1157,19 @@ section {
 
   overflow:
     hidden;
+
+  /*
+     Diskret övergång från Aktuellt.
+     Ändrar inte sektionens höjd.
+  */
+  border-top:
+    1px solid
+    rgba(
+      154,
+      103,
+      71,
+      0.35
+    );
 }
 
 .about-section > .container {
@@ -2035,15 +2047,6 @@ section {
       0 0 auto;
   }
 
-  /*
-     På mobil ska Aktuellt fortsätta vara:
-
-     BILD
-     TEXT
-
-     alltså motsatt ordning mot desktop.
-  */
-
   .current-project {
     width:
       100%;
@@ -2113,6 +2116,15 @@ section {
 
     overflow:
       visible;
+
+    border-top:
+      1px solid
+      rgba(
+        154,
+        103,
+        71,
+        0.35
+      );
   }
 
   .about-section > .container {
