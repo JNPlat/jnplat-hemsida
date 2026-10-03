@@ -33,7 +33,6 @@ html {
 
 body {
   margin: 0;
-
   background: var(--bg);
   color: var(--text);
 
@@ -347,9 +346,13 @@ section {
 .hero-grid {
   width: 100vw;
 
+  /*
+    Referensdelen är nu 145px.
+    Hero-sektionens totala höjd ändras inte.
+  */
   height:
     calc(
-      100% - 125px
+      100% - 145px
     );
 
   flex:
@@ -478,20 +481,29 @@ section {
 .section-band {
   width: 100%;
 
+  /*
+    Ökad höjd från 125 till 145 px.
+    Detta tas från hero-grid ovanför,
+    så hela Hero behåller exakt samma höjd.
+  */
   min-height:
-    125px;
+    145px;
 
   flex:
-    0 0 125px;
+    0 0 145px;
+
+  /*
+    10 px luft ovanför och under,
+    samma som avståndet mellan korten.
+  */
+  padding:
+    10px 40px;
 
   display:
     flex;
 
   align-items:
-    center;
-
-  padding:
-    12px 40px;
+    stretch;
 
   background:
     var(--bg-light);
@@ -520,7 +532,7 @@ section {
     34px;
 
   align-items:
-    center;
+    stretch;
 
   gap:
     10px;
@@ -533,6 +545,8 @@ section {
 }
 
 .references-track {
+  height: 100%;
+
   display: flex;
 
   align-items:
@@ -554,7 +568,9 @@ section {
   min-width: 0;
 
   min-height:
-    96px;
+    125px;
+
+  height: 100%;
 
   padding:
     11px 14px;
@@ -579,17 +595,23 @@ section {
       36,
       0.08
     );
+
+  overflow:
+    hidden;
 }
 
 .reference-label {
-  margin-bottom: 2px;
+  margin-bottom:
+    2px;
 
   color:
     var(--copper);
 
-  font-size: 10px;
+  font-size:
+    10px;
 
-  line-height: 1.1;
+  line-height:
+    1.1;
 
   letter-spacing:
     0.06em;
@@ -643,6 +665,9 @@ section {
 .reference-arrow {
   width: 34px;
   height: 34px;
+
+  align-self:
+    center;
 
   display:
     flex;
@@ -1565,11 +1590,18 @@ section {
     padding-right:
       60px;
   }
+
+  .reference-card {
+    flex-basis:
+      calc(
+        (100% - 30px) / 4
+      );
+  }
 }
 
 
 /* =========================================================
-   MOBILE HEADER
+   MOBILE
    ========================================================= */
 
 @media (max-width: 800px) {
@@ -1696,12 +1728,44 @@ section {
       column;
   }
 
+  /*
+    På mobil ska bilden komma FÖRE texten.
+  */
+
+  .hero-image {
+    order:
+      1;
+
+    width:
+      100%;
+
+    height:
+      auto;
+
+    min-height:
+      0;
+  }
+
   .hero-content {
+    order:
+      2;
+
     width:
       100%;
 
     padding:
       60px 16px;
+  }
+
+  .hero-image img {
+    width:
+      100%;
+
+    height:
+      auto;
+
+    object-fit:
+      cover;
   }
 
   .hero-content h1 {
@@ -1724,28 +1788,6 @@ section {
       19px;
   }
 
-  .hero-image {
-    width:
-      100%;
-
-    height:
-      auto;
-
-    min-height:
-      0;
-  }
-
-  .hero-image img {
-    width:
-      100%;
-
-    height:
-      auto;
-
-    object-fit:
-      cover;
-  }
-
 
   /* =====================================================
      REFERENSER
@@ -1759,7 +1801,7 @@ section {
       0 0 105px;
 
     padding:
-      8px 12px;
+      10px 12px;
   }
 
   .references-carousel {
@@ -1769,25 +1811,28 @@ section {
       30px;
 
     gap:
-      7px;
+      10px;
   }
 
   .references-track {
     gap:
-      8px;
+      10px;
   }
 
   .reference-card {
     flex-basis:
       calc(
-        (100% - 8px) / 2
+        (100% - 10px) / 2
       );
 
     min-height:
-      88px;
+      85px;
+
+    height:
+      85px;
 
     padding:
-      8px 10px;
+      7px 10px;
   }
 
   .reference-label {
@@ -2197,7 +2242,7 @@ section {
       105px;
 
     padding:
-      7px 8px;
+      10px 8px;
   }
 
   .references-carousel {
@@ -2207,7 +2252,12 @@ section {
       27px;
 
     gap:
-      5px;
+      8px;
+  }
+
+  .references-track {
+    gap:
+      8px;
   }
 
   .reference-card {
@@ -2217,7 +2267,10 @@ section {
       );
 
     min-height:
-      88px;
+      85px;
+
+    height:
+      85px;
 
     padding:
       7px 8px;
