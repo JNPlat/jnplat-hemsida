@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f3eee6">
+  <link rel="canonical" href="https://jnplat.se/">
+  <link rel="icon" href="logo/J-NORBERG.svg" type="image/svg+xml">
 
   <title>J. Norberg Plåtslageri AB | Plåtslageri i Stockholm</title>
 
@@ -10,6 +13,14 @@
     name="description"
     content="J. Norberg Plåtslageri AB – traditionellt byggnadsplåtslageri, kopparslageri, restaurering och specialprojekt i Stockholm."
   >
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="sv_SE">
+  <meta property="og:site_name" content="J. Norberg Plåtslageri AB">
+  <meta property="og:title" content="J. Norberg Plåtslageri AB | Plåtslageri i Stockholm">
+  <meta property="og:description" content="Traditionellt byggnadsplåtslageri, kopparslageri, restaurering och specialprojekt i Stockholm.">
+  <meta property="og:url" content="https://jnplat.se/">
+  <meta property="og:image" content="https://jnplat.se/images/hero-bild.webp">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,17 +35,13 @@
 
 <body>
 
-  <!-- =====================================================
-       HEADER
-       ===================================================== -->
-
   <header class="site-header">
 
     <div class="container nav-wrap">
 
       <a href="#hem" class="brand" aria-label="J. Norberg Plåtslageri AB">
         <img
-          src="logo/J.NORBERG.svg"
+          src="logo/J-NORBERG.svg"
           alt="J. Norberg Plåtslageri AB"
         >
       </a>
@@ -88,17 +95,7 @@
 
   </header>
 
-
-  <!-- =====================================================
-       MAIN
-       ===================================================== -->
-
   <main>
-
-
-    <!-- ===================================================
-         HEM
-         =================================================== -->
 
     <section
       class="hero-section"
@@ -123,18 +120,21 @@
 
         </div>
 
-
         <div class="hero-image">
 
           <img
-            src="images/Hero bild.JPG"
+            src="images/hero-bild.webp"
             alt="Plåtslageriarbete på tak"
+            sizes="(max-width: 800px) 100vw, 40vw"
+            width="6016"
+            height="4016"
+            fetchpriority="high"
+            decoding="async"
           >
 
         </div>
 
       </div>
-
 
       <!-- REFERENSER – DEL AV HERO -->
 
@@ -149,7 +149,6 @@
           >
             ←
           </button>
-
 
           <div class="references-viewport">
 
@@ -171,7 +170,6 @@
 
               </article>
 
-
               <article class="reference-card">
                 <p class="reference-name">
                   Fiktiv referens
@@ -187,7 +185,6 @@
                 </p>
 
               </article>
-
 
               <article class="reference-card">
                 <p class="reference-name">
@@ -205,7 +202,6 @@
 
               </article>
 
-
               <article class="reference-card">
                 <p class="reference-name">
                   Fiktiv referens
@@ -221,7 +217,6 @@
                 </p>
 
               </article>
-
 
               <article class="reference-card">
                 <p class="reference-name">
@@ -239,7 +234,6 @@
 
               </article>
 
-
               <article class="reference-card">
                 <p class="reference-name">
                   Fiktiv referens
@@ -255,7 +249,6 @@
                 </p>
 
               </article>
-
 
               <article class="reference-card">
                 <p class="reference-name">
@@ -273,7 +266,6 @@
 
               </article>
 
-
               <article class="reference-card">
                 <p class="reference-name">
                   Fiktiv referens
@@ -290,7 +282,6 @@
 
               </article>
 
-
               <article class="reference-card">
                 <p class="reference-name">
                   Fiktiv referens
@@ -306,7 +297,6 @@
                 </p>
 
               </article>
-
 
               <article class="reference-card">
                 <p class="reference-name">
@@ -328,7 +318,6 @@
 
           </div>
 
-
           <button
             class="reference-arrow reference-next"
             type="button"
@@ -343,12 +332,6 @@
 
     </section>
 
-
-
-    <!-- ===================================================
-         TJÄNSTER
-         =================================================== -->
-
     <section
       class="services-section"
       id="tjanster"
@@ -357,7 +340,6 @@
       <div class="container">
 
         <div class="services-grid">
-
 
           <!-- BYGGNADSPLÅTSLAGERI -->
 
@@ -372,12 +354,17 @@
 
                 <source
                   media="(max-width: 800px)"
-                  srcset="images/Byggnadsplåtslageri-mobil.png"
+                  srcset="images/byggnadsplatslageri-mobil.webp"
+                  sizes="100vw"
                 >
 
                 <img
-                  src="images/Byggnadsplåtslageri-desktop.png"
+                  src="images/byggnadsplatslageri-desktop.webp"
                   alt="Byggnadsplåtslageri"
+                  sizes="(max-width: 800px) 100vw, 25vw"
+
+                  loading="lazy"
+                  decoding="async"
                 >
 
               </picture>
@@ -400,7 +387,6 @@
 
           </a>
 
-
           <!-- KOPPARSLAGERI -->
 
           <a
@@ -414,12 +400,17 @@
 
                 <source
                   media="(max-width: 800px)"
-                  srcset="images/Kopparslageri-mobil.png"
+                  srcset="images/kopparslageri-mobil.webp"
+                  sizes="100vw"
                 >
 
                 <img
-                  src="images/Kopparslageri-desktop.png"
+                  src="images/kopparslageri-desktop.webp"
                   alt="Kopparslageri"
+                  sizes="(max-width: 800px) 100vw, 25vw"
+
+                  loading="lazy"
+                  decoding="async"
                 >
 
               </picture>
@@ -442,7 +433,6 @@
 
           </a>
 
-
           <!-- RESTAURERING -->
 
           <a
@@ -456,12 +446,17 @@
 
                 <source
                   media="(max-width: 800px)"
-                  srcset="images/Restaurering-mobil.png"
+                  srcset="images/restaurering-mobil.webp"
+                  sizes="100vw"
                 >
 
                 <img
-                  src="images/Restaurering-desktop.png"
+                  src="images/restaurering-desktop.webp"
                   alt="Restaurering"
+                  sizes="(max-width: 800px) 100vw, 25vw"
+
+                  loading="lazy"
+                  decoding="async"
                 >
 
               </picture>
@@ -484,7 +479,6 @@
 
           </a>
 
-
           <!-- SPECIALPROJEKT -->
 
           <a
@@ -498,12 +492,17 @@
 
                 <source
                   media="(max-width: 800px)"
-                  srcset="images/Specialprojekt-mobil.png"
+                  srcset="images/specialprojekt-mobil.webp"
+                  sizes="100vw"
                 >
 
                 <img
-                  src="images/Specialprojekt-desktop.png"
+                  src="images/specialprojekt-desktop.webp"
                   alt="Specialprojekt"
+                  sizes="(max-width: 800px) 100vw, 25vw"
+
+                  loading="lazy"
+                  decoding="async"
                 >
 
               </picture>
@@ -532,12 +531,6 @@
 
     </section>
 
-
-
-    <!-- ===================================================
-         AKTUELLT
-         =================================================== -->
-
     <section
       class="current-section"
       id="aktuellt"
@@ -547,16 +540,19 @@
 
         <div class="current-project">
 
-
           <div class="current-image">
 
             <img
-              src="images/Aktuellt.jpg"
+              src="images/aktuellt.jpg"
               alt="Villa Bergabo i Stockholm"
+              sizes="(max-width: 800px) 100vw, 60vw"
+              width="960"
+              height="656"
+              loading="lazy"
+              decoding="async"
             >
 
           </div>
-
 
           <div class="current-content">
 
@@ -591,12 +587,6 @@
 
     </section>
 
-
-
-    <!-- ===================================================
-         OM J. NORBERG
-         =================================================== -->
-
     <section
       class="about-section"
       id="om"
@@ -606,23 +596,26 @@
 
         <div class="about-grid">
 
-
           <div class="about-image">
 
             <picture>
               <source
                 media="(max-width: 800px)"
-                srcset="images/OmJNorberg-mobil.png"
+                srcset="images/om-j-norberg-mobil.webp"
+                sizes="100vw"
               >
 
               <img
-                src="images/OmJNorberg(3).png"
+                src="images/om-j-norberg-desktop.webp"
                 alt="J. Norberg arbetar i plåtverkstaden"
+                sizes="(max-width: 800px) 100vw, 50vw"
+
+                loading="lazy"
+                decoding="async"
               >
             </picture>
 
           </div>
-
 
           <div class="about-content">
 
@@ -655,12 +648,6 @@
 
     </section>
 
-
-
-    <!-- ===================================================
-         KONTAKT
-         =================================================== -->
-
     <section
       class="contact-section"
       id="kontakt"
@@ -669,12 +656,16 @@
       <div class="contact-background">
 
         <img
-          src="images/StJohannes.JPG"
+          src="images/st-johannes.webp"
           alt="Kopparplåt och tegel vid St Johannes"
+          sizes="(max-width: 800px) 100vw, 42vw"
+          width="2268"
+          height="4032"
+          loading="lazy"
+          decoding="async"
         >
 
       </div>
-
 
       <div class="contact-panel">
 
@@ -690,7 +681,6 @@
             diskutera arbetet.
           </p>
 
-
           <div class="contact-details">
 
             <div class="contact-item">
@@ -705,7 +695,6 @@
 
             </div>
 
-
             <div class="contact-item">
 
               <span>
@@ -717,7 +706,6 @@
               </a>
 
             </div>
-
 
             <div class="contact-item">
 
@@ -740,7 +728,6 @@
     </section>
 
   </main>
-
 
   <script src="script.js"></script>
 
