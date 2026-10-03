@@ -227,15 +227,26 @@ h6 {
     width 0.25s ease;
 }
 
-.nav-link:hover,
 .nav-link.active {
   color:
     var(--copper-dark);
 }
 
-.nav-link:hover::after,
 .nav-link.active::after {
   width: 100%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  .nav-link:hover {
+    color:
+      var(--copper-dark);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
 }
 
 
