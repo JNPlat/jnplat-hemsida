@@ -18,6 +18,8 @@
   --line: rgba(48, 42, 36, 0.14);
 
   --max-width: 1320px;
+
+  --header-height: 82px;
 }
 
 
@@ -73,7 +75,6 @@ a {
     none;
 }
 
-body,
 button,
 input,
 textarea,
@@ -133,8 +134,8 @@ h6 {
   z-index:
     1000;
 
-  height:
-    82px;
+  min-height:
+    var(--header-height);
 
   background:
     rgba(243, 238, 230, 0.96);
@@ -150,8 +151,8 @@ h6 {
 }
 
 .nav-wrap {
-  height:
-    82px;
+  min-height:
+    var(--header-height);
 
   display:
     flex;
@@ -206,7 +207,7 @@ h6 {
     center;
 
   gap:
-    34px;
+    30px;
 
   margin-left:
     38px;
@@ -215,6 +216,12 @@ h6 {
 .nav-link {
   position:
     relative;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
 
   padding:
     8px 0;
@@ -230,6 +237,9 @@ h6 {
 
   color:
     var(--text);
+
+  white-space:
+    nowrap;
 }
 
 .nav-link::after {
@@ -272,19 +282,10 @@ h6 {
 
 
 /* =========================================================
-   HEADER KONTAKT
+   KONTAKT I HUVUDNAVIGATIONEN
    ========================================================= */
 
 .header-contact {
-  position:
-    fixed;
-
-  top:
-    20px;
-
-  right:
-    24px;
-
   display:
     inline-flex;
 
@@ -317,6 +318,11 @@ h6 {
     color 0.25s ease;
 }
 
+.header-contact::after {
+  display:
+    none;
+}
+
 .header-contact span {
   font-size:
     19px;
@@ -347,25 +353,22 @@ h6 {
 
 main {
   padding-top:
-    82px;
+    var(--header-height);
 }
 
 section {
   scroll-margin-top:
-    82px;
+    var(--header-height);
 }
 
 
 /* =========================================================
-   HEM
+   HEM / HERO
    ========================================================= */
 
 .hero-section {
-  height:
-    calc(100vh - 82px);
-
   min-height:
-    620px;
+    calc(100vh - var(--header-height));
 
   padding:
     0;
@@ -380,18 +383,15 @@ section {
     stretch;
 
   overflow:
-    hidden;
+    visible;
 }
 
 .hero-grid {
   width:
     100vw;
 
-  height:
-    calc(100% - 105px);
-
-  flex:
-    1 1 auto;
+  min-height:
+    calc(100vh - var(--header-height));
 
   max-width:
     none;
@@ -482,6 +482,11 @@ section {
     var(--muted);
 }
 
+.hero-text + .hero-text {
+  margin-top:
+    18px;
+}
+
 
 /* =========================================================
    HEM - BILD
@@ -493,6 +498,9 @@ section {
 
   height:
     100%;
+
+  min-height:
+    500px;
 
   overflow:
     hidden;
@@ -517,30 +525,15 @@ section {
 
 
 /* =========================================================
-   ÖVERGÅNGSBAND
+   REFERENSER
    ========================================================= */
 
-.section-band {
+.references-section {
   width:
     100%;
 
-  min-height:
-    105px;
-
-  flex:
-    0 0 105px;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
   padding:
-    20px 40px;
+    88px 0 92px;
 
   background:
     var(--bg-light);
@@ -550,30 +543,274 @@ section {
 
   border-bottom:
     1px solid var(--line);
+}
+
+.references-heading {
+  margin:
+    0 auto 42px;
+
+  max-width:
+    760px;
 
   text-align:
     center;
 }
 
-.section-band span {
+.references-heading h2 {
+  margin:
+    0 0 15px;
+
   font-size:
     clamp(
-      22px,
-      2.1vw,
-      30px
+      40px,
+      4vw,
+      58px
     );
 
   line-height:
-    1.2;
+    1.05;
 
   font-weight:
     400;
 
   letter-spacing:
-    0.01em;
+    -0.02em;
+}
+
+.references-heading p {
+  margin:
+    0;
+
+  font-size:
+    19px;
+
+  line-height:
+    1.5;
+
+  color:
+    var(--muted);
+}
+
+.references-carousel {
+  display:
+    grid;
+
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto;
+
+  align-items:
+    center;
+
+  gap:
+    22px;
+}
+
+.references-viewport {
+  width:
+    100%;
+
+  min-width:
+    0;
+}
+
+.references-track {
+  width:
+    100%;
+}
+
+.references-page {
+  display:
+    none;
+
+  grid-template-columns:
+    repeat(
+      5,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    12px;
+
+  width:
+    100%;
+}
+
+.references-page.active {
+  display:
+    grid;
+}
+
+.reference-card {
+  min-width:
+    0;
+
+  min-height:
+    275px;
+
+  padding:
+    25px 22px 24px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  background:
+    var(--card);
+
+  border:
+    1px solid rgba(48, 42, 36, 0.08);
+}
+
+.reference-placeholder {
+  display:
+    inline-flex;
+
+  align-self:
+    flex-start;
+
+  margin-bottom:
+    22px;
+
+  padding:
+    5px 8px;
+
+  border:
+    1px solid rgba(154, 103, 71, 0.5);
 
   color:
     var(--copper-dark);
+
+  font-size:
+    11px;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+}
+
+.reference-quote {
+  margin:
+    0;
+
+  font-size:
+    18px;
+
+  line-height:
+    1.45;
+
+  color:
+    var(--text);
+}
+
+.reference-person {
+  margin-top:
+    auto;
+
+  padding-top:
+    22px;
+}
+
+.reference-person strong {
+  display:
+    block;
+
+  margin-bottom:
+    2px;
+
+  font-size:
+    17px;
+
+  font-weight:
+    500;
+}
+
+.reference-person span {
+  display:
+    block;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.35;
+
+  color:
+    var(--muted);
+}
+
+.reference-arrow {
+  width:
+    44px;
+
+  height:
+    44px;
+
+  display:
+    none;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  flex:
+    0 0 44px;
+
+  border:
+    1px solid var(--copper);
+
+  background:
+    transparent;
+
+  color:
+    var(--copper-dark);
+
+  font-size:
+    24px;
+
+  line-height:
+    1;
+
+  cursor:
+    pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.reference-arrow.visible {
+  display:
+    flex;
+}
+
+.reference-arrow:hover {
+  background:
+    var(--copper);
+
+  color:
+    var(--white);
+}
+
+.reference-prev:hover {
+  transform:
+    translateX(-2px);
+}
+
+.reference-next:hover {
+  transform:
+    translateX(2px);
 }
 
 
@@ -583,7 +820,7 @@ section {
 
 .services-section {
   min-height:
-    calc(100vh - 82px);
+    0;
 
   padding:
     0;
@@ -598,7 +835,7 @@ section {
     stretch;
 
   overflow:
-    hidden;
+    visible;
 }
 
 .services-section > .container {
@@ -623,12 +860,6 @@ section {
   width:
     100%;
 
-  height:
-    100%;
-
-  min-height:
-    calc(100vh - 82px);
-
   display:
     grid;
 
@@ -642,7 +873,7 @@ section {
     0;
 
   align-items:
-    stretch;
+    start;
 }
 
 
@@ -661,7 +892,7 @@ section {
     0;
 
   height:
-    100%;
+    auto;
 
   background:
     var(--card);
@@ -679,14 +910,17 @@ section {
   width:
     100%;
 
-  flex:
-    1 1 auto;
+  aspect-ratio:
+    16 / 9;
 
-  min-height:
-    0;
+  flex:
+    0 0 auto;
 
   overflow:
     hidden;
+
+  background:
+    var(--card);
 }
 
 .service-image img {
@@ -700,7 +934,7 @@ section {
     none;
 
   object-fit:
-    cover;
+    contain;
 
   object-position:
     center;
@@ -793,7 +1027,7 @@ section {
 
 .current-section {
   min-height:
-    calc(100vh - 82px);
+    0;
 
   padding:
     0;
@@ -811,7 +1045,7 @@ section {
     stretch;
 
   overflow:
-    hidden;
+    visible;
 }
 
 .current-section > .container {
@@ -825,9 +1059,6 @@ section {
     0 0 0
     calc((100% - 100vw) / 2);
 
-  flex:
-    1 1 auto;
-
   display:
     flex;
 
@@ -838,12 +1069,6 @@ section {
 .current-project {
   width:
     100%;
-
-  min-height:
-    0;
-
-  flex:
-    1 1 auto;
 
   display:
     grid;
@@ -867,11 +1092,8 @@ section {
   width:
     100%;
 
-  height:
-    100%;
-
   min-height:
-    0;
+    620px;
 
   overflow:
     hidden;
@@ -1004,6 +1226,131 @@ section {
 
 
 /* =========================================================
+   OM J. NORBERG
+   ========================================================= */
+
+.about-section {
+  width:
+    100%;
+
+  padding:
+    0;
+
+  background:
+    var(--bg-light);
+
+  border-top:
+    1px solid var(--line);
+}
+
+.about-grid {
+  width:
+    100%;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    50% 50%;
+
+  align-items:
+    stretch;
+}
+
+.about-image {
+  width:
+    100%;
+
+  min-height:
+    620px;
+
+  overflow:
+    hidden;
+
+  background:
+    #ddd5ca;
+}
+
+.about-image img {
+  width:
+    100%;
+
+  height:
+    100%;
+
+  max-width:
+    none;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+}
+
+.about-content {
+  padding:
+    80px
+    clamp(40px, 7vw, 120px);
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    center;
+
+  background:
+    var(--bg-light);
+}
+
+.about-content h2 {
+  margin:
+    0 0 24px;
+
+  font-size:
+    clamp(
+      42px,
+      4vw,
+      62px
+    );
+
+  line-height:
+    1.05;
+
+  font-weight:
+    400;
+
+  letter-spacing:
+    -0.02em;
+}
+
+.about-content p {
+  max-width:
+    540px;
+
+  margin:
+    0 0 30px;
+
+  font-size:
+    20px;
+
+  line-height:
+    1.6;
+
+  color:
+    var(--muted);
+}
+
+.about-read-more {
+  margin-top:
+    4px;
+}
+
+
+/* =========================================================
    KONTAKT
    ========================================================= */
 
@@ -1012,7 +1359,7 @@ section {
     relative;
 
   min-height:
-    calc(100vh - 82px);
+    calc(100vh - var(--header-height));
 
   margin:
     0;
@@ -1050,12 +1397,6 @@ section {
 
   left:
     58%;
-
-  width:
-    auto;
-
-  height:
-    100%;
 
   z-index:
     1;
@@ -1109,24 +1450,18 @@ section {
     58%;
 
   min-height:
-    calc(100vh - 82px);
+    calc(100vh - var(--header-height));
 
-  padding-top:
-    100px;
-
-  padding-bottom:
-    110px;
-
-  padding-left:
+  padding:
+    100px
+    100px
+    110px
     max(
       32px,
       calc(
         (100vw - var(--max-width)) / 2
       )
     );
-
-  padding-right:
-    100px;
 
   display:
     flex;
@@ -1155,6 +1490,32 @@ section {
 
   max-width:
     560px;
+}
+
+
+/* =========================================================
+   KONTAKT RUBRIK
+   ========================================================= */
+
+.contact-content h2 {
+  margin:
+    0 0 24px;
+
+  font-size:
+    clamp(
+      42px,
+      4vw,
+      62px
+    );
+
+  line-height:
+    1.05;
+
+  font-weight:
+    400;
+
+  letter-spacing:
+    -0.02em;
 }
 
 
@@ -1262,7 +1623,7 @@ section {
    TABLET
    ========================================================= */
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
 
   .container {
     width:
@@ -1274,24 +1635,26 @@ section {
 
   .brand {
     width:
-      205px;
+      195px;
   }
 
   .main-nav {
     gap:
-      24px;
+      20px;
 
     margin-left:
-      28px;
+      25px;
+  }
+
+  .nav-link {
+    font-size:
+      16px;
   }
 
   .header-contact {
-    right:
-      20px;
+    padding:
+      7px 12px;
   }
-
-
-  /* HEM */
 
   .hero-content {
     padding:
@@ -1307,8 +1670,10 @@ section {
       );
   }
 
-
-  /* TJÄNSTER */
+  .hero-text {
+    font-size:
+      18px;
+  }
 
   .service-info {
     padding:
@@ -1328,9 +1693,6 @@ section {
       17px;
   }
 
-
-  /* AKTUELLT */
-
   .current-content {
     padding:
       50px;
@@ -1341,8 +1703,10 @@ section {
       45px;
   }
 
-
-  /* KONTAKT */
+  .about-content {
+    padding:
+      60px 50px;
+  }
 
   .contact-background {
     left:
@@ -1360,7 +1724,7 @@ section {
 
 
 /* =========================================================
-   MOBILE
+   TABLET / MOBIL
    ========================================================= */
 
 @media (max-width: 800px) {
@@ -1373,60 +1737,78 @@ section {
       );
   }
 
-  .site-header,
+
+  /* =====================================================
+     HEADER
+     ===================================================== */
+
+  .site-header {
+    min-height:
+      0;
+  }
+
   .nav-wrap {
-    height:
-      82px;
+    min-height:
+      0;
+
+    padding:
+      10px 0
+      9px;
+
+    flex-wrap:
+      wrap;
+
+    row-gap:
+      6px;
   }
 
   .brand {
     width:
-      190px;
+      180px;
+
+    flex:
+      0 0 100%;
   }
 
   .main-nav {
+    width:
+      100%;
+
+    margin-left:
+      0;
+
     display:
-      none;
+      flex;
+
+    flex-wrap:
+      wrap;
+
+    justify-content:
+      center;
+
+    gap:
+      2px 18px;
+  }
+
+  .nav-link {
+    padding:
+      5px 0;
+
+    font-size:
+      15px;
   }
 
   .header-contact {
-    top:
-      21px;
-
-    right:
-      16px;
-
     padding:
-      7px 12px;
+      5px 9px;
 
     font-size:
-      16px;
+      15px;
   }
 
-  main {
-    padding-top:
-      82px;
-  }
-
-
-  /* =====================================================
-     ÖVERGÅNGSBAND
-     ===================================================== */
-
-  .section-band {
-    min-height:
-      90px;
-
-    flex:
-      0 0 90px;
-
-    padding:
-      20px 16px;
-  }
-
-  .section-band span {
+  .header-contact span {
     font-size:
-      21px;
+      17px;
   }
 
 
@@ -1435,40 +1817,25 @@ section {
      ===================================================== */
 
   .hero-section {
-    height:
-      auto;
-
     min-height:
       0;
-
-    padding:
-      0;
-
-    overflow:
-      visible;
   }
 
   .hero-grid {
     width:
       100%;
 
-    height:
-      auto;
+    min-height:
+      0;
 
     margin-left:
       0;
-
-    flex:
-      0 0 auto;
 
     display:
       flex;
 
     flex-direction:
       column;
-
-    gap:
-      0;
   }
 
   .hero-content {
@@ -1476,7 +1843,9 @@ section {
       100%;
 
     padding:
-      60px 16px;
+      60px
+      16px
+      55px;
   }
 
   .hero-content h1 {
@@ -1503,11 +1872,11 @@ section {
     width:
       100%;
 
-    height:
-      auto;
-
     min-height:
       0;
+
+    height:
+      auto;
   }
 
   .hero-image img {
@@ -1526,14 +1895,105 @@ section {
 
 
   /* =====================================================
+     REFERENSER
+     ===================================================== */
+
+  .references-section {
+    padding:
+      65px 0
+      70px;
+  }
+
+  .references-heading {
+    margin-bottom:
+      30px;
+  }
+
+  .references-heading h2 {
+    font-size:
+      42px;
+  }
+
+  .references-heading p {
+    font-size:
+      18px;
+  }
+
+  .references-carousel {
+    grid-template-columns:
+      auto
+      minmax(0, 1fr)
+      auto;
+
+    gap:
+      8px;
+  }
+
+  .references-page {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap:
+      8px;
+  }
+
+  .reference-card {
+    min-height:
+      260px;
+
+    padding:
+      20px
+      17px
+      20px;
+  }
+
+  .reference-placeholder {
+    margin-bottom:
+      16px;
+
+    font-size:
+      10px;
+  }
+
+  .reference-quote {
+    font-size:
+      17px;
+  }
+
+  .reference-person strong {
+    font-size:
+      16px;
+  }
+
+  .reference-person span {
+    font-size:
+      13px;
+  }
+
+  .reference-arrow {
+    width:
+      38px;
+
+    height:
+      38px;
+
+    flex-basis:
+      38px;
+
+    font-size:
+      21px;
+  }
+
+
+  /* =====================================================
      TJÄNSTER
      ===================================================== */
 
   .services-section {
     min-height:
-      0;
-
-    padding:
       0;
 
     overflow:
@@ -1552,9 +2012,6 @@ section {
     width:
       100%;
 
-    min-height:
-      0;
-
     grid-template-columns:
       repeat(
         2,
@@ -1565,20 +2022,9 @@ section {
       1px;
   }
 
-  .service-card {
-    height:
-      auto;
-
-    min-height:
-      520px;
-  }
-
   .service-image {
-    height:
-      340px;
-
-    flex:
-      0 0 340px;
+    aspect-ratio:
+      16 / 9;
   }
 
   .service-info {
@@ -1586,7 +2032,9 @@ section {
       180px;
 
     padding:
-      21px 18px 25px;
+      21px
+      18px
+      25px;
   }
 
   .service-info h3 {
@@ -1608,9 +2056,6 @@ section {
     min-height:
       0;
 
-    padding:
-      0;
-
     overflow:
       visible;
   }
@@ -1621,40 +2066,25 @@ section {
 
     margin:
       0;
-
-    flex:
-      0 0 auto;
   }
 
   .current-project {
     width:
       100%;
 
-    min-height:
-      0;
-
-    flex:
-      0 0 auto;
-
     display:
       flex;
 
     flex-direction:
       column;
-
-    gap:
-      0;
-
-    align-items:
-      stretch;
   }
 
   .current-image {
     width:
       100%;
 
-    height:
-      auto;
+    min-height:
+      0;
 
     aspect-ratio:
       16 / 10;
@@ -1675,16 +2105,72 @@ section {
     width:
       100%;
 
-    max-width:
-      none;
-
     padding:
-      70px 16px;
+      70px
+      16px;
   }
 
   .current-content h2 {
     font-size:
       38px;
+  }
+
+
+  /* =====================================================
+     OM J. NORBERG
+     ===================================================== */
+
+  .about-section {
+    min-height:
+      0;
+  }
+
+  .about-grid {
+    width:
+      100%;
+
+    display:
+      flex;
+
+    flex-direction:
+      column;
+  }
+
+  .about-image {
+    width:
+      100%;
+
+    min-height:
+      0;
+
+    aspect-ratio:
+      16 / 10;
+  }
+
+  .about-image img {
+    width:
+      100%;
+
+    height:
+      100%;
+
+    object-fit:
+      cover;
+  }
+
+  .about-content {
+    width:
+      100%;
+
+    padding:
+      65px
+      16px
+      70px;
+  }
+
+  .about-content h2 {
+    font-size:
+      42px;
   }
 
 
@@ -1701,6 +2187,9 @@ section {
 
     flex-direction:
       column;
+
+    overflow:
+      visible;
   }
 
   .contact-background {
@@ -1754,21 +2243,25 @@ section {
       0;
 
     padding:
-      70px 16px;
+      65px
+      16px
+      70px;
 
     display:
       block;
 
     order:
       1;
-
-    background:
-      var(--bg-light);
   }
 
   .contact-content {
     max-width:
       none;
+  }
+
+  .contact-content h2 {
+    font-size:
+      42px;
   }
 
   .contact-intro {
@@ -1787,70 +2280,20 @@ section {
 
 
 /* =========================================================
-   SMALL MOBILE
+   MOBIL
    ========================================================= */
 
 @media (max-width: 540px) {
-
-  .services-grid {
-    grid-template-columns:
-      1fr;
-
-    gap:
-      1px;
-  }
-
-  .service-card {
-    min-height:
-      0;
-  }
-
-  .service-image {
-    height:
-      300px;
-
-    flex:
-      0 0 300px;
-  }
-
-  .service-info {
-    min-height:
-      auto;
-
-    padding:
-      24px 22px 28px;
-  }
-
-  .service-info h3 {
-    font-size:
-      25px;
-  }
-
-  .service-info p {
-    max-width:
-      none;
-
-    font-size:
-      17px;
-  }
-}
-
-
-/* =========================================================
-   EXTRA SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 480px) {
 
   .container {
     width:
       calc(100% - 24px);
   }
 
-  .site-header,
   .nav-wrap {
-    height:
-      76px;
+    padding:
+      8px 0
+      8px;
   }
 
   .brand {
@@ -1858,15 +2301,19 @@ section {
       165px;
   }
 
+  .main-nav {
+    gap:
+      2px 12px;
+  }
+
+  .nav-link {
+    font-size:
+      14px;
+  }
+
   .header-contact {
-    top:
-      19px;
-
-    right:
-      12px;
-
     padding:
-      6px 10px;
+      4px 8px;
 
     font-size:
       14px;
@@ -1877,30 +2324,11 @@ section {
       16px;
   }
 
-  main {
-    padding-top:
-      76px;
-  }
-
-  .section-band {
-    min-height:
-      82px;
-
-    flex:
-      0 0 82px;
-
-    padding:
-      18px 12px;
-  }
-
-  .section-band span {
-    font-size:
-      19px;
-  }
-
   .hero-content {
     padding:
-      45px 12px 55px;
+      45px
+      12px
+      55px;
   }
 
   .hero-content h1 {
@@ -1913,12 +2341,85 @@ section {
       18px;
   }
 
-  .service-image {
-    height:
-      260px;
+  .references-section {
+    padding:
+      55px 0
+      60px;
+  }
 
-    flex:
-      0 0 260px;
+  .references-heading h2 {
+    font-size:
+      38px;
+  }
+
+  .references-heading p {
+    font-size:
+      17px;
+  }
+
+  .references-page {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+  .reference-card {
+    min-height:
+      280px;
+
+    padding:
+      18px
+      14px
+      18px;
+  }
+
+  .reference-placeholder {
+    max-width:
+      100%;
+
+    font-size:
+      9px;
+  }
+
+  .reference-quote {
+    font-size:
+      16px;
+  }
+
+  .reference-person strong {
+    font-size:
+      15px;
+  }
+
+  .reference-person span {
+    font-size:
+      12px;
+  }
+
+  .reference-arrow {
+    width:
+      34px;
+
+    height:
+      34px;
+
+    flex-basis:
+      34px;
+
+    font-size:
+      19px;
+  }
+
+  .service-info {
+    min-height:
+      auto;
+
+    padding:
+      24px
+      18px
+      28px;
   }
 
   .service-info h3 {
@@ -1926,9 +2427,18 @@ section {
       24px;
   }
 
+  .service-info p {
+    max-width:
+      none;
+
+    font-size:
+      17px;
+  }
+
   .current-content {
     padding:
-      60px 12px;
+      60px
+      12px;
   }
 
   .current-content h2 {
@@ -1936,13 +2446,78 @@ section {
       34px;
   }
 
+  .about-content {
+    padding:
+      55px
+      12px
+      65px;
+  }
+
+  .about-content h2 {
+    font-size:
+      38px;
+  }
+
+  .about-content p {
+    font-size:
+      18px;
+  }
+
   .contact-panel {
     padding:
-      60px 12px;
+      55px
+      12px
+      65px;
+  }
+
+  .contact-content h2 {
+    font-size:
+      38px;
   }
 
   .contact-intro {
     font-size:
       19px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  .main-nav {
+    gap:
+      2px 9px;
+  }
+
+  .nav-link {
+    font-size:
+      13px;
+  }
+
+  .header-contact {
+    padding:
+      4px 7px;
+  }
+
+  .brand {
+    width:
+      150px;
+  }
+
+  .references-page {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+  .reference-card {
+    min-height:
+      300px;
   }
 }
