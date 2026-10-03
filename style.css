@@ -1985,107 +1985,90 @@ section {
   }
 
 
-  /* =====================================================
-     TJÄNSTER – STAPLAD PÅ MOBIL
+   /* =====================================================
+     TJÄNSTER – MOBIL
      ===================================================== */
 
   .services-section {
-    min-height:
-      0;
-
-    padding:
-      0;
-
-    overflow:
-      visible;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    overflow: visible;
   }
 
   .services-section > .container {
-    width:
-      100%;
-
-    margin:
-      0;
+    width: 100%;
+    margin: 0;
   }
 
   .services-grid {
-    width:
-      100%;
+    width: 100%;
+    height: auto;
+    min-height: 0;
 
-    min-height:
-      0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
 
-    display:
-      grid;
-
-    grid-template-columns:
-      1fr;
-
-    gap:
-      1px;
-
-    align-items:
-      stretch;
+    align-items: stretch;
   }
 
   .service-card {
-    width:
-      100%;
+    width: 100%;
+    height: auto;
+    min-height: 0;
 
-    height:
-      auto;
+    display: flex;
+    flex-direction: column;
 
-    min-height:
-      0;
+    overflow: visible;
   }
 
   .service-image {
-    width:
-      100%;
+    width: 100%;
+    height: auto;
 
-    height:
-      auto;
+    aspect-ratio: 16 / 9;
 
-    aspect-ratio:
-      16 / 9;
+    flex: none;
 
-    flex:
-      0 0 auto;
+    overflow: hidden;
   }
 
   .service-image img {
-    width:
-      100%;
+    width: 100%;
+    height: 100%;
 
-    height:
-      100%;
-
-    object-fit:
-      cover;
+    object-fit: cover;
+    object-position: center;
   }
 
   .service-info {
-    width:
-      100%;
+    width: 100%;
+    height: auto;
+    min-height: 0;
 
-    min-height:
-      0;
+    flex: none;
 
-    padding:
-      24px 18px 28px;
+    padding: 24px 18px 28px;
+
+    overflow: visible;
   }
 
   .service-info h3 {
-    font-size:
-      25px;
+    margin: 0 0 20px;
+
+    font-size: 25px;
+    line-height: 1.1;
   }
 
   .service-info p {
-    max-width:
-      none;
+    max-width: none;
 
-    font-size:
-      17px;
+    margin: 0;
+
+    font-size: 17px;
+    line-height: 1.5;
   }
 
 
