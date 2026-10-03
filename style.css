@@ -36,29 +36,41 @@ html {
 body {
   margin: 0;
 
-  background: var(--bg);
+  background:
+    var(--bg);
 
-  color: var(--text);
+  color:
+    var(--text);
 
   font-family:
     "Cormorant Garamond",
     Georgia,
     serif;
 
-  font-style: normal;
-  font-weight: 400;
+  font-style:
+    normal;
 
-  line-height: 1.6;
+  font-weight:
+    400;
+
+  line-height:
+    1.6;
 }
 
 img {
-  display: block;
-  max-width: 100%;
+  display:
+    block;
+
+  max-width:
+    100%;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color:
+    inherit;
+
+  text-decoration:
+    none;
 }
 
 body,
@@ -80,7 +92,8 @@ h6 {
     Georgia,
     serif;
 
-  font-style: normal;
+  font-style:
+    normal;
 }
 
 
@@ -105,15 +118,23 @@ h6 {
    ========================================================= */
 
 .site-header {
-  position: fixed;
+  position:
+    fixed;
 
-  top: 0;
-  left: 0;
-  right: 0;
+  top:
+    0;
 
-  z-index: 1000;
+  left:
+    0;
 
-  height: 82px;
+  right:
+    0;
+
+  z-index:
+    1000;
+
+  height:
+    82px;
 
   background:
     rgba(243, 238, 230, 0.96);
@@ -129,13 +150,17 @@ h6 {
 }
 
 .nav-wrap {
-  height: 82px;
+  height:
+    82px;
 
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  position: relative;
+  position:
+    relative;
 }
 
 
@@ -144,21 +169,28 @@ h6 {
    ========================================================= */
 
 .brand {
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  flex-shrink: 0;
+  flex-shrink:
+    0;
 
-  width: 235px;
+  width:
+    235px;
 }
 
 .brand img {
-  width: 100%;
+  width:
+    100%;
 
-  height: auto;
+  height:
+    auto;
 
-  object-fit: contain;
+  object-fit:
+    contain;
 }
 
 
@@ -167,39 +199,57 @@ h6 {
    ========================================================= */
 
 .main-nav {
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  gap: 34px;
+  gap:
+    34px;
 
-  margin-left: 38px;
+  margin-left:
+    38px;
 }
 
 .nav-link {
-  position: relative;
+  position:
+    relative;
 
-  padding: 8px 0;
+  padding:
+    8px 0;
 
-  font-size: 17px;
+  font-size:
+    17px;
 
-  font-weight: 400;
+  font-weight:
+    400;
 
-  letter-spacing: 0.01em;
+  letter-spacing:
+    0.01em;
 
-  color: var(--text);
+  color:
+    var(--text);
 }
 
 .nav-link::after {
-  content: "";
+  content:
+    "";
 
-  position: absolute;
+  position:
+    absolute;
 
-  left: 0;
-  bottom: 2px;
+  left:
+    0;
 
-  width: 0;
-  height: 1px;
+  bottom:
+    2px;
+
+  width:
+    0;
+
+  height:
+    1px;
 
   background:
     var(--copper);
@@ -216,7 +266,8 @@ h6 {
 
 .nav-link:hover::after,
 .nav-link.active::after {
-  width: 100%;
+  width:
+    100%;
 }
 
 
@@ -225,18 +276,26 @@ h6 {
    ========================================================= */
 
 .header-contact {
-  position: fixed;
+  position:
+    fixed;
 
-  top: 20px;
-  right: 24px;
+  top:
+    20px;
 
-  display: inline-flex;
+  right:
+    24px;
 
-  align-items: center;
+  display:
+    inline-flex;
 
-  gap: 9px;
+  align-items:
+    center;
 
-  padding: 8px 15px;
+  gap:
+    9px;
+
+  padding:
+    8px 15px;
 
   border:
     1px solid var(--copper);
@@ -247,9 +306,11 @@ h6 {
   color:
     var(--copper-dark);
 
-  font-size: 17px;
+  font-size:
+    17px;
 
-  font-weight: 500;
+  font-weight:
+    500;
 
   transition:
     background 0.25s ease,
@@ -257,7 +318,8 @@ h6 {
 }
 
 .header-contact span {
-  font-size: 19px;
+  font-size:
+    19px;
 
   transition:
     transform 0.25s ease;
@@ -284,11 +346,13 @@ h6 {
    ========================================================= */
 
 main {
-  padding-top: 82px;
+  padding-top:
+    82px;
 }
 
 section {
-  scroll-margin-top: 82px;
+  scroll-margin-top:
+    82px;
 }
 
 
@@ -297,58 +361,92 @@ section {
    ========================================================= */
 
 .hero-section {
-  min-height:
+  height:
     calc(100vh - 82px);
 
-  height:
-    auto;
+  min-height:
+    620px;
 
   padding:
     0;
 
   display:
-    block;
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    stretch;
+
+  overflow:
+    hidden;
 }
 
 .hero-grid {
-  width: 100%;
-
-  min-height:
-    calc(100vh - 82px - 105px);
+  width:
+    100vw;
 
   height:
-    auto;
+    calc(100% - 105px);
 
-  padding:
-    28px 0 34px;
+  flex:
+    1 1 auto;
+
+  max-width:
+    none;
+
+  margin-left:
+    calc((100% - 100vw) / 2);
 
   display:
     grid;
 
   grid-template-columns:
-    minmax(0, 0.9fr)
-    minmax(0, 1.1fr);
+    50% 50%;
 
   gap:
-    65px;
+    0;
 
   align-items:
-    center;
+    stretch;
 }
 
+
+/* =========================================================
+   HEM - TEXT
+   ========================================================= */
+
 .hero-content {
-  width: 100%;
+  width:
+    100%;
 
   max-width:
-    620px;
+    none;
 
-  margin:
-    0 auto;
+  padding:
+    60px
+    clamp(40px, 7vw, 120px);
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    center;
+
+  background:
+    var(--bg);
 }
 
 .hero-content h1 {
   margin:
-    0 0 38px;
+    0 0 26px;
+
+  max-width:
+    620px;
 
   font-size:
     clamp(
@@ -369,13 +467,13 @@ section {
 
 .hero-text {
   max-width:
-    620px;
+    560px;
 
   margin:
     0;
 
   font-size:
-    18px;
+    20px;
 
   line-height:
     1.55;
@@ -384,37 +482,31 @@ section {
     var(--muted);
 }
 
-.hero-text + .hero-text {
-  margin-top:
-    18px;
-}
+
+/* =========================================================
+   HEM - BILD
+   ========================================================= */
 
 .hero-image {
-  width: 100%;
+  width:
+    100%;
 
-  min-height:
-    0;
-
-  align-self:
-    stretch;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
+  height:
+    100%;
 
   overflow:
     hidden;
 }
 
 .hero-image img {
-  width: 100%;
+  width:
+    100%;
 
-  height: 100%;
+  height:
+    100%;
+
+  max-width:
+    none;
 
   object-fit:
     cover;
@@ -425,7 +517,7 @@ section {
 
 
 /* =========================================================
-   SECTION BAND
+   ÖVERGÅNGSBAND
    ========================================================= */
 
 .section-band {
@@ -435,8 +527,8 @@ section {
   min-height:
     105px;
 
-  padding:
-    25px 32px;
+  flex:
+    0 0 105px;
 
   display:
     flex;
@@ -447,8 +539,8 @@ section {
   justify-content:
     center;
 
-  text-align:
-    center;
+  padding:
+    20px 40px;
 
   background:
     var(--bg-light);
@@ -459,11 +551,17 @@ section {
   border-bottom:
     1px solid var(--line);
 
-  color:
-    var(--copper-dark);
+  text-align:
+    center;
+}
 
+.section-band span {
   font-size:
-    28px;
+    clamp(
+      22px,
+      2.1vw,
+      30px
+    );
 
   line-height:
     1.2;
@@ -473,6 +571,9 @@ section {
 
   letter-spacing:
     0.01em;
+
+  color:
+    var(--copper-dark);
 }
 
 
@@ -485,21 +586,48 @@ section {
     calc(100vh - 82px);
 
   padding:
-    70px 0;
+    0;
+
+  background:
+    var(--bg);
 
   display:
     flex;
 
   align-items:
-    center;
+    stretch;
 
-  background:
-    var(--bg);
+  overflow:
+    hidden;
+}
+
+.services-section > .container {
+  width:
+    100vw;
+
+  max-width:
+    none;
+
+  margin:
+    0 0 0
+    calc((100% - 100vw) / 2);
+
+  display:
+    flex;
+
+  align-items:
+    stretch;
 }
 
 .services-grid {
   width:
     100%;
+
+  height:
+    100%;
+
+  min-height:
+    calc(100vh - 82px);
 
   display:
     grid;
@@ -511,8 +639,16 @@ section {
     );
 
   gap:
-    24px;
+    0;
+
+  align-items:
+    stretch;
 }
+
+
+/* =========================================================
+   TJÄNSTEKORT
+   ========================================================= */
 
 .service-card {
   display:
@@ -534,18 +670,23 @@ section {
     hidden;
 }
 
+
+/* =========================================================
+   TJÄNSTEBILD
+   ========================================================= */
+
 .service-image {
   width:
     100%;
 
-  aspect-ratio:
-    16 / 9;
+  flex:
+    1 1 auto;
+
+  min-height:
+    0;
 
   overflow:
     hidden;
-
-  flex-shrink:
-    0;
 }
 
 .service-image img {
@@ -555,8 +696,14 @@ section {
   height:
     100%;
 
+  max-width:
+    none;
+
   object-fit:
     cover;
+
+  object-position:
+    center;
 
   transform:
     scale(1);
@@ -577,14 +724,17 @@ section {
    ========================================================= */
 
 .service-info {
-  padding:
-    28px 24px 32px;
+  flex:
+    0 0 auto;
 
   min-height:
     205px;
 
-  flex:
-    1;
+  padding:
+    28px 30px 32px;
+
+  background:
+    var(--card);
 }
 
 .service-info h3 {
@@ -646,42 +796,82 @@ section {
     calc(100vh - 82px);
 
   padding:
-    70px 0;
+    0;
+
+  background:
+    var(--bg);
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    stretch;
+
+  overflow:
+    hidden;
+}
+
+.current-section > .container {
+  width:
+    100vw;
+
+  max-width:
+    none;
+
+  margin:
+    0 0 0
+    calc((100% - 100vw) / 2);
+
+  flex:
+    1 1 auto;
 
   display:
     flex;
 
   align-items:
-    center;
-
-  background:
-    var(--bg);
+    stretch;
 }
 
 .current-project {
   width:
     100%;
 
+  min-height:
+    0;
+
+  flex:
+    1 1 auto;
+
   display:
     grid;
 
   grid-template-columns:
-    minmax(0, 1.3fr)
-    minmax(320px, 0.7fr);
+    60% 40%;
 
   gap:
-    70px;
+    0;
 
   align-items:
-    center;
+    stretch;
 }
+
+
+/* =========================================================
+   AKTUELLT - BILD
+   ========================================================= */
 
 .current-image {
   width:
     100%;
 
-  aspect-ratio:
-    16 / 10;
+  height:
+    100%;
+
+  min-height:
+    0;
 
   overflow:
     hidden;
@@ -697,13 +887,43 @@ section {
   height:
     100%;
 
+  max-width:
+    none;
+
   object-fit:
     cover;
+
+  object-position:
+    center;
 }
 
+
+/* =========================================================
+   AKTUELLT - TEXT
+   ========================================================= */
+
 .current-content {
+  width:
+    100%;
+
   max-width:
-    480px;
+    none;
+
+  padding:
+    60px
+    clamp(40px, 6vw, 100px);
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    center;
+
+  background:
+    var(--bg);
 }
 
 .current-content h2 {
@@ -712,9 +932,9 @@ section {
 
   font-size:
     clamp(
-      30px,
-      3vw,
-      45px
+      40px,
+      4vw,
+      60px
     );
 
   line-height:
@@ -728,6 +948,9 @@ section {
 }
 
 .current-content p {
+  max-width:
+    520px;
+
   margin:
     0 0 28px;
 
@@ -750,6 +973,9 @@ section {
 
   gap:
     10px;
+
+  width:
+    fit-content;
 
   font-size:
     18px;
@@ -813,11 +1039,20 @@ section {
   position:
     absolute;
 
-  inset:
+  top:
     0;
 
+  right:
+    0;
+
+  bottom:
+    0;
+
+  left:
+    58%;
+
   width:
-    100%;
+    auto;
 
   height:
     100%;
@@ -860,7 +1095,7 @@ section {
 
 
 /* =========================================================
-   BEIGE KONTAKTPANEL
+   KONTAKTPANEL
    ========================================================= */
 
 .contact-panel {
@@ -905,51 +1140,6 @@ section {
 
 
 /* =========================================================
-   MJUK FADE
-   ========================================================= */
-
-.contact-panel::after {
-  content:
-    "";
-
-  position:
-    absolute;
-
-  top:
-    0;
-
-  right:
-    -420px;
-
-  width:
-    440px;
-
-  height:
-    100%;
-
-  pointer-events:
-    none;
-
-  background:
-    linear-gradient(
-      to right,
-
-      var(--bg-light) 0%,
-      var(--bg-light) 12%,
-
-      rgba(248, 245, 239, 0.99) 25%,
-      rgba(248, 245, 239, 0.94) 37%,
-      rgba(248, 245, 239, 0.78) 50%,
-      rgba(248, 245, 239, 0.56) 63%,
-      rgba(248, 245, 239, 0.32) 76%,
-      rgba(248, 245, 239, 0.12) 89%,
-
-      rgba(248, 245, 239, 0) 100%
-    );
-}
-
-
-/* =========================================================
    KONTAKTINNEHÅLL
    ========================================================= */
 
@@ -965,35 +1155,6 @@ section {
 
   max-width:
     560px;
-}
-
-
-/* =========================================================
-   KONTAKT RUBRIK
-   ========================================================= */
-
-.contact-content h2 {
-  margin:
-    0 0 28px;
-
-  font-size:
-    clamp(
-      50px,
-      5vw,
-      70px
-    );
-
-  line-height:
-    1;
-
-  font-weight:
-    400;
-
-  font-style:
-    normal;
-
-  letter-spacing:
-    -0.03em;
 }
 
 
@@ -1129,9 +1290,12 @@ section {
       20px;
   }
 
-  .hero-grid {
-    gap:
-      40px;
+
+  /* HEM */
+
+  .hero-content {
+    padding:
+      50px;
   }
 
   .hero-content h1 {
@@ -1143,29 +1307,8 @@ section {
       );
   }
 
-  .hero-text {
-    font-size:
-      17px;
-  }
 
-  .section-band {
-    font-size:
-      25px;
-  }
-
-  .services-section,
-  .current-section {
-    min-height:
-      auto;
-
-    padding:
-      80px 0;
-  }
-
-  .services-grid {
-    gap:
-      20px;
-  }
+  /* TJÄNSTER */
 
   .service-info {
     padding:
@@ -1178,9 +1321,6 @@ section {
   .service-info h3 {
     font-size:
       24px;
-
-    font-weight:
-      400 !important;
   }
 
   .service-info p {
@@ -1188,9 +1328,25 @@ section {
       17px;
   }
 
-  .current-project {
-    gap:
+
+  /* AKTUELLT */
+
+  .current-content {
+    padding:
       50px;
+  }
+
+  .current-content h2 {
+    font-size:
+      45px;
+  }
+
+
+  /* KONTAKT */
+
+  .contact-background {
+    left:
+      62%;
   }
 
   .contact-panel {
@@ -1254,26 +1410,56 @@ section {
 
 
   /* =====================================================
-     HERO
+     ÖVERGÅNGSBAND
+     ===================================================== */
+
+  .section-band {
+    min-height:
+      90px;
+
+    flex:
+      0 0 90px;
+
+    padding:
+      20px 16px;
+  }
+
+  .section-band span {
+    font-size:
+      21px;
+  }
+
+
+  /* =====================================================
+     HEM
      ===================================================== */
 
   .hero-section {
-    min-height:
-      0;
-
     height:
       auto;
+
+    min-height:
+      0;
 
     padding:
       0;
+
+    overflow:
+      visible;
   }
 
   .hero-grid {
-    min-height:
-      0;
+    width:
+      100%;
 
     height:
       auto;
+
+    margin-left:
+      0;
+
+    flex:
+      0 0 auto;
 
     display:
       flex;
@@ -1282,20 +1468,20 @@ section {
       column;
 
     gap:
-      40px;
-
-    padding:
-      45px 0 55px;
+      0;
   }
 
   .hero-content {
-    max-width:
-      none;
+    width:
+      100%;
+
+    padding:
+      60px 16px;
   }
 
   .hero-content h1 {
     margin-bottom:
-      28px;
+      24px;
 
     font-size:
       clamp(
@@ -1311,14 +1497,6 @@ section {
 
     font-size:
       19px;
-
-    line-height:
-      1.55;
-  }
-
-  .hero-text + .hero-text {
-    margin-top:
-      18px;
   }
 
   .hero-image {
@@ -1339,22 +1517,11 @@ section {
     height:
       auto;
 
+    aspect-ratio:
+      auto;
+
     object-fit:
       cover;
-  }
-
-  .section-band {
-    min-height:
-      90px;
-
-    padding:
-      22px 20px;
-
-    font-size:
-      22px;
-
-    line-height:
-      1.25;
   }
 
 
@@ -1367,10 +1534,27 @@ section {
       0;
 
     padding:
-      80px 0;
+      0;
+
+    overflow:
+      visible;
+  }
+
+  .services-section > .container {
+    width:
+      100%;
+
+    margin:
+      0;
   }
 
   .services-grid {
+    width:
+      100%;
+
+    min-height:
+      0;
+
     grid-template-columns:
       repeat(
         2,
@@ -1378,23 +1562,36 @@ section {
       );
 
     gap:
-      18px;
+      1px;
+  }
+
+  .service-card {
+    height:
+      auto;
+
+    min-height:
+      520px;
+  }
+
+  .service-image {
+    height:
+      340px;
+
+    flex:
+      0 0 340px;
   }
 
   .service-info {
+    min-height:
+      180px;
+
     padding:
       21px 18px 25px;
-
-    min-height:
-      190px;
   }
 
   .service-info h3 {
     font-size:
       23px;
-
-    font-weight:
-      400 !important;
   }
 
   .service-info p {
@@ -1412,10 +1609,33 @@ section {
       0;
 
     padding:
-      80px 0;
+      0;
+
+    overflow:
+      visible;
+  }
+
+  .current-section > .container {
+    width:
+      100%;
+
+    margin:
+      0;
+
+    flex:
+      0 0 auto;
   }
 
   .current-project {
+    width:
+      100%;
+
+    min-height:
+      0;
+
+    flex:
+      0 0 auto;
+
     display:
       flex;
 
@@ -1423,25 +1643,48 @@ section {
       column;
 
     gap:
-      35px;
+      0;
 
     align-items:
       stretch;
   }
 
+  .current-image {
+    width:
+      100%;
+
+    height:
+      auto;
+
+    aspect-ratio:
+      16 / 10;
+  }
+
+  .current-image img {
+    width:
+      100%;
+
+    height:
+      100%;
+
+    object-fit:
+      cover;
+  }
+
   .current-content {
+    width:
+      100%;
+
     max-width:
       none;
+
+    padding:
+      70px 16px;
   }
 
   .current-content h2 {
     font-size:
       38px;
-  }
-
-  .current-content p {
-    font-size:
-      19px;
   }
 
 
@@ -1452,31 +1695,52 @@ section {
   .contact-section {
     min-height:
       0;
+
+    display:
+      flex;
+
+    flex-direction:
+      column;
   }
 
   .contact-background {
     position:
-      absolute;
+      relative;
 
-    inset:
-      0;
+    top:
+      auto;
+
+    right:
+      auto;
+
+    bottom:
+      auto;
+
+    left:
+      auto;
 
     width:
       100%;
 
     height:
-      100%;
+      auto;
+
+    order:
+      2;
   }
 
   .contact-background img {
+    position:
+      relative;
+
     width:
       100%;
 
     height:
-      100%;
+      auto;
 
     object-fit:
-      cover;
+      contain;
 
     object-position:
       center;
@@ -1490,28 +1754,21 @@ section {
       0;
 
     padding:
-      75px 16px 75px;
+      70px 16px;
 
     display:
       block;
+
+    order:
+      1;
 
     background:
       var(--bg-light);
   }
 
-  .contact-panel::after {
-    display:
-      none;
-  }
-
   .contact-content {
     max-width:
       none;
-  }
-
-  .contact-content h2 {
-    font-size:
-      50px;
   }
 
   .contact-intro {
@@ -1540,7 +1797,20 @@ section {
       1fr;
 
     gap:
-      24px;
+      1px;
+  }
+
+  .service-card {
+    min-height:
+      0;
+  }
+
+  .service-image {
+    height:
+      300px;
+
+    flex:
+      0 0 300px;
   }
 
   .service-info {
@@ -1554,9 +1824,6 @@ section {
   .service-info h3 {
     font-size:
       25px;
-
-    font-weight:
-      400 !important;
   }
 
   .service-info p {
@@ -1565,11 +1832,6 @@ section {
 
     font-size:
       17px;
-  }
-
-  .section-band {
-    font-size:
-      20px;
   }
 }
 
@@ -1620,14 +1882,25 @@ section {
       76px;
   }
 
-  section {
-    scroll-margin-top:
-      76px;
+  .section-band {
+    min-height:
+      82px;
+
+    flex:
+      0 0 82px;
+
+    padding:
+      18px 12px;
   }
 
-  .hero-grid {
+  .section-band span {
+    font-size:
+      19px;
+  }
+
+  .hero-content {
     padding:
-      40px 0 50px;
+      45px 12px 55px;
   }
 
   .hero-content h1 {
@@ -1640,29 +1913,22 @@ section {
       18px;
   }
 
-  .section-band {
-    min-height:
-      82px;
+  .service-image {
+    height:
+      260px;
 
-    padding:
-      20px 16px;
-
-    font-size:
-      19px;
-  }
-
-  .services-section,
-  .current-section {
-    padding:
-      70px 0;
+    flex:
+      0 0 260px;
   }
 
   .service-info h3 {
     font-size:
       24px;
+  }
 
-    font-weight:
-      400 !important;
+  .current-content {
+    padding:
+      60px 12px;
   }
 
   .current-content h2 {
@@ -1672,12 +1938,7 @@ section {
 
   .contact-panel {
     padding:
-      60px 12px 60px;
-  }
-
-  .contact-content h2 {
-    font-size:
-      45px;
+      60px 12px;
   }
 
   .contact-intro {
