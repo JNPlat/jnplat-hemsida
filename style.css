@@ -488,7 +488,7 @@ section {
     cover;
 
   object-position:
-    center;
+    75% center;
 }
 
 
@@ -1150,10 +1150,6 @@ section {
   overflow:
     hidden;
 
-  /*
-     Diskret övergång från Aktuellt.
-     Ändrar inte sektionens höjd.
-  */
   border-top:
     1px solid
     rgba(
