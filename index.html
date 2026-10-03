@@ -39,7 +39,7 @@
         >
       </a>
 
-      <nav class="main-nav">
+      <nav class="main-nav" aria-label="Huvudnavigation">
 
         <a
           href="#hem"
@@ -65,16 +65,24 @@
           Aktuellt
         </a>
 
-      </nav>
+        <a
+          href="#om"
+          class="nav-link"
+          data-section="om"
+        >
+          Om J. Norberg
+        </a>
 
-      <a
-        href="#kontakt"
-        class="header-contact"
-        data-section="kontakt"
-      >
-        Kontakt
-        <span>→</span>
-      </a>
+        <a
+          href="#kontakt"
+          class="nav-link header-contact"
+          data-section="kontakt"
+        >
+          Kontakt
+          <span>→</span>
+        </a>
+
+      </nav>
 
     </div>
 
@@ -105,23 +113,13 @@
             Kommande 2027.
           </h1>
 
-         <p class="hero-text">
-  J. Norberg Plåtslageri AB är ett nystartat aktiebolag som drivs av mig, John Norberg.
-  Under mina tio år i branschen har jag arbetat nästan uteslutande med restaurering och
-  nyproduktion av plåtarbeten på kulturhistoriska byggnader runtom i Stockholm.
-</p>
+          <p class="hero-text">
+            När du anlitar J. Norberg Plåtslageri AB har du direkt kontakt med den som utför arbetet – från offert till faktura. Det innebär att kunskap, erfarenhet och känsla för hantverket följer med genom hela projektet, utan onödiga mellanhänder eller informationsvägar där missförstånd kan uppstå.
+          </p>
 
-<p class="hero-text">
-  När du anlitar mig har du direkt kontakt med den som utför arbetet – från offert till
-  faktura. Det innebär att kunskap, erfarenhet och känsla för hantverket följer med genom
-  hela projektet, utan onödiga mellanhänder eller informationsvägar där missförstånd kan uppstå.
-</p>
-
-<p class="hero-text">
-  Varje projekt genomförs med resultatet som högsta prioritet. Genom stor noggrannhet,
-  känsla för de små detaljerna och respekt för det traditionella hantverket utför jag
-  varje arbete med yrkesstolthet och höga krav på kvalitet.
-</p>
+          <p class="hero-text">
+            Varje projekt genomförs med resultatet som högsta prioritet. Genom stor noggrannhet, känsla för de små detaljerna och respekt för det traditionella hantverket utför jag varje arbete med yrkesstolthet och höga krav på kvalitet.
+          </p>
 
         </div>
 
@@ -138,13 +136,99 @@
       </div>
 
 
-      <!-- ÖVERGÅNGSBAND -->
+      <!-- REFERENSER – DEL AV HEROSEKTIONEN -->
 
       <div class="section-band">
 
-        <span>
-          Traditionellt hantverk · Kulturhistoriska miljöer · Stockholm
-        </span>
+        <div class="references-carousel">
+
+          <button
+            class="reference-arrow reference-prev"
+            type="button"
+            aria-label="Föregående referens"
+          >
+            ←
+          </button>
+
+
+          <div class="references-viewport">
+
+            <div class="references-track">
+
+              <article class="reference-card">
+                <span class="reference-label">Fiktiv referens</span>
+                <p class="reference-name">Anders Berg</p>
+                <p class="reference-role">Arbetsledare, Berg & Co.</p>
+              </article>
+
+              <article class="reference-card">
+                <span class="reference-label">Fiktiv referens</span>
+                <p class="reference-name">Maria Lind</p>
+                <p class="reference-role">Byggnadsantikvarie</p>
+              </article>
+
+              <article class="reference-card">
+                <span class="reference-label">Fiktiv referens</span>
+                <p class="reference-name">Erik Holm</p>
+                <p class="reference-role">Plåtslagare</p>
+              </article>
+
+              <article class="reference-card">
+                <span class="reference-label">Fiktiv referens</span>
+                <p class="reference-name">Peter Sjöberg</p>
+                <p class="reference-role">Projektledare</p>
+              </article>
+
+              <article class="reference-card">
+                <span class="reference-label">Fiktiv referens</span>
+                <p class="reference-name">Anna Ek</p>
+                <p class="reference-role">Arkitekt</p>
+              </article>
+
+              <article class="reference-card">
+                <span class="reference-label">Fiktiv referens</span>
+                <p class="reference-name">Johan Falk</p>
+                <p class="reference-role">Plåtslagare</p>
+              </article>
+
+              <article class="reference-card">
+                <span class="reference-label">Fiktiv referens</span>
+                <p class="reference-name">Lars Nyström</p>
+                <p class="reference-role">Entreprenör</p>
+              </article>
+
+              <article class="reference-card">
+                <span class="reference-label">Fiktiv referens</span>
+                <p class="reference-name">Karin West</p>
+                <p class="reference-role">Byggnadsantikvarie</p>
+              </article>
+
+              <article class="reference-card">
+                <span class="reference-label">Fiktiv referens</span>
+                <p class="reference-name">Magnus Dahl</p>
+                <p class="reference-role">Arbetsledare</p>
+              </article>
+
+              <article class="reference-card">
+                <span class="reference-label">Fiktiv referens</span>
+                <p class="reference-name">Elin Fors</p>
+                <p class="reference-role">Arkitekt</p>
+              </article>
+
+            </div>
+
+          </div>
+
+
+          <button
+            class="reference-arrow reference-next"
+            type="button"
+            aria-label="Nästa referens"
+          >
+            →
+          </button>
+
+        </div>
 
       </div>
 
@@ -360,18 +444,75 @@
 
       </div>
 
+    </section>
 
-      <!-- ÖVERGÅNGSBAND -->
 
-      <div class="section-band">
 
-        <span>
-          Kontakt
-        </span>
+    <!-- ===================================================
+         OM J. NORBERG
+         =================================================== -->
+
+    <section
+      class="about-section"
+      id="om"
+    >
+
+      <div class="container">
+
+        <div class="about-grid">
+
+
+          <div class="about-image">
+
+            <img
+              src="images/Hero bild.JPG"
+              alt="Plåtslageriarbete"
+            >
+
+          </div>
+
+
+          <div class="about-content">
+
+            <h2>
+              Om J. Norberg
+            </h2>
+
+            <p>
+              Här kommer information om J. Norbergs gesällbrev,
+              utbildning, yrkeserfarenhet, deltagande i SM och
+              andra meriter inom plåtslageriet att presenteras.
+              Sektionen kommer även att berätta mer om
+              utbildningsresor, erfarenheter och vägen genom
+              yrket.
+            </p>
+
+            <a
+              href="#om"
+              class="read-more about-read-more"
+            >
+              Läs mer om J. Norberg
+              <span>→</span>
+            </a>
+
+          </div>
+
+        </div>
 
       </div>
 
     </section>
+
+
+    <!-- ÖVERGÅNG TILL KONTAKT -->
+
+    <div class="section-band contact-transition">
+
+      <span>
+        Kontakt
+      </span>
+
+    </div>
 
 
 
@@ -402,6 +543,10 @@
       <div class="contact-panel">
 
         <div class="contact-content">
+
+          <h2>
+            Kontakt
+          </h2>
 
           <p class="contact-intro">
             Har du ett projekt inom plåt, koppar eller
