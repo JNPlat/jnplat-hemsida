@@ -1,440 +1,346 @@
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    /* =====================================================
-       ELEMENT
-       ===================================================== */
+  const header = document.querySelector(".site-header");
+  const brand = document.querySelector(".brand");
+  const navLinks = document.querySelectorAll(".nav-link");
 
-    const header =
-      document.querySelector(".site-header");
+  const sections = [
+    document.querySelector("#hem"),
+    document.querySelector("#tjanster"),
+    document.querySelector("#aktuellt"),
+    document.querySelector("#om"),
+    document.querySelector("#kontakt")
+  ].filter(Boolean);
 
 
-    const brand =
-      document.querySelector(".brand");
+  /* =====================================================
+     HEADER HEIGHT
+     ===================================================== */
 
+  function updateHeaderHeight() {
 
-    const navLinks =
-      document.querySelectorAll(".nav-link");
+    if (!header) return;
 
+    const height = header.getBoundingClientRect().height;
 
-    const sections =
-      [
-        document.querySelector("#hem"),
-        document.querySelector("#tjanster"),
-        document.querySelector("#aktuellt"),
-        document.querySelector("#om"),
-        document.querySelector("#kontakt")
-      ].filter(Boolean);
+    document.documentElement.style.setProperty(
+      "--header-height",
+      `${height}px`
+    );
 
+  }
 
-    /* =====================================================
-       HEADER HEIGHT
-       ===================================================== */
 
-    function updateHeaderHeight() {
+  /* =====================================================
+     AKTIV SEKTION
+     ===================================================== */
 
-      if (!header) {
-        return;
-      }
-
-      const height =
-        header.getBoundingClientRect().height;
-
-      document.documentElement.style.setProperty(
-        "--header-height",
-        `${height}px`
-      );
-
-    }
-
-
-    /* =====================================================
-       AKTIV SEKTION
-       ===================================================== */
-
-    function setActiveSection(sectionId) {
-
-      navLinks.forEach((link) => {
-
-        const active =
-          link.dataset.section === sectionId;
-
-
-        link.classList.toggle(
-          "active",
-          active
-        );
-
-
-        if (active) {
-
-          link.setAttribute(
-            "aria-current",
-            "page"
-          );
-
-        } else {
-
-          link.removeAttribute(
-            "aria-current"
-          );
-
-        }
-
-      });
-
-    }
-
-
-    /* =====================================================
-       BESTÄM AKTIV SEKTION
-       ===================================================== */
-
-    function updateActiveSection() {
-
-      if (!sections.length) {
-        return;
-      }
-
-
-      const headerHeight =
-        header
-          ? header.getBoundingClientRect().height
-          : 0;
-
-
-      const activationPoint =
-        headerHeight +
-        (
-          window.innerHeight * 0.30
-        );
-
-
-      let activeSection =
-        sections[0];
-
-
-      sections.forEach((section) => {
-
-        const rect =
-          section.getBoundingClientRect();
-
-
-        if (
-          rect.top <= activationPoint
-        ) {
-
-          activeSection =
-            section;
-
-        }
-
-      });
-
-
-      const atBottom =
-        window.innerHeight +
-        window.scrollY >=
-        document.documentElement.scrollHeight - 5;
-
-
-      if (atBottom) {
-
-        const contactSection =
-          document.querySelector("#kontakt");
-
-
-        if (contactSection) {
-
-          activeSection =
-            contactSection;
-
-        }
-
-      }
-
-
-      if (activeSection) {
-
-        const navSection =
-          activeSection.dataset.navSection ||
-          activeSection.id;
-
-
-        setActiveSection(
-          navSection
-        );
-
-      }
-
-    }
-
-
-    /* =====================================================
-       LOGO → TOPPEN
-       ===================================================== */
-
-    if (brand) {
-
-      brand.addEventListener(
-        "click",
-        (event) => {
-
-          event.preventDefault();
-
-
-          window.scrollTo({
-
-            top: 0,
-
-            behavior: "smooth"
-
-          });
-
-        }
-      );
-
-    }
-
-
-    /* =====================================================
-       NAVIGATION
-       ===================================================== */
+  function setActiveSection(sectionId) {
 
     navLinks.forEach((link) => {
 
-      link.addEventListener(
-        "click",
-        (event) => {
+      const active =
+        link.dataset.section === sectionId;
 
-          const targetId =
-            link.getAttribute("href");
-
-
-          const target =
-            document.querySelector(
-              targetId
-            );
-
-
-          if (!target) {
-            return;
-          }
-
-
-          event.preventDefault();
-
-
-          target.scrollIntoView({
-
-            behavior: "smooth",
-
-            block: "start"
-
-          });
-
-        }
+      link.classList.toggle(
+        "active",
+        active
       );
+
+      if (active) {
+
+        link.setAttribute(
+          "aria-current",
+          "page"
+        );
+
+      } else {
+
+        link.removeAttribute(
+          "aria-current"
+        );
+
+      }
+
+    });
+
+  }
+
+
+  /* =====================================================
+     BESTÄM AKTIV SEKTION
+     ===================================================== */
+
+  function updateActiveSection() {
+
+    if (!sections.length) return;
+
+    const headerHeight =
+      header
+        ? header.getBoundingClientRect().height
+        : 0;
+
+    const activationPoint =
+      headerHeight +
+      window.innerHeight * 0.30;
+
+    let activeSection =
+      sections[0];
+
+    sections.forEach((section) => {
+
+      const rect =
+        section.getBoundingClientRect();
+
+      if (
+        rect.top <= activationPoint
+      ) {
+
+        activeSection =
+          section;
+
+      }
 
     });
 
 
-    /* =====================================================
-       REFERENSER
-       ===================================================== */
-
-    const referenceTrack =
-      document.querySelector(
-        ".references-track"
-      );
+    const atBottom =
+      window.innerHeight +
+      window.scrollY >=
+      document.documentElement.scrollHeight - 5;
 
 
-    const referencePrev =
-      document.querySelector(
-        ".reference-prev"
-      );
+    if (atBottom) {
 
+      const contactSection =
+        document.querySelector("#kontakt");
 
-    const referenceNext =
-      document.querySelector(
-        ".reference-next"
-      );
-
-
-    let referencePages = [];
-
-    let currentReferencePage = 0;
-
-
-    function buildReferencePages() {
-
-      if (!referenceTrack) {
-        return;
+      if (contactSection) {
+        activeSection = contactSection;
       }
-
-
-      const cards =
-        Array.from(
-          referenceTrack.querySelectorAll(
-            ".reference-card"
-          )
-        );
-
-
-      referenceTrack.innerHTML = "";
-
-      referencePages = [];
-
-
-      /*
-        Fem referenser per sida.
-
-        1–5 referenser:
-        inga pilar.
-
-        6–10 referenser:
-        två sidor + pilar.
-
-        11–15:
-        tre sidor + pilar.
-
-        osv.
-      */
-
-      for (
-        let i = 0;
-        i < cards.length;
-        i += 5
-      ) {
-
-        const page =
-          document.createElement(
-            "div"
-          );
-
-
-        page.className =
-          "references-page";
-
-
-        cards
-          .slice(i, i + 5)
-          .forEach((card) => {
-
-            page.appendChild(card);
-
-          });
-
-
-        referenceTrack.appendChild(
-          page
-        );
-
-
-        referencePages.push(
-          page
-        );
-
-      }
-
-
-      currentReferencePage = 0;
-
-
-      updateReferenceCarousel();
 
     }
 
 
-    function updateReferenceCarousel() {
+    if (activeSection) {
 
-      if (!referencePages.length) {
+      setActiveSection(
+        activeSection.dataset.navSection ||
+        activeSection.id
+      );
 
-        if (referencePrev) {
+    }
 
-          referencePrev.classList.remove(
-            "visible"
-          );
-
-        }
-
-
-        if (referenceNext) {
-
-          referenceNext.classList.remove(
-            "visible"
-          );
-
-        }
+  }
 
 
-        return;
+  /* =====================================================
+     LOGO → TOPPEN
+     ===================================================== */
+
+  if (brand) {
+
+    brand.addEventListener(
+      "click",
+      (event) => {
+
+        event.preventDefault();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
 
       }
+    );
+
+  }
 
 
-      referencePages.forEach(
-        (page, index) => {
+  /* =====================================================
+     NAVIGATION
+     ===================================================== */
 
-          page.classList.toggle(
-            "active",
-            index === currentReferencePage
+  navLinks.forEach((link) => {
+
+    link.addEventListener(
+      "click",
+      (event) => {
+
+        const targetId =
+          link.getAttribute("href");
+
+        const target =
+          document.querySelector(
+            targetId
           );
 
-        }
+        if (!target) return;
+
+        event.preventDefault();
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }
+    );
+
+  });
+
+
+  /* =====================================================
+     REFERENSER
+     
+     Horisontell carousel som automatiskt anpassar
+     antal synliga referenser efter skärmens bredd.
+     ===================================================== */
+
+  const referenceTrack =
+    document.querySelector(
+      ".references-track"
+    );
+
+  const referencePrev =
+    document.querySelector(
+      ".reference-prev"
+    );
+
+  const referenceNext =
+    document.querySelector(
+      ".reference-next"
+    );
+
+
+  let referenceCards = [];
+
+  let currentReferenceIndex = 0;
+
+
+  function getVisibleReferenceCount() {
+
+    if (window.innerWidth <= 800) {
+      return 2;
+    }
+
+    if (window.innerWidth <= 1100) {
+      return 4;
+    }
+
+    return 5;
+
+  }
+
+
+  function updateReferenceCarousel() {
+
+    if (!referenceTrack) return;
+
+
+    referenceCards =
+      Array.from(
+        referenceTrack.querySelectorAll(
+          ".reference-card"
+        )
       );
 
 
-      const hasMultiplePages =
-        referencePages.length > 1;
+    const empty =
+      referenceTrack.querySelector(
+        ".reference-empty"
+      );
 
+
+    /*
+      Om det ännu inte finns några riktiga
+      referenser visas endast den tomma
+      informationsrutan.
+    */
+
+    if (!referenceCards.length) {
+
+      if (empty) {
+        empty.style.display = "flex";
+      }
 
       if (referencePrev) {
-
-        referencePrev.classList.toggle(
-          "visible",
-          hasMultiplePages
+        referencePrev.classList.remove(
+          "visible"
         );
-
       }
-
 
       if (referenceNext) {
-
-        referenceNext.classList.toggle(
-          "visible",
-          hasMultiplePages
+        referenceNext.classList.remove(
+          "visible"
         );
-
       }
 
+      referenceTrack.style.transform =
+        "translateX(0)";
+
+      currentReferenceIndex = 0;
+
+      return;
+
     }
+
+
+    if (empty) {
+      empty.style.display = "none";
+    }
+
+
+    const visible =
+      getVisibleReferenceCount();
+
+
+    const maxIndex =
+      Math.max(
+        0,
+        referenceCards.length - visible
+      );
+
+
+    currentReferenceIndex =
+      Math.min(
+        currentReferenceIndex,
+        maxIndex
+      );
+
+
+    const cardWidth =
+      referenceCards[0]
+        .getBoundingClientRect()
+        .width;
+
+
+    const gap =
+      parseFloat(
+        getComputedStyle(
+          referenceTrack
+        ).gap
+      ) || 0;
+
+
+    const offset =
+      currentReferenceIndex *
+      (cardWidth + gap);
+
+
+    referenceTrack.style.transform =
+      `translateX(-${offset}px)`;
+
+
+    const hasOverflow =
+      referenceCards.length > visible;
 
 
     if (referencePrev) {
 
-      referencePrev.addEventListener(
-        "click",
-        () => {
-
-          if (!referencePages.length) {
-            return;
-          }
-
-
-          currentReferencePage =
-            (
-              currentReferencePage -
-              1 +
-              referencePages.length
-            ) %
-            referencePages.length;
-
-
-          updateReferenceCarousel();
-
-        }
+      referencePrev.classList.toggle(
+        "visible",
+        hasOverflow
       );
 
     }
@@ -442,70 +348,129 @@ document.addEventListener(
 
     if (referenceNext) {
 
-      referenceNext.addEventListener(
-        "click",
-        () => {
-
-          if (!referencePages.length) {
-            return;
-          }
-
-
-          currentReferencePage =
-            (
-              currentReferencePage +
-              1
-            ) %
-            referencePages.length;
-
-
-          updateReferenceCarousel();
-
-        }
+      referenceNext.classList.toggle(
+        "visible",
+        hasOverflow
       );
 
     }
 
-
-    buildReferencePages();
-
-
-    /* =====================================================
-       START
-       ===================================================== */
-
-    updateHeaderHeight();
-
-    updateActiveSection();
+  }
 
 
-    /* =====================================================
-       SCROLL
-       ===================================================== */
+  /* =====================================================
+     REFERENSER – VÄNSTER PIL
+     ===================================================== */
 
-    window.addEventListener(
-      "scroll",
-      updateActiveSection,
-      {
-        passive: true
-      }
-    );
+  if (referencePrev) {
 
-
-    /* =====================================================
-       RESIZE
-       ===================================================== */
-
-    window.addEventListener(
-      "resize",
+    referencePrev.addEventListener(
+      "click",
       () => {
 
-        updateHeaderHeight();
+        const visible =
+          getVisibleReferenceCount();
 
-        updateActiveSection();
+        const maxIndex =
+          Math.max(
+            0,
+            referenceCards.length - visible
+          );
+
+
+        if (!maxIndex) return;
+
+
+        currentReferenceIndex =
+          currentReferenceIndex <= 0
+            ? maxIndex
+            : currentReferenceIndex - 1;
+
+
+        updateReferenceCarousel();
 
       }
     );
 
   }
-);
+
+
+  /* =====================================================
+     REFERENSER – HÖGER PIL
+     ===================================================== */
+
+  if (referenceNext) {
+
+    referenceNext.addEventListener(
+      "click",
+      () => {
+
+        const visible =
+          getVisibleReferenceCount();
+
+        const maxIndex =
+          Math.max(
+            0,
+            referenceCards.length - visible
+          );
+
+
+        if (!maxIndex) return;
+
+
+        currentReferenceIndex =
+          currentReferenceIndex >= maxIndex
+            ? 0
+            : currentReferenceIndex + 1;
+
+
+        updateReferenceCarousel();
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     START
+     ===================================================== */
+
+  updateHeaderHeight();
+
+  updateActiveSection();
+
+  updateReferenceCarousel();
+
+
+  /* =====================================================
+     SCROLL
+     ===================================================== */
+
+  window.addEventListener(
+    "scroll",
+    updateActiveSection,
+    {
+      passive: true
+    }
+  );
+
+
+  /* =====================================================
+     RESIZE
+     ===================================================== */
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      updateHeaderHeight();
+
+      updateActiveSection();
+
+      updateReferenceCarousel();
+
+    }
+  );
+
+});
