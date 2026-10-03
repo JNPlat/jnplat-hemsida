@@ -355,6 +355,11 @@ section {
     hidden;
 }
 
+
+/* ---------------------------------------------------------
+   HERO GRID
+   --------------------------------------------------------- */
+
 .hero-grid {
   width: 100%;
 
@@ -366,7 +371,9 @@ section {
   min-height: 0;
 
   flex:
-    1 1 auto;
+    0 0 calc(
+      100% - 145px
+    );
 
   max-width: none;
 
@@ -387,16 +394,23 @@ section {
     hidden;
 }
 
+
+/* ---------------------------------------------------------
+   HERO CONTENT
+   --------------------------------------------------------- */
+
 .hero-content {
   width: 100%;
 
   min-width: 0;
   min-height: 0;
 
+  height: 100%;
+
   max-width: none;
 
   padding:
-    60px
+    50px
     clamp(
       40px,
       7vw,
@@ -410,7 +424,7 @@ section {
     column;
 
   justify-content:
-    center;
+    flex-start;
 
   background:
     var(--bg);
@@ -465,17 +479,17 @@ section {
 }
 
 
-/* =========================================================
-   HERO BILD
-   ========================================================= */
+/* ---------------------------------------------------------
+   HERO IMAGE
+   --------------------------------------------------------- */
 
 .hero-image {
   width: 100%;
 
+  height: 100%;
+
   min-width: 0;
   min-height: 0;
-
-  height: 100%;
 
   overflow:
     hidden;
@@ -490,6 +504,11 @@ section {
   object-fit:
     cover;
 
+  /*
+    Prioriterar höger sida av bilden.
+    Detta gör att ansiktet hålls kvar
+    när fönstrets bredd förändras.
+  */
   object-position:
     75% center;
 }
@@ -503,6 +522,9 @@ section {
   width: 100%;
 
   min-height:
+    145px;
+
+  height:
     145px;
 
   flex:
@@ -565,7 +587,8 @@ section {
 .references-track {
   height: 100%;
 
-  display: flex;
+  display:
+    flex;
 
   align-items:
     stretch;
@@ -588,7 +611,8 @@ section {
   min-height:
     125px;
 
-  height: 100%;
+  height:
+    100%;
 
   padding:
     11px 14px;
@@ -681,8 +705,11 @@ section {
 }
 
 .reference-arrow {
-  width: 34px;
-  height: 34px;
+  width:
+    34px;
+
+  height:
+    34px;
 
   align-self:
     center;
@@ -710,7 +737,8 @@ section {
   font-size:
     20px;
 
-  line-height: 1;
+  line-height:
+    1;
 
   cursor:
     pointer;
@@ -1721,7 +1749,7 @@ section {
 
 
   /* =====================================================
-     HERO
+     HERO – MOBIL
      ===================================================== */
 
   .hero-section {
@@ -1782,6 +1810,9 @@ section {
     width:
       100%;
 
+    height:
+      auto;
+
     min-height:
       0;
 
@@ -1790,6 +1821,9 @@ section {
 
     overflow:
       visible;
+
+    justify-content:
+      flex-start;
   }
 
   .hero-image img {
@@ -1801,6 +1835,9 @@ section {
 
     object-fit:
       cover;
+
+    object-position:
+      center;
   }
 
   .hero-content h1 {
@@ -1825,11 +1862,14 @@ section {
 
 
   /* =====================================================
-     REFERENSER
+     REFERENSER – MOBIL
      ===================================================== */
 
   .section-band {
     min-height:
+      105px;
+
+    height:
       105px;
 
     flex:
@@ -1909,7 +1949,7 @@ section {
 
 
   /* =====================================================
-     TJÄNSTER – STAPLAD PÅ MOBIL
+     TJÄNSTER – MOBIL
      ===================================================== */
 
   .services-section {
@@ -2104,7 +2144,7 @@ section {
 
 
   /* =====================================================
-     OM J. NORBERG
+     OM J. NORBERG – MOBIL
      ===================================================== */
 
   .about-section {
@@ -2186,7 +2226,7 @@ section {
 
 
   /* =====================================================
-     KONTAKT
+     KONTAKT – MOBIL
      ===================================================== */
 
   .contact-section {
@@ -2286,6 +2326,9 @@ section {
 
   .section-band {
     min-height:
+      105px;
+
+    height:
       105px;
 
     flex-basis:
@@ -2467,6 +2510,9 @@ section {
 
     padding-bottom:
       35px;
+
+    justify-content:
+      flex-start;
   }
 
   .hero-content h1 {
