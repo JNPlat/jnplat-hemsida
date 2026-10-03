@@ -856,8 +856,10 @@ section {
 .service-image {
   width: 100%;
 
+  /* Bilddelen har alltid samma andel av varje kort.
+     Den påverkas därför inte av hur mycket text som finns under. */
   flex:
-    1 1 auto;
+    0 0 63%;
 
   min-height: 0;
 
@@ -891,17 +893,19 @@ section {
 
 
 .service-info {
+  /* Textdelen har samma andel av varje kort oavsett innehåll. */
   flex:
-    0 0 auto;
+    0 0 37%;
 
-  min-height:
-    205px;
+  min-height: 0;
 
   padding:
     28px 30px 32px;
 
   background:
     var(--card);
+
+  overflow: hidden;
 }
 
 .service-info h3 {
