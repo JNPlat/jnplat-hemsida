@@ -8,26 +8,42 @@ document.addEventListener(
        ===================================================== */
 
     const header =
-      document.querySelector(".site-header");
+      document.querySelector(
+        ".site-header"
+      );
 
     const brand =
-      document.querySelector(".brand");
+      document.querySelector(
+        ".brand"
+      );
 
     const navLinks =
-      document.querySelectorAll(".nav-link");
+      document.querySelectorAll(
+        ".nav-link"
+      );
 
 
     const sections = [
 
-      document.querySelector("#hem"),
+      document.querySelector(
+        "#hem"
+      ),
 
-      document.querySelector("#tjanster"),
+      document.querySelector(
+        "#tjanster"
+      ),
 
-      document.querySelector("#aktuellt"),
+      document.querySelector(
+        "#aktuellt"
+      ),
 
-      document.querySelector("#om"),
+      document.querySelector(
+        "#om"
+      ),
 
-      document.querySelector("#kontakt")
+      document.querySelector(
+        "#kontakt"
+      )
 
     ].filter(Boolean);
 
@@ -55,42 +71,10 @@ document.addEventListener(
 
     /* =====================================================
        AKTIV SEKTION
-       ===================================================== */
-
-    function setActiveSection(sectionId) {
-
-      navLinks.forEach((link) => {
-
-        const active =
-          link.dataset.section === sectionId;
-
-        link.classList.toggle(
-          "active",
-          active
-        );
-
-        if (active) {
-
-          link.setAttribute(
-            "aria-current",
-            "page"
-          );
-
-        } else {
-
-          link.removeAttribute(
-            "aria-current"
-          );
-
-        }
-
-      });
-
-    }
-
-
-    /* =====================================================
-       BESTÄM AKTIV SEKTION
+       
+       Sektionen som passerat headerns underkant blir
+       aktiv direkt. Detta gör att långsam scrolling
+       fungerar även på mobil.
        ===================================================== */
 
     function updateActiveSection() {
@@ -99,23 +83,33 @@ document.addEventListener(
         return;
       }
 
+
       const headerHeight =
         header
           ? header.getBoundingClientRect().height
           : 0;
 
+
       const activationPoint =
-        headerHeight +
-        (window.innerHeight * 0.30);
+        headerHeight + 12;
+
 
       let activeSection =
         sections[0];
 
 
-      sections.forEach((section) => {
+      for (
+        let i = 0;
+        i < sections.length;
+        i++
+      ) {
+
+        const section =
+          sections[i];
 
         const rect =
           section.getBoundingClientRect();
+
 
         if (
           rect.top <= activationPoint
@@ -124,45 +118,77 @@ document.addEventListener(
           activeSection =
             section;
 
+        } else {
+
+          break;
+
         }
 
-      });
+      }
 
 
-      const atBottom =
+      /*
+        När man är allra längst ner ska Kontakt
+        alltid vara aktiv.
+      */
+
+      const bottomReached =
         window.innerHeight +
         window.scrollY >=
         document.documentElement.scrollHeight - 5;
 
 
-      if (atBottom) {
+      if (bottomReached) {
 
-        const contactSection =
-          document.querySelector("#kontakt");
+        const contact =
+          document.querySelector(
+            "#kontakt"
+          );
 
-        if (contactSection) {
-
-          activeSection =
-            contactSection;
-
+        if (contact) {
+          activeSection = contact;
         }
 
       }
 
 
-      if (activeSection) {
+      navLinks.forEach(
+        (link) => {
 
-        setActiveSection(
-          activeSection.id
-        );
+          const isActive =
+            link.dataset.section ===
+            activeSection.id;
 
-      }
+
+          link.classList.toggle(
+            "active",
+            isActive
+          );
+
+
+          if (isActive) {
+
+            link.setAttribute(
+              "aria-current",
+              "page"
+            );
+
+          } else {
+
+            link.removeAttribute(
+              "aria-current"
+            );
+
+          }
+
+        }
+      );
 
     }
 
 
     /* =====================================================
-       LOGO → TOPPEN
+       LOGO
        ===================================================== */
 
     if (brand) {
@@ -188,35 +214,42 @@ document.addEventListener(
        NAVIGATION
        ===================================================== */
 
-    navLinks.forEach((link) => {
+    navLinks.forEach(
+      (link) => {
 
-      link.addEventListener(
-        "click",
-        (event) => {
+        link.addEventListener(
+          "click",
+          (event) => {
 
-          const targetId =
-            link.getAttribute("href");
+            const targetId =
+              link.getAttribute(
+                "href"
+              );
 
-          const target =
-            document.querySelector(
-              targetId
-            );
+            const target =
+              document.querySelector(
+                targetId
+              );
 
-          if (!target) {
-            return;
+
+            if (!target) {
+              return;
+            }
+
+
+            event.preventDefault();
+
+
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
           }
+        );
 
-          event.preventDefault();
-
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-
-        }
-      );
-
-    });
+      }
+    );
 
 
     /* =====================================================
@@ -246,13 +279,23 @@ document.addEventListener(
 
     function getVisibleReferenceCount() {
 
-      if (window.innerWidth <= 800) {
+      if (
+        window.innerWidth <= 800
+      ) {
+
         return 2;
+
       }
 
-      if (window.innerWidth <= 1150) {
+
+      if (
+        window.innerWidth <= 1150
+      ) {
+
         return 4;
+
       }
+
 
       return 5;
 
@@ -274,6 +317,15 @@ document.addEventListener(
         );
 
 
+      if (
+        !referenceCards.length
+      ) {
+
+        return;
+
+      }
+
+
       const visible =
         getVisibleReferenceCount();
 
@@ -281,7 +333,8 @@ document.addEventListener(
       const maxIndex =
         Math.max(
           0,
-          referenceCards.length - visible
+          referenceCards.length -
+          visible
         );
 
 
@@ -290,11 +343,6 @@ document.addEventListener(
           currentReferenceIndex,
           maxIndex
         );
-
-
-      if (!referenceCards.length) {
-        return;
-      }
 
 
       const cardWidth =
@@ -321,7 +369,8 @@ document.addEventListener(
 
 
       const hasOverflow =
-        referenceCards.length > visible;
+        referenceCards.length >
+        visible;
 
 
       if (referencePrev) {
@@ -379,10 +428,12 @@ document.addEventListener(
           const visible =
             getVisibleReferenceCount();
 
+
           const maxIndex =
             Math.max(
               0,
-              referenceCards.length - visible
+              referenceCards.length -
+              visible
             );
 
 
@@ -418,10 +469,12 @@ document.addEventListener(
           const visible =
             getVisibleReferenceCount();
 
+
           const maxIndex =
             Math.max(
               0,
-              referenceCards.length - visible
+              referenceCards.length -
+              visible
             );
 
 
@@ -431,7 +484,8 @@ document.addEventListener(
 
 
           currentReferenceIndex =
-            currentReferenceIndex >= maxIndex
+            currentReferenceIndex >=
+            maxIndex
               ? 0
               : currentReferenceIndex + 1;
 
@@ -445,7 +499,7 @@ document.addEventListener(
 
 
     /* =====================================================
-       START
+       INIT
        ===================================================== */
 
     updateHeaderHeight();
@@ -459,9 +513,32 @@ document.addEventListener(
        SCROLL
        ===================================================== */
 
+    let scrollTicking = false;
+
+
     window.addEventListener(
       "scroll",
-      updateActiveSection,
+      () => {
+
+        if (scrollTicking) {
+          return;
+        }
+
+
+        scrollTicking = true;
+
+
+        window.requestAnimationFrame(
+          () => {
+
+            updateActiveSection();
+
+            scrollTicking = false;
+
+          }
+        );
+
+      },
       {
         passive: true
       }
@@ -486,10 +563,9 @@ document.addEventListener(
     );
 
 
-    /*
-      När sidan har laddat färdigt kan bilderna ändra
-      måtten. Uppdatera därför en extra gång efter load.
-    */
+    /* =====================================================
+       LOAD
+       ===================================================== */
 
     window.addEventListener(
       "load",
