@@ -929,6 +929,9 @@ section {
       100vh - var(--header-height)
     );
 
+  margin-bottom:
+    30px;
+
   padding: 0;
 
   background:
