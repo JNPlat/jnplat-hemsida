@@ -262,52 +262,78 @@ h6 {
 
 
 /* =========================================================
-   KONTAKTKNAPP I HEADER
+   HEADER KONTAKT
    ========================================================= */
 
 .header-contact {
-  margin-left: auto;
-
-  display: flex;
+  display: inline-flex;
 
   align-items: center;
 
-  justify-content: center;
-
-  gap: 8px;
+  gap: 9px;
 
   padding:
-    8px 13px;
+    8px 15px;
 
   border:
     1px solid var(--copper);
 
+  background:
+    transparent;
+
   color:
     var(--copper-dark);
 
-  font-size: 16px;
+  font-size:
+    17px;
 
-  line-height: 1;
-
-  white-space: nowrap;
+  font-weight:
+    500;
 
   transition:
-    background 0.2s ease,
-    color 0.2s ease;
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.header-contact::after {
+  display: none;
 }
 
 .header-contact span {
-  font-size: 18px;
+  font-size: 19px;
 
-  line-height: 1;
+  transition:
+    transform 0.25s ease;
 }
 
-.header-contact:hover {
+.header-contact:hover,
+.header-contact.active {
   background:
     var(--copper);
 
   color:
     var(--white);
+}
+
+.header-contact:hover span,
+.header-contact.active span {
+  transform:
+    translateX(3px);
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+main {
+  padding-top:
+    var(--header-height);
+}
+
+section {
+  scroll-margin-top:
+    var(--header-height);
 }
 
 
@@ -316,13 +342,15 @@ h6 {
    ========================================================= */
 
 .hero-section {
-  min-height:
+  height:
     calc(
       100vh - var(--header-height)
     );
 
-  margin-top:
-    var(--header-height);
+  min-height:
+    620px;
+
+  padding: 0;
 
   display:
     flex;
@@ -330,28 +358,72 @@ h6 {
   flex-direction:
     column;
 
-  background:
-    var(--bg);
+  align-items:
+    stretch;
 
   overflow:
     hidden;
 }
 
-.hero-main {
+
+/*
+   Hero går hela vägen över sidan.
+   Texten får 60 % och bilden 40 %.
+*/
+
+.hero-grid {
+  width:
+    100%;
+
+  height:
+    calc(
+      100% - 145px
+    );
+
   flex:
     1 1 auto;
 
-  min-height:
+  max-width:
+    none;
+
+  margin:
     0;
 
   display:
     grid;
 
   grid-template-columns:
-    1fr 1fr;
+    minmax(0, 60%)
+    minmax(0, 40%);
+
+  gap:
+    0;
+
+  align-items:
+    stretch;
+
+  min-width:
+    0;
 }
 
 .hero-content {
+  width:
+    100%;
+
+  min-width:
+    0;
+
+  max-width:
+    none;
+
+  padding:
+    60px
+    clamp(
+      40px,
+      7vw,
+      120px
+    );
+
   display:
     flex;
 
@@ -361,60 +433,72 @@ h6 {
   justify-content:
     center;
 
-  padding:
-    70px 6vw 70px 0;
+  background:
+    var(--bg);
+
+  overflow:
+    hidden;
 }
 
 .hero-content h1 {
   margin:
     0 0 26px;
 
+  max-width:
+    620px;
+
   font-size:
     clamp(
-      50px,
-      5vw,
-      78px
+      52px,
+      5.4vw,
+      80px
     );
 
   line-height:
-    0.95;
+    0.98;
 
   font-weight:
     400;
 
   letter-spacing:
-    -0.02em;
+    -0.045em;
 }
 
 .hero-text {
   max-width:
-    680px;
+    560px;
 
   margin:
-    0;
+    0 0 22px;
 
   font-size:
     20px;
 
   line-height:
     1.55;
+
+  color:
+    var(--muted);
 }
 
-.hero-text p {
-  margin:
-    0 0 20px;
-}
-
-.hero-text p:last-child {
+.hero-text:last-child {
   margin-bottom:
     0;
 }
 
-.hero-image {
-  min-width:
-    0;
 
-  min-height:
+/* =========================================================
+   HERO BILD
+   ========================================================= */
+
+.hero-image {
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-width:
     0;
 
   overflow:
@@ -428,9 +512,16 @@ h6 {
   height:
     100%;
 
+  max-width:
+    none;
+
   object-fit:
     cover;
 
+  /*
+     Prioritera högra delen av bilden så att ansiktet
+     ligger kvar när bildytan blir smalare.
+  */
   object-position:
     72% center;
 }
@@ -500,8 +591,7 @@ h6 {
 .references-track {
   height: 100%;
 
-  display:
-    flex;
+  display: flex;
 
   align-items:
     stretch;
@@ -515,26 +605,16 @@ h6 {
 
 .reference-card {
   flex:
-    0 0 auto;
+    0 0 calc(
+      (100% - 40px) / 5
+    );
 
-  /*
-    Kortet får nu sin naturliga bredd efter innehållet.
-    Olika referenser kan därför bli olika breda.
-  */
-  width:
-    max-content;
-
-  max-width:
-    340px;
-
-  min-width:
-    150px;
+  min-width: 0;
 
   min-height:
     125px;
 
-  height:
-    100%;
+  height: 100%;
 
   padding:
     11px 14px;
@@ -560,12 +640,8 @@ h6 {
       0.08
     );
 
-  /*
-    Viktigt:
-    Texten får inte längre kapas inne i kortet.
-  */
   overflow:
-    visible;
+    hidden;
 }
 
 .reference-label {
@@ -628,13 +704,6 @@ h6 {
 
   line-height:
     1.2;
-
-  /*
-    Långa texter får radbrytas istället för
-    att tvinga kortet att bli orimligt brett.
-  */
-  overflow-wrap:
-    break-word;
 }
 
 .reference-arrow {
@@ -748,112 +817,127 @@ h6 {
       minmax(0, 1fr)
     );
 
-  gap:
-    1px;
-
-  background:
-    var(--line);
+  gap: 0;
 
   align-items:
     stretch;
 }
 
 .service-card {
-  min-width:
-    0;
-
-  height:
-    100%;
-
-  min-height:
-    calc(
-      100vh - var(--header-height)
-    );
-
   display:
     flex;
 
   flex-direction:
     column;
 
+  min-width: 0;
+
+  height: 100%;
+
   background:
-    var(--bg);
-}
-
-.service-image {
-  width:
-    100%;
-
-  flex:
-    1 1 auto;
-
-  min-height:
-    0;
+    var(--card);
 
   overflow:
     hidden;
 }
 
-.service-image img {
-  width:
-    100%;
+.service-image {
+  width: 100%;
 
-  height:
-    100%;
+  flex:
+    1 1 auto;
+
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+.service-image img {
+  width: 100%;
+  height: 100%;
+
+  max-width: none;
 
   object-fit:
     cover;
+
+  object-position:
+    center;
+
+  transform:
+    scale(1);
+
+  transition:
+    transform 0.45s ease;
 }
 
+.service-card:hover
+.service-image img {
+  transform:
+    scale(1.035);
+}
+
+
 .service-info {
+  flex:
+    0 0 auto;
+
   min-height:
     205px;
 
   padding:
-    28px 26px 34px;
+    28px 30px 32px;
 
   background:
     var(--card);
-
-  display:
-    flex;
-
-  flex-direction:
-    column;
-
-  justify-content:
-    center;
-
-  text-align:
-    center;
 }
 
 .service-info h3 {
   margin:
-    0 0 10px;
+    0 0 20px;
 
   font-size:
-    28px;
+    27px;
 
   line-height:
-    1.05;
+    1.1;
 
   font-weight:
-    400;
+    400 !important;
+
+  font-style:
+    normal !important;
+
+  letter-spacing:
+    -0.015em;
+
+  color:
+    var(--text);
+
+  transition:
+    color 0.25s ease;
+}
+
+.service-card:hover
+.service-info h3 {
+  color:
+    var(--copper);
 }
 
 .service-info p {
-  max-width:
-    320px;
+  margin: 0;
 
-  margin:
-    0 auto;
+  max-width:
+    290px;
 
   font-size:
-    17px;
+    18px;
 
   line-height:
-    1.45;
+    1.5;
+
+  color:
+    var(--muted);
 }
 
 
@@ -867,14 +951,16 @@ h6 {
       100vh - var(--header-height)
     );
 
-  padding:
-    0;
+  padding: 0;
 
   background:
     var(--bg);
 
   display:
     flex;
+
+  flex-direction:
+    column;
 
   align-items:
     stretch;
@@ -884,17 +970,18 @@ h6 {
 }
 
 .current-section > .container {
-  width:
-    100vw;
+  width: 100vw;
 
-  max-width:
-    none;
+  max-width: none;
 
   margin:
     0 0 0
     calc(
       (100% - 100vw) / 2
     );
+
+  flex:
+    1 1 auto;
 
   display:
     flex;
@@ -903,25 +990,83 @@ h6 {
     stretch;
 }
 
-.current-project {
-  width:
-    100%;
 
-  min-height:
-    calc(
-      100vh - var(--header-height)
-    );
+/*
+   DESKTOP:
+
+   Text till vänster
+   Bild till höger
+*/
+
+.current-project {
+  width: 100%;
+
+  min-height: 0;
+
+  flex:
+    1 1 auto;
 
   display:
     grid;
 
   grid-template-columns:
-    1fr 1fr;
+    40% 60%;
+
+  gap: 0;
+
+  align-items:
+    stretch;
+}
+
+.current-image {
+  grid-column:
+    2;
+
+  grid-row:
+    1;
+
+  width: 100%;
+  height: 100%;
+
+  min-height: 0;
+
+  overflow: hidden;
+
+  background:
+    #ddd5ca;
+}
+
+.current-image img {
+  width: 100%;
+  height: 100%;
+
+  max-width: none;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
 }
 
 .current-content {
+  grid-column:
+    1;
+
+  grid-row:
+    1;
+
+  width: 100%;
+
+  max-width: none;
+
   padding:
-    70px 7vw;
+    60px
+    clamp(
+      40px,
+      6vw,
+      100px
+    );
 
   display:
     flex;
@@ -931,6 +1076,9 @@ h6 {
 
   justify-content:
     center;
+
+  background:
+    var(--bg);
 }
 
 .current-content h2 {
@@ -939,69 +1087,74 @@ h6 {
 
   font-size:
     clamp(
-      42px,
+      40px,
       4vw,
-      62px
+      60px
     );
 
   line-height:
-    0.95;
+    1.1;
 
   font-weight:
     400;
+
+  letter-spacing:
+    -0.02em;
 }
 
 .current-content p {
   max-width:
-    650px;
+    520px;
 
   margin:
-    0 0 22px;
+    0 0 28px;
 
   font-size:
     20px;
 
   line-height:
-    1.55;
+    1.6;
+
+  color:
+    var(--muted);
 }
 
-.current-content a {
+.read-more {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+
   width:
     fit-content;
 
-  margin-top:
-    8px;
+  font-size:
+    18px;
+
+  font-weight:
+    500;
 
   color:
     var(--copper-dark);
-
-  border-bottom:
-    1px solid var(--copper);
-
-  padding-bottom:
-    3px;
 }
 
-.current-image {
-  min-width:
-    0;
-
-  min-height:
-    0;
-
-  overflow:
-    hidden;
+.read-more span {
+  transition:
+    transform 0.25s ease;
 }
 
-.current-image img {
-  width:
-    100%;
+.read-more:hover {
+  color:
+    var(--copper);
+}
 
-  height:
-    100%;
-
-  object-fit:
-    cover;
+.read-more:hover span {
+  transform:
+    translateX(4px);
 }
 
 
@@ -1015,20 +1168,10 @@ h6 {
       100vh - var(--header-height)
     );
 
-  padding:
-    0;
+  padding: 0;
 
   background:
     var(--bg);
-
-  border-top:
-    1px solid
-    rgba(
-      154,
-      103,
-      71,
-      0.35
-    );
 
   display:
     flex;
@@ -1038,14 +1181,25 @@ h6 {
 
   overflow:
     hidden;
+
+  /*
+     Diskret övergång från Aktuellt.
+     Ändrar inte sektionens höjd.
+  */
+  border-top:
+    1px solid
+    rgba(
+      154,
+      103,
+      71,
+      0.35
+    );
 }
 
 .about-section > .container {
-  width:
-    100vw;
+  width: 100vw;
 
-  max-width:
-    none;
+  max-width: none;
 
   margin:
     0 0 0
@@ -1061,8 +1215,7 @@ h6 {
 }
 
 .about-grid {
-  width:
-    100%;
+  width: 100%;
 
   min-height:
     calc(
@@ -1073,34 +1226,49 @@ h6 {
     grid;
 
   grid-template-columns:
-    1fr 1fr;
+    50% 50%;
+
+  gap: 0;
+
+  align-items:
+    stretch;
 }
 
 .about-image {
-  min-width:
-    0;
+  width: 100%;
+  height: 100%;
 
-  min-height:
-    0;
+  min-height: 0;
 
-  overflow:
-    hidden;
+  overflow: hidden;
+
+  background:
+    #ddd5ca;
 }
 
 .about-image img {
-  width:
-    100%;
+  width: 100%;
+  height: 100%;
 
-  height:
-    100%;
+  max-width: none;
 
   object-fit:
     cover;
+
+  object-position:
+    center;
 }
 
 .about-content {
+  width: 100%;
+
   padding:
-    70px 7vw;
+    60px
+    clamp(
+      40px,
+      7vw,
+      120px
+    );
 
   display:
     flex;
@@ -1110,6 +1278,9 @@ h6 {
 
   justify-content:
     center;
+
+  background:
+    var(--bg);
 }
 
 .about-content h2 {
@@ -1118,47 +1289,36 @@ h6 {
 
   font-size:
     clamp(
-      42px,
+      40px,
       4vw,
-      62px
+      60px
     );
 
   line-height:
-    0.95;
+    1.1;
 
   font-weight:
     400;
+
+  letter-spacing:
+    -0.02em;
 }
 
 .about-content p {
   max-width:
-    650px;
+    560px;
 
   margin:
-    0 0 22px;
+    0 0 28px;
 
   font-size:
     20px;
 
   line-height:
-    1.55;
-}
-
-.about-content a {
-  width:
-    fit-content;
-
-  margin-top:
-    8px;
+    1.6;
 
   color:
-    var(--copper-dark);
-
-  border-bottom:
-    1px solid var(--copper);
-
-  padding-bottom:
-    3px;
+    var(--muted);
 }
 
 
@@ -1167,75 +1327,119 @@ h6 {
    ========================================================= */
 
 .contact-section {
+  position:
+    relative;
+
   min-height:
     calc(
       100vh - var(--header-height)
     );
 
-  padding:
-    0;
+  margin: 0;
 
-  background:
-    var(--bg);
-
-  display:
-    flex;
-
-  align-items:
-    stretch;
+  padding: 0;
 
   overflow:
     hidden;
+
+  background:
+    var(--bg-light);
+
+  border-top:
+    1px solid var(--line);
 }
 
-.contact-section > .container {
-  width:
-    100vw;
+.contact-background {
+  position:
+    absolute;
 
-  max-width:
-    none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 58%;
 
-  margin:
-    0 0 0
-    calc(
-      (100% - 100vw) / 2
-    );
+  z-index: 1;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.contact-background img {
+  position:
+    absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  max-width: none;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
 
   display:
-    flex;
-
-  align-items:
-    stretch;
+    block;
 }
 
 .contact-panel {
+  position:
+    relative;
+
+  z-index:
+    2;
+
   width:
-    100%;
+    58%;
 
   min-height:
     calc(
       100vh - var(--header-height)
     );
 
-  display:
-    grid;
+  padding-top:
+    70px;
 
-  grid-template-columns:
-    1fr 1fr;
-}
+  padding-bottom:
+    80px;
 
-.contact-content {
-  padding:
-    70px 7vw;
+  padding-left:
+    max(
+      32px,
+      calc(
+        (100vw - var(--max-width)) / 2
+      )
+    );
+
+  padding-right:
+    100px;
 
   display:
     flex;
 
-  flex-direction:
-    column;
-
-  justify-content:
+  align-items:
     center;
+
+  background:
+    var(--bg-light);
+}
+
+.contact-content {
+  position:
+    relative;
+
+  z-index:
+    3;
+
+  width:
+    100%;
+
+  max-width:
+    560px;
 }
 
 .contact-content h2 {
@@ -1244,120 +1448,267 @@ h6 {
 
   font-size:
     clamp(
-      42px,
+      40px,
       4vw,
-      62px
+      60px
     );
 
   line-height:
-    0.95;
+    1.1;
 
   font-weight:
     400;
+
+  letter-spacing:
+    -0.02em;
 }
 
 .contact-intro {
-  max-width:
-    650px;
-
   margin:
-    0 0 36px;
+    0 0 45px;
+
+  max-width:
+    560px;
 
   font-size:
-    20px;
+    24px;
 
   line-height:
-    1.55;
+    1.5;
+
+  font-weight:
+    400;
+
+  font-style:
+    normal;
 }
 
 .contact-details {
+  width: 100%;
+
+  max-width:
+    500px;
+
+  border-top:
+    1px solid var(--line);
+}
+
+.contact-item {
+  padding:
+    17px 0;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.contact-item span {
   display:
-    flex;
+    block;
 
-  flex-direction:
-    column;
-
-  gap:
-    12px;
+  margin-bottom:
+    3px;
 
   font-size:
-    19px;
-}
+    14px;
 
-.contact-details a {
-  width:
-    fit-content;
+  font-weight:
+    500;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
 
   color:
-    var(--copper-dark);
+    var(--muted);
 }
 
-.contact-image {
-  min-width:
-    0;
+.contact-item a,
+.contact-item p {
+  margin: 0;
 
-  min-height:
-    0;
+  font-size:
+    21px;
 
-  overflow:
-    hidden;
+  line-height:
+    1.3;
+
+  font-weight:
+    400;
+
+  font-style:
+    normal;
 }
 
-.contact-image img {
-  width:
-    100%;
+.contact-item a {
+  transition:
+    color 0.25s ease;
+}
 
-  height:
-    100%;
-
-  object-fit:
-    cover;
+.contact-item a:hover {
+  color:
+    var(--copper);
 }
 
 
 /* =========================================================
-   MOBIL
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1150px) {
+
+  .container {
+    width:
+      min(
+        calc(100% - 48px),
+        var(--max-width)
+      );
+  }
+
+  .brand {
+    width:
+      190px;
+  }
+
+  .main-nav {
+    gap:
+      18px;
+
+    margin-left:
+      22px;
+  }
+
+  .nav-link {
+    font-size:
+      16px;
+  }
+
+  .header-contact {
+    padding:
+      7px 12px;
+
+    font-size:
+      16px;
+  }
+
+  .hero-content {
+    padding:
+      50px;
+  }
+
+  .hero-content h1 {
+    font-size:
+      clamp(
+        46px,
+        6.5vw,
+        68px
+      );
+  }
+
+  .service-info {
+    padding:
+      24px 22px 28px;
+
+    min-height:
+      190px;
+  }
+
+  .service-info h3 {
+    font-size:
+      24px;
+  }
+
+  .service-info p {
+    font-size:
+      17px;
+  }
+
+  .current-content {
+    padding:
+      50px;
+  }
+
+  .current-content h2 {
+    font-size:
+      45px;
+  }
+
+  .about-content {
+    padding:
+      50px;
+  }
+
+  .about-content h2 {
+    font-size:
+      45px;
+  }
+
+  .contact-background {
+    left:
+      62%;
+  }
+
+  .contact-panel {
+    width:
+      62%;
+
+    padding-right:
+      60px;
+  }
+
+  .reference-card {
+    flex-basis:
+      calc(
+        (100% - 30px) / 4
+      );
+  }
+}
+
+
+/* =========================================================
+   MOBILE
    ========================================================= */
 
 @media (max-width: 800px) {
 
-  .container {
-    width:
-      calc(
-        100% - 24px
-      );
-  }
-
-
-  /* =====================================================
-     HEADER
-     ===================================================== */
-
   .site-header {
     min-height:
       0;
+
+    height:
+      auto;
   }
 
   .nav-wrap {
     min-height:
       0;
 
+    height:
+      auto;
+
     padding:
-      10px 0 9px;
+      10px 0;
+
+    display:
+      flex;
 
     flex-direction:
       column;
 
     align-items:
       center;
+
+    gap:
+      8px;
   }
 
   .brand {
     width:
-      185px;
+      190px;
 
-    margin-bottom:
-      7px;
+    flex:
+      0 0 auto;
   }
 
   .main-nav {
@@ -1367,44 +1718,44 @@ h6 {
     margin-left:
       0;
 
+    display:
+      flex;
+
+    align-items:
+      center;
+
     justify-content:
       center;
 
-    gap:
-      4px 14px;
-
     flex-wrap:
       wrap;
+
+    gap:
+      3px 16px;
   }
 
   .nav-link {
     padding:
-      4px 0;
+      5px 0;
 
     font-size:
-      15px;
+      16px;
+
+    white-space:
+      nowrap;
   }
 
   .header-contact {
-    position:
-      absolute;
-
-    right:
-      12px;
-
-    top:
-      10px;
+    padding:
+      5px 9px;
 
     font-size:
-      14px;
-
-    padding:
-      5px 8px;
+      16px;
   }
 
   .header-contact span {
     font-size:
-      15px;
+      17px;
   }
 
 
@@ -1413,17 +1764,29 @@ h6 {
      ===================================================== */
 
   .hero-section {
+    height:
+      auto;
+
     min-height:
       0;
-
-    margin-top:
-      var(--header-height);
 
     overflow:
       visible;
   }
 
-  .hero-main {
+  .hero-grid {
+    width:
+      100%;
+
+    height:
+      auto;
+
+    margin:
+      0;
+
+    flex:
+      0 0 auto;
+
     display:
       flex;
 
@@ -1431,38 +1794,29 @@ h6 {
       column;
   }
 
-  .hero-content {
-    padding:
-      55px 12px 50px;
-  }
-
-  .hero-content h1 {
-    margin-bottom:
-      22px;
-
-    font-size:
-      48px;
-  }
-
-  .hero-text {
-    font-size:
-      19px;
-  }
-
-  .hero-text p {
-    margin-bottom:
-      18px;
-  }
-
   .hero-image {
+    order:
+      1;
+
     width:
       100%;
 
     height:
       auto;
 
-    aspect-ratio:
-      16 / 10;
+    min-height:
+      0;
+  }
+
+  .hero-content {
+    order:
+      2;
+
+    width:
+      100%;
+
+    padding:
+      60px 16px;
   }
 
   .hero-image img {
@@ -1470,13 +1824,33 @@ h6 {
       100%;
 
     height:
-      100%;
+      auto;
 
     object-fit:
       cover;
 
     object-position:
-      72% center;
+      center;
+  }
+
+  .hero-content h1 {
+    margin-bottom:
+      24px;
+
+    font-size:
+      clamp(
+        48px,
+        14vw,
+        68px
+      );
+  }
+
+  .hero-text {
+    max-width:
+      none;
+
+    font-size:
+      19px;
   }
 
 
@@ -1511,23 +1885,16 @@ h6 {
   }
 
   .reference-card {
-    flex:
-      0 0 auto;
-
-    width:
-      max-content;
-
-    max-width:
-      250px;
-
-    min-width:
-      125px;
+    flex-basis:
+      calc(
+        (100% - 10px) / 2
+      );
 
     min-height:
       85px;
 
     height:
-      auto;
+      85px;
 
     padding:
       7px 10px;
@@ -1747,18 +2114,21 @@ h6 {
     order:
       2;
 
+    width:
+      100%;
+
     padding:
-      60px 12px;
+      70px 16px;
   }
 
   .current-content h2 {
     font-size:
-      34px;
+      38px;
   }
 
 
   /* =====================================================
-     OM J. NORBERG – MOBIL
+     OM J. NORBERG
      ===================================================== */
 
   .about-section {
@@ -1767,6 +2137,15 @@ h6 {
 
     overflow:
       visible;
+
+    border-top:
+      1px solid
+      rgba(
+        154,
+        103,
+        71,
+        0.35
+      );
   }
 
   .about-section > .container {
@@ -1775,6 +2154,9 @@ h6 {
 
     margin:
       0;
+
+    display:
+      block;
   }
 
   .about-grid {
@@ -1818,33 +2200,36 @@ h6 {
       100%;
 
     padding:
-      60px 12px;
+      70px 16px;
   }
 
   .about-content h2 {
     font-size:
-      34px;
+      38px;
   }
 
 
   /* =====================================================
-     KONTAKT – MOBIL
+     KONTAKT
      ===================================================== */
 
   .contact-section {
     min-height:
       0;
 
+    display:
+      flex;
+
+    flex-direction:
+      column;
+
     overflow:
       visible;
   }
 
-  .contact-section > .container {
-    width:
-      100%;
-
-    margin:
-      0;
+  .contact-background {
+    display:
+      none;
   }
 
   .contact-panel {
@@ -1854,50 +2239,55 @@ h6 {
     min-height:
       0;
 
+    padding:
+      70px 16px;
+
     display:
       block;
+
+    background:
+      var(--bg-light);
   }
 
   .contact-content {
-    width:
-      100%;
-
-    padding:
-      60px 12px;
+    max-width:
+      none;
   }
 
   .contact-content h2 {
     font-size:
-      34px;
+      38px;
   }
 
   .contact-intro {
     font-size:
-      19px;
+      21px;
+
+    margin-bottom:
+      40px;
   }
 
-  .contact-image {
-    display:
+  .contact-details {
+    max-width:
       none;
   }
-
 }
 
 
 /* =========================================================
-   EXTRA SMALL
+   SMALL MOBILE
    ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 540px) {
 
   .brand {
     width:
-      170px;
+      175px;
   }
 
   .main-nav {
     gap:
-      3px 10px;
+      3px 11px;
   }
 
   .nav-link {
@@ -1906,11 +2296,16 @@ h6 {
   }
 
   .header-contact {
-    font-size:
-      13px;
-
     padding:
-      4px 7px;
+      4px 8px;
+
+    font-size:
+      14px;
+  }
+
+  .header-contact span {
+    font-size:
+      16px;
   }
 
   .section-band {
@@ -1940,23 +2335,16 @@ h6 {
   }
 
   .reference-card {
-    flex:
-      0 0 auto;
-
-    width:
-      max-content;
-
-    max-width:
-      220px;
-
-    min-width:
-      110px;
+    flex-basis:
+      calc(
+        (100% - 8px) / 2
+      );
 
     min-height:
       85px;
 
     height:
-      auto;
+      85px;
 
     padding:
       7px 8px;
@@ -2030,7 +2418,7 @@ h6 {
 
   .contact-panel {
     padding:
-      0;
+      60px 12px;
   }
 
   .contact-content h2 {
@@ -2163,5 +2551,4 @@ h6 {
     --header-height:
       82px;
   }
-
 }
