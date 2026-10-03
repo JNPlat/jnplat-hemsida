@@ -25,25 +25,15 @@ document.addEventListener(
 
     const sections = [
 
-      document.querySelector(
-        "#hem"
-      ),
+      document.querySelector("#hem"),
 
-      document.querySelector(
-        "#tjanster"
-      ),
+      document.querySelector("#tjanster"),
 
-      document.querySelector(
-        "#aktuellt"
-      ),
+      document.querySelector("#aktuellt"),
 
-      document.querySelector(
-        "#om"
-      ),
+      document.querySelector("#om"),
 
-      document.querySelector(
-        "#kontakt"
-      )
+      document.querySelector("#kontakt")
 
     ].filter(Boolean);
 
@@ -72,9 +62,11 @@ document.addEventListener(
     /* =====================================================
        AKTIV SEKTION
        
-       Sektionen som passerat headerns underkant blir
-       aktiv direkt. Detta gör att långsam scrolling
-       fungerar även på mobil.
+       Vi använder sidans faktiska scrollposition
+       istället för IntersectionObserver.
+
+       Det gör att en klickad menyflik inte kan ligga kvar
+       som aktiv när man sedan scrollar vidare.
        ===================================================== */
 
     function updateActiveSection() {
@@ -90,8 +82,10 @@ document.addEventListener(
           : 0;
 
 
-      const activationPoint =
-        headerHeight + 12;
+      const scrollPosition =
+        window.scrollY +
+        headerHeight +
+        30;
 
 
       let activeSection =
@@ -107,20 +101,23 @@ document.addEventListener(
         const section =
           sections[i];
 
-        const rect =
-          section.getBoundingClientRect();
+
+        /*
+          getBoundingClientRect().top + scrollY
+          ger sektionens verkliga position i dokumentet.
+        */
+
+        const sectionTop =
+          section.getBoundingClientRect().top +
+          window.scrollY;
 
 
         if (
-          rect.top <= activationPoint
+          sectionTop <= scrollPosition
         ) {
 
           activeSection =
             section;
-
-        } else {
-
-          break;
 
         }
 
@@ -128,17 +125,22 @@ document.addEventListener(
 
 
       /*
-        När man är allra längst ner ska Kontakt
-        alltid vara aktiv.
+        Om man är längst ner på sidan ska Kontakt
+        vara aktiv.
       */
 
-      const bottomReached =
-        window.innerHeight +
-        window.scrollY >=
-        document.documentElement.scrollHeight - 5;
+      const documentHeight =
+        document.documentElement.scrollHeight;
+
+      const viewportBottom =
+        window.scrollY +
+        window.innerHeight;
 
 
-      if (bottomReached) {
+      if (
+        viewportBottom >=
+        documentHeight - 5
+      ) {
 
         const contact =
           document.querySelector(
@@ -146,7 +148,8 @@ document.addEventListener(
           );
 
         if (contact) {
-          activeSection = contact;
+          activeSection =
+            contact;
         }
 
       }
@@ -155,18 +158,18 @@ document.addEventListener(
       navLinks.forEach(
         (link) => {
 
-          const isActive =
+          const active =
             link.dataset.section ===
             activeSection.id;
 
 
           link.classList.toggle(
             "active",
-            isActive
+            active
           );
 
 
-          if (isActive) {
+          if (active) {
 
             link.setAttribute(
               "aria-current",
@@ -240,9 +243,47 @@ document.addEventListener(
             event.preventDefault();
 
 
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start"
+            /*
+              Ta bort aktiv markering direkt.
+              Scrollfunktionen tar sedan över och markerar
+              rätt sektion när den faktiskt når den.
+            */
+
+            navLinks.forEach(
+              (navLink) => {
+
+                navLink.classList.remove(
+                  "active"
+                );
+
+                navLink.removeAttribute(
+                  "aria-current"
+                );
+
+              }
+            );
+
+
+            const headerHeight =
+              header
+                ? header.getBoundingClientRect().height
+                : 0;
+
+
+            const targetTop =
+              target.getBoundingClientRect().top +
+              window.scrollY -
+              headerHeight;
+
+
+            window.scrollTo({
+              top:
+                Math.max(
+                  0,
+                  targetTop
+                ),
+              behavior:
+                "smooth"
             });
 
           }
@@ -361,7 +402,10 @@ document.addEventListener(
 
       const offset =
         currentReferenceIndex *
-        (cardWidth + gap);
+        (
+          cardWidth +
+          gap
+        );
 
 
       referenceTrack.style.transform =
