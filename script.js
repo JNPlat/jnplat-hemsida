@@ -2,10 +2,13 @@ document.addEventListener(
   "DOMContentLoaded",
   () => {
 
-
     /* =====================================================
        ELEMENT
        ===================================================== */
+
+    const header =
+      document.querySelector(".site-header");
+
 
     const brand =
       document.querySelector(".brand");
@@ -15,22 +18,35 @@ document.addEventListener(
       document.querySelectorAll(".nav-link");
 
 
-    const headerContact =
-      document.querySelector(".header-contact");
+    const sections =
+      [
+        document.querySelector("#hem"),
+        document.querySelector("#tjanster"),
+        document.querySelector("#aktuellt"),
+        document.querySelector("#om"),
+        document.querySelector("#kontakt")
+      ].filter(Boolean);
 
 
-    const sections = [
+    /* =====================================================
+       HEADER HEIGHT
+       ===================================================== */
 
-      document.querySelector("#hem"),
+    function updateHeaderHeight() {
 
-      document.querySelector("#tjanster"),
+      if (!header) {
+        return;
+      }
 
-      document.querySelector("#aktuellt"),
+      const height =
+        header.getBoundingClientRect().height;
 
-      document.querySelector("#kontakt")
+      document.documentElement.style.setProperty(
+        "--header-height",
+        `${height}px`
+      );
 
-    ].filter(Boolean);
-
+    }
 
 
     /* =====================================================
@@ -38,7 +54,6 @@ document.addEventListener(
        ===================================================== */
 
     function setActiveSection(sectionId) {
-
 
       navLinks.forEach((link) => {
 
@@ -69,18 +84,7 @@ document.addEventListener(
 
       });
 
-
-      if (headerContact) {
-
-        headerContact.classList.toggle(
-          "active",
-          sectionId === "kontakt"
-        );
-
-      }
-
     }
-
 
 
     /* =====================================================
@@ -89,11 +93,15 @@ document.addEventListener(
 
     function updateActiveSection() {
 
+      if (!sections.length) {
+        return;
+      }
+
 
       const headerHeight =
-        window.innerWidth <= 480
-          ? 76
-          : 82;
+        header
+          ? header.getBoundingClientRect().height
+          : 0;
 
 
       const activationPoint =
@@ -149,14 +157,18 @@ document.addEventListener(
 
       if (activeSection) {
 
+        const navSection =
+          activeSection.dataset.navSection ||
+          activeSection.id;
+
+
         setActiveSection(
-          activeSection.id
+          navSection
         );
 
       }
 
     }
-
 
 
     /* =====================================================
@@ -186,7 +198,6 @@ document.addEventListener(
     }
 
 
-
     /* =====================================================
        NAVIGATION
        ===================================================== */
@@ -196,7 +207,6 @@ document.addEventListener(
       link.addEventListener(
         "click",
         (event) => {
-
 
           const targetId =
             link.getAttribute("href");
@@ -209,9 +219,7 @@ document.addEventListener(
 
 
           if (!target) {
-
             return;
-
           }
 
 
@@ -232,47 +240,243 @@ document.addEventListener(
     });
 
 
-
     /* =====================================================
-       KONTAKTA OSS
+       REFERENSER
        ===================================================== */
 
-    if (headerContact) {
+    const referenceTrack =
+      document.querySelector(
+        ".references-track"
+      );
 
-      headerContact.addEventListener(
+
+    const referencePrev =
+      document.querySelector(
+        ".reference-prev"
+      );
+
+
+    const referenceNext =
+      document.querySelector(
+        ".reference-next"
+      );
+
+
+    let referencePages = [];
+
+    let currentReferencePage = 0;
+
+
+    function buildReferencePages() {
+
+      if (!referenceTrack) {
+        return;
+      }
+
+
+      const cards =
+        Array.from(
+          referenceTrack.querySelectorAll(
+            ".reference-card"
+          )
+        );
+
+
+      referenceTrack.innerHTML = "";
+
+      referencePages = [];
+
+
+      /*
+        Fem referenser per sida.
+
+        1–5 referenser:
+        inga pilar.
+
+        6–10 referenser:
+        två sidor + pilar.
+
+        11–15:
+        tre sidor + pilar.
+
+        osv.
+      */
+
+      for (
+        let i = 0;
+        i < cards.length;
+        i += 5
+      ) {
+
+        const page =
+          document.createElement(
+            "div"
+          );
+
+
+        page.className =
+          "references-page";
+
+
+        cards
+          .slice(i, i + 5)
+          .forEach((card) => {
+
+            page.appendChild(card);
+
+          });
+
+
+        referenceTrack.appendChild(
+          page
+        );
+
+
+        referencePages.push(
+          page
+        );
+
+      }
+
+
+      currentReferencePage = 0;
+
+
+      updateReferenceCarousel();
+
+    }
+
+
+    function updateReferenceCarousel() {
+
+      if (!referencePages.length) {
+
+        if (referencePrev) {
+
+          referencePrev.classList.remove(
+            "visible"
+          );
+
+        }
+
+
+        if (referenceNext) {
+
+          referenceNext.classList.remove(
+            "visible"
+          );
+
+        }
+
+
+        return;
+
+      }
+
+
+      referencePages.forEach(
+        (page, index) => {
+
+          page.classList.toggle(
+            "active",
+            index === currentReferencePage
+          );
+
+        }
+      );
+
+
+      const hasMultiplePages =
+        referencePages.length > 1;
+
+
+      if (referencePrev) {
+
+        referencePrev.classList.toggle(
+          "visible",
+          hasMultiplePages
+        );
+
+      }
+
+
+      if (referenceNext) {
+
+        referenceNext.classList.toggle(
+          "visible",
+          hasMultiplePages
+        );
+
+      }
+
+    }
+
+
+    if (referencePrev) {
+
+      referencePrev.addEventListener(
         "click",
-        (event) => {
+        () => {
 
-
-          const target =
-            document.querySelector(
-              "#kontakt"
-            );
-
-
-          if (!target) {
-
+          if (!referencePages.length) {
             return;
-
           }
 
 
-          event.preventDefault();
+          currentReferencePage =
+            (
+              currentReferencePage -
+              1 +
+              referencePages.length
+            ) %
+            referencePages.length;
 
 
-          target.scrollIntoView({
-
-            behavior: "smooth",
-
-            block: "start"
-
-          });
+          updateReferenceCarousel();
 
         }
       );
 
     }
 
+
+    if (referenceNext) {
+
+      referenceNext.addEventListener(
+        "click",
+        () => {
+
+          if (!referencePages.length) {
+            return;
+          }
+
+
+          currentReferencePage =
+            (
+              currentReferencePage +
+              1
+            ) %
+            referencePages.length;
+
+
+          updateReferenceCarousel();
+
+        }
+      );
+
+    }
+
+
+    buildReferencePages();
+
+
+    /* =====================================================
+       START
+       ===================================================== */
+
+    updateHeaderHeight();
+
+    updateActiveSection();
 
 
     /* =====================================================
@@ -288,23 +492,20 @@ document.addEventListener(
     );
 
 
-
     /* =====================================================
        RESIZE
        ===================================================== */
 
     window.addEventListener(
       "resize",
-      updateActiveSection
+      () => {
+
+        updateHeaderHeight();
+
+        updateActiveSection();
+
+      }
     );
-
-
-
-    /* =====================================================
-       START
-       ===================================================== */
-
-    updateActiveSection();
 
   }
 );
