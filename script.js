@@ -160,10 +160,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const hasOverflow = maxScroll > 1;
     const card = referenceCards[currentReferenceIndex];
-    const offset = Math.min(
-      Math.max(0, card?.offsetLeft ?? 0),
-      maxScroll
-    );
+    let offset = Math.max(0, card?.offsetLeft ?? 0);
+
+    // When several cards are already visible at the far right, their
+    // offset is clamped to the same maxScroll position. Treat that
+    // position as the end of the carousel so the next click wraps
+    // directly back to the first card instead of doing several
+    // apparently inactive clicks.
+    if (hasOverflow && offset >= maxScroll - 1) {
+      currentReferenceIndex = referenceCards.length - 1;
+      offset = maxScroll;
+    } else {
+      offset = Math.min(offset, maxScroll);
+    }
 
     referenceTrack.style.transform = `translateX(-${offset}px)`;
     setReferenceArrowState(referencePrev, hasOverflow);
