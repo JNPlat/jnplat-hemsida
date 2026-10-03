@@ -302,6 +302,11 @@ document.addEventListener(
         ".references-track"
       );
 
+    const referenceViewport =
+      document.querySelector(
+        ".references-viewport"
+      );
+
     const referencePrev =
       document.querySelector(
         ".reference-prev"
@@ -318,37 +323,18 @@ document.addEventListener(
     let currentReferenceIndex = 0;
 
 
-    function getVisibleReferenceCount() {
-
-      if (
-        window.innerWidth <= 800
-      ) {
-
-        return 2;
-
-      }
-
-
-      if (
-        window.innerWidth <= 1150
-      ) {
-
-        return 4;
-
-      }
-
-
-      return 5;
-
-    }
-
-
-    function updateReferenceCarousel() {
+    /*
+      Referenskorten har en fast höjd.
+      Grundbredden kommer från CSS och motsvarar den
+      storlek korten har idag. Om texten inte får plats
+      på höjden ökas bara kortets bredd tills innehållet
+      ryms. Höjden ändras aldrig.
+    */
+    function fitReferenceCards() {
 
       if (!referenceTrack) {
         return;
       }
-
 
       referenceCards =
         Array.from(
@@ -357,68 +343,137 @@ document.addEventListener(
           )
         );
 
-
-      if (
-        !referenceCards.length
-      ) {
-
+      if (!referenceCards.length) {
         return;
-
       }
 
+      referenceCards.forEach((card) => {
 
-      const visible =
-        getVisibleReferenceCount();
+        /* Börja alltid om från CSS:ens normala bredd. */
+        card.style.flexBasis = "";
+        card.style.width = "";
+
+        const baseWidth =
+          card.getBoundingClientRect().width;
+
+        if (!baseWidth) {
+          return;
+        }
+
+        /*
+          Om texten ryms behövs ingen extra bredd.
+          Om den inte ryms söker vi fram den minsta
+          bredd som gör att hela innehållet får plats.
+        */
+        if (card.scrollHeight <= card.clientHeight + 1) {
+          return;
+        }
+
+        let low = baseWidth;
+        let high = baseWidth * 2;
+
+        card.style.flexBasis = `${high}px`;
+        card.style.width = `${high}px`;
+
+        while (
+          card.scrollHeight > card.clientHeight + 1 &&
+          high < 4000
+        ) {
+          low = high;
+          high *= 1.5;
+
+          card.style.flexBasis = `${high}px`;
+          card.style.width = `${high}px`;
+        }
+
+        if (card.scrollHeight <= card.clientHeight + 1) {
+
+          /* Binärsökning ger så liten extra bredd som möjligt. */
+          let left = low;
+          let right = high;
+
+          for (let i = 0; i < 12; i++) {
+
+            const middle =
+              (left + right) / 2;
+
+            card.style.flexBasis = `${middle}px`;
+            card.style.width = `${middle}px`;
+
+            if (
+              card.scrollHeight <=
+              card.clientHeight + 1
+            ) {
+              right = middle;
+            } else {
+              left = middle;
+            }
+          }
+
+          card.style.flexBasis = `${right}px`;
+          card.style.width = `${right}px`;
+        }
+      });
+    }
 
 
-      const maxIndex =
+    function updateReferenceCarousel() {
+
+      if (
+        !referenceTrack ||
+        !referenceViewport
+      ) {
+        return;
+      }
+
+      fitReferenceCards();
+
+      referenceCards =
+        Array.from(
+          referenceTrack.querySelectorAll(
+            ".reference-card"
+          )
+        );
+
+      if (!referenceCards.length) {
+        return;
+      }
+
+      const maxScroll =
         Math.max(
           0,
-          referenceCards.length -
-          visible
+          referenceTrack.scrollWidth -
+          referenceViewport.clientWidth
         );
 
+      const hasOverflow =
+        maxScroll > 1;
 
-      currentReferenceIndex =
+      if (
+        currentReferenceIndex >=
+        referenceCards.length
+      ) {
+        currentReferenceIndex = 0;
+      }
+
+      const card =
+        referenceCards[currentReferenceIndex];
+
+      let offset =
+        card
+          ? card.offsetLeft
+          : 0;
+
+      offset =
         Math.min(
-          currentReferenceIndex,
-          maxIndex
+          Math.max(0, offset),
+          maxScroll
         );
-
-
-      const cardWidth =
-        referenceCards[0]
-          .getBoundingClientRect()
-          .width;
-
-
-      const gap =
-        parseFloat(
-          getComputedStyle(
-            referenceTrack
-          ).gap
-        ) || 0;
-
-
-      const offset =
-        currentReferenceIndex *
-        (
-          cardWidth +
-          gap
-        );
-
 
       referenceTrack.style.transform =
         `translateX(-${offset}px)`;
 
-
-      const hasOverflow =
-        referenceCards.length >
-        visible;
-
-
       if (referencePrev) {
-
         referencePrev.style.visibility =
           hasOverflow
             ? "visible"
@@ -433,12 +488,9 @@ document.addEventListener(
           hasOverflow
             ? "auto"
             : "none";
-
       }
 
-
       if (referenceNext) {
-
         referenceNext.style.visibility =
           hasOverflow
             ? "visible"
@@ -453,9 +505,7 @@ document.addEventListener(
           hasOverflow
             ? "auto"
             : "none";
-
       }
-
     }
 
 
@@ -469,28 +519,14 @@ document.addEventListener(
         "click",
         () => {
 
-          const visible =
-            getVisibleReferenceCount();
-
-
-          const maxIndex =
-            Math.max(
-              0,
-              referenceCards.length -
-              visible
-            );
-
-
-          if (!maxIndex) {
+          if (!referenceCards.length) {
             return;
           }
 
-
           currentReferenceIndex =
             currentReferenceIndex <= 0
-              ? maxIndex
+              ? referenceCards.length - 1
               : currentReferenceIndex - 1;
-
 
           updateReferenceCarousel();
 
@@ -510,29 +546,15 @@ document.addEventListener(
         "click",
         () => {
 
-          const visible =
-            getVisibleReferenceCount();
-
-
-          const maxIndex =
-            Math.max(
-              0,
-              referenceCards.length -
-              visible
-            );
-
-
-          if (!maxIndex) {
+          if (!referenceCards.length) {
             return;
           }
 
-
           currentReferenceIndex =
             currentReferenceIndex >=
-            maxIndex
+            referenceCards.length - 1
               ? 0
               : currentReferenceIndex + 1;
-
 
           updateReferenceCarousel();
 
