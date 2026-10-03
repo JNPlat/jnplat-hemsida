@@ -1139,11 +1139,6 @@ section {
    ========================================================= */
 
 .about-section {
-  height:
-    calc(
-      100vh - var(--header-height)
-    );
-
   min-height:
     calc(
       100vh - var(--header-height)
@@ -1157,15 +1152,16 @@ section {
   display:
     flex;
 
-  flex-direction:
-    column;
-
   align-items:
     stretch;
 
   overflow:
     hidden;
 
+  /*
+     Diskret övergång från Aktuellt.
+     Ändrar inte sektionens höjd.
+  */
   border-top:
     1px solid
     rgba(
@@ -1179,8 +1175,6 @@ section {
 .about-section > .container {
   width: 100vw;
 
-  height: 100%;
-
   max-width: none;
 
   margin:
@@ -1188,9 +1182,6 @@ section {
     calc(
       (100% - 100vw) / 2
     );
-
-  flex:
-    1 1 auto;
 
   display:
     flex;
@@ -1202,12 +1193,10 @@ section {
 .about-grid {
   width: 100%;
 
-  height: 100%;
-
-  min-height: 0;
-
-  flex:
-    1 1 auto;
+  min-height:
+    calc(
+      100vh - var(--header-height)
+    );
 
   display:
     grid;
@@ -1223,7 +1212,6 @@ section {
 
 .about-image {
   width: 100%;
-
   height: 100%;
 
   min-height: 0;
@@ -1236,7 +1224,6 @@ section {
 
 .about-image img {
   width: 100%;
-
   height: 100%;
 
   max-width: none;
@@ -1250,10 +1237,6 @@ section {
 
 .about-content {
   width: 100%;
-
-  height: 100%;
-
-  min-height: 0;
 
   padding:
     60px
@@ -2124,13 +2107,10 @@ section {
 
 
   /* =====================================================
-     OM J. NORBERG – MOBIL
+     OM J. NORBERG
      ===================================================== */
 
   .about-section {
-    height:
-      auto;
-
     min-height:
       0;
 
@@ -2151,14 +2131,8 @@ section {
     width:
       100%;
 
-    height:
-      auto;
-
     margin:
       0;
-
-    flex:
-      0 0 auto;
 
     display:
       block;
@@ -2168,14 +2142,8 @@ section {
     width:
       100%;
 
-    height:
-      auto;
-
     min-height:
       0;
-
-    flex:
-      0 0 auto;
 
     display:
       flex;
@@ -2192,7 +2160,7 @@ section {
       auto;
 
     aspect-ratio:
-      auto;
+      16 / 10;
   }
 
   .about-image img {
@@ -2200,27 +2168,15 @@ section {
       100%;
 
     height:
-      auto;
-
-    max-width:
       100%;
 
     object-fit:
-      contain;
-
-    object-position:
-      center;
+      cover;
   }
 
   .about-content {
     width:
       100%;
-
-    height:
-      auto;
-
-    min-height:
-      0;
 
     padding:
       70px 16px;

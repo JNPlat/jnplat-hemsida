@@ -2,6 +2,11 @@ document.addEventListener(
   "DOMContentLoaded",
   () => {
 
+
+    /* =====================================================
+       ELEMENT
+       ===================================================== */
+
     const header =
       document.querySelector(
         ".site-header"
@@ -56,6 +61,12 @@ document.addEventListener(
 
     /* =====================================================
        AKTIV SEKTION
+       
+       Vi använder sidans faktiska scrollposition
+       istället för IntersectionObserver.
+
+       Det gör att en klickad menyflik inte kan ligga kvar
+       som aktiv när man sedan scrollar vidare.
        ===================================================== */
 
     function updateActiveSection() {
@@ -91,6 +102,11 @@ document.addEventListener(
           sections[i];
 
 
+        /*
+          getBoundingClientRect().top + scrollY
+          ger sektionens verkliga position i dokumentet.
+        */
+
         const sectionTop =
           section.getBoundingClientRect().top +
           window.scrollY;
@@ -107,6 +123,11 @@ document.addEventListener(
 
       }
 
+
+      /*
+        Om man är längst ner på sidan ska Kontakt
+        vara aktiv.
+      */
 
       const documentHeight =
         document.documentElement.scrollHeight;
@@ -222,6 +243,12 @@ document.addEventListener(
             event.preventDefault();
 
 
+            /*
+              Ta bort aktiv markering direkt.
+              Scrollfunktionen tar sedan över och markerar
+              rätt sektion när den faktiskt når den.
+            */
+
             navLinks.forEach(
               (navLink) => {
 
@@ -268,22 +295,11 @@ document.addEventListener(
 
     /* =====================================================
        REFERENSCAROUSEL
-
-       Korten har inte längre en gemensam bredd.
-
-       JavaScript räknar därför på varje korts faktiska
-       bredd och flyttar karusellen ett faktiskt kort
-       i taget.
        ===================================================== */
 
     const referenceTrack =
       document.querySelector(
         ".references-track"
-      );
-
-    const referenceViewport =
-      document.querySelector(
-        ".references-viewport"
       );
 
     const referencePrev =
@@ -302,77 +318,35 @@ document.addEventListener(
     let currentReferenceIndex = 0;
 
 
-    function getReferenceMaxIndex() {
+    function getVisibleReferenceCount() {
 
       if (
-        !referenceTrack ||
-        !referenceViewport
+        window.innerWidth <= 800
       ) {
 
-        return 0;
+        return 2;
 
       }
 
 
-      referenceCards =
-        Array.from(
-          referenceTrack.querySelectorAll(
-            ".reference-card"
-          )
-        );
+      if (
+        window.innerWidth <= 1150
+      ) {
 
+        return 4;
 
-      if (!referenceCards.length) {
-        return 0;
       }
 
 
-      const viewportWidth =
-        referenceViewport.clientWidth;
-
-
-      const maxScroll =
-        Math.max(
-          0,
-          referenceTrack.scrollWidth -
-          viewportWidth
-        );
-
-
-      let maxIndex = 0;
-
-
-      referenceCards.forEach(
-        (card, index) => {
-
-          if (
-            card.offsetLeft <=
-            maxScroll + 1
-          ) {
-
-            maxIndex =
-              index;
-
-          }
-
-        }
-      );
-
-
-      return maxIndex;
+      return 5;
 
     }
 
 
     function updateReferenceCarousel() {
 
-      if (
-        !referenceTrack ||
-        !referenceViewport
-      ) {
-
+      if (!referenceTrack) {
         return;
-
       }
 
 
@@ -384,13 +358,25 @@ document.addEventListener(
         );
 
 
-      if (!referenceCards.length) {
+      if (
+        !referenceCards.length
+      ) {
+
         return;
+
       }
 
 
+      const visible =
+        getVisibleReferenceCount();
+
+
       const maxIndex =
-        getReferenceMaxIndex();
+        Math.max(
+          0,
+          referenceCards.length -
+          visible
+        );
 
 
       currentReferenceIndex =
@@ -400,16 +386,26 @@ document.addEventListener(
         );
 
 
-      const targetCard =
-        referenceCards[
-          currentReferenceIndex
-        ];
+      const cardWidth =
+        referenceCards[0]
+          .getBoundingClientRect()
+          .width;
+
+
+      const gap =
+        parseFloat(
+          getComputedStyle(
+            referenceTrack
+          ).gap
+        ) || 0;
 
 
       const offset =
-        targetCard
-          ? targetCard.offsetLeft
-          : 0;
+        currentReferenceIndex *
+        (
+          cardWidth +
+          gap
+        );
 
 
       referenceTrack.style.transform =
@@ -417,9 +413,8 @@ document.addEventListener(
 
 
       const hasOverflow =
-        referenceTrack.scrollWidth >
-        referenceViewport.clientWidth +
-        1;
+        referenceCards.length >
+        visible;
 
 
       if (referencePrev) {
@@ -474,8 +469,16 @@ document.addEventListener(
         "click",
         () => {
 
+          const visible =
+            getVisibleReferenceCount();
+
+
           const maxIndex =
-            getReferenceMaxIndex();
+            Math.max(
+              0,
+              referenceCards.length -
+              visible
+            );
 
 
           if (!maxIndex) {
@@ -507,8 +510,16 @@ document.addEventListener(
         "click",
         () => {
 
+          const visible =
+            getVisibleReferenceCount();
+
+
           const maxIndex =
-            getReferenceMaxIndex();
+            Math.max(
+              0,
+              referenceCards.length -
+              visible
+            );
 
 
           if (!maxIndex) {
@@ -517,78 +528,13 @@ document.addEventListener(
 
 
           currentReferenceIndex =
-            currentReferenceIndex >= maxIndex
+            currentReferenceIndex >=
+            maxIndex
               ? 0
               : currentReferenceIndex + 1;
 
 
           updateReferenceCarousel();
-
-        }
-      );
-
-    }
-
-
-    /* =====================================================
-       TJÄNSTEBILDER
-
-       CSS avgör när Tjänster har gått över till en
-       kolumn. Bildkällan följer sedan den faktiska
-       layouten.
-       ===================================================== */
-
-    const servicesGrid =
-      document.querySelector(
-        ".services-grid"
-      );
-
-
-    function updateServiceImages() {
-
-      if (!servicesGrid) {
-        return;
-      }
-
-
-      const columns =
-        getComputedStyle(
-          servicesGrid
-        )
-          .gridTemplateColumns
-          .trim()
-          .split(/\s+/)
-          .filter(Boolean);
-
-
-      const mobileLayout =
-        columns.length === 1;
-
-
-      const servicePictures =
-        servicesGrid.querySelectorAll(
-          ".service-card picture"
-        );
-
-
-      servicePictures.forEach(
-        (picture) => {
-
-          const source =
-            picture.querySelector(
-              "source"
-            );
-
-
-          if (!source) {
-            return;
-          }
-
-
-          source.media =
-            mobileLayout
-              ? "all"
-              : "not all";
 
         }
       );
@@ -603,8 +549,6 @@ document.addEventListener(
     updateHeaderHeight();
 
     updateActiveSection();
-
-    updateServiceImages();
 
     updateReferenceCarousel();
 
@@ -657,8 +601,6 @@ document.addEventListener(
 
         updateActiveSection();
 
-        updateServiceImages();
-
         updateReferenceCarousel();
 
       }
@@ -676,8 +618,6 @@ document.addEventListener(
         updateHeaderHeight();
 
         updateActiveSection();
-
-        updateServiceImages();
 
         updateReferenceCarousel();
 
