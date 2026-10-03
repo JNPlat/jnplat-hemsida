@@ -4,17 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>J. Norberg Plåtslageri AB | Plåtslageri & Restaurering i Stockholm</title>
+  <title>J. Norberg Plåtslageri AB | Plåtslageri i Stockholm</title>
 
   <meta
     name="description"
-    content="J. Norberg Plåtslageri AB – byggnadsplåtslageri, kopparslageri, restaurering och specialprojekt i Stockholm."
+    content="J. Norberg Plåtslageri AB – traditionellt byggnadsplåtslageri, kopparslageri, restaurering och specialprojekt i Stockholm."
   >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap"
     rel="stylesheet"
   >
 
@@ -23,21 +24,22 @@
 
 <body>
 
-  <!-- =========================
+  <!-- =====================================================
        HEADER
-  ========================== -->
+       ===================================================== -->
 
   <header class="site-header">
+
     <div class="container nav-wrap">
 
-      <a href="#hem" class="brand">
+      <a href="#hem" class="brand" aria-label="J. Norberg Plåtslageri AB">
         <img
           src="logo/J.NORBERG.svg"
           alt="J. Norberg Plåtslageri AB"
         >
       </a>
 
-      <nav class="main-nav">
+      <nav class="main-nav" aria-label="Huvudnavigation">
 
         <a
           href="#hem"
@@ -83,152 +85,302 @@
       </nav>
 
     </div>
+
   </header>
 
 
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
   <main>
 
-    <!-- =========================
-         HERO / HEM
-    ========================== -->
 
-    <section class="hero-section" id="hem">
+    <!-- ===================================================
+         HEM
+         =================================================== -->
+
+    <section
+      class="hero-section"
+      id="hem"
+    >
 
       <div class="container hero-grid">
 
         <div class="hero-content">
 
-          <h1>Kommande 2027.</h1>
+          <h1>
+            Kommande 2027.
+          </h1>
 
           <p class="hero-text">
-            När du anlitar J. Norberg Plåtslageri AB har du direkt kontakt
-            med den som utför arbetet – från offert till faktura. Det innebär
-            att kunskap, erfarenhet och känsla för hantverket följer med
-            genom hela projektet, utan onödiga mellanhänder eller
-            informationsvägar där missförstånd kan uppstå.
+            När du anlitar J. Norberg Plåtslageri AB har du direkt kontakt med den som utför arbetet – från offert till faktura. Det innebär att kunskap, erfarenhet och känsla för hantverket följer med genom hela projektet, utan onödiga mellanhänder eller informationsvägar där missförstånd kan uppstå.
           </p>
 
           <p class="hero-text">
-            Varje projekt genomförs med resultatet som högsta prioritet.
-            Genom stor noggrannhet, känsla för de små detaljerna och respekt
-            för det traditionella hantverket utför jag varje arbete med
-            yrkesstolthet och höga krav på kvalitet.
+            Varje projekt genomförs med resultatet som högsta prioritet. Genom stor noggrannhet, känsla för de små detaljerna och respekt för det traditionella hantverket utför jag varje arbete med yrkesstolthet och höga krav på kvalitet.
           </p>
 
         </div>
 
+
         <div class="hero-image">
+
           <img
             src="images/Hero bild.JPG"
             alt="Plåtslageriarbete på tak"
           >
+
         </div>
 
       </div>
 
 
-      <!-- =========================
-           REFERENSER
-      ========================== -->
+      <!-- REFERENSER – DEL AV HERO -->
 
       <div class="section-band">
 
         <div class="references-carousel">
 
           <button
-            class="carousel-arrow prev"
+            class="reference-arrow reference-prev"
             type="button"
             aria-label="Föregående referens"
           >
             ←
           </button>
 
-          <div class="references-track">
 
-            <article class="reference-card">
-              <h3>Anders Nilsson</h3>
-              <p>
-                Ett mycket noggrant arbete med stor känsla för detaljer
-                och det traditionella hantverket.
-              </p>
-            </article>
+          <div class="references-viewport">
 
-            <article class="reference-card">
-              <h3>Maria Lindberg</h3>
-              <p>
-                John har en fin förståelse för äldre byggnader och hur
-                detaljer ska bevaras.
-              </p>
-            </article>
+            <div class="references-track">
 
-            <article class="reference-card">
-              <h3>Erik Johansson</h3>
-              <p>
-                Professionellt utfört från början till slut, med stort
-                fokus på kvalitet.
-              </p>
-            </article>
+              <article class="reference-card">
 
-            <article class="reference-card">
-              <h3>Peter Berg</h3>
-              <p>
-                Ett hantverk med både precision och förståelse för
-                helheten i projektet.
-              </p>
-            </article>
+                <span class="reference-label">
+                  Fiktiv referens
+                </span>
 
-            <article class="reference-card">
-              <h3>Johan Svensson</h3>
-              <p>
-                Omsorgsfullt arbete där material, proportioner och
-                detaljer samspelar.
-              </p>
-            </article>
+                <p class="reference-name">
+                  Anders Berg
+                </p>
 
-            <article class="reference-card">
-              <h3>Karin Andersson</h3>
-              <p>
-                Ett väl genomfört projekt där kvalitet och detaljer
-                stod i centrum.
-              </p>
-            </article>
+                <p class="reference-role">
+                  Arbetsledare, Berg & Co.
+                </p>
 
-            <article class="reference-card">
-              <h3>Erik Berg</h3>
-              <p>
-                Stor yrkesskicklighet och ett resultat som håller
-                hög nivå genom hela arbetet.
-              </p>
-            </article>
+                <p class="reference-quote">
+                  Ett mycket noggrant arbete med stor känsla
+                  för detaljer och det traditionella hantverket.
+                </p>
 
-            <article class="reference-card">
-              <h3>Anna Karlsson</h3>
-              <p>
-                Noggrant, professionellt och med stor respekt för
-                byggnadens karaktär.
-              </p>
-            </article>
+              </article>
 
-            <article class="reference-card">
-              <h3>Peter Johansson</h3>
-              <p>
-                Ett gediget hantverk med mycket fin känsla för
-                både material och utförande.
-              </p>
-            </article>
 
-            <article class="reference-card">
-              <h3>Maria Svensson</h3>
-              <p>
-                Mycket fint utfört arbete med stor noggrannhet
-                och känsla för detaljer.
-              </p>
-            </article>
+              <article class="reference-card">
+
+                <span class="reference-label">
+                  Fiktiv referens
+                </span>
+
+                <p class="reference-name">
+                  Maria Lind
+                </p>
+
+                <p class="reference-role">
+                  Byggnadsantikvarie
+                </p>
+
+                <p class="reference-quote">
+                  John har en fin förståelse för äldre
+                  byggnader och hur detaljer ska bevaras.
+                </p>
+
+              </article>
+
+
+              <article class="reference-card">
+
+                <span class="reference-label">
+                  Fiktiv referens
+                </span>
+
+                <p class="reference-name">
+                  Erik Holm
+                </p>
+
+                <p class="reference-role">
+                  Plåtslagare
+                </p>
+
+                <p class="reference-quote">
+                  Professionellt utfört från början till slut,
+                  med stort fokus på kvalitet.
+                </p>
+
+              </article>
+
+
+              <article class="reference-card">
+
+                <span class="reference-label">
+                  Fiktiv referens
+                </span>
+
+                <p class="reference-name">
+                  Peter Sjöberg
+                </p>
+
+                <p class="reference-role">
+                  Projektledare
+                </p>
+
+                <p class="reference-quote">
+                  Ett hantverk med både precision och
+                  förståelse för helheten i projektet.
+                </p>
+
+              </article>
+
+
+              <article class="reference-card">
+
+                <span class="reference-label">
+                  Fiktiv referens
+                </span>
+
+                <p class="reference-name">
+                  Anna Ek
+                </p>
+
+                <p class="reference-role">
+                  Arkitekt
+                </p>
+
+                <p class="reference-quote">
+                  Omsorgsfullt arbete där material,
+                  proportioner och detaljer samspelar.
+                </p>
+
+              </article>
+
+
+              <article class="reference-card">
+
+                <span class="reference-label">
+                  Fiktiv referens
+                </span>
+
+                <p class="reference-name">
+                  Johan Falk
+                </p>
+
+                <p class="reference-role">
+                  Plåtslagare
+                </p>
+
+                <p class="reference-quote">
+                  Noggrann, lösningsorienterad och med
+                  tydlig respekt för yrkets traditioner.
+                </p>
+
+              </article>
+
+
+              <article class="reference-card">
+
+                <span class="reference-label">
+                  Fiktiv referens
+                </span>
+
+                <p class="reference-name">
+                  Lars Nyström
+                </p>
+
+                <p class="reference-role">
+                  Entreprenör
+                </p>
+
+                <p class="reference-quote">
+                  Ett tryggt genomförande med hög kvalitet
+                  och god känsla för byggnadens karaktär.
+                </p>
+
+              </article>
+
+
+              <article class="reference-card">
+
+                <span class="reference-label">
+                  Fiktiv referens
+                </span>
+
+                <p class="reference-name">
+                  Karin West
+                </p>
+
+                <p class="reference-role">
+                  Byggnadsantikvarie
+                </p>
+
+                <p class="reference-quote">
+                  Ett respektfullt förhållningssätt till
+                  historiska material och byggnadsdetaljer.
+                </p>
+
+              </article>
+
+
+              <article class="reference-card">
+
+                <span class="reference-label">
+                  Fiktiv referens
+                </span>
+
+                <p class="reference-name">
+                  Magnus Dahl
+                </p>
+
+                <p class="reference-role">
+                  Arbetsledare
+                </p>
+
+                <p class="reference-quote">
+                  Väldigt noggrant utfört och alltid med
+                  fokus på slutresultatet.
+                </p>
+
+              </article>
+
+
+              <article class="reference-card">
+
+                <span class="reference-label">
+                  Fiktiv referens
+                </span>
+
+                <p class="reference-name">
+                  Elin Fors
+                </p>
+
+                <p class="reference-role">
+                  Arkitekt
+                </p>
+
+                <p class="reference-quote">
+                  Ett gediget hantverk där även de små
+                  detaljerna får den uppmärksamhet de kräver.
+                </p>
+
+              </article>
+
+            </div>
 
           </div>
 
+
           <button
-            class="carousel-arrow next"
+            class="reference-arrow reference-next"
             type="button"
             aria-label="Nästa referens"
           >
@@ -242,171 +394,171 @@
     </section>
 
 
-    <!-- =========================
+
+    <!-- ===================================================
          TJÄNSTER
-    ========================== -->
+         =================================================== -->
 
-    <section class="services-section" id="tjanster">
+    <section
+      class="services-section"
+      id="tjanster"
+    >
 
-      <div class="services-grid">
+      <div class="container">
 
-        <!-- BYGGNADSPLÅTSLAGERI -->
+        <div class="services-grid">
 
-        <article class="service-card">
 
-          <div class="service-image">
+          <a
+            href="#"
+            class="service-card"
+          >
 
-            <picture>
-              <source
-                media="(max-width: 700px)"
-                srcset="images/Byggnadsplåtslageri-mobil.png"
-              >
+            <div class="service-image">
 
               <img
-                src="images/Byggnadsplåtslageri-desktop.png"
+                src="images/Byggnadsplåtslageri.png"
                 alt="Byggnadsplåtslageri"
-                loading="lazy"
               >
-            </picture>
 
-          </div>
+            </div>
 
-          <div class="service-info">
+            <div class="service-info">
 
-            <h3>Byggnadsplåtslageri</h3>
+              <h3>
+                Byggnadsplåtslageri
+              </h3>
 
-            <p>
-              Traditionellt byggnadsplåtslageri med fokus på noggrant
-              utförande, hållbarhet och detaljer som håller över tid.
-            </p>
+              <p>
+                Traditionellt byggnadsplåtslageri
+                med fokus på noggrant utförande,
+                hållbarhet och detaljer.
+              </p>
 
-          </div>
+            </div>
 
-        </article>
+          </a>
 
 
-        <!-- KOPPARSLAGERI -->
+          <a
+            href="#"
+            class="service-card"
+          >
 
-        <article class="service-card">
-
-          <div class="service-image">
-
-            <picture>
-              <source
-                media="(max-width: 700px)"
-                srcset="images/Kopparslageri-mobil.png"
-              >
+            <div class="service-image">
 
               <img
-                src="images/Kopparslageri-desktop.png"
+                src="images/Kopparslageri.png"
                 alt="Kopparslageri"
-                loading="lazy"
               >
-            </picture>
 
-          </div>
+            </div>
 
-          <div class="service-info">
+            <div class="service-info">
 
-            <h3>Kopparslageri</h3>
+              <h3>
+                Kopparslageri
+              </h3>
 
-            <p>
-              Tillverkning och bearbetning av koppar för tak, fasader
-              och arkitektoniska detaljer.
-            </p>
+              <p>
+                Tillverkning och bearbetning av koppar
+                för tak, fasader och arkitektoniska
+                detaljer.
+              </p>
 
-          </div>
+            </div>
 
-        </article>
+          </a>
 
 
-        <!-- RESTAURERING -->
+          <a
+            href="#"
+            class="service-card"
+          >
 
-        <article class="service-card">
-
-          <div class="service-image">
-
-            <picture>
+            <div class="service-image">
 
               <img
                 src="images/Restaurering.png"
-                alt="Restaurering av äldre byggnadsdetaljer"
-                loading="lazy"
+                alt="Restaurering"
               >
 
-            </picture>
+            </div>
 
-          </div>
+            <div class="service-info">
 
-          <div class="service-info">
+              <h3>
+                Restaurering
+              </h3>
 
-            <h3>Restaurering</h3>
+              <p>
+                Restaurering av äldre och
+                kulturhistoriska byggnader med
+                respekt för originalets uttryck.
+              </p>
 
-            <p>
-              Restaurering av äldre och kulturhistoriska byggnader med
-              respekt för originalutförande, material och hantverk.
-            </p>
+            </div>
 
-          </div>
-
-        </article>
+          </a>
 
 
-        <!-- SPECIALPROJEKT -->
+          <a
+            href="#"
+            class="service-card"
+          >
 
-        <article class="service-card">
-
-          <div class="service-image">
-
-            <picture>
-              <source
-                media="(max-width: 700px)"
-                srcset="images/Specialprojekt-mobil.png"
-              >
+            <div class="service-image">
 
               <img
-                src="images/Specialprojekt-desktop.png"
-                alt="Specialprojekt inom plåtslageri"
-                loading="lazy"
+                src="images/Specialprojekt.jpg"
+                alt="Specialprojekt"
               >
-            </picture>
 
-          </div>
+            </div>
 
-          <div class="service-info">
+            <div class="service-info">
 
-            <h3>Specialprojekt</h3>
+              <h3>
+                Specialprojekt
+              </h3>
 
-            <p>
-              Specialanpassade arbeten där traditionellt hantverk möter
-              unika idéer, former och material.
-            </p>
+              <p>
+                Specialanpassade arbeten där
+                traditionellt hantverk möter
+                unika arkitektoniska lösningar.
+              </p>
 
-          </div>
+            </div>
 
-        </article>
+          </a>
+
+        </div>
 
       </div>
 
     </section>
 
 
-    <!-- =========================
-         AKTUELLT
-    ========================== -->
 
-    <section class="current-section" id="aktuellt">
+    <!-- ===================================================
+         AKTUELLT
+         =================================================== -->
+
+    <section
+      class="current-section"
+      id="aktuellt"
+    >
 
       <div class="container">
 
         <div class="current-project">
 
+
           <div class="current-image">
 
             <img
               src="images/Aktuellt.jpg"
-              alt="Aktuellt projekt"
-              loading="lazy"
+              alt="Villa Bergabo i Stockholm"
             >
 
           </div>
@@ -414,22 +566,27 @@
 
           <div class="current-content">
 
-            <h2>Aktuellt</h2>
+            <h2>
+              Aktuellt
+            </h2>
 
             <p>
-              Just nu pågår restaurering av koppar detaljer på Villa Bergabo
-              på Södra Djurgården. Arbetet omfattar varsam restaurering och
-              nytillverkning med fokus på att bevara byggnadens ursprungliga
-              uttryck och hantverksmässiga detaljer.
+              Just nu arbetar jag med restaureringen av
+              koppardetaljerna på Villa Bergabo på Södra
+              Djurgården. Arbetet omfattar demontering av
+              den befintliga kopparen, renovering och
+              anpassning av underlaget samt återmontering
+              av detaljerna.
             </p>
 
             <a
-              class="read-more"
               href="https://sv.wikipedia.org/wiki/Villa_Bergabo"
               target="_blank"
               rel="noopener noreferrer"
+              class="read-more"
             >
-              Läs mer om Villa Bergabo →
+              Läs mer om Villa Bergabo
+              <span>→</span>
             </a>
 
           </div>
@@ -441,22 +598,26 @@
     </section>
 
 
-    <!-- =========================
-         OM J. NORBERG
-    ========================== -->
 
-    <section class="about-section" id="om">
+    <!-- ===================================================
+         OM J. NORBERG
+         =================================================== -->
+
+    <section
+      class="about-section"
+      id="om"
+    >
 
       <div class="container">
 
         <div class="about-grid">
 
+
           <div class="about-image">
 
             <img
               src="images/Hero bild.JPG"
-              alt="J. Norberg Plåtslageri"
-              loading="lazy"
+              alt="Plåtslageriarbete"
             >
 
           </div>
@@ -464,19 +625,25 @@
 
           <div class="about-content">
 
-            <h2>Om J. Norberg</h2>
+            <h2>
+              Om J. Norberg
+            </h2>
 
             <p>
-              Här kommer information om J. Norbergs gesällbrev, utbildning,
-              yrkeserfarenhet, deltagande i SM och andra meriter inom
-              plåtslageriet.
+              Här kommer information om J. Norbergs gesällbrev,
+              utbildning, yrkeserfarenhet, deltagande i SM och
+              andra meriter inom plåtslageriet att presenteras.
+              Sektionen kommer även att berätta mer om
+              utbildningsresor, erfarenheter och vägen genom
+              yrket.
             </p>
 
             <a
-              class="read-more about-read-more"
               href="#om"
+              class="read-more about-read-more"
             >
-              Läs mer om J. Norberg →
+              Läs mer om J. Norberg
+              <span>→</span>
             </a>
 
           </div>
@@ -488,18 +655,21 @@
     </section>
 
 
-    <!-- =========================
-         KONTAKT
-    ========================== -->
 
-    <section class="contact-section" id="kontakt">
+    <!-- ===================================================
+         KONTAKT
+         =================================================== -->
+
+    <section
+      class="contact-section"
+      id="kontakt"
+    >
 
       <div class="contact-background">
 
         <img
           src="images/StJohannes.JPG"
           alt="Kopparplåt och tegel vid St Johannes"
-          loading="lazy"
         >
 
       </div>
@@ -509,34 +679,56 @@
 
         <div class="contact-content">
 
-          <h2>Kontakt</h2>
+          <h2>
+            Kontakt
+          </h2>
 
           <p class="contact-intro">
-            Har du ett projekt inom plåt, koppar eller restaurering?
-            Kontakta mig gärna för att diskutera arbetet.
+            Har du ett projekt inom plåt, koppar eller
+            restaurering? Kontakta mig gärna för att
+            diskutera arbetet.
           </p>
 
 
           <div class="contact-details">
 
-            <p>
-              <strong>Telefon:</strong>
-              <a href="tel:+46700000000">
+            <div class="contact-item">
+
+              <span>
+                Telefon
+              </span>
+
+              <a href="tel:0700000000">
                 070-000 00 00
               </a>
-            </p>
 
-            <p>
-              <strong>E-post:</strong>
+            </div>
+
+
+            <div class="contact-item">
+
+              <span>
+                E-post
+              </span>
+
               <a href="mailto:info@jnplat.se">
                 info@jnplat.se
               </a>
-            </p>
 
-            <p>
-              <strong>Plats:</strong>
-              Stockholm
-            </p>
+            </div>
+
+
+            <div class="contact-item">
+
+              <span>
+                Verksamhetsområde
+              </span>
+
+              <p>
+                Stockholm
+              </p>
+
+            </div>
 
           </div>
 
