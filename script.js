@@ -80,58 +80,19 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!target) return;
 
       event.preventDefault();
-      navLinks.forEach((navLink) => {
-        navLink.classList.remove("active");
-        navLink.removeAttribute("aria-current");
-      });
       scrollToSection(target);
     });
   });
 
-  function fitReferenceCards() {
-    if (!referenceTrack) return;
+  function isMobileReferences() {
+    return window.matchMedia("(max-width: 800px)").matches;
+  }
 
+  function refreshReferenceCards() {
+    if (!referenceTrack) return;
     referenceCards = [
       ...referenceTrack.querySelectorAll(".reference-card")
     ];
-
-    referenceCards.forEach((card) => {
-      card.style.flexBasis = "";
-      card.style.width = "";
-
-      const baseWidth = card.getBoundingClientRect().width;
-      if (!baseWidth || card.scrollHeight <= card.clientHeight + 1) return;
-
-      let low = baseWidth;
-      let high = baseWidth * 2;
-
-      card.style.flexBasis = `${high}px`;
-      card.style.width = `${high}px`;
-
-      while (card.scrollHeight > card.clientHeight + 1 && high < 4000) {
-        low = high;
-        high *= 1.5;
-        card.style.flexBasis = `${high}px`;
-        card.style.width = `${high}px`;
-      }
-
-      if (card.scrollHeight <= card.clientHeight + 1) {
-        for (let i = 0; i < 12; i++) {
-          const middle = (low + high) / 2;
-          card.style.flexBasis = `${middle}px`;
-          card.style.width = `${middle}px`;
-
-          if (card.scrollHeight <= card.clientHeight + 1) {
-            high = middle;
-          } else {
-            low = middle;
-          }
-        }
-
-        card.style.flexBasis = `${high}px`;
-        card.style.width = `${high}px`;
-      }
-    });
   }
 
   function setReferenceArrowState(button, visible) {
@@ -144,13 +105,19 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateReferenceCarousel() {
     if (!referenceTrack || !referenceViewport) return;
 
-    fitReferenceCards();
-
+    refreshReferenceCards();
     if (!referenceCards.length) return;
 
-    currentReferenceIndex = Math.min(
-      currentReferenceIndex,
-      referenceCards.length - 1
+    if (isMobileReferences()) {
+      referenceTrack.style.transform = "none";
+      setReferenceArrowState(referencePrev, false);
+      setReferenceArrowState(referenceNext, false);
+      return;
+    }
+
+    currentReferenceIndex = Math.max(
+      0,
+      Math.min(currentReferenceIndex, referenceCards.length - 1)
     );
 
     const maxScroll = Math.max(
@@ -160,19 +127,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const hasOverflow = maxScroll > 1;
     const card = referenceCards[currentReferenceIndex];
-    let offset = Math.max(0, card?.offsetLeft ?? 0);
-
-    // When several cards are already visible at the far right, their
-    // offset is clamped to the same maxScroll position. Treat that
-    // position as the end of the carousel so the next click wraps
-    // directly back to the first card instead of doing several
-    // apparently inactive clicks.
-    if (hasOverflow && offset >= maxScroll - 1) {
-      currentReferenceIndex = referenceCards.length - 1;
-      offset = maxScroll;
-    } else {
-      offset = Math.min(offset, maxScroll);
-    }
+    const offset = Math.min(
+      Math.max(0, card?.offsetLeft ?? 0),
+      maxScroll
+    );
 
     referenceTrack.style.transform = `translateX(-${offset}px)`;
     setReferenceArrowState(referencePrev, hasOverflow);
@@ -180,7 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   referencePrev?.addEventListener("click", () => {
-    if (!referenceCards.length) return;
+    refreshReferenceCards();
+    if (!referenceCards.length || isMobileReferences()) return;
 
     currentReferenceIndex =
       currentReferenceIndex <= 0
@@ -191,7 +150,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   referenceNext?.addEventListener("click", () => {
-    if (!referenceCards.length) return;
+    refreshReferenceCards();
+    if (!referenceCards.length || isMobileReferences()) return;
 
     currentReferenceIndex =
       currentReferenceIndex >= referenceCards.length - 1
@@ -203,6 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateLayout() {
     updateHeaderHeight();
+    refreshReferenceCards();
     updateActiveSection();
     updateReferenceCarousel();
   }
