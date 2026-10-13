@@ -9,8 +9,8 @@
     "cardImage": "images/byggnadsplatslageri-desktop.webp",
     "gallery": [
       "images/byggnadsplatslageri-desktop.webp",
-      "images/hero-bild.webp",
-      "images/byggnadsplatslageri-desktop.webp"
+      "images/st-johannes.webp",
+      "images/hero-bild.webp"
     ],
     "published": true,
     "mockup": true
@@ -21,12 +21,12 @@
     "service": "byggnadsplatslageri",
     "description": "Exempeltext för byggnadsplåtslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
     "longDescription": "Demonstrationssida för byggnadsplåtslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
-    "hero": "images/byggnadsplatslageri-desktop.webp",
-    "cardImage": "images/byggnadsplatslageri-desktop.webp",
+    "hero": "images/st-johannes.webp",
+    "cardImage": "images/st-johannes.webp",
     "gallery": [
-      "images/byggnadsplatslageri-desktop.webp",
+      "images/st-johannes.webp",
       "images/hero-bild.webp",
-      "images/byggnadsplatslageri-desktop.webp"
+      "images/byggnadsplatslageri-mobil.webp"
     ],
     "published": true,
     "mockup": true
@@ -37,12 +37,12 @@
     "service": "byggnadsplatslageri",
     "description": "Exempeltext för byggnadsplåtslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
     "longDescription": "Demonstrationssida för byggnadsplåtslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
-    "hero": "images/byggnadsplatslageri-desktop.webp",
-    "cardImage": "images/byggnadsplatslageri-desktop.webp",
+    "hero": "images/hero-bild.webp",
+    "cardImage": "images/hero-bild.webp",
     "gallery": [
-      "images/byggnadsplatslageri-desktop.webp",
       "images/hero-bild.webp",
-      "images/byggnadsplatslageri-desktop.webp"
+      "images/byggnadsplatslageri-mobil.webp",
+      "images/om-j-norberg-desktop.webp"
     ],
     "published": true,
     "mockup": true
@@ -53,12 +53,12 @@
     "service": "byggnadsplatslageri",
     "description": "Exempeltext för byggnadsplåtslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
     "longDescription": "Demonstrationssida för byggnadsplåtslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
-    "hero": "images/byggnadsplatslageri-desktop.webp",
-    "cardImage": "images/byggnadsplatslageri-desktop.webp",
+    "hero": "images/byggnadsplatslageri-mobil.webp",
+    "cardImage": "images/byggnadsplatslageri-mobil.webp",
     "gallery": [
-      "images/byggnadsplatslageri-desktop.webp",
-      "images/hero-bild.webp",
-      "images/byggnadsplatslageri-desktop.webp"
+      "images/byggnadsplatslageri-mobil.webp",
+      "images/om-j-norberg-desktop.webp",
+      "images/aktuellt.jpg"
     ],
     "published": true,
     "mockup": true
@@ -74,7 +74,7 @@
     "gallery": [
       "images/kopparslageri-desktop.webp",
       "images/hero-bild.webp",
-      "images/kopparslageri-desktop.webp"
+      "images/st-johannes.webp"
     ],
     "published": true,
     "mockup": true
@@ -85,12 +85,12 @@
     "service": "kopparslageri",
     "description": "Exempeltext för kopparslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
     "longDescription": "Demonstrationssida för kopparslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
-    "hero": "images/kopparslageri-desktop.webp",
-    "cardImage": "images/kopparslageri-desktop.webp",
+    "hero": "images/hero-bild.webp",
+    "cardImage": "images/hero-bild.webp",
     "gallery": [
-      "images/kopparslageri-desktop.webp",
       "images/hero-bild.webp",
-      "images/kopparslageri-desktop.webp"
+      "images/st-johannes.webp",
+      "images/kopparslageri-mobil.webp"
     ],
     "published": true,
     "mockup": true
@@ -101,12 +101,12 @@
     "service": "kopparslageri",
     "description": "Exempeltext för kopparslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
     "longDescription": "Demonstrationssida för kopparslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
-    "hero": "images/kopparslageri-desktop.webp",
-    "cardImage": "images/kopparslageri-desktop.webp",
+    "hero": "images/st-johannes.webp",
+    "cardImage": "images/st-johannes.webp",
     "gallery": [
-      "images/kopparslageri-desktop.webp",
-      "images/hero-bild.webp",
-      "images/kopparslageri-desktop.webp"
+      "images/st-johannes.webp",
+      "images/kopparslageri-mobil.webp",
+      "images/om-j-norberg-desktop.webp"
     ],
     "published": true,
     "mockup": true
@@ -117,12 +117,12 @@
     "service": "kopparslageri",
     "description": "Exempeltext för kopparslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
     "longDescription": "Demonstrationssida för kopparslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
-    "hero": "images/kopparslageri-desktop.webp",
-    "cardImage": "images/kopparslageri-desktop.webp",
+    "hero": "images/kopparslageri-mobil.webp",
+    "cardImage": "images/kopparslageri-mobil.webp",
     "gallery": [
-      "images/kopparslageri-desktop.webp",
-      "images/hero-bild.webp",
-      "images/kopparslageri-desktop.webp"
+      "images/kopparslageri-mobil.webp",
+      "images/om-j-norberg-desktop.webp",
+      "images/aktuellt.jpg"
     ],
     "published": true,
     "mockup": true
@@ -137,8 +137,8 @@
     "cardImage": "images/restaurering-desktop.webp",
     "gallery": [
       "images/restaurering-desktop.webp",
-      "images/hero-bild.webp",
-      "images/restaurering-desktop.webp"
+      "images/st-johannes.webp",
+      "images/hero-bild.webp"
     ],
     "published": true,
     "mockup": true
@@ -149,12 +149,12 @@
     "service": "restaurering",
     "description": "Exempeltext för restaurering. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
     "longDescription": "Demonstrationssida för restaurering. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
-    "hero": "images/restaurering-desktop.webp",
-    "cardImage": "images/restaurering-desktop.webp",
+    "hero": "images/st-johannes.webp",
+    "cardImage": "images/st-johannes.webp",
     "gallery": [
-      "images/restaurering-desktop.webp",
+      "images/st-johannes.webp",
       "images/hero-bild.webp",
-      "images/restaurering-desktop.webp"
+      "images/restaurering-mobil.webp"
     ],
     "published": true,
     "mockup": true
@@ -165,12 +165,12 @@
     "service": "restaurering",
     "description": "Exempeltext för restaurering. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
     "longDescription": "Demonstrationssida för restaurering. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
-    "hero": "images/restaurering-desktop.webp",
-    "cardImage": "images/restaurering-desktop.webp",
+    "hero": "images/hero-bild.webp",
+    "cardImage": "images/hero-bild.webp",
     "gallery": [
-      "images/restaurering-desktop.webp",
       "images/hero-bild.webp",
-      "images/restaurering-desktop.webp"
+      "images/restaurering-mobil.webp",
+      "images/aktuellt.jpg"
     ],
     "published": true,
     "mockup": true
@@ -181,12 +181,12 @@
     "service": "restaurering",
     "description": "Exempeltext för restaurering. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
     "longDescription": "Demonstrationssida för restaurering. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
-    "hero": "images/restaurering-desktop.webp",
-    "cardImage": "images/restaurering-desktop.webp",
+    "hero": "images/restaurering-mobil.webp",
+    "cardImage": "images/restaurering-mobil.webp",
     "gallery": [
-      "images/restaurering-desktop.webp",
-      "images/hero-bild.webp",
-      "images/restaurering-desktop.webp"
+      "images/restaurering-mobil.webp",
+      "images/aktuellt.jpg",
+      "images/om-j-norberg-desktop.webp"
     ],
     "published": true,
     "mockup": true
@@ -202,7 +202,7 @@
     "gallery": [
       "images/specialprojekt-desktop.webp",
       "images/hero-bild.webp",
-      "images/specialprojekt-desktop.webp"
+      "images/st-johannes.webp"
     ],
     "published": true,
     "mockup": true
@@ -213,12 +213,12 @@
     "service": "specialprojekt",
     "description": "Exempeltext för specialprojekt. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
     "longDescription": "Demonstrationssida för specialprojekt. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
-    "hero": "images/specialprojekt-desktop.webp",
-    "cardImage": "images/specialprojekt-desktop.webp",
+    "hero": "images/hero-bild.webp",
+    "cardImage": "images/hero-bild.webp",
     "gallery": [
-      "images/specialprojekt-desktop.webp",
       "images/hero-bild.webp",
-      "images/specialprojekt-desktop.webp"
+      "images/st-johannes.webp",
+      "images/specialprojekt-mobil.webp"
     ],
     "published": true,
     "mockup": true
@@ -229,12 +229,12 @@
     "service": "specialprojekt",
     "description": "Exempeltext för specialprojekt. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
     "longDescription": "Demonstrationssida för specialprojekt. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
-    "hero": "images/specialprojekt-desktop.webp",
-    "cardImage": "images/specialprojekt-desktop.webp",
+    "hero": "images/st-johannes.webp",
+    "cardImage": "images/st-johannes.webp",
     "gallery": [
-      "images/specialprojekt-desktop.webp",
-      "images/hero-bild.webp",
-      "images/specialprojekt-desktop.webp"
+      "images/st-johannes.webp",
+      "images/specialprojekt-mobil.webp",
+      "images/aktuellt.jpg"
     ],
     "published": true,
     "mockup": true
@@ -245,12 +245,12 @@
     "service": "specialprojekt",
     "description": "Exempeltext för specialprojekt. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
     "longDescription": "Demonstrationssida för specialprojekt. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
-    "hero": "images/specialprojekt-desktop.webp",
-    "cardImage": "images/specialprojekt-desktop.webp",
+    "hero": "images/specialprojekt-mobil.webp",
+    "cardImage": "images/specialprojekt-mobil.webp",
     "gallery": [
-      "images/specialprojekt-desktop.webp",
-      "images/hero-bild.webp",
-      "images/specialprojekt-desktop.webp"
+      "images/specialprojekt-mobil.webp",
+      "images/aktuellt.jpg",
+      "images/om-j-norberg-desktop.webp"
     ],
     "published": true,
     "mockup": true
@@ -261,11 +261,11 @@
     "service": "byggnadsplatslageri",
     "description": "Demonstration av byggnadsplåtslageri – tillfälligt innehåll för att visa projektkarusellen.",
     "longDescription": "Detta är ett fiktivt demonstrationsprojekt för byggnadsplåtslageri. Ersätt text och bilder med en verklig referens innan publicering.",
-    "hero": "images/byggnadsplatslageri-desktop.webp",
-    "cardImage": "images/byggnadsplatslageri-desktop.webp",
+    "hero": "images/om-j-norberg-desktop.webp",
+    "cardImage": "images/om-j-norberg-desktop.webp",
     "gallery": [
-      "images/byggnadsplatslageri-desktop.webp",
-      "images/hero-bild.webp",
+      "images/om-j-norberg-desktop.webp",
+      "images/aktuellt.jpg",
       "images/byggnadsplatslageri-desktop.webp"
     ],
     "published": true,
@@ -277,12 +277,12 @@
     "service": "byggnadsplatslageri",
     "description": "Demonstration av byggnadsplåtslageri – tillfälligt innehåll för att visa projektkarusellen.",
     "longDescription": "Detta är ett fiktivt demonstrationsprojekt för byggnadsplåtslageri. Ersätt text och bilder med en verklig referens innan publicering.",
-    "hero": "images/byggnadsplatslageri-desktop.webp",
-    "cardImage": "images/byggnadsplatslageri-desktop.webp",
+    "hero": "images/aktuellt.jpg",
+    "cardImage": "images/aktuellt.jpg",
     "gallery": [
+      "images/aktuellt.jpg",
       "images/byggnadsplatslageri-desktop.webp",
-      "images/hero-bild.webp",
-      "images/byggnadsplatslageri-desktop.webp"
+      "images/st-johannes.webp"
     ],
     "published": true,
     "mockup": true
@@ -293,11 +293,11 @@
     "service": "kopparslageri",
     "description": "Demonstration av kopparslageri – tillfälligt innehåll för att visa projektkarusellen.",
     "longDescription": "Detta är ett fiktivt demonstrationsprojekt för kopparslageri. Ersätt text och bilder med en verklig referens innan publicering.",
-    "hero": "images/kopparslageri-desktop.webp",
-    "cardImage": "images/kopparslageri-desktop.webp",
+    "hero": "images/om-j-norberg-desktop.webp",
+    "cardImage": "images/om-j-norberg-desktop.webp",
     "gallery": [
-      "images/kopparslageri-desktop.webp",
-      "images/hero-bild.webp",
+      "images/om-j-norberg-desktop.webp",
+      "images/aktuellt.jpg",
       "images/kopparslageri-desktop.webp"
     ],
     "published": true,
@@ -309,12 +309,12 @@
     "service": "kopparslageri",
     "description": "Demonstration av kopparslageri – tillfälligt innehåll för att visa projektkarusellen.",
     "longDescription": "Detta är ett fiktivt demonstrationsprojekt för kopparslageri. Ersätt text och bilder med en verklig referens innan publicering.",
-    "hero": "images/kopparslageri-desktop.webp",
-    "cardImage": "images/kopparslageri-desktop.webp",
+    "hero": "images/aktuellt.jpg",
+    "cardImage": "images/aktuellt.jpg",
     "gallery": [
+      "images/aktuellt.jpg",
       "images/kopparslageri-desktop.webp",
-      "images/hero-bild.webp",
-      "images/kopparslageri-desktop.webp"
+      "images/hero-bild.webp"
     ],
     "published": true,
     "mockup": true
@@ -325,11 +325,11 @@
     "service": "restaurering",
     "description": "Demonstration av restaurering – tillfälligt innehåll för att visa projektkarusellen.",
     "longDescription": "Detta är ett fiktivt demonstrationsprojekt för restaurering. Ersätt text och bilder med en verklig referens innan publicering.",
-    "hero": "images/restaurering-desktop.webp",
-    "cardImage": "images/restaurering-desktop.webp",
+    "hero": "images/aktuellt.jpg",
+    "cardImage": "images/aktuellt.jpg",
     "gallery": [
-      "images/restaurering-desktop.webp",
-      "images/hero-bild.webp",
+      "images/aktuellt.jpg",
+      "images/om-j-norberg-desktop.webp",
       "images/restaurering-desktop.webp"
     ],
     "published": true,
@@ -341,12 +341,12 @@
     "service": "restaurering",
     "description": "Demonstration av restaurering – tillfälligt innehåll för att visa projektkarusellen.",
     "longDescription": "Detta är ett fiktivt demonstrationsprojekt för restaurering. Ersätt text och bilder med en verklig referens innan publicering.",
-    "hero": "images/restaurering-desktop.webp",
-    "cardImage": "images/restaurering-desktop.webp",
+    "hero": "images/om-j-norberg-desktop.webp",
+    "cardImage": "images/om-j-norberg-desktop.webp",
     "gallery": [
+      "images/om-j-norberg-desktop.webp",
       "images/restaurering-desktop.webp",
-      "images/hero-bild.webp",
-      "images/restaurering-desktop.webp"
+      "images/st-johannes.webp"
     ],
     "published": true,
     "mockup": true
@@ -357,11 +357,11 @@
     "service": "specialprojekt",
     "description": "Demonstration av specialprojekt – tillfälligt innehåll för att visa projektkarusellen.",
     "longDescription": "Detta är ett fiktivt demonstrationsprojekt för specialprojekt. Ersätt text och bilder med en verklig referens innan publicering.",
-    "hero": "images/specialprojekt-desktop.webp",
-    "cardImage": "images/specialprojekt-desktop.webp",
+    "hero": "images/aktuellt.jpg",
+    "cardImage": "images/aktuellt.jpg",
     "gallery": [
-      "images/specialprojekt-desktop.webp",
-      "images/hero-bild.webp",
+      "images/aktuellt.jpg",
+      "images/om-j-norberg-desktop.webp",
       "images/specialprojekt-desktop.webp"
     ],
     "published": true,
@@ -373,12 +373,12 @@
     "service": "specialprojekt",
     "description": "Demonstration av specialprojekt – tillfälligt innehåll för att visa projektkarusellen.",
     "longDescription": "Detta är ett fiktivt demonstrationsprojekt för specialprojekt. Ersätt text och bilder med en verklig referens innan publicering.",
-    "hero": "images/specialprojekt-desktop.webp",
-    "cardImage": "images/specialprojekt-desktop.webp",
+    "hero": "images/om-j-norberg-desktop.webp",
+    "cardImage": "images/om-j-norberg-desktop.webp",
     "gallery": [
+      "images/om-j-norberg-desktop.webp",
       "images/specialprojekt-desktop.webp",
-      "images/hero-bild.webp",
-      "images/specialprojekt-desktop.webp"
+      "images/hero-bild.webp"
     ],
     "published": true,
     "mockup": true
