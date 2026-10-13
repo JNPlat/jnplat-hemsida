@@ -261,3 +261,26 @@ body.project-gallery-open { overflow:hidden; }
   .service-projects > .project-carousel { width:100%; margin:0 -20px; padding:0 20px 4px; }
   .project-carousel { scroll-snap-type:x mandatory; }
 }
+
+/* Slutlig finjustering: visa hela tjänstebilden och låt pilknapparna ligga över karusellen. */
+@media (min-width:801px) {
+  .service-image-hero { background:var(--cream,#f3eee6); }
+  .service-image-hero .service-hero-picture img { object-fit:contain; object-position:center; }
+  .service-projects { display:block; position:relative; padding:0; }
+  .service-projects > .project-carousel { width:100%; padding:0 0 4px; }
+  .service-projects > .project-carousel-prev,
+  .service-projects > .project-carousel-next {
+    position:absolute; top:0; bottom:4px; z-index:5; width:clamp(28px,3vw,44px); height:auto;
+    border:1px solid rgba(130,85,54,.45); background:rgba(243,238,230,.30); color:var(--copper,#825536);
+    backdrop-filter:blur(3px); font-size:24px; font-weight:300; transition:background .2s ease,color .2s ease,border-color .2s ease;
+  }
+  .service-projects > .project-carousel-prev { left:0; }
+  .service-projects > .project-carousel-next { right:0; }
+  .service-projects > .project-carousel-prev:hover,
+  .service-projects > .project-carousel-next:hover { background:var(--copper,#825536); color:#fffaf2; border-color:var(--copper,#825536); }
+  .project-carousel { gap:14px; }
+  .project-carousel .project-card:first-child { margin-left:0; }
+}
+@media (max-width:800px) {
+  .service-image-hero .service-hero-picture img { object-fit:contain; object-position:center; }
+}
