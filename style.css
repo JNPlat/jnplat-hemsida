@@ -1519,36 +1519,3 @@ section {
     min-height: calc(100dvh - var(--header-height));
   }
 }
-
-
-/* Mobil: stor logotyp över hela bredden; vid scroll döljs endast logotypen. */
-@media (max-width: 800px) {
-  .site-header,
-  .nav-wrap,
-  .brand {
-    transition: min-height 220ms ease, height 220ms ease, padding 220ms ease, gap 220ms ease, opacity 180ms ease;
-  }
-  .brand {
-    width: calc(100vw - 32px);
-    max-width: 100%;
-    justify-content: center;
-  }
-  .brand img {
-    width: 100%;
-    max-height: 94px;
-    object-fit: contain;
-  }
-  .site-header.logo-hidden .nav-wrap {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    gap: 0;
-  }
-  .site-header.logo-hidden .brand {
-    height: 0;
-    min-height: 0;
-    margin: 0;
-    opacity: 0;
-    overflow: hidden;
-    pointer-events: none;
-  }
-}
