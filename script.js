@@ -1,189 +1,344 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const header = document.querySelector(".site-header");
-  const brand = document.querySelector(".brand");
-  const navLinks = [...document.querySelectorAll(".nav-link")];
-  const sections = ["hem", "tjanster", "aktuellt", "om", "kontakt"]
-    .map((id) => document.getElementById(id))
-    .filter(Boolean);
-  const contactSection = document.getElementById("kontakt");
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-  const referenceTrack = document.querySelector(".references-track");
-  const referenceViewport = document.querySelector(".references-viewport");
-  const referencePrev = document.querySelector(".reference-prev");
-  const referenceNext = document.querySelector(".reference-next");
 
-  let referenceCards = [];
-  let currentReferenceIndex = 0;
-  let scrollTicking = false;
+    /* =====================================================
+       ELEMENT
+       ===================================================== */
 
-  function getHeaderHeight() {
-    return header ? header.getBoundingClientRect().height : 0;
-  }
+    const brand =
+      document.querySelector(".brand");
 
-  function updateHeaderHeight() {
-    document.documentElement.style.setProperty(
-      "--header-height",
-      `${getHeaderHeight()}px`
-    );
-  }
 
-  function updateActiveSection() {
-    if (!sections.length) return;
+    const navLinks =
+      document.querySelectorAll(".nav-link");
 
-    const scrollPosition = window.scrollY + getHeaderHeight() + 30;
-    let activeSection = sections[0];
 
-    for (const section of sections) {
-      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-      if (sectionTop <= scrollPosition) activeSection = section;
+    const headerContact =
+      document.querySelector(".header-contact");
+
+
+    const sections = [
+
+      document.querySelector("#hem"),
+
+      document.querySelector("#tjanster"),
+
+      document.querySelector("#aktuellt"),
+
+      document.querySelector("#kontakt")
+
+    ].filter(Boolean);
+
+
+
+    /* =====================================================
+       AKTIV SEKTION
+       ===================================================== */
+
+    function setActiveSection(sectionId) {
+
+
+      navLinks.forEach((link) => {
+
+        const active =
+          link.dataset.section === sectionId;
+
+
+        link.classList.toggle(
+          "active",
+          active
+        );
+
+
+        if (active) {
+
+          link.setAttribute(
+            "aria-current",
+            "page"
+          );
+
+        } else {
+
+          link.removeAttribute(
+            "aria-current"
+          );
+
+        }
+
+      });
+
+
+      if (headerContact) {
+
+        headerContact.classList.toggle(
+          "active",
+          sectionId === "kontakt"
+        );
+
+      }
+
     }
 
-    const atPageBottom =
-      window.scrollY + window.innerHeight >=
-      document.documentElement.scrollHeight - 5;
 
-    if (atPageBottom && contactSection) activeSection = contactSection;
+
+    /* =====================================================
+       BESTÄM AKTIV SEKTION
+       ===================================================== */
+
+    function updateActiveSection() {
+
+
+      const headerHeight =
+        window.innerWidth <= 480
+          ? 76
+          : 82;
+
+
+      const activationPoint =
+        headerHeight +
+        (
+          window.innerHeight * 0.30
+        );
+
+
+      let activeSection =
+        sections[0];
+
+
+      sections.forEach((section) => {
+
+        const rect =
+          section.getBoundingClientRect();
+
+
+        if (
+          rect.top <= activationPoint
+        ) {
+
+          activeSection =
+            section;
+
+        }
+
+      });
+
+
+      const atBottom =
+        window.innerHeight +
+        window.scrollY >=
+        document.documentElement.scrollHeight - 5;
+
+
+      if (atBottom) {
+
+        const contactSection =
+          document.querySelector("#kontakt");
+
+
+        if (contactSection) {
+
+          activeSection =
+            contactSection;
+
+        }
+
+      }
+
+
+      if (activeSection) {
+
+        setActiveSection(
+          activeSection.id
+        );
+
+      }
+
+    }
+
+
+
+    /* =====================================================
+       LOGO → TOPPEN
+       ===================================================== */
+
+    if (brand) {
+
+      brand.addEventListener(
+        "click",
+        (event) => {
+
+          event.preventDefault();
+
+
+          window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+          });
+
+        }
+      );
+
+    }
+
+
+
+    /* =====================================================
+       NAVIGATION
+       ===================================================== */
 
     navLinks.forEach((link) => {
-      const active = link.dataset.section === activeSection.id;
-      link.classList.toggle("active", active);
 
-      if (active) {
-        link.setAttribute("aria-current", "page");
-      } else {
-        link.removeAttribute("aria-current");
-      }
+      link.addEventListener(
+        "click",
+        (event) => {
+
+
+          const targetId =
+            link.getAttribute("href");
+
+
+          const target =
+            document.querySelector(
+              targetId
+            );
+
+
+          if (!target) {
+
+            return;
+
+          }
+
+
+          event.preventDefault();
+
+
+          target.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "start"
+
+          });
+
+        }
+      );
+
     });
-  }
 
-  function scrollToSection(target) {
-    const top =
-      target.getBoundingClientRect().top +
-      window.scrollY -
-      getHeaderHeight();
 
-    window.scrollTo({
-      top: Math.max(0, top),
-      behavior: "smooth"
-    });
-  }
 
-  brand?.addEventListener("click", (event) => {
-    event.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+    /* =====================================================
+       KONTAKTA OSS
+       ===================================================== */
 
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const targetId = link.getAttribute("href");
-      const target = targetId ? document.querySelector(targetId) : null;
-      if (!target) return;
+    if (headerContact) {
 
-      event.preventDefault();
-      scrollToSection(target);
-    });
-  });
+      headerContact.addEventListener(
+        "click",
+        (event) => {
 
-  function isMobileReferences() {
-    return window.matchMedia("(max-width: 800px)").matches;
-  }
 
-  function refreshReferenceCards() {
-    if (!referenceTrack) return;
-    referenceCards = [
-      ...referenceTrack.querySelectorAll(".reference-card")
-    ];
-  }
+          const target =
+            document.querySelector(
+              "#kontakt"
+            );
 
-  function setReferenceArrowState(button, visible) {
-    if (!button) return;
-    button.style.visibility = visible ? "visible" : "hidden";
-    button.style.opacity = visible ? "1" : "0";
-    button.style.pointerEvents = visible ? "auto" : "none";
-  }
 
-  function updateReferenceCarousel() {
-    if (!referenceTrack || !referenceViewport) return;
+          if (!target) {
 
-    refreshReferenceCards();
-    if (!referenceCards.length) return;
+            return;
 
-    if (isMobileReferences()) {
-      referenceTrack.style.transform = "none";
-      setReferenceArrowState(referencePrev, false);
-      setReferenceArrowState(referenceNext, false);
-      return;
+          }
+
+
+          event.preventDefault();
+
+
+          target.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "start"
+
+          });
+
+        }
+      );
+
     }
 
-    currentReferenceIndex = Math.max(
-      0,
-      Math.min(currentReferenceIndex, referenceCards.length - 1)
+
+
+    /* =====================================================
+       MOBILHEADER: dölj logotypen vid scroll ned, visa vid scroll upp
+       ===================================================== */
+
+    const siteHeader = document.querySelector(".site-header");
+    const mobileHeaderQuery = window.matchMedia("(max-width: 800px)");
+    let lastScrollY = window.scrollY;
+
+    function updateMobileHeader() {
+      if (!siteHeader) return;
+
+      if (!mobileHeaderQuery.matches) {
+        siteHeader.classList.remove("logo-hidden");
+        lastScrollY = window.scrollY;
+        return;
+      }
+
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY;
+
+      if (currentY < 40) {
+        siteHeader.classList.remove("logo-hidden");
+      } else if (delta > 5) {
+        siteHeader.classList.add("logo-hidden");
+      } else if (delta < -5) {
+        siteHeader.classList.remove("logo-hidden");
+      }
+
+      lastScrollY = currentY;
+    }
+
+    window.addEventListener("scroll", updateMobileHeader, { passive: true });
+    window.addEventListener("resize", updateMobileHeader);
+
+    /* =====================================================
+       SCROLL
+       ===================================================== */
+
+    window.addEventListener(
+      "scroll",
+      updateActiveSection,
+      {
+        passive: true
+      }
     );
 
-    const maxScroll = Math.max(
-      0,
-      referenceTrack.scrollWidth - referenceViewport.clientWidth
+
+
+    /* =====================================================
+       RESIZE
+       ===================================================== */
+
+    window.addEventListener(
+      "resize",
+      updateActiveSection
     );
 
-    const hasOverflow = maxScroll > 1;
-    const card = referenceCards[currentReferenceIndex];
-    const offset = Math.min(
-      Math.max(0, card?.offsetLeft ?? 0),
-      maxScroll
-    );
 
-    referenceTrack.style.transform = `translateX(-${offset}px)`;
-    setReferenceArrowState(referencePrev, hasOverflow);
-    setReferenceArrowState(referenceNext, hasOverflow);
-  }
 
-  referencePrev?.addEventListener("click", () => {
-    refreshReferenceCards();
-    if (!referenceCards.length || isMobileReferences()) return;
+    /* =====================================================
+       START
+       ===================================================== */
 
-    currentReferenceIndex =
-      currentReferenceIndex <= 0
-        ? referenceCards.length - 1
-        : currentReferenceIndex - 1;
-
-    updateReferenceCarousel();
-  });
-
-  referenceNext?.addEventListener("click", () => {
-    refreshReferenceCards();
-    if (!referenceCards.length || isMobileReferences()) return;
-
-    currentReferenceIndex =
-      currentReferenceIndex >= referenceCards.length - 1
-        ? 0
-        : currentReferenceIndex + 1;
-
-    updateReferenceCarousel();
-  });
-
-  function updateLayout() {
-    updateHeaderHeight();
-    refreshReferenceCards();
     updateActiveSection();
-    updateReferenceCarousel();
+
   }
-
-  updateLayout();
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (scrollTicking) return;
-
-      scrollTicking = true;
-      window.requestAnimationFrame(() => {
-        updateActiveSection();
-        scrollTicking = false;
-      });
-    },
-    { passive: true }
-  );
-
-  window.addEventListener("resize", updateLayout);
-  window.addEventListener("load", updateLayout);
-});
+);
