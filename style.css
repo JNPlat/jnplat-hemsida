@@ -1270,13 +1270,14 @@ section {
   }
 }
 
-/* ===== Stabilisering: sektioner, referenser och Aktuellt ===== */
+/* ===== Stabilisering: bildreferens och skärmhöjd ===== */
 .service-info {
   flex: 1 1 auto;
   min-height: 205px;
   overflow: visible;
 }
 
+/* Aktuellt: bild och kreditering ryms inom samma bildyta */
 .current-gallery {
   grid-column: 2;
   grid-row: 1;
@@ -1288,37 +1289,39 @@ section {
 }
 
 .current-gallery .current-image-main {
+  position: relative;
   grid-column: auto;
   grid-row: auto;
   width: 100%;
   height: 100%;
   min-height: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
+  display: block;
   overflow: hidden;
 }
 
 .current-gallery .current-image-main img {
+  display: block;
   width: 100%;
   height: 100%;
   min-height: 0;
   max-width: none;
   object-fit: cover;
   object-position: center;
-  flex: 1 1 auto;
 }
 
 .current-gallery .current-image-main figcaption {
   display: block;
-  position: relative;
+  position: absolute;
   z-index: 2;
-  flex: 0 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   box-sizing: border-box;
   margin: 0;
-  padding: 9px 12px;
-  background: var(--card);
+  padding: 8px 12px;
+  background: rgba(247, 243, 235, 0.94);
   color: var(--muted);
   font-size: 12px;
   line-height: 1.35;
@@ -1328,6 +1331,35 @@ section {
   color: var(--copper-dark);
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+/* Om J. Norberg: en skärmhög sektion, beskär bilden nedifrån/uppifrån
+   så att nederdelen av motivet prioriteras. */
+@media (min-width: 801px) {
+  .about-section {
+    height: calc(100vh - var(--header-height));
+    min-height: calc(100vh - var(--header-height));
+    overflow: hidden;
+  }
+
+  .about-section > .container,
+  .about-grid {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .about-image {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+  }
 }
 
 @media (max-width: 800px) {
@@ -1358,30 +1390,36 @@ section {
   }
 
   .current-gallery .current-image-main {
+    position: relative;
+    width: 100%;
     height: auto;
-    overflow: visible;
+    aspect-ratio: 2328 / 1592;
+    overflow: hidden;
   }
 
   .current-gallery .current-image-main img {
     width: 100%;
-    height: auto;
-    aspect-ratio: 2328 / 1592;
+    height: 100%;
+    aspect-ratio: auto;
     object-fit: cover;
-    flex: 0 0 auto;
+    object-position: center;
   }
 
   .current-gallery .current-image-main figcaption {
     display: block !important;
-    position: relative;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 3;
     width: 100%;
     box-sizing: border-box;
     margin: 0;
-    padding: 10px 16px 12px;
-    background: var(--card);
+    padding: 8px 12px;
+    background: rgba(247, 243, 235, 0.94);
     color: var(--muted);
-    font-size: 12px;
-    line-height: 1.4;
+    font-size: 11px;
+    line-height: 1.3;
   }
 
   .current-gallery .current-image-main figcaption a {
@@ -1399,6 +1437,31 @@ section {
 
   .current-content {
     order: 2;
+  }
+
+  .about-section {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .about-grid {
+    height: auto;
+    min-height: 0;
+  }
+
+  .about-image {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .about-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
   }
 }
 
