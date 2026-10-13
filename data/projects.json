@@ -1,0 +1,14 @@
+[
+  {
+    "id": "exempelprojekt",
+    "title": "Projektnamn",
+    "service": "restaurering",
+    "description": "Skriv en kort beskrivning av projektet här.",
+    "hero": "images/projekt/projektnamn-hero.webp",
+    "gallery": [
+      "images/projekt/projektnamn-01.webp",
+      "images/projekt/projektnamn-02.webp"
+    ],
+    "published": false
+  }
+]

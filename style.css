@@ -1557,3 +1557,17 @@ section {
     width: calc(100vw - 16px);
   }
 }
+
+/* Mobil logotyp: bredare presentation utan att ändra scrollbeteendet. */
+@media (max-width: 800px) {
+  .site-header .brand {
+    width: calc(100vw - 32px);
+    max-width: 100%;
+    justify-content: center;
+  }
+  .site-header .brand img {
+    width: 100%;
+    max-height: 94px;
+    object-fit: contain;
+  }
+}
