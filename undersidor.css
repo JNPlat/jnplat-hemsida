@@ -217,3 +217,31 @@ body.project-gallery-open { overflow:hidden; }
  .service-image-hero .service-hero-picture { position:absolute; inset:0; }
  .service-projects { margin-top:0; }
 }
+
+/* Kompakt projektkarusell: pilar på varsin sida, utan extra rubrikrad. */
+.service-projects { display:grid; grid-template-columns:36px minmax(0,1fr) 36px; align-items:center; column-gap:12px; }
+.service-projects > .project-carousel-prev { grid-column:1; grid-row:1; }
+.service-projects > .project-carousel { grid-column:2; grid-row:1; }
+.service-projects > .project-carousel-next { grid-column:3; grid-row:1; }
+.project-side-arrow { width:36px; height:36px; border:1px solid var(--line,#d7cec2); background:transparent; color:var(--text,#29251f); font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.project-carousel { min-width:0; }
+@media (max-height:850px) and (min-width:801px) {
+ .service-showcase { gap:clamp(10px,1.5vh,16px); padding-top:12px; padding-bottom:12px; }
+ .service-showcase-top { min-height:clamp(210px,32vh,300px); max-height:34vh; }
+ .service-image-hero { min-height:210px; }
+ .service-copy { padding:clamp(20px,2.4vw,34px); }
+ .service-copy .intro-lead { font-size:clamp(22px,2.2vw,31px); }
+ .service-copy > p:not(.eyebrow):not(.intro-lead) { line-height:1.5; margin-bottom:10px; }
+ .project-carousel .project-card-image { aspect-ratio:16/8.5; }
+ .project-carousel .project-card-info { padding-top:4px; }
+ .project-carousel .project-card .text-link { margin-top:3px; }
+}
+@media (max-width:800px) {
+ .service-projects { grid-template-columns:28px minmax(0,1fr) 28px; column-gap:7px; padding:0 12px; }
+ .project-side-arrow { width:28px; height:32px; font-size:18px; }
+ .project-carousel { margin-right:-4px; padding-right:4px; }
+ .service-showcase { gap:14px; }
+ .service-showcase-top { }
+ .service-copy { padding:18px 20px 20px; }
+ .service-copy .intro-lead { font-size:25px; }
+}
