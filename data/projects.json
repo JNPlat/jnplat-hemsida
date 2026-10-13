@@ -1,14 +1,258 @@
 [
   {
-    "id": "exempelprojekt",
-    "title": "Projektnamn",
-    "service": "restaurering",
-    "description": "Skriv en kort beskrivning av projektet här.",
-    "hero": "images/projekt/projektnamn-hero.webp",
+    "id": "byggnadsplatslageri-exempel-01",
+    "title": "Exempelprojekt 01",
+    "service": "byggnadsplatslageri",
+    "description": "Exempeltext för byggnadsplåtslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för byggnadsplåtslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/byggnadsplatslageri-desktop.webp",
+    "cardImage": "images/byggnadsplatslageri-desktop.webp",
     "gallery": [
-      "images/projekt/projektnamn-01.webp",
-      "images/projekt/projektnamn-02.webp"
+      "images/byggnadsplatslageri-desktop.webp",
+      "images/hero-bild.webp",
+      "images/byggnadsplatslageri-desktop.webp"
     ],
-    "published": false
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "byggnadsplatslageri-exempel-02",
+    "title": "Exempelprojekt 02",
+    "service": "byggnadsplatslageri",
+    "description": "Exempeltext för byggnadsplåtslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för byggnadsplåtslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/byggnadsplatslageri-desktop.webp",
+    "cardImage": "images/byggnadsplatslageri-desktop.webp",
+    "gallery": [
+      "images/byggnadsplatslageri-desktop.webp",
+      "images/hero-bild.webp",
+      "images/byggnadsplatslageri-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "byggnadsplatslageri-exempel-03",
+    "title": "Exempelprojekt 03",
+    "service": "byggnadsplatslageri",
+    "description": "Exempeltext för byggnadsplåtslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för byggnadsplåtslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/byggnadsplatslageri-desktop.webp",
+    "cardImage": "images/byggnadsplatslageri-desktop.webp",
+    "gallery": [
+      "images/byggnadsplatslageri-desktop.webp",
+      "images/hero-bild.webp",
+      "images/byggnadsplatslageri-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "byggnadsplatslageri-exempel-04",
+    "title": "Exempelprojekt 04",
+    "service": "byggnadsplatslageri",
+    "description": "Exempeltext för byggnadsplåtslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för byggnadsplåtslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/byggnadsplatslageri-desktop.webp",
+    "cardImage": "images/byggnadsplatslageri-desktop.webp",
+    "gallery": [
+      "images/byggnadsplatslageri-desktop.webp",
+      "images/hero-bild.webp",
+      "images/byggnadsplatslageri-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "kopparslageri-exempel-01",
+    "title": "Exempelprojekt 01",
+    "service": "kopparslageri",
+    "description": "Exempeltext för kopparslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för kopparslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/kopparslageri-desktop.webp",
+    "cardImage": "images/kopparslageri-desktop.webp",
+    "gallery": [
+      "images/kopparslageri-desktop.webp",
+      "images/hero-bild.webp",
+      "images/kopparslageri-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "kopparslageri-exempel-02",
+    "title": "Exempelprojekt 02",
+    "service": "kopparslageri",
+    "description": "Exempeltext för kopparslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för kopparslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/kopparslageri-desktop.webp",
+    "cardImage": "images/kopparslageri-desktop.webp",
+    "gallery": [
+      "images/kopparslageri-desktop.webp",
+      "images/hero-bild.webp",
+      "images/kopparslageri-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "kopparslageri-exempel-03",
+    "title": "Exempelprojekt 03",
+    "service": "kopparslageri",
+    "description": "Exempeltext för kopparslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för kopparslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/kopparslageri-desktop.webp",
+    "cardImage": "images/kopparslageri-desktop.webp",
+    "gallery": [
+      "images/kopparslageri-desktop.webp",
+      "images/hero-bild.webp",
+      "images/kopparslageri-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "kopparslageri-exempel-04",
+    "title": "Exempelprojekt 04",
+    "service": "kopparslageri",
+    "description": "Exempeltext för kopparslageri. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för kopparslageri. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/kopparslageri-desktop.webp",
+    "cardImage": "images/kopparslageri-desktop.webp",
+    "gallery": [
+      "images/kopparslageri-desktop.webp",
+      "images/hero-bild.webp",
+      "images/kopparslageri-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "restaurering-exempel-01",
+    "title": "Exempelprojekt 01",
+    "service": "restaurering",
+    "description": "Exempeltext för restaurering. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för restaurering. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/restaurering-desktop.webp",
+    "cardImage": "images/restaurering-desktop.webp",
+    "gallery": [
+      "images/restaurering-desktop.webp",
+      "images/hero-bild.webp",
+      "images/restaurering-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "restaurering-exempel-02",
+    "title": "Exempelprojekt 02",
+    "service": "restaurering",
+    "description": "Exempeltext för restaurering. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för restaurering. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/restaurering-desktop.webp",
+    "cardImage": "images/restaurering-desktop.webp",
+    "gallery": [
+      "images/restaurering-desktop.webp",
+      "images/hero-bild.webp",
+      "images/restaurering-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "restaurering-exempel-03",
+    "title": "Exempelprojekt 03",
+    "service": "restaurering",
+    "description": "Exempeltext för restaurering. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för restaurering. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/restaurering-desktop.webp",
+    "cardImage": "images/restaurering-desktop.webp",
+    "gallery": [
+      "images/restaurering-desktop.webp",
+      "images/hero-bild.webp",
+      "images/restaurering-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "restaurering-exempel-04",
+    "title": "Exempelprojekt 04",
+    "service": "restaurering",
+    "description": "Exempeltext för restaurering. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för restaurering. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/restaurering-desktop.webp",
+    "cardImage": "images/restaurering-desktop.webp",
+    "gallery": [
+      "images/restaurering-desktop.webp",
+      "images/hero-bild.webp",
+      "images/restaurering-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "specialprojekt-exempel-01",
+    "title": "Exempelprojekt 01",
+    "service": "specialprojekt",
+    "description": "Exempeltext för specialprojekt. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för specialprojekt. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/specialprojekt-desktop.webp",
+    "cardImage": "images/specialprojekt-desktop.webp",
+    "gallery": [
+      "images/specialprojekt-desktop.webp",
+      "images/hero-bild.webp",
+      "images/specialprojekt-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "specialprojekt-exempel-02",
+    "title": "Exempelprojekt 02",
+    "service": "specialprojekt",
+    "description": "Exempeltext för specialprojekt. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för specialprojekt. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/specialprojekt-desktop.webp",
+    "cardImage": "images/specialprojekt-desktop.webp",
+    "gallery": [
+      "images/specialprojekt-desktop.webp",
+      "images/hero-bild.webp",
+      "images/specialprojekt-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "specialprojekt-exempel-03",
+    "title": "Exempelprojekt 03",
+    "service": "specialprojekt",
+    "description": "Exempeltext för specialprojekt. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för specialprojekt. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/specialprojekt-desktop.webp",
+    "cardImage": "images/specialprojekt-desktop.webp",
+    "gallery": [
+      "images/specialprojekt-desktop.webp",
+      "images/hero-bild.webp",
+      "images/specialprojekt-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "specialprojekt-exempel-04",
+    "title": "Exempelprojekt 04",
+    "service": "specialprojekt",
+    "description": "Exempeltext för specialprojekt. Detta är tillfälligt demonstrationsinnehåll som senare ersätts med ett verkligt referensprojekt.",
+    "longDescription": "Demonstrationssida för specialprojekt. Här kan du senare beskriva uppdragets omfattning, materialval, utförande och särskilda detaljer. Texten är tillfällig och ska ersättas innan sidan används som riktig kundreferens.",
+    "hero": "images/specialprojekt-desktop.webp",
+    "cardImage": "images/specialprojekt-desktop.webp",
+    "gallery": [
+      "images/specialprojekt-desktop.webp",
+      "images/hero-bild.webp",
+      "images/specialprojekt-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
   }
 ]
