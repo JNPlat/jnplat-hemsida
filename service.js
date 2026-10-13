@@ -3,10 +3,18 @@
   const list = document.querySelector('[data-project-list]');
   if (!list || !serviceId) return;
 
+  const galleryModal = createGalleryModal();
+  let activeProject = null;
+  let activeImages = [];
+  let imageIndex = 0;
+  let previousFocus = null;
+  let touchStartX = 0;
+
   try {
     const response = await fetch('../data/projects.json', { cache: 'no-store' });
     if (!response.ok) throw new Error('Kunde inte läsa projektlistan');
     const projects = await response.json();
+    // Visa endast publicerade projekt som tillhör just den aktuella tjänsten.
     const visibleProjects = projects.filter(project => project.published !== false && project.service === serviceId);
 
     if (!visibleProjects.length) {
@@ -14,21 +22,108 @@
       return;
     }
 
-    list.innerHTML = visibleProjects.map(project => {
+    list.innerHTML = visibleProjects.map((project, index) => {
       const image = project.cardImage || project.hero || (project.gallery && project.gallery[0]);
       const imageMarkup = image
         ? `<img src="../${escapeAttribute(image)}" alt="${escapeAttribute(project.title)}" loading="lazy">`
         : '';
-      return `<a class="project-card" href="../projekt.html?id=${encodeURIComponent(project.id)}">` +
-        `<div class="project-card-image">${imageMarkup}</div>` +
-        `<div class="project-card-info"><h3>${escapeHTML(project.title)}</h3><p>${escapeHTML(project.description || '')}</p><span class="text-link">Se projektet <span>→</span></span></div></a>`;
+      return `<button class="project-card" type="button" data-project-index="${index}" aria-label="Öppna bildgalleri för ${escapeAttribute(project.title)}">` +
+        `<div class="project-card-image">${imageMarkup}<span class="project-card-open">Visa bilder ↗</span></div>` +
+        `<span class="project-card-info"><span class="project-card-title">${escapeHTML(project.title)}</span><span class="text-link">Visa galleri <span>→</span></span></span></button>`;
     }).join('');
+
+    list.querySelectorAll('[data-project-index]').forEach(button => {
+      button.addEventListener('click', () => openProjectGallery(visibleProjects[Number(button.dataset.projectIndex)], button));
+    });
+
+    const previous = document.querySelector('.project-carousel-prev');
+    const next = document.querySelector('.project-carousel-next');
+    const scrollByCard = direction => {
+      const card = list.querySelector('.project-card');
+      if (!card) return;
+      const gap = parseFloat(getComputedStyle(list).columnGap || getComputedStyle(list).gap) || 14;
+      list.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap), behavior: 'smooth' });
+    };
+    previous?.addEventListener('click', () => scrollByCard(-1));
+    next?.addEventListener('click', () => scrollByCard(1));
   } catch (error) {
     list.innerHTML = '<p class="empty-projects">Projektlistan kunde inte laddas just nu.</p>';
   }
 
+  function createGalleryModal() {
+    const modal = document.createElement('div');
+    modal.className = 'project-gallery-modal';
+    modal.hidden = true;
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Projektgalleri');
+    modal.innerHTML = `<div class="project-gallery-backdrop" data-gallery-close></div><div class="project-gallery-dialog"><div class="project-gallery-top"><div><p class="eyebrow" data-gallery-service></p><h2 data-gallery-title></h2></div><button class="project-gallery-close" type="button" aria-label="Stäng galleri">×</button></div><div class="project-gallery-stage"><button class="project-gallery-arrow project-gallery-prev" type="button" aria-label="Föregående bild">‹</button><img class="project-gallery-main-image" alt=""><button class="project-gallery-arrow project-gallery-next" type="button" aria-label="Nästa bild">›</button></div><div class="project-gallery-bottom"><p class="project-gallery-description"></p><span class="project-gallery-count" aria-live="polite"></span></div><div class="project-gallery-thumbnails" aria-label="Alla projektbilder"></div></div>`;
+    document.body.appendChild(modal);
+    modal.querySelector('.project-gallery-close').addEventListener('click', closeGallery);
+    modal.querySelector('[data-gallery-close]').addEventListener('click', closeGallery);
+    modal.querySelector('.project-gallery-prev').addEventListener('click', () => showImage(imageIndex - 1));
+    modal.querySelector('.project-gallery-next').addEventListener('click', () => showImage(imageIndex + 1));
+    modal.querySelector('.project-gallery-thumbnails').addEventListener('click', event => {
+      const thumb = event.target.closest('[data-thumb-index]');
+      if (thumb) showImage(Number(thumb.dataset.thumbIndex));
+    });
+    modal.querySelector('.project-gallery-stage').addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
+    modal.querySelector('.project-gallery-stage').addEventListener('touchend', event => {
+      const delta = event.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(delta) > 45) showImage(imageIndex + (delta < 0 ? 1 : -1));
+    }, { passive: true });
+    return modal;
+  }
+
+  function openProjectGallery(project, trigger) {
+    activeProject = project;
+    previousFocus = trigger || document.activeElement;
+    const hero = project.hero || project.cardImage || '';
+    activeImages = [...new Set([...(hero ? [hero] : []), ...((project.gallery || []).filter(Boolean))])];
+    if (!activeImages.length) return;
+    imageIndex = 0;
+    galleryModal.querySelector('[data-gallery-service]').textContent = serviceLabel(project.service);
+    galleryModal.querySelector('[data-gallery-title]').textContent = project.title;
+    galleryModal.querySelector('.project-gallery-description').textContent = project.description || '';
+    galleryModal.querySelector('.project-gallery-thumbnails').innerHTML = activeImages.map((src, i) => `<button type="button" data-thumb-index="${i}" aria-label="Visa bild ${i + 1}"><img src="../${escapeAttribute(src)}" alt="" loading="lazy"></button>`).join('');
+    galleryModal.hidden = false;
+    document.body.classList.add('project-gallery-open');
+    showImage(0);
+    galleryModal.querySelector('.project-gallery-close').focus();
+  }
+
+  function showImage(index) {
+    if (!activeImages.length) return;
+    imageIndex = (index + activeImages.length) % activeImages.length;
+    const img = galleryModal.querySelector('.project-gallery-main-image');
+    img.src = `../${activeImages[imageIndex]}`;
+    img.alt = `${activeProject?.title || 'Projekt'} – bild ${imageIndex + 1}`;
+    galleryModal.querySelector('.project-gallery-count').textContent = `${imageIndex + 1} / ${activeImages.length}`;
+    galleryModal.querySelectorAll('[data-thumb-index]').forEach((button, i) => {
+      button.classList.toggle('active', i === imageIndex);
+      if (i === imageIndex) button.setAttribute('aria-current', 'true'); else button.removeAttribute('aria-current');
+    });
+    galleryModal.querySelector('.project-gallery-prev').hidden = activeImages.length < 2;
+    galleryModal.querySelector('.project-gallery-next').hidden = activeImages.length < 2;
+  }
+
+  function closeGallery() {
+    galleryModal.hidden = true;
+    document.body.classList.remove('project-gallery-open');
+    if (previousFocus && previousFocus.focus) previousFocus.focus();
+  }
+  document.addEventListener('keydown', event => {
+    if (galleryModal.hidden) return;
+    if (event.key === 'Escape') closeGallery();
+    if (event.key === 'ArrowLeft') showImage(imageIndex - 1);
+    if (event.key === 'ArrowRight') showImage(imageIndex + 1);
+  });
+
+  function serviceLabel(id) {
+    return ({ byggnadsplatslageri: 'Byggnadsplåtslageri', kopparslageri: 'Kopparslageri', restaurering: 'Restaurering', specialprojekt: 'Specialprojekt' })[id] || 'Projekt';
+  }
   function escapeHTML(value) {
-    return String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+    return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
   }
   function escapeAttribute(value) { return escapeHTML(value); }
 })();

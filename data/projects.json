@@ -254,5 +254,133 @@
     ],
     "published": true,
     "mockup": true
+  },
+  {
+    "id": "byggnadsplatslageri-exempel-05",
+    "title": "Demoprojekt 05",
+    "service": "byggnadsplatslageri",
+    "description": "Demonstration av byggnadsplåtslageri – tillfälligt innehåll för att visa projektkarusellen.",
+    "longDescription": "Detta är ett fiktivt demonstrationsprojekt för byggnadsplåtslageri. Ersätt text och bilder med en verklig referens innan publicering.",
+    "hero": "images/byggnadsplatslageri-desktop.webp",
+    "cardImage": "images/byggnadsplatslageri-desktop.webp",
+    "gallery": [
+      "images/byggnadsplatslageri-desktop.webp",
+      "images/hero-bild.webp",
+      "images/byggnadsplatslageri-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "byggnadsplatslageri-exempel-06",
+    "title": "Demoprojekt 06",
+    "service": "byggnadsplatslageri",
+    "description": "Demonstration av byggnadsplåtslageri – tillfälligt innehåll för att visa projektkarusellen.",
+    "longDescription": "Detta är ett fiktivt demonstrationsprojekt för byggnadsplåtslageri. Ersätt text och bilder med en verklig referens innan publicering.",
+    "hero": "images/byggnadsplatslageri-desktop.webp",
+    "cardImage": "images/byggnadsplatslageri-desktop.webp",
+    "gallery": [
+      "images/byggnadsplatslageri-desktop.webp",
+      "images/hero-bild.webp",
+      "images/byggnadsplatslageri-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "kopparslageri-exempel-05",
+    "title": "Demoprojekt 05",
+    "service": "kopparslageri",
+    "description": "Demonstration av kopparslageri – tillfälligt innehåll för att visa projektkarusellen.",
+    "longDescription": "Detta är ett fiktivt demonstrationsprojekt för kopparslageri. Ersätt text och bilder med en verklig referens innan publicering.",
+    "hero": "images/kopparslageri-desktop.webp",
+    "cardImage": "images/kopparslageri-desktop.webp",
+    "gallery": [
+      "images/kopparslageri-desktop.webp",
+      "images/hero-bild.webp",
+      "images/kopparslageri-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "kopparslageri-exempel-06",
+    "title": "Demoprojekt 06",
+    "service": "kopparslageri",
+    "description": "Demonstration av kopparslageri – tillfälligt innehåll för att visa projektkarusellen.",
+    "longDescription": "Detta är ett fiktivt demonstrationsprojekt för kopparslageri. Ersätt text och bilder med en verklig referens innan publicering.",
+    "hero": "images/kopparslageri-desktop.webp",
+    "cardImage": "images/kopparslageri-desktop.webp",
+    "gallery": [
+      "images/kopparslageri-desktop.webp",
+      "images/hero-bild.webp",
+      "images/kopparslageri-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "restaurering-exempel-05",
+    "title": "Demoprojekt 05",
+    "service": "restaurering",
+    "description": "Demonstration av restaurering – tillfälligt innehåll för att visa projektkarusellen.",
+    "longDescription": "Detta är ett fiktivt demonstrationsprojekt för restaurering. Ersätt text och bilder med en verklig referens innan publicering.",
+    "hero": "images/restaurering-desktop.webp",
+    "cardImage": "images/restaurering-desktop.webp",
+    "gallery": [
+      "images/restaurering-desktop.webp",
+      "images/hero-bild.webp",
+      "images/restaurering-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "restaurering-exempel-06",
+    "title": "Demoprojekt 06",
+    "service": "restaurering",
+    "description": "Demonstration av restaurering – tillfälligt innehåll för att visa projektkarusellen.",
+    "longDescription": "Detta är ett fiktivt demonstrationsprojekt för restaurering. Ersätt text och bilder med en verklig referens innan publicering.",
+    "hero": "images/restaurering-desktop.webp",
+    "cardImage": "images/restaurering-desktop.webp",
+    "gallery": [
+      "images/restaurering-desktop.webp",
+      "images/hero-bild.webp",
+      "images/restaurering-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "specialprojekt-exempel-05",
+    "title": "Demoprojekt 05",
+    "service": "specialprojekt",
+    "description": "Demonstration av specialprojekt – tillfälligt innehåll för att visa projektkarusellen.",
+    "longDescription": "Detta är ett fiktivt demonstrationsprojekt för specialprojekt. Ersätt text och bilder med en verklig referens innan publicering.",
+    "hero": "images/specialprojekt-desktop.webp",
+    "cardImage": "images/specialprojekt-desktop.webp",
+    "gallery": [
+      "images/specialprojekt-desktop.webp",
+      "images/hero-bild.webp",
+      "images/specialprojekt-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
+  },
+  {
+    "id": "specialprojekt-exempel-06",
+    "title": "Demoprojekt 06",
+    "service": "specialprojekt",
+    "description": "Demonstration av specialprojekt – tillfälligt innehåll för att visa projektkarusellen.",
+    "longDescription": "Detta är ett fiktivt demonstrationsprojekt för specialprojekt. Ersätt text och bilder med en verklig referens innan publicering.",
+    "hero": "images/specialprojekt-desktop.webp",
+    "cardImage": "images/specialprojekt-desktop.webp",
+    "gallery": [
+      "images/specialprojekt-desktop.webp",
+      "images/hero-bild.webp",
+      "images/specialprojekt-desktop.webp"
+    ],
+    "published": true,
+    "mockup": true
   }
 ]
