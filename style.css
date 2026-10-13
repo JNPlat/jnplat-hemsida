@@ -16,9 +16,16 @@
 }
 html {
   scroll-behavior: smooth;
+  /* Förhindra att en bred sektion skapar horisontell sidscrollning. */
+  overflow-x: clip;
+  max-width: 100%;
 }
 body {
   margin: 0;
+  /* Klipp eventuell overflow vid sidans ytterkant utan att stänga av
+     separata horisontella svepytor, exempelvis referenserna på mobil. */
+  overflow-x: clip;
+  max-width: 100%;
   background: var(--bg);
   color: var(--text);
   font-family: "Cormorant Garamond",
@@ -1482,5 +1489,33 @@ section {
 
   .reference-arrow {
     display: none;
+  }
+}
+
+
+/* Förhindra att grid-/flexinnehåll breddar hela dokumentet. */
+.current-project,
+.current-content,
+.current-gallery,
+.services-grid,
+.service-card,
+.about-grid,
+.about-content,
+.about-image,
+.contact-panel,
+.contact-content {
+  min-width: 0;
+}
+
+/* Mobil: varje huvudsektion fyller minst den synliga skärmhöjden.
+   Innehåll får fortfarande göra sektionen högre vid behov. */
+@media (max-width: 800px) {
+  .hero-section,
+  .services-section,
+  .current-section,
+  .about-section,
+  .contact-section {
+    min-height: calc(100vh - var(--header-height));
+    min-height: calc(100dvh - var(--header-height));
   }
 }
