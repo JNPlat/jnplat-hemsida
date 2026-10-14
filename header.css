@@ -3,7 +3,7 @@
    Header is fixed so mobile Safari/Chrome cannot lose it due to sticky/overflow ancestors.*/
 
 :root {
-  --header-height: 88px;
+  --header-height: 82px;
   --header-logo-width: 280px;
   --header-nav-gap: 28px;
 }
