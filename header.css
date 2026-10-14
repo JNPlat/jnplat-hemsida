@@ -1,0 +1,308 @@
+/* J. Norberg Plåtslageri — shared header
+   Single source of truth for the header on every page.
+   Header is fixed so mobile Safari/Chrome cannot lose it due to sticky/overflow ancestors. */
+
+:root {
+  --header-height: 88px;
+  --header-logo-width: 280px;
+  --header-nav-gap: 28px;
+}
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 1000;
+  width: 100%;
+  height: var(--header-height);
+  min-height: var(--header-height);
+  margin: 0;
+  padding: 0;
+  background: rgba(243, 238, 230, 0.97);
+  border-bottom: 1px solid rgba(48, 42, 36, 0.14);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+/* Header offsets and anchor positions are owned here, not in page stylesheets. */
+section {
+  scroll-margin-top: var(--header-height);
+}
+
+.site-header .nav-wrap {
+  width: min(calc(100% - 64px), var(--max-width, 1320px));
+  max-width: var(--max-width, 1320px);
+  height: 100%;
+  min-height: 0;
+  margin-inline: auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: var(--header-logo-width) minmax(0, 1fr);
+  align-items: center;
+  column-gap: clamp(22px, 2.8vw, 38px);
+  position: relative;
+}
+
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: var(--header-logo-width);
+  min-width: 0;
+  max-width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  flex: none;
+}
+
+.site-header .brand img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.site-header .main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: var(--header-nav-gap);
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.site-header .main-nav > .nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 8px 0;
+  color: var(--text, #302a24);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.site-header .main-nav > .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 0;
+  height: 1px;
+  background: var(--copper, #9a6747);
+  transition: width 0.25s ease;
+}
+
+.site-header .main-nav > .nav-link.active {
+  color: var(--copper-dark, #704936);
+}
+
+.site-header .main-nav > .nav-link.active::after {
+  width: 100%;
+}
+
+.site-header .main-nav > .header-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  flex: 0 0 auto;
+  padding: 8px 15px;
+  border: 1px solid var(--copper, #9a6747);
+  background: transparent;
+  color: var(--copper-dark, #704936);
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 500;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.site-header .main-nav > .header-contact::after {
+  display: none;
+}
+
+.site-header .main-nav > .header-contact span {
+  display: inline;
+  margin: 0;
+  font-size: 1.08em;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.site-header .main-nav > .header-contact:hover,
+.site-header .main-nav > .header-contact.active {
+  background: var(--copper, #9a6747);
+  color: var(--white, #fffdf9);
+}
+
+.site-header .main-nav > .header-contact:hover span,
+.site-header .main-nav > .header-contact.active span {
+  transform: translateX(3px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-header .main-nav > .nav-link:hover {
+    color: var(--copper-dark, #704936);
+  }
+  .site-header .main-nav > .nav-link:hover::after {
+    width: 100%;
+  }
+}
+
+/* Smaller desktop/laptop widths: keep the entire navigation on one line. */
+@media (min-width: 801px) and (max-width: 1150px) {
+  :root {
+    --header-height: 82px;
+    --header-logo-width: 220px;
+    --header-nav-gap: 14px;
+  }
+  .site-header .nav-wrap {
+    width: calc(100% - 40px);
+    column-gap: 20px;
+  }
+  .site-header .main-nav > .nav-link {
+    font-size: 14px;
+  }
+  .site-header .main-nav > .header-contact {
+    padding: 7px 10px;
+    font-size: 14px;
+  }
+}
+
+/* Mobile: compact, identical header on the homepage and all subpages.
+   Fixed positioning is intentional; it does not depend on sticky ancestors. */
+@media (max-width: 800px) {
+  :root {
+    --header-height: 118px;
+    --header-logo-width: min(calc(100vw - 28px), 590px);
+    --header-nav-gap: clamp(4px, 1.3vw, 9px);
+  }
+
+  .site-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    height: var(--header-height);
+    min-height: var(--header-height);
+    transform: none;
+  }
+
+  .site-header .nav-wrap {
+    width: 100%;
+    max-width: none;
+    height: var(--header-height);
+    min-height: 0;
+    margin: 0;
+    padding: 4px 8px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  .site-header .brand {
+    flex: 0 0 74px;
+    width: var(--header-logo-width);
+    min-width: 0;
+    max-width: 100%;
+    height: 74px;
+    min-height: 74px;
+    max-height: 74px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .site-header .brand img {
+    width: 100%;
+    height: 100%;
+    max-height: 74px;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .site-header .main-nav {
+    display: flex;
+    flex: 0 0 31px;
+    width: max-content;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--header-nav-gap);
+    overflow: visible;
+  }
+
+  .site-header .main-nav > .nav-link {
+    flex: 0 1 auto;
+    min-width: 0;
+    margin: 0;
+    padding: 3px 0;
+    font-size: clamp(9px, 2.55vw, 12px);
+    line-height: 1.15;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .site-header .main-nav > .header-contact {
+    flex: 0 0 auto;
+    padding: 3px 5px;
+    gap: 3px;
+    font-size: inherit;
+    line-height: 1.1;
+  }
+
+  .site-header .main-nav > .header-contact span {
+    font-size: inherit;
+  }
+
+  /* Reserve space below the fixed header on every page type. */
+  body > main,
+  body > .inner-main,
+  main,
+  .inner-main,
+  .inner-page .inner-main,
+  .inner-page.service-page .inner-main {
+    padding-top: var(--header-height) !important;
+    margin-top: 0 !important;
+  }
+
+  section {
+    scroll-margin-top: var(--header-height);
+  }
+}
+
+/* Desktop content offset matches the fixed header. */
+@media (min-width: 801px) {
+  body > main,
+  body > .inner-main,
+  main {
+    padding-top: var(--header-height) !important;
+  }
+  .inner-page.service-page .inner-main {
+    padding-top: var(--header-height) !important;
+  }
+}

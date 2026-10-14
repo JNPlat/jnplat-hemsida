@@ -20,13 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return header ? header.getBoundingClientRect().height : 0;
   }
 
-  function updateHeaderHeight() {
-    document.documentElement.style.setProperty(
-      "--header-height",
-      `${getHeaderHeight()}px`
-    );
-  }
-
   function updateActiveSection() {
     if (!sections.length) return;
 
@@ -223,7 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function updateLayout() {
-    updateHeaderHeight();
     updateActiveSection();
     updateReferenceCarousel();
   }

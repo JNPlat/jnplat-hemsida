@@ -1,5 +1,5 @@
 :root {
-  --header-height: 82px;
+  
   --bg: #f3eee6;
   --bg-light: #f8f5ef;
   --card: #e9e2d7;
@@ -75,119 +75,24 @@ h6 {
     );
   margin: 0 auto;
 }
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  min-height: 82px;
-  background: rgba(243, 238, 230, 0.96);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-.nav-wrap {
-  min-height: 82px;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-.brand {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  width: 235px;
-}
-.brand img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-.main-nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: clamp(
-      18px,
-      2.2vw,
-      34px
-    );
-  margin-left: clamp(
-      22px,
-      2.8vw,
-      38px
-    );
-  min-width: 0;
-}
-.nav-link {
-  position: relative;
-  padding: 8px 0;
-  font-size: 17px;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  color: var(--text);
-  white-space: nowrap;
-}
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 2px;
-  width: 0;
-  height: 1px;
-  background: var(--copper);
-  transition: width 0.25s ease;
-}
-.nav-link.active {
-  color: var(--copper-dark);
-}
-.nav-link.active::after {
-  width: 100%;
-}
+
+
+
+
+
+
+
+
+
 @media (hover: hover) and (pointer: fine) {
-  .nav-link:hover {
-    color: var(--copper-dark);
-  }
-  .nav-link:hover::after {
-    width: 100%;
-  }
+  
+  
 }
-.header-contact {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 8px 15px;
-  border: 1px solid var(--copper);
-  background: transparent;
-  color: var(--copper-dark);
-  font-size: 17px;
-  font-weight: 500;
-  transition: background 0.25s ease,
-    color 0.25s ease;
-}
-.header-contact::after {
-  display: none;
-}
-.header-contact span {
-  font-size: 19px;
-  transition: transform 0.25s ease;
-}
-.header-contact:hover,
-.header-contact.active {
-  background: var(--copper);
-  color: var(--white);
-}
-.header-contact:hover span,
-.header-contact.active span {
-  transform: translateX(3px);
-}
-main {
-  padding-top: var(--header-height);
-}
-section {
-  scroll-margin-top: var(--header-height);
-}
+
+
+
+
+
 .hero-section {
   min-height: calc(100vh - var(--header-height));
   padding: 0;
@@ -749,20 +654,10 @@ section {
         var(--max-width)
       );
   }
-  .brand {
-    width: 190px;
-  }
-  .main-nav {
-    gap: 18px;
-    margin-left: 22px;
-  }
-  .nav-link {
-    font-size: 16px;
-  }
-  .header-contact {
-    padding: 7px 12px;
-    font-size: 16px;
-  }
+  
+  
+  
+  
   .hero-content {
     padding: 50px;
   }
@@ -809,44 +704,13 @@ section {
   }
 }
 @media (max-width: 800px) {
-  .site-header {
-    min-height: 0;
-    height: auto;
-  }
-  .nav-wrap {
-    min-height: 0;
-    height: auto;
-    padding: 10px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-  .brand {
-    width: 190px;
-    flex: 0 0 auto;
-  }
-  .main-nav {
-    width: 100%;
-    margin-left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 3px 16px;
-  }
-  .nav-link {
-    padding: 5px 0;
-    font-size: 16px;
-    white-space: nowrap;
-  }
-  .header-contact {
-    padding: 5px 9px;
-    font-size: 16px;
-  }
-  .header-contact span {
-    font-size: 17px;
-  }
+  
+  
+  
+  
+  
+  
+  
   .hero-section {
     height: auto;
     min-height: 0;
@@ -1136,22 +1000,11 @@ section {
   }
 }
 @media (max-width: 540px) {
-  .brand {
-    width: 175px;
-  }
-  .main-nav {
-    gap: 3px 11px;
-  }
-  .nav-link {
-    font-size: 14px;
-  }
-  .header-contact {
-    padding: 4px 8px;
-    font-size: 14px;
-  }
-  .header-contact span {
-    font-size: 16px;
-  }
+  
+  
+  
+  
+  
   .section-band {
     padding: 10px 8px;
   }
@@ -1216,19 +1069,10 @@ section {
   }
 }
 @media (max-width: 400px) {
-  .brand {
-    width: 160px;
-  }
-  .main-nav {
-    gap: 3px 8px;
-  }
-  .nav-link {
-    font-size: 13px;
-  }
-  .header-contact {
-    font-size: 13px;
-    padding: 4px 7px;
-  }
+  
+  
+  
+  
   .reference-name {
     font-size: 13px;
   }
@@ -1266,14 +1110,10 @@ section {
   }
 }
 @media (min-width: 801px) {
-  .site-header {
-    height: 82px;
-  }
-  .nav-wrap {
-    min-height: 82px;
-  }
+  
+  
   :root {
-    --header-height: 82px;
+    
   }
 }
 
@@ -1522,54 +1362,27 @@ section {
 
 /* Mobil: större logotyp, nästan hela skärmens bredd. Logotypen ligger kvar vid scroll. */
 @media (max-width: 800px) {
-  .nav-wrap {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    gap: 8px;
-  }
+  
 
-  .brand {
-    width: calc(100vw - 24px);
-    max-width: 100%;
-    justify-content: center;
-  }
+  
 
-  .brand img {
-    width: 100%;
-    height: auto;
-    max-height: 120px;
-    object-fit: contain;
-  }
+  
 }
 
 @media (max-width: 540px) {
-  .brand {
-    width: calc(100vw - 20px);
-  }
+  
 
-  .brand img {
-    max-height: 110px;
-  }
+  
 }
 
 @media (max-width: 400px) {
-  .brand {
-    width: calc(100vw - 16px);
-  }
+  
 }
 
 /* Mobil logotyp: bredare presentation utan att ändra scrollbeteendet. */
 @media (max-width: 800px) {
-  .site-header .brand {
-    width: calc(100vw - 32px);
-    max-width: 100%;
-    justify-content: center;
-  }
-  .site-header .brand img {
-    width: 100%;
-    max-height: 94px;
-    object-fit: contain;
-  }
+  
+  
 }
 
 /* Referenskarusell: smala, höga överlagrade pilar som fylls vid hover. */
@@ -1591,16 +1404,8 @@ section {
 
 /* Gemensam mobil-logotyp på startsida och tjänstesidor. */
 @media (max-width:800px) {
-  .site-header .brand,
-  .inner-page .site-header .brand {
-    width:calc(100vw - 32px);
-    max-width:calc(100vw - 32px);
-    justify-content:center;
-  }
-  .site-header .brand img,
-  .inner-page .site-header .brand img {
-    width:100%; height:auto; max-height:94px; object-fit:contain;
-  }
+  
+  
 }
 
 /* Referenspilarna använder samma diskreta, smala form som tjänsternas karusellpilar. */
@@ -1755,680 +1560,4 @@ section {
   .references-carousel .reference-role { font-size: 13px !important; }
   .references-carousel .reference-quote { font-size: 14px !important; line-height: 1.3 !important; }
   .references-carousel .reference-arrow { display: none !important; }
-}
-
-/* Slutlig headerstandard: identisk desktopplacering på startsida och undersidor. */
-@media (min-width: 801px) {
-  .site-header {
-    height: 82px !important;
-    min-height: 82px !important;
-  }
-  .site-header .nav-wrap {
-    height: 82px !important;
-    min-height: 82px !important;
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    align-items: center !important;
-  }
-  .site-header .brand,
-  .inner-page .site-header .brand {
-    flex: 0 0 clamp(170px, 14.33vw, 235px) !important;
-    width: clamp(170px, 14.33vw, 235px) !important;
-    max-width: none !important;
-    margin: 0 !important;
-  }
-  .site-header .brand img,
-  .inner-page .site-header .brand img {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    max-height: none !important;
-    object-fit: contain !important;
-  }
-  .site-header .main-nav,
-  .inner-page .site-header .main-nav {
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-    margin-left: clamp(16px, 2.32vw, 38px) !important;
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: clamp(12px, 1.83vw, 30px) !important;
-  }
-  .site-header .main-nav .nav-link,
-  .inner-page .site-header .main-nav .nav-link {
-    flex: 0 0 auto !important;
-    font-size: clamp(13px, 1.04vw, 17px) !important;
-    line-height: 1.2 !important;
-    padding: 8px 0 !important;
-    letter-spacing: 0.01em !important;
-  }
-  .site-header .main-nav .header-contact,
-  .inner-page .site-header .main-nav .header-contact {
-    padding: 8px 15px !important;
-    gap: 9px !important;
-    line-height: 1.2 !important;
-  }
-}
-
-/* Mobil kontaktknapp: balanserad höjd och centrerad etikett med pil. */
-@media (max-width: 800px) {
-  .site-header .main-nav .header-contact,
-  .inner-page .site-header .main-nav .header-contact {
-    box-sizing: border-box !important;
-    min-height: 32px !important;
-    height: 32px !important;
-    padding: 0 9px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 6px !important;
-    line-height: 1 !important;
-    vertical-align: middle !important;
-  }
-  .site-header .main-nav .header-contact span,
-  .inner-page .site-header .main-nav .header-contact span {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin: 0 !important;
-    line-height: 1 !important;
-    font-size: 17px !important;
-  }
-}
-
-/* Headerstandard v2: samma geometri på samtliga sidor, även på mobil. */
-@media (min-width: 801px) {
-  .site-header { height:82px !important; min-height:82px !important; }
-  .site-header .nav-wrap { width:min(calc(100% - 64px),var(--max-width)) !important; height:82px !important; min-height:82px !important; margin:0 auto !important; padding:0 !important; }
-  .site-header .brand { flex:0 0 clamp(170px,14.33vw,235px) !important; width:clamp(170px,14.33vw,235px) !important; max-width:none !important; }
-  .site-header .brand img { width:100% !important; height:auto !important; max-height:none !important; }
-  .site-header .main-nav { margin-left:clamp(16px,2.32vw,38px) !important; gap:clamp(12px,1.83vw,30px) !important; }
-  .site-header .main-nav > .nav-link { font-size:clamp(13px,1.04vw,17px) !important; line-height:1.2 !important; }
-  .site-header .main-nav > .header-contact { padding:8px 15px !important; gap:9px !important; font-size:inherit !important; }
-}
-@media (max-width: 800px) {
-  .site-header,
-  .inner-page .site-header,
-  .inner-page.service-page .site-header {
-    position:fixed !important; top:0 !important; left:0 !important; right:0 !important;
-    width:100% !important; height:138px !important; min-height:138px !important;
-    box-sizing:border-box !important; z-index:1000 !important;
-  }
-  .site-header .nav-wrap,
-  .inner-page .site-header .nav-wrap,
-  .inner-page.service-page .nav-wrap {
-    width:100% !important; max-width:none !important; height:138px !important; min-height:138px !important;
-    margin:0 !important; padding:7px 8px 9px !important; box-sizing:border-box !important;
-    display:flex !important; flex-direction:column !important; flex-wrap:nowrap !important;
-    justify-content:flex-start !important; align-items:center !important; gap:7px !important;
-    overflow:visible !important;
-  }
-  .site-header .brand,
-  .inner-page .site-header .brand,
-  .inner-page.service-page .brand {
-    display:flex !important; flex:0 0 78px !important; width:min(calc(100vw - 32px),340px) !important;
-    max-width:min(calc(100vw - 32px),340px) !important; height:78px !important; max-height:78px !important;
-    margin:0 auto !important; padding:0 !important; align-self:center !important;
-    align-items:center !important; justify-content:center !important; box-sizing:border-box !important;
-  }
-  .site-header .brand img,
-  .inner-page .site-header .brand img,
-  .inner-page.service-page .brand img {
-    display:block !important; width:100% !important; height:auto !important; max-height:78px !important;
-    object-fit:contain !important; margin:0 auto !important;
-  }
-  .site-header .main-nav,
-  .inner-page .site-header .main-nav,
-  .inner-page.service-page .main-nav {
-    display:flex !important; flex:1 1 auto !important; width:100% !important; max-width:100% !important;
-    min-width:0 !important; height:35px !important; min-height:35px !important;
-    margin:0 !important; padding:0 1px !important; box-sizing:border-box !important;
-    flex-direction:row !important; flex-wrap:nowrap !important; justify-content:space-between !important;
-    align-items:center !important; gap:clamp(2px,.65vw,5px) !important; overflow:visible !important;
-  }
-  .site-header .main-nav > .nav-link,
-  .inner-page .site-header .main-nav > .nav-link,
-  .inner-page.service-page .main-nav > .nav-link {
-    display:inline-flex !important; flex:0 1 auto !important; min-width:0 !important;
-    align-items:center !important; justify-content:center !important; white-space:nowrap !important;
-    font-size:clamp(8px,2.65vw,12px) !important; line-height:1.15 !important;
-    letter-spacing:-.025em !important; padding:5px 0 !important; margin:0 !important;
-  }
-  .site-header .main-nav > .header-contact,
-  .inner-page .site-header .main-nav > .header-contact,
-  .inner-page.service-page .main-nav > .header-contact {
-    flex:0 1 auto !important; display:inline-flex !important; flex-direction:row !important;
-    align-items:center !important; justify-content:center !important; gap:.28em !important;
-    width:auto !important; height:auto !important; min-height:0 !important;
-    padding:.38em .48em !important; margin:0 !important; box-sizing:border-box !important;
-    font-size:clamp(8px,2.65vw,12px) !important; line-height:1.15 !important; white-space:nowrap !important;
-  }
-  .site-header .main-nav > .header-contact span,
-  .inner-page .site-header .main-nav > .header-contact span,
-  .inner-page.service-page .main-nav > .header-contact span {
-    display:inline !important; flex:0 0 auto !important; margin:0 !important;
-    font-size:1.08em !important; line-height:1 !important; transform:none !important;
-  }
-  body > main, body > .inner-main, main, .inner-page .inner-main {
-    padding-top:138px !important;
-  }
-}
-
-/* Slutjustering 2026-10-14: låst headergeometri och konsekvent logotyp-position. */
-@media (min-width: 801px) {
-  .site-header .nav-wrap,
-  .inner-page .site-header .nav-wrap {
-    width: min(calc(100% - 64px), var(--max-width)) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  .site-header .brand,
-  .inner-page .site-header .brand {
-    flex: 0 0 clamp(180px, 15.5vw, 252px) !important;
-    width: clamp(180px, 15.5vw, 252px) !important;
-    margin-left: 0 !important;
-    transform: none !important;
-  }
-  .site-header .main-nav,
-  .inner-page .site-header .main-nav {
-    margin-left: clamp(14px, 1.8vw, 30px) !important;
-  }
-}
-@media (max-width: 800px) {
-  .site-header .main-nav,
-  .inner-page .site-header .main-nav,
-  .inner-page.service-page .main-nav {
-    justify-content: flex-start !important;
-    gap: clamp(5px, 1.5vw, 11px) !important;
-    padding-left: 8px !important;
-    padding-right: 8px !important;
-    overflow: hidden !important;
-  }
-  .site-header .main-nav > .nav-link,
-  .inner-page .site-header .main-nav > .nav-link,
-  .inner-page.service-page .main-nav > .nav-link {
-    flex: 0 0 auto !important;
-    font-size: clamp(8px, 2.5vw, 11px) !important;
-    letter-spacing: -0.035em !important;
-  }
-  .site-header .main-nav > .header-contact,
-  .inner-page .site-header .main-nav > .header-contact,
-  .inner-page.service-page .main-nav > .header-contact {
-    flex: 0 0 auto !important;
-    font-size: clamp(8px, 2.5vw, 11px) !important;
-  }
-}
-
-/* Header: samma centrering och kompakt flikrad på mobil, 2026-10-14 */
-@media (max-width: 800px) {
-  .site-header .main-nav,
-  .inner-page .site-header .main-nav,
-  .inner-page.service-page .main-nav {
-    justify-content: center !important;
-    gap: clamp(8px, 2.2vw, 14px) !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    overflow: visible !important;
-  }
-  .site-header .main-nav > .nav-link,
-  .inner-page .site-header .main-nav > .nav-link,
-  .inner-page.service-page .main-nav > .nav-link,
-  .site-header .main-nav > .header-contact,
-  .inner-page .site-header .main-nav > .header-contact,
-  .inner-page.service-page .main-nav > .header-contact {
-    flex: 0 0 auto !important;
-  }
-}
-
-/* FINAL HEADER FIX: one shared geometry for home and inner pages */
-@media (min-width: 801px) {
-  .site-header { height:82px !important; min-height:82px !important; }
-  .site-header > .nav-wrap,
-  .site-header .nav-wrap {
-    width:min(calc(100% - 64px), var(--max-width)) !important;
-    height:82px !important; min-height:82px !important;
-    margin:0 auto !important; padding:0 !important;
-    display:flex !important; flex-direction:row !important;
-    flex-wrap:nowrap !important; align-items:center !important;
-    justify-content:flex-start !important; box-sizing:border-box !important;
-  }
-  .site-header .brand {
-    position:relative !important; left:0 !important; transform:none !important;
-    flex:0 0 clamp(205px, 16vw, 252px) !important;
-    width:clamp(205px, 16vw, 252px) !important;
-    max-width:none !important; margin:0 !important; padding:0 !important;
-  }
-  .site-header .brand img { display:block !important; width:100% !important; height:auto !important; max-height:none !important; }
-  .site-header .main-nav {
-    position:relative !important; flex:1 1 auto !important; min-width:0 !important;
-    margin:0 0 0 clamp(14px, 1.8vw, 30px) !important;
-    display:flex !important; flex-wrap:nowrap !important;
-    justify-content:flex-start !important; align-items:center !important;
-    gap:clamp(12px, 1.65vw, 27px) !important;
-  }
-}
-@media (max-width: 800px) {
-  :root { --header-height:124px !important; }
-  .site-header, .inner-page .site-header, .inner-page.service-page .site-header {
-    position:fixed !important; inset:0 0 auto 0 !important;
-    width:100% !important; height:124px !important; min-height:124px !important;
-    box-sizing:border-box !important; z-index:1000 !important;
-  }
-  .site-header .nav-wrap, .inner-page .site-header .nav-wrap, .inner-page.service-page .nav-wrap {
-    width:100% !important; height:124px !important; min-height:124px !important;
-    margin:0 !important; padding:5px 8px 7px !important;
-    display:flex !important; flex-direction:column !important; flex-wrap:nowrap !important;
-    justify-content:flex-start !important; align-items:center !important; gap:4px !important;
-    box-sizing:border-box !important;
-  }
-  .site-header .brand, .inner-page .site-header .brand, .inner-page.service-page .brand {
-    flex:0 0 70px !important; width:min(calc(100vw - 32px),340px) !important;
-    max-width:min(calc(100vw - 32px),340px) !important; height:70px !important; max-height:70px !important;
-    margin:0 auto !important; padding:0 !important; align-self:center !important;
-    display:flex !important; align-items:center !important; justify-content:center !important;
-    position:relative !important; left:auto !important; transform:none !important; box-sizing:border-box !important;
-  }
-  .site-header .brand img, .inner-page .site-header .brand img, .inner-page.service-page .brand img {
-    display:block !important; width:100% !important; height:auto !important; max-height:70px !important;
-    object-fit:contain !important; margin:0 auto !important;
-  }
-  .site-header .main-nav, .inner-page .site-header .main-nav, .inner-page.service-page .main-nav {
-    flex:0 0 34px !important; width:100% !important; max-width:100% !important; min-width:0 !important;
-    height:34px !important; min-height:34px !important; margin:0 !important; padding:0 !important;
-    display:flex !important; flex-direction:row !important; flex-wrap:nowrap !important;
-    align-items:center !important; justify-content:center !important;
-    gap:clamp(5px, 1.6vw, 11px) !important; overflow:visible !important; box-sizing:border-box !important;
-  }
-  .site-header .main-nav > .nav-link, .inner-page .site-header .main-nav > .nav-link, .inner-page.service-page .main-nav > .nav-link {
-    display:inline-flex !important; flex:0 0 auto !important; min-width:0 !important;
-    align-items:center !important; justify-content:center !important; white-space:nowrap !important;
-    font-size:clamp(8px, 2.45vw, 11px) !important; line-height:1.1 !important;
-    letter-spacing:-.025em !important; padding:4px 0 !important; margin:0 !important;
-  }
-  .site-header .main-nav > .header-contact, .inner-page .site-header .main-nav > .header-contact, .inner-page.service-page .main-nav > .header-contact {
-    display:inline-flex !important; flex:0 0 auto !important; align-items:center !important; justify-content:center !important;
-    width:auto !important; height:auto !important; min-height:0 !important; margin:0 !important;
-    padding:.34em .45em !important; gap:.25em !important; font-size:clamp(8px, 2.45vw, 11px) !important;
-    line-height:1.1 !important; white-space:nowrap !important; box-sizing:border-box !important;
-  }
-  .site-header .main-nav > .header-contact span, .inner-page .site-header .main-nav > .header-contact span, .inner-page.service-page .main-nav > .header-contact span {
-    display:inline !important; margin:0 !important; font-size:1.05em !important; line-height:1 !important; transform:none !important;
-  }
-  body > main, body > .inner-main, main, .inner-page .inner-main { padding-top:124px !important; }
-}
-
-/* HEADER CONSISTENCY OVERRIDE 2026-10-14 */
-
-/* GEMENSAM HEADER – startsida och samtliga undersidor */
-@media (min-width: 801px) {
-  .site-header { height: 82px !important; min-height: 82px !important; }
-  .site-header .nav-wrap {
-    width: min(calc(100% - 64px), var(--max-width)) !important;
-    max-width: var(--max-width) !important;
-    height: 82px !important; min-height: 82px !important;
-    margin-inline: auto !important;
-    display: grid !important;
-    grid-template-columns: 235px minmax(0, 1fr) !important;
-    align-items: center !important;
-    justify-content: initial !important;
-    column-gap: clamp(22px, 2.8vw, 38px) !important;
-  }
-  .site-header .brand,
-  .inner-page .site-header .brand {
-    display: flex !important; width: 235px !important; min-width: 235px !important;
-    max-width: 235px !important; flex: none !important; margin: 0 !important;
-    justify-self: start !important;
-  }
-  .site-header .brand img { display:block; width:100% !important; height:auto !important; max-height: none !important; }
-  .site-header .main-nav,
-  .inner-page .site-header .main-nav {
-    width:100% !important; min-width:0 !important; margin:0 !important;
-    display:flex !important; align-items:center !important; justify-content:flex-start !important;
-    gap:clamp(12px, 1.8vw, 28px) !important;
-  }
-}
-@media (max-width: 800px) {
-  :root { --header-height: 0px !important; }
-  .site-header,
-  .inner-page .site-header,
-  .inner-page.service-page .site-header {
-    position: relative !important; inset:auto !important;
-    width:100% !important; height:198px !important; min-height:198px !important;
-    margin:0 !important; padding:0 !important;
-  }
-  .site-header .nav-wrap,
-  .inner-page .site-header .nav-wrap,
-  .inner-page.service-page .site-header .nav-wrap {
-    width:100% !important; max-width:none !important;
-    height:198px !important; min-height:198px !important;
-    margin:0 !important; padding:7px 10px 7px !important;
-    box-sizing:border-box !important; display:flex !important;
-    flex-direction:column !important; align-items:center !important;
-    justify-content:space-between !important; gap:0 !important;
-  }
-  .site-header .brand,
-  .inner-page .site-header .brand,
-  .inner-page.service-page .site-header .brand {
-    width:calc(100vw - 36px) !important; max-width:calc(100vw - 36px) !important;
-    min-width:0 !important; height:82px !important; max-height:82px !important;
-    flex:0 0 82px !important; margin:0 auto !important; padding:0 !important;
-    display:flex !important; align-items:center !important; justify-content:center !important;
-  }
-  .site-header .brand img,
-  .inner-page .site-header .brand img,
-  .inner-page.service-page .site-header .brand img {
-    display:block !important; width:100% !important; height:100% !important;
-    max-height:82px !important; object-fit:contain !important; object-position:center !important;
-  }
-  .site-header .main-nav,
-  .inner-page .site-header .main-nav,
-  .inner-page.service-page .site-header .main-nav {
-    width:100% !important; max-width:100% !important; min-width:0 !important;
-    margin:0 !important; padding:0 !important; flex:0 0 30px !important;
-    display:flex !important; flex-direction:row !important; flex-wrap:nowrap !important;
-    align-items:center !important; justify-content:center !important;
-    gap:clamp(5px, 1.35vw, 10px) !important; overflow:visible !important;
-  }
-  .site-header .main-nav .nav-link,
-  .inner-page .site-header .main-nav .nav-link,
-  .inner-page.service-page .site-header .main-nav .nav-link {
-    flex:0 1 auto !important; min-width:0 !important; margin:0 !important;
-    padding:4px 0 !important; font-size:clamp(9px, 2.55vw, 12px) !important;
-    line-height:1.2 !important; letter-spacing:0 !important; white-space:nowrap !important;
-  }
-  .site-header .main-nav .header-contact,
-  .inner-page .site-header .main-nav .header-contact,
-  .inner-page.service-page .site-header .main-nav .header-contact {
-    flex:0 0 auto !important; padding:4px 5px !important; font-size:inherit !important;
-    line-height:1.1 !important; white-space:nowrap !important;
-  }
-  .site-header .main-nav .header-contact span { font-size:inherit !important; }
-  main, .inner-main, .inner-page.service-page .inner-main {
-    padding-top:0 !important; margin-top:0 !important;
-  }
-  section { scroll-margin-top: 0 !important; }
-  .inner-page.service-page .service-showcase { padding-top:0 !important; margin-top:0 !important; }
-}
-
-
-/* FINAL HEADER NORMALIZATION v8 — shared geometry on home and service pages */
-.site-header { box-sizing:border-box !important; }
-.site-header .nav-wrap {
-  box-sizing:border-box !important;
-  width:min(calc(100% - 80px), 1420px) !important;
-  max-width:1420px !important;
-  margin-left:auto !important; margin-right:auto !important;
-}
-.site-header .brand,
-.inner-page .site-header .brand,
-.inner-page.service-page .site-header .brand {
-  box-sizing:border-box !important;
-  width:280px !important; min-width:280px !important; max-width:280px !important;
-  flex:none !important; margin:0 !important; padding:0 !important;
-}
-.site-header .brand img,
-.inner-page .site-header .brand img,
-.inner-page.service-page .site-header .brand img {
-  display:block !important; width:100% !important; height:auto !important;
-  max-width:none !important; max-height:none !important; object-fit:contain !important;
-}
-.site-header .main-nav,
-.inner-page .site-header .main-nav,
-.inner-page.service-page .site-header .main-nav {
-  box-sizing:border-box !important; margin:0 !important; padding:0 !important;
-  display:flex !important; flex:1 1 auto !important; min-width:0 !important;
-  align-items:center !important; justify-content:flex-start !important;
-  gap:28px !important;
-}
-.site-header .main-nav .nav-link,
-.inner-page .site-header .main-nav .nav-link,
-.inner-page.service-page .site-header .main-nav .nav-link {
-  flex:0 0 auto !important; margin:0 !important; white-space:nowrap !important;
-}
-@media (min-width:801px) {
-  .site-header, .inner-page .site-header, .inner-page.service-page .site-header {
-    height:88px !important; min-height:88px !important;
-  }
-  .site-header .nav-wrap {
-    height:88px !important; min-height:88px !important;
-    display:grid !important; grid-template-columns:280px minmax(0,1fr) !important;
-    column-gap:32px !important; align-items:center !important;
-  }
-  .site-header .brand,
-  .inner-page .site-header .brand,
-  .inner-page.service-page .site-header .brand { justify-self:start !important; }
-  .site-header .main-nav,
-  .inner-page .site-header .main-nav,
-  .inner-page.service-page .site-header .main-nav { gap:28px !important; }
-}
-@media (max-width:800px) {
-  .site-header, .inner-page .site-header, .inner-page.service-page .site-header {
-    height:164px !important; min-height:164px !important;
-  }
-  .site-header .nav-wrap,
-  .inner-page .site-header .nav-wrap,
-  .inner-page.service-page .site-header .nav-wrap {
-    width:100% !important; max-width:none !important; height:164px !important; min-height:164px !important;
-    padding:5px 10px 6px !important; display:flex !important; flex-direction:column !important;
-    align-items:center !important; justify-content:space-between !important; gap:0 !important;
-  }
-  .site-header .brand,
-  .inner-page .site-header .brand,
-  .inner-page.service-page .site-header .brand {
-    width:calc(100vw - 44px) !important; min-width:0 !important; max-width:590px !important;
-    height:100px !important; max-height:100px !important; flex:0 0 100px !important;
-    margin:0 auto !important; display:flex !important; align-items:center !important; justify-content:center !important;
-  }
-  .site-header .brand img,
-  .inner-page .site-header .brand img,
-  .inner-page.service-page .site-header .brand img {
-    width:100% !important; height:100% !important; max-height:100px !important;
-    object-fit:contain !important; object-position:center !important;
-  }
-  .site-header .main-nav,
-  .inner-page .site-header .main-nav,
-  .inner-page.service-page .site-header .main-nav {
-    width:max-content !important; max-width:100% !important; min-width:0 !important;
-    flex:0 0 28px !important; justify-content:center !important; align-items:center !important;
-    gap:clamp(5px,1.5vw,10px) !important; flex-wrap:nowrap !important;
-  }
-  .site-header .main-nav .nav-link,
-  .inner-page .site-header .main-nav .nav-link,
-  .inner-page.service-page .site-header .main-nav .nav-link {
-    font-size:clamp(9px,2.45vw,12px) !important; padding:3px 0 !important; line-height:1.15 !important;
-  }
-  .site-header .main-nav .header-contact,
-  .inner-page .site-header .main-nav .header-contact,
-  .inner-page.service-page .site-header .main-nav .header-contact { padding:3px 5px !important; }
-  body > main, body > .inner-main, main, .inner-main, .inner-page .inner-main {
-    padding-top:0 !important; margin-top:0 !important;
-  }
-}
-
-
-/* === GEMENSAM HEADER: en enda geometri för startsida och tjänstesidor === */
-.site-header,
-.inner-page .site-header,
-.inner-page.service-page .site-header {
-  box-sizing: border-box !important;
-  z-index: 10000 !important;
-  background: rgba(243, 238, 230, .97) !important;
-}
-.site-header .nav-wrap,
-.inner-page .site-header .nav-wrap,
-.inner-page.service-page .site-header .nav-wrap {
-  box-sizing: border-box !important;
-  width: min(calc(100% - 64px), 1420px) !important;
-  max-width: 1420px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding: 0 !important;
-  display: grid !important;
-  grid-template-columns: 280px minmax(0, 1fr) !important;
-  column-gap: 32px !important;
-  align-items: center !important;
-}
-.site-header .brand,
-.inner-page .site-header .brand,
-.inner-page.service-page .site-header .brand {
-  box-sizing: border-box !important;
-  display: flex !important;
-  justify-self: start !important;
-  width: 280px !important;
-  min-width: 280px !important;
-  max-width: 280px !important;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  flex: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-}
-.site-header .brand img,
-.inner-page .site-header .brand img,
-.inner-page.service-page .site-header .brand img {
-  display: block !important;
-  width: 100% !important;
-  height: auto !important;
-  max-width: none !important;
-  max-height: none !important;
-  object-fit: contain !important;
-}
-.site-header .main-nav,
-.inner-page .site-header .main-nav,
-.inner-page.service-page .site-header .main-nav {
-  box-sizing: border-box !important;
-  display: flex !important;
-  width: 100% !important;
-  min-width: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  flex: none !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  flex-wrap: nowrap !important;
-  gap: 28px !important;
-}
-.site-header .main-nav > .nav-link,
-.inner-page .site-header .main-nav > .nav-link,
-.inner-page.service-page .site-header .main-nav > .nav-link {
-  box-sizing: border-box !important;
-  flex: 0 0 auto !important;
-  margin: 0 !important;
-  white-space: nowrap !important;
-  font-size: 16px !important;
-  line-height: 1.2 !important;
-}
-.site-header .main-nav > .header-contact,
-.inner-page .site-header .main-nav > .header-contact,
-.inner-page.service-page .site-header .main-nav > .header-contact {
-  box-sizing: border-box !important;
-  flex: 0 0 auto !important;
-  padding: 8px 15px !important;
-  white-space: nowrap !important;
-  font-size: 16px !important;
-  line-height: 1.2 !important;
-}
-@media (min-width: 801px) {
-  :root { --header-height: 88px !important; }
-  .site-header,
-  .inner-page .site-header,
-  .inner-page.service-page .site-header {
-    position: fixed !important;
-    top: 0 !important; left: 0 !important; right: 0 !important;
-    width: 100% !important;
-    height: 88px !important; min-height: 88px !important;
-  }
-  .site-header .nav-wrap,
-  .inner-page .site-header .nav-wrap,
-  .inner-page.service-page .site-header .nav-wrap {
-    height: 88px !important; min-height: 88px !important;
-  }
-  main { padding-top: 88px !important; }
-  .inner-page.service-page .inner-main { padding-top: 88px !important; }
-}
-@media (max-width: 800px) {
-  :root { --header-height: 0px !important; }
-  .site-header,
-  .inner-page .site-header,
-  .inner-page.service-page .site-header {
-    position: sticky !important;
-    top: 0 !important; left: auto !important; right: auto !important;
-    width: 100% !important;
-    height: 128px !important; min-height: 128px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  .site-header .nav-wrap,
-  .inner-page .site-header .nav-wrap,
-  .inner-page.service-page .site-header .nav-wrap {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
-    gap: 0 !important;
-    width: 100% !important; max-width: none !important;
-    height: 128px !important; min-height: 128px !important;
-    margin: 0 !important;
-    padding: 4px 8px 5px !important;
-  }
-  .site-header .brand,
-  .inner-page .site-header .brand,
-  .inner-page.service-page .site-header .brand {
-    display: flex !important;
-    flex: 0 0 82px !important;
-    width: min(calc(100vw - 28px), 590px) !important;
-    min-width: 0 !important; max-width: 590px !important;
-    height: 82px !important; min-height: 82px !important; max-height: 82px !important;
-    margin: 0 auto !important;
-    align-items: center !important; justify-content: center !important;
-  }
-  .site-header .brand img,
-  .inner-page .site-header .brand img,
-  .inner-page.service-page .site-header .brand img {
-    width: 100% !important; height: 100% !important;
-    max-height: 82px !important;
-    object-fit: contain !important; object-position: center !important;
-  }
-  .site-header .main-nav,
-  .inner-page .site-header .main-nav,
-  .inner-page.service-page .main-nav {
-    display: flex !important;
-    flex: 0 0 31px !important;
-    width: max-content !important; max-width: 100% !important; min-width: 0 !important;
-    margin: 0 auto !important; padding: 0 !important;
-    flex-direction: row !important; flex-wrap: nowrap !important;
-    align-items: center !important; justify-content: center !important;
-    gap: clamp(5px, 1.35vw, 10px) !important;
-    overflow: visible !important;
-  }
-  .site-header .main-nav > .nav-link,
-  .inner-page .site-header .main-nav > .nav-link,
-  .inner-page.service-page .main-nav > .nav-link {
-    flex: 0 1 auto !important; min-width: 0 !important;
-    margin: 0 !important; padding: 3px 0 !important;
-    font-size: clamp(9px, 2.55vw, 12px) !important;
-    line-height: 1.15 !important; letter-spacing: 0 !important;
-    white-space: nowrap !important;
-  }
-  .site-header .main-nav > .header-contact,
-  .inner-page .site-header .main-nav > .header-contact,
-  .inner-page.service-page .main-nav > .header-contact {
-    flex: 0 0 auto !important; padding: 3px 5px !important;
-    font-size: inherit !important; line-height: 1.1 !important;
-  }
-  .site-header .main-nav > .header-contact span { font-size: inherit !important; }
-  main, body > main, .inner-main, body > .inner-main,
-  .inner-page .inner-main, .inner-page.service-page .inner-main {
-    padding-top: 0 !important; margin-top: 0 !important;
-  }
-  section { scroll-margin-top: 128px !important; }
-  .inner-page.service-page .service-showcase,
-  .inner-page.service-page .service-showcase-top { padding-top: 0 !important; margin-top: 0 !important; }
 }

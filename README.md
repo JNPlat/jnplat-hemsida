@@ -51,3 +51,23 @@ Exempel på ett projektobjekt:
   "published": true
 }
 ```
+
+
+## Gemensam header och underhåll
+
+- `header.css` är den enda källan för headerns höjd, logotyp, navigering, positionering och avståndet mellan headern och sidinnehållet.
+- `style.css` innehåller startsidans och webbplatsens visuella komponenter. `undersidor.css` innehåller tjänste- och projektsidornas innehåll och karuseller. Dessa filer ska inte definiera headerns position eller sidornas toppoffset.
+- `script.js` läser headerns faktiska höjd för ankarnavigering, men skriver inte över CSS-variabeln `--header-height`.
+- Headern använder `position: fixed` på både desktop och mobil. `--header-height` reserverar motsvarande utrymme före sidinnehållet.
+- När headern ändras ska minst startsidan och en tjänstesida kontrolleras på desktop och mobil.
+
+## Projektstruktur
+
+- `index.html` – startsida.
+- `tjanster/*.html` – fyra tjänstesidor med gemensam mallstruktur.
+- `projekt.html` – gemensam projektsidemall.
+- `data/projects.json` – projektdata; utkast med `"published": false` visas inte.
+- `service.js` – fyller tjänstesidornas projektkaruseller.
+- `project.js` – fyller projektsidan och sköter bildgalleriet.
+- `project-band.js` – karusell för projektbandet.
+- `images/` och `logo/` – bild- och logotypresurser.
