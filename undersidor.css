@@ -284,3 +284,27 @@ body.project-gallery-open { overflow:hidden; }
 @media (max-width:800px) {
   .service-image-hero .service-hero-picture img { object-fit:contain; object-position:center; }
 }
+
+/* Finjustering: fullbredds-karusell på mobil och pilar utanför korten på desktop. */
+@media (min-width:801px) {
+  .service-showcase { min-height:calc(100svh - var(--header-height,82px)); gap:clamp(16px,2.2vh,24px); padding-bottom:clamp(24px,4vh,42px); }
+  /* Matcha herobildens 16:9-format så hela bilden ryms utan beskärning eller sidofält. */
+  .service-showcase-top { height:clamp(300px,42vh,410px); min-height:0; max-height:none; grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr); }
+  .service-image-hero { aspect-ratio:16/9; height:100%; }
+  .service-image-hero .service-hero-picture img { object-fit:cover; object-position:center; }
+  .service-projects { display:grid; grid-template-columns:clamp(34px,3vw,46px) minmax(0,1fr) clamp(34px,3vw,46px); align-items:stretch; column-gap:10px; }
+  .service-projects > .project-carousel-prev,
+  .service-projects > .project-carousel-next { position:static; grid-row:1; width:100%; height:auto; min-height:100%; align-self:stretch; }
+  .service-projects > .project-carousel-prev { grid-column:1; }
+  .service-projects > .project-carousel { grid-column:2; grid-row:1; width:100%; min-width:0; }
+  .service-projects > .project-carousel-next { grid-column:3; }
+  .project-carousel .project-card-image { aspect-ratio:16/9; }
+}
+@media (max-width:800px) {
+  /* Karusellen går hela vägen till högerkanten utan en extra tom remsa. */
+  .service-projects { display:block; width:100%; padding:0; overflow:visible; }
+  .service-projects > .project-carousel { display:flex; width:calc(100% + 20px); max-width:none; margin:0 -20px 0 0; padding:0 0 4px 20px; box-sizing:border-box; gap:12px; }
+  .project-carousel .project-card { flex:0 0 72%; }
+  .service-projects > .project-carousel-prev,
+  .service-projects > .project-carousel-next { display:none !important; }
+}
