@@ -984,3 +984,51 @@ body.project-gallery-open { overflow:hidden; }
   .inner-page .site-header .main-nav > .header-contact span, .inner-page.service-page .main-nav > .header-contact span { display:inline !important; flex:0 0 auto !important; margin:0 !important; font-size:1.08em !important; line-height:1 !important; transform:none !important; }
   .inner-page .inner-main, .inner-page main { padding-top:138px !important; }
 }
+
+/* Slutjustering: mobilhero visar hela bildytan utan oavsiktlig beskärning. */
+@media (max-width: 800px) {
+  .inner-page.service-page .service-image-hero {
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+  .inner-page.service-page .service-image-hero .service-hero-picture,
+  .inner-page.service-page .service-image-hero .service-hero-picture img {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .inner-page.service-page .service-image-hero .service-hero-picture img {
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+}
+
+/* Karusellens pilar ska endast vara lika höga som bildraden. */
+@media (min-width: 801px) {
+  .inner-page.service-page .service-showcase {
+    height: auto !important;
+    min-height: calc(100svh - var(--header-height, 82px)) !important;
+    padding-bottom: clamp(18px, 3vh, 32px) !important;
+    gap: clamp(18px, 3vh, 30px) !important;
+    overflow: visible !important;
+  }
+  .inner-page.service-page .service-projects {
+    flex: 0 0 auto !important;
+    align-items: start !important;
+    padding: 0 !important;
+    gap: 10px !important;
+  }
+  .inner-page.service-page .service-projects .project-carousel {
+    height: auto !important;
+    align-items: flex-start !important;
+  }
+  .inner-page.service-page .service-projects .project-side-arrow {
+    align-self: flex-start !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+  }
+}
