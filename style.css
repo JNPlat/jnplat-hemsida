@@ -1659,3 +1659,22 @@ section {
   .references-carousel .references-viewport { padding-left: 26px; padding-right: 26px; }
   .references-carousel .reference-arrow { width: 26px !important; }
 }
+
+/* Referenskarusellens pilar ska vara egna block, inte ligga ovanpå korten. */
+.references-carousel {
+  display:grid !important; grid-template-columns:34px minmax(0,1fr) 34px !important;
+  align-items:stretch !important; gap:10px !important; width:100% !important;
+}
+.references-carousel .references-viewport { width:100% !important; min-width:0; padding:0 !important; }
+.references-carousel .reference-arrow {
+  position:static !important; inset:auto !important; align-self:stretch !important;
+  width:34px !important; height:auto !important; min-height:100%;
+  border:1px solid rgba(130,85,54,.45) !important; background:transparent !important;
+  color:var(--copper-dark,var(--copper)) !important; backdrop-filter:none !important;
+  transition:background .2s ease,color .2s ease,border-color .2s ease;
+}
+.references-carousel .reference-arrow:hover { background:var(--copper) !important; color:var(--white) !important; border-color:var(--copper) !important; }
+@media (max-width:800px) {
+  .references-carousel { grid-template-columns:24px minmax(0,1fr) 24px !important; gap:5px !important; }
+  .references-carousel .reference-arrow { width:24px !important; }
+}

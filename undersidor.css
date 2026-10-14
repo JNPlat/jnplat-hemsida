@@ -542,3 +542,40 @@ body.project-gallery-open { overflow:hidden; }
   .references-carousel { grid-template-columns:24px minmax(0,1fr) 24px !important; gap:6px !important; }
   .references-carousel .reference-arrow { width:24px !important; }
 }
+
+/* Final korrigering 2026-10-14: tjänsteheadern ska vara centrerad och rymma alla flikar. */
+@media (max-width:800px) {
+  .inner-page.service-page .site-header { width:100%; }
+  .inner-page.service-page .nav-wrap {
+    width:100%; max-width:none; padding:8px 10px 8px !important;
+    box-sizing:border-box; gap:6px !important; overflow:visible;
+  }
+  .inner-page.service-page .brand {
+    width:calc(100vw - 32px) !important; max-width:calc(100vw - 32px) !important;
+    margin:0 auto !important; flex:0 0 auto;
+  }
+  .inner-page.service-page .brand img { width:100% !important; max-height:82px !important; height:auto !important; }
+  .inner-page.service-page .main-nav {
+    width:100% !important; max-width:100%; margin:0 !important; padding:0 !important;
+    box-sizing:border-box; display:flex !important; flex-wrap:nowrap !important;
+    justify-content:center !important; align-items:center; gap:clamp(5px,1.55vw,10px) !important;
+  }
+  .inner-page.service-page .main-nav .nav-link {
+    flex:0 1 auto; min-width:0; font-size:clamp(10px,2.85vw,13px) !important;
+    letter-spacing:0 !important; white-space:nowrap; padding:5px 0 !important;
+  }
+  .inner-page.service-page .main-nav .header-contact { flex:0 0 auto; margin:0 !important; }
+  .inner-page.service-page .main-nav .header-contact span { display:inline; }
+  .inner-page.service-page .inner-main { padding-top:0 !important; }
+  .inner-page.service-page .service-showcase { width:100%; margin:0; padding:0 0 18px !important; box-sizing:border-box; gap:14px !important; }
+  .inner-page.service-page .service-showcase-top { width:100%; margin:0; }
+  .inner-page.service-page .service-image-hero { width:100%; margin:0; }
+}
+
+/* Desktop: hero ska ligga direkt mot sidkanterna; pilarna är egna block. */
+@media (min-width:801px) {
+  .inner-page.service-page .inner-main { padding-top:0 !important; }
+  .inner-page.service-page .service-showcase { width:100%; margin:0; padding:0 0 14px !important; box-sizing:border-box; }
+  .inner-page.service-page .service-showcase-top { width:100%; margin:0; }
+  .inner-page.service-page .service-projects { width:100%; margin:0; grid-template-columns:34px minmax(0,1fr) 34px; column-gap:10px; }
+}
