@@ -1090,85 +1090,143 @@ body.project-gallery-open { overflow:hidden; }
 }
 
 
-/* === Slutlig gemensam header och komplett tjänstehero på mobil === */
-@media (min-width: 801px) {
-  .inner-page .site-header .nav-wrap {
-    width: min(calc(100% - 64px), var(--max-width, 1320px));
-    margin-left: auto;
-    margin-right: auto;
+/* VERIFIED FIX 2026-10-14: mobile service hero and shared header geometry */
+@media (max-width: 800px) {
+  /* Compact, identical fixed header on every service page. */
+  .inner-page.service-page .site-header {
+    height: 122px !important;
+    min-height: 122px !important;
+    bottom: auto !important;
   }
-  .inner-page .site-header .brand {
-    width: 260px;
-    flex: 0 0 260px;
-    margin: 0;
-    position: relative;
-    left: 0;
+  .inner-page.service-page .site-header .nav-wrap {
+    height: 122px !important;
+    min-height: 122px !important;
+    padding: 5px 8px 7px !important;
+    gap: 4px !important;
+    justify-content: flex-start !important;
   }
-  .inner-page .site-header .main-nav {
-    margin-left: clamp(22px, 2.8vw, 38px);
+  .inner-page.service-page .site-header .brand {
+    flex: 0 0 70px !important;
+    height: 70px !important;
+    max-height: 70px !important;
+    width: min(calc(100vw - 32px), 330px) !important;
+    max-width: min(calc(100vw - 32px), 330px) !important;
+  }
+  .inner-page.service-page .site-header .brand img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 70px !important;
+    object-fit: contain !important;
+  }
+  .inner-page.service-page .site-header .main-nav {
+    flex: 0 0 36px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    justify-content: center !important;
+    gap: clamp(6px, 1.6vw, 11px) !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  .inner-page.service-page .site-header .main-nav > .nav-link,
+  .inner-page.service-page .site-header .main-nav > .header-contact {
+    flex: 0 0 auto !important;
+    font-size: clamp(8px, 2.45vw, 11px) !important;
+    line-height: 1.1 !important;
+    letter-spacing: -.025em !important;
+    padding: 4px 0 !important;
+  }
+  .inner-page.service-page .site-header .main-nav > .header-contact {
+    padding: .32em .45em !important;
+  }
+  .inner-page.service-page .inner-main,
+  .inner-page.service-page main {
+    padding-top: 122px !important;
+  }
+  /* Let the image determine its own height; don't size it against an auto-height parent. */
+  .inner-page.service-page .service-showcase-top {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .inner-page.service-page .service-image-hero {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    overflow: hidden !important;
+  }
+  .inner-page.service-page .service-image-hero .service-hero-picture {
+    display: block !important;
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1672 / 941 !important;
+    overflow: hidden !important;
+  }
+  .inner-page.service-page .service-image-hero .service-hero-picture img {
+    display: block !important;
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: initial !important;
+    object-position: center !important;
+  }
+  .inner-page.service-page .service-image-hero .detail-hero-shade {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 1 !important;
+  }
+  .inner-page.service-page .service-image-hero .detail-hero-title {
+    position: absolute !important;
+    inset: auto auto 0 0 !important;
+    z-index: 2 !important;
+    padding: 12px 18px 15px !important;
+  }
+  .inner-page.service-page .service-image-hero .detail-hero-title .eyebrow {
+    margin-bottom: 5px !important;
+    font-size: 9px !important;
+  }
+  .inner-page.service-page .service-image-hero .detail-hero-title h1 {
+    font-size: clamp(30px, 8vw, 42px) !important;
+    line-height: 1 !important;
   }
 }
-@media (max-width: 800px) {
-  .inner-page .inner-main { padding-top: var(--header-height, 136px) !important; }
-  .inner-page .site-header .nav-wrap {
-    padding: 6px 0 7px;
-    gap: 5px;
+
+/* Desktop service headers use the exact same container origin and logo width on every page. */
+@media (min-width: 801px) {
+  .inner-page.service-page .site-header .nav-wrap {
+    width: min(calc(100% - 64px), var(--max-width, 1320px)) !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
   }
-  .inner-page .service-showcase {
-    min-height: 0;
-    padding: 0 0 22px;
-    gap: 20px;
-    justify-content: flex-start;
+  .inner-page.service-page .site-header .brand {
+    flex: 0 0 252px !important;
+    width: 252px !important;
+    max-width: 252px !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    left: 0 !important;
   }
-  .inner-page .service-showcase-top {
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    max-height: none;
+  .inner-page.service-page .site-header .brand img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
   }
-  .inner-page .service-image-hero {
-    width: 100%;
-    height: auto;
-    min-height: 0;
-    max-height: none;
-    aspect-ratio: auto;
-    overflow: hidden;
-    background: var(--bg, #f3eee6);
-  }
-  .inner-page .service-image-hero .service-hero-picture {
-    position: relative;
-    inset: auto;
-    display: block;
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-  }
-  .inner-page .service-image-hero .service-hero-picture img {
-    position: relative;
-    inset: auto;
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: none;
-    object-fit: contain;
-    object-position: center;
-  }
-  .inner-page .service-image-hero .detail-hero-shade {
-    position: absolute;
-    inset: 0;
-  }
-  .inner-page .service-image-hero .detail-hero-title {
-    position: absolute;
-    inset: auto 0 0 0;
-    padding: 18px 20px 20px;
-  }
-  .inner-page .service-image-hero .detail-hero-title .eyebrow {
-    margin-bottom: 6px;
-    font-size: 10px;
-  }
-  .inner-page .service-image-hero .detail-hero-title h1 {
-    font-size: clamp(34px, 9vw, 48px);
-    line-height: .98;
-  }
-  .inner-page .service-copy { padding: 28px 20px 30px; }
 }
