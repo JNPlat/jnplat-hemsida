@@ -671,3 +671,217 @@ body.project-gallery-open { overflow:hidden; }
   .inner-page.service-page .service-projects .project-side-arrow { display: none !important; }
   .inner-page.service-page .service-projects .project-carousel { width: 100%; margin: 0 !important; padding: 0 0 4px !important; }
 }
+
+/* Stabil slutversion: samma typografiska skala och inga motstridiga hero-regler. */
+.inner-page.service-page .detail-hero-title h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: clamp(48px, 5.2vw, 76px) !important;
+  font-weight: 400 !important;
+  line-height: .98 !important;
+  letter-spacing: -.025em !important;
+  white-space: nowrap;
+}
+.inner-page.service-page .service-copy .intro-lead {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: clamp(24px, 2.55vw, 36px) !important;
+  font-weight: 400 !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0 !important;
+}
+.inner-page.service-page .service-copy > p:not(.eyebrow):not(.intro-lead) {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+}
+.inner-page.service-page .service-showcase-top,
+.inner-page.service-page .service-image-hero,
+.inner-page.service-page .service-copy,
+.inner-page.service-page .service-projects {
+  border-radius: 0 !important;
+}
+
+@media (min-width:801px) {
+  .inner-page.service-page .inner-main { padding-top: var(--header-height,82px) !important; }
+  .inner-page.service-page .service-showcase {
+    height: calc(100svh - var(--header-height,82px)) !important;
+    min-height: 0 !important;
+    padding: 0 0 12px !important;
+    gap: clamp(10px,1.4vh,14px) !important;
+    justify-content: flex-start !important;
+    overflow: hidden;
+  }
+  .inner-page.service-page .service-showcase-top {
+    flex: 0 0 auto !important;
+    height: clamp(250px, 37vh, 330px) !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr) !important;
+    gap: 0 !important;
+  }
+  .inner-page.service-page .service-image-hero {
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    background: var(--bg,#f3eee6) !important;
+  }
+  .inner-page.service-page .service-image-hero .service-hero-picture {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  /* Behåll hela bilden; bakgrunden matchar sidans varma grundton i stället för vitt. */
+  .inner-page.service-page .service-image-hero .service-hero-picture img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+  .inner-page.service-page .service-copy {
+    min-width: 0 !important;
+    padding: clamp(22px,2.5vw,38px) !important;
+    overflow: hidden !important;
+  }
+  .inner-page.service-page .service-projects {
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+    display: grid !important;
+    grid-template-columns: 34px minmax(0,1fr) 34px !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  .inner-page.service-page .service-projects .project-carousel {
+    display: flex !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 14px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    align-items: flex-start !important;
+  }
+  .inner-page.service-page .service-projects .project-carousel .project-card {
+    flex: 0 0 calc((100% - 42px)/4) !important;
+    min-width: 0 !important;
+  }
+  .inner-page.service-page .service-projects .project-card-image { aspect-ratio: 16/9 !important; }
+  .inner-page.service-page .service-projects .project-side-arrow {
+    position: static !important;
+    display: flex !important;
+    align-self: stretch !important;
+    width: 34px !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    border: 1px solid rgba(154,103,71,.55) !important;
+    background: transparent !important;
+    color: var(--copper-dark,#704936) !important;
+    font-size: 20px !important;
+    font-weight: 300 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background .2s ease,color .2s ease,border-color .2s ease;
+  }
+  .inner-page.service-page .service-projects .project-side-arrow:hover {
+    background: var(--copper,#9a6747) !important;
+    color: #fffaf2 !important;
+    border-color: var(--copper,#9a6747) !important;
+  }
+}
+
+/* Mobil: hero börjar direkt under headern och referenserna får aldrig ett täckande lager. */
+@media (max-width:800px) {
+  .inner-page.service-page .inner-main { padding-top: 0 !important; margin-top: 0 !important; }
+  .inner-page.service-page .service-showcase { height: auto !important; min-height: 0 !important; padding: 0 0 18px !important; gap: 14px !important; overflow: visible !important; }
+  .inner-page.service-page .service-showcase-top { display: flex !important; flex-direction: column !important; height: auto !important; min-height: 0 !important; gap: 0 !important; }
+  .inner-page.service-page .service-image-hero { width: 100% !important; height: auto !important; aspect-ratio: 16/9 !important; min-height: 0 !important; margin: 0 !important; }
+  .inner-page.service-page .service-image-hero .service-hero-picture { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; }
+  .inner-page.service-page .service-image-hero .service-hero-picture img { width: 100% !important; height: 100% !important; object-fit: contain !important; object-position: center !important; }
+  .inner-page.service-page .detail-hero-title { padding: 18px 20px 20px !important; }
+  .inner-page.service-page .detail-hero-title h1 { font-size: clamp(34px,9vw,48px) !important; white-space: normal !important; }
+  .inner-page.service-page .service-copy { padding: 24px 20px 26px !important; overflow: visible !important; }
+  .inner-page.service-page .service-copy .intro-lead { font-size: 28px !important; }
+  .inner-page.service-page .service-copy > p:not(.eyebrow):not(.intro-lead) { font-size: 14px !important; }
+  .inner-page.service-page .service-projects { display: block !important; width: 100% !important; height: auto !important; padding: 0 !important; overflow: visible !important; }
+  .inner-page.service-page .service-projects .project-side-arrow { display: none !important; }
+  .inner-page.service-page .service-projects .project-carousel { display: flex !important; width: 100% !important; margin: 0 !important; padding: 0 0 4px !important; overflow-x: auto !important; overflow-y: hidden !important; gap: 12px !important; }
+  .inner-page.service-page .service-projects .project-carousel .project-card { flex: 0 0 72% !important; }
+  .inner-page.service-page .references-carousel { display: flex !important; width: 100% !important; gap: 0 !important; background: transparent !important; }
+  .inner-page.service-page .references-carousel .references-viewport,
+  .inner-page.service-page .project-bottom-band .project-references-viewport { display: block !important; position: relative !important; z-index: 1 !important; width: 100% !important; min-width: 0 !important; height: auto !important; overflow-x: auto !important; overflow-y: visible !important; background: transparent !important; -webkit-overflow-scrolling: touch; touch-action: pan-x; }
+  .inner-page.service-page .references-carousel .references-track,
+  .inner-page.service-page .project-bottom-band .project-references-track { display: flex !important; width: max-content !important; transform: none !important; transition: none !important; gap: 10px !important; background: transparent !important; }
+  .inner-page.service-page .references-carousel .reference-card,
+  .inner-page.service-page .project-bottom-band .reference-card { flex: 0 0 min(82vw,340px) !important; width: min(82vw,340px) !important; max-width: none !important; min-width: 0 !important; height: auto !important; min-height: 0 !important; background: var(--card,#e9e2d7) !important; }
+  .inner-page.service-page .references-carousel .reference-arrow,
+  .inner-page.service-page .project-bottom-band .reference-arrow { display: none !important; }
+}
+
+/* Bildens naturliga 16:9-format används på desktop: ingen beskärning och inga sidofält. */
+@media (min-width:801px) {
+  .inner-page.service-page .service-showcase-top {
+    height: auto !important;
+    flex: 0 0 auto !important;
+    grid-template-columns: minmax(0,.88fr) minmax(0,1.12fr) !important;
+    align-items: stretch !important;
+  }
+  .inner-page.service-page .service-image-hero {
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    min-height: 0 !important;
+  }
+  .inner-page.service-page .service-image-hero .service-hero-picture img {
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+}
+
+/* Referenskarusellen på startsidan: mobil ska kunna svepa fritt, utan vit overlay. */
+@media (max-width:800px) {
+  .references-carousel {
+    display: block !important;
+    width: 100% !important;
+    background: transparent !important;
+  }
+  .references-carousel .references-viewport,
+  .project-bottom-band .project-references-viewport {
+    display: block !important;
+    position: relative !important;
+    z-index: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    background: transparent !important;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+  }
+  .references-carousel .references-track,
+  .project-bottom-band .project-references-track {
+    display: flex !important;
+    width: max-content !important;
+    transform: none !important;
+    transition: none !important;
+    gap: 10px !important;
+    background: transparent !important;
+  }
+  .references-carousel .reference-card,
+  .project-bottom-band .reference-card {
+    flex: 0 0 min(82vw,340px) !important;
+    width: min(82vw,340px) !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    background: var(--card,#e9e2d7) !important;
+  }
+  .references-carousel .reference-arrow,
+  .project-bottom-band .reference-arrow { display: none !important; }
+}
