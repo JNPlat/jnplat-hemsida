@@ -211,8 +211,8 @@ section {
   :root {
     --header-height: 118px;
     --header-logo-width: min(calc(100vw - 28px), 590px);
-    --header-nav-gap: clamp(4px, 1.3vw, 9px);
-    --header-nav-font-size: clamp(11px, 2.9vw, 14px);
+    --header-nav-gap: clamp(2px, 0.7vw, 5px);
+    --header-nav-font-size: clamp(12px, 3.2vw, 15px);
   }
   .site-header {
     position: fixed !important;
@@ -281,7 +281,7 @@ section {
   }
   .site-header .main-nav > .header-contact {
     flex: 0 0 auto;
-    padding: 3px 4px;
+    padding: 2px 3px;
     gap: 2px;
     font-family: "Cormorant Garamond", Georgia, serif;
     font-size: var(--header-nav-font-size);
