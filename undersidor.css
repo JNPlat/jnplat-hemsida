@@ -1089,144 +1089,26 @@ body.project-gallery-open { overflow:hidden; }
   }
 }
 
-
-/* VERIFIED FIX 2026-10-14: mobile service hero and shared header geometry */
-@media (max-width: 800px) {
-  /* Compact, identical fixed header on every service page. */
-  .inner-page.service-page .site-header {
-    height: 122px !important;
-    min-height: 122px !important;
-    bottom: auto !important;
-  }
-  .inner-page.service-page .site-header .nav-wrap {
-    height: 122px !important;
-    min-height: 122px !important;
-    padding: 5px 8px 7px !important;
-    gap: 4px !important;
-    justify-content: flex-start !important;
-  }
-  .inner-page.service-page .site-header .brand {
-    flex: 0 0 70px !important;
-    height: 70px !important;
-    max-height: 70px !important;
-    width: min(calc(100vw - 32px), 330px) !important;
-    max-width: min(calc(100vw - 32px), 330px) !important;
-  }
-  .inner-page.service-page .site-header .brand img {
-    width: 100% !important;
-    height: 100% !important;
-    max-height: 70px !important;
-    object-fit: contain !important;
-  }
-  .inner-page.service-page .site-header .main-nav {
-    flex: 0 0 36px !important;
-    height: 36px !important;
-    min-height: 36px !important;
-    justify-content: center !important;
-    gap: clamp(6px, 1.6vw, 11px) !important;
-    padding: 0 !important;
-    overflow: visible !important;
-  }
-  .inner-page.service-page .site-header .main-nav > .nav-link,
-  .inner-page.service-page .site-header .main-nav > .header-contact {
-    flex: 0 0 auto !important;
-    font-size: clamp(8px, 2.45vw, 11px) !important;
-    line-height: 1.1 !important;
-    letter-spacing: -.025em !important;
-    padding: 4px 0 !important;
-  }
-  .inner-page.service-page .site-header .main-nav > .header-contact {
-    padding: .32em .45em !important;
-  }
-  .inner-page.service-page .inner-main,
-  .inner-page.service-page main {
-    padding-top: 122px !important;
-  }
-  /* Let the image determine its own height; don't size it against an auto-height parent. */
-  .inner-page.service-page .service-showcase-top {
-    display: flex !important;
-    flex-direction: column !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
+/* FINAL SERVICE PAGE FIX: hero begins below the fixed header and keeps full image visible on mobile. */
+@media (max-width:800px) {
+  .inner-page.service-page .inner-main { padding-top:124px !important; }
+  .inner-page.service-page .service-showcase { padding:0 0 22px !important; gap:18px !important; min-height:0 !important; }
+  .inner-page.service-page .service-showcase-top { display:flex !important; flex-direction:column !important; min-height:0 !important; max-height:none !important; }
   .inner-page.service-page .service-image-hero {
-    display: block !important;
-    position: relative !important;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    aspect-ratio: auto !important;
-    overflow: hidden !important;
+    position:relative !important; display:block !important; width:100% !important;
+    height:auto !important; min-height:0 !important; max-height:none !important;
+    aspect-ratio:16 / 9 !important; overflow:hidden !important; flex:none !important;
   }
   .inner-page.service-page .service-image-hero .service-hero-picture {
-    display: block !important;
-    position: relative !important;
-    inset: auto !important;
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 1672 / 941 !important;
-    overflow: hidden !important;
+    position:absolute !important; inset:0 !important; display:block !important;
+    width:100% !important; height:100% !important; overflow:hidden !important;
   }
   .inner-page.service-page .service-image-hero .service-hero-picture img {
-    display: block !important;
-    position: relative !important;
-    inset: auto !important;
-    width: 100% !important;
-    height: auto !important;
-    max-height: none !important;
-    object-fit: initial !important;
-    object-position: center !important;
+    position:absolute !important; inset:0 !important; display:block !important;
+    width:100% !important; height:100% !important; max-height:none !important;
+    object-fit:contain !important; object-position:center !important;
   }
-  .inner-page.service-page .service-image-hero .detail-hero-shade {
-    position: absolute !important;
-    inset: 0 !important;
-    z-index: 1 !important;
-  }
-  .inner-page.service-page .service-image-hero .detail-hero-title {
-    position: absolute !important;
-    inset: auto auto 0 0 !important;
-    z-index: 2 !important;
-    padding: 12px 18px 15px !important;
-  }
-  .inner-page.service-page .service-image-hero .detail-hero-title .eyebrow {
-    margin-bottom: 5px !important;
-    font-size: 9px !important;
-  }
-  .inner-page.service-page .service-image-hero .detail-hero-title h1 {
-    font-size: clamp(30px, 8vw, 42px) !important;
-    line-height: 1 !important;
-  }
-}
-
-/* Desktop service headers use the exact same container origin and logo width on every page. */
-@media (min-width: 801px) {
-  .inner-page.service-page .site-header .nav-wrap {
-    width: min(calc(100% - 64px), var(--max-width, 1320px)) !important;
-    max-width: none !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    box-sizing: border-box !important;
-  }
-  .inner-page.service-page .site-header .brand {
-    flex: 0 0 252px !important;
-    width: 252px !important;
-    max-width: 252px !important;
-    margin-left: 0 !important;
-    padding-left: 0 !important;
-    transform: none !important;
-    position: relative !important;
-    left: 0 !important;
-  }
-  .inner-page.service-page .site-header .brand img {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    max-height: none !important;
-    margin: 0 !important;
-  }
+  .inner-page.service-page .service-image-hero .detail-hero-title { position:absolute !important; inset:auto auto 0 0 !important; padding:15px 18px 17px !important; }
+  .inner-page.service-page .service-image-hero .detail-hero-title .eyebrow { margin-bottom:5px !important; font-size:9px !important; }
+  .inner-page.service-page .service-image-hero .detail-hero-title h1 { font-size:clamp(30px,8vw,44px) !important; line-height:1 !important; }
 }
