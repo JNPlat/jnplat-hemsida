@@ -1302,185 +1302,23 @@ body.project-gallery-open { overflow:hidden; }
 }
 
 
-/* === GEMENSAM HEADER: en enda geometri för startsida och tjänstesidor === */
-.site-header,
-.inner-page .site-header,
-.inner-page.service-page .site-header {
-  box-sizing: border-box !important;
-  z-index: 10000 !important;
-  background: rgba(243, 238, 230, .97) !important;
-}
-.site-header .nav-wrap,
-.inner-page .site-header .nav-wrap,
-.inner-page.service-page .site-header .nav-wrap {
-  box-sizing: border-box !important;
-  width: min(calc(100% - 64px), 1420px) !important;
-  max-width: 1420px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding: 0 !important;
-  display: grid !important;
-  grid-template-columns: 280px minmax(0, 1fr) !important;
-  column-gap: 32px !important;
-  align-items: center !important;
-}
-.site-header .brand,
-.inner-page .site-header .brand,
-.inner-page.service-page .site-header .brand {
-  box-sizing: border-box !important;
-  display: flex !important;
-  justify-self: start !important;
-  width: 280px !important;
-  min-width: 280px !important;
-  max-width: 280px !important;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  flex: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-}
-.site-header .brand img,
-.inner-page .site-header .brand img,
-.inner-page.service-page .site-header .brand img {
-  display: block !important;
-  width: 100% !important;
-  height: auto !important;
-  max-width: none !important;
-  max-height: none !important;
-  object-fit: contain !important;
-}
-.site-header .main-nav,
-.inner-page .site-header .main-nav,
-.inner-page.service-page .site-header .main-nav {
-  box-sizing: border-box !important;
-  display: flex !important;
-  width: 100% !important;
-  min-width: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  flex: none !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  flex-wrap: nowrap !important;
-  gap: 28px !important;
-}
-.site-header .main-nav > .nav-link,
-.inner-page .site-header .main-nav > .nav-link,
-.inner-page.service-page .site-header .main-nav > .nav-link {
-  box-sizing: border-box !important;
-  flex: 0 0 auto !important;
-  margin: 0 !important;
-  white-space: nowrap !important;
-  font-size: 16px !important;
-  line-height: 1.2 !important;
-}
-.site-header .main-nav > .header-contact,
-.inner-page .site-header .main-nav > .header-contact,
-.inner-page.service-page .site-header .main-nav > .header-contact {
-  box-sizing: border-box !important;
-  flex: 0 0 auto !important;
-  padding: 8px 15px !important;
-  white-space: nowrap !important;
-  font-size: 16px !important;
-  line-height: 1.2 !important;
-}
-@media (min-width: 801px) {
-  :root { --header-height: 88px !important; }
-  .site-header,
-  .inner-page .site-header,
-  .inner-page.service-page .site-header {
-    position: fixed !important;
-    top: 0 !important; left: 0 !important; right: 0 !important;
-    width: 100% !important;
-    height: 88px !important; min-height: 88px !important;
-  }
-  .site-header .nav-wrap,
-  .inner-page .site-header .nav-wrap,
-  .inner-page.service-page .site-header .nav-wrap {
-    height: 88px !important; min-height: 88px !important;
-  }
-  main { padding-top: 88px !important; }
-  .inner-page.service-page .inner-main { padding-top: 88px !important; }
-}
+
+/* MOBILE STICKY HEADER FIX — override earlier mobile relative-position rules */
 @media (max-width: 800px) {
-  :root { --header-height: 0px !important; }
+  html, body {
+    overflow-x: clip;
+  }
   .site-header,
   .inner-page .site-header,
   .inner-page.service-page .site-header {
+    position: -webkit-sticky !important;
     position: sticky !important;
-    top: 0 !important; left: auto !important; right: auto !important;
+    top: 0 !important;
+    left: auto !important;
+    right: auto !important;
+    inset: auto !important;
+    z-index: 9999 !important;
     width: 100% !important;
-    height: 128px !important; min-height: 128px !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    transform: none !important;
   }
-  .site-header .nav-wrap,
-  .inner-page .site-header .nav-wrap,
-  .inner-page.service-page .site-header .nav-wrap {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
-    gap: 0 !important;
-    width: 100% !important; max-width: none !important;
-    height: 128px !important; min-height: 128px !important;
-    margin: 0 !important;
-    padding: 4px 8px 5px !important;
-  }
-  .site-header .brand,
-  .inner-page .site-header .brand,
-  .inner-page.service-page .site-header .brand {
-    display: flex !important;
-    flex: 0 0 82px !important;
-    width: min(calc(100vw - 28px), 590px) !important;
-    min-width: 0 !important; max-width: 590px !important;
-    height: 82px !important; min-height: 82px !important; max-height: 82px !important;
-    margin: 0 auto !important;
-    align-items: center !important; justify-content: center !important;
-  }
-  .site-header .brand img,
-  .inner-page .site-header .brand img,
-  .inner-page.service-page .site-header .brand img {
-    width: 100% !important; height: 100% !important;
-    max-height: 82px !important;
-    object-fit: contain !important; object-position: center !important;
-  }
-  .site-header .main-nav,
-  .inner-page .site-header .main-nav,
-  .inner-page.service-page .main-nav {
-    display: flex !important;
-    flex: 0 0 31px !important;
-    width: max-content !important; max-width: 100% !important; min-width: 0 !important;
-    margin: 0 auto !important; padding: 0 !important;
-    flex-direction: row !important; flex-wrap: nowrap !important;
-    align-items: center !important; justify-content: center !important;
-    gap: clamp(5px, 1.35vw, 10px) !important;
-    overflow: visible !important;
-  }
-  .site-header .main-nav > .nav-link,
-  .inner-page .site-header .main-nav > .nav-link,
-  .inner-page.service-page .main-nav > .nav-link {
-    flex: 0 1 auto !important; min-width: 0 !important;
-    margin: 0 !important; padding: 3px 0 !important;
-    font-size: clamp(9px, 2.55vw, 12px) !important;
-    line-height: 1.15 !important; letter-spacing: 0 !important;
-    white-space: nowrap !important;
-  }
-  .site-header .main-nav > .header-contact,
-  .inner-page .site-header .main-nav > .header-contact,
-  .inner-page.service-page .main-nav > .header-contact {
-    flex: 0 0 auto !important; padding: 3px 5px !important;
-    font-size: inherit !important; line-height: 1.1 !important;
-  }
-  .site-header .main-nav > .header-contact span { font-size: inherit !important; }
-  main, body > main, .inner-main, body > .inner-main,
-  .inner-page .inner-main, .inner-page.service-page .inner-main {
-    padding-top: 0 !important; margin-top: 0 !important;
-  }
-  section { scroll-margin-top: 128px !important; }
-  .inner-page.service-page .service-showcase,
-  .inner-page.service-page .service-showcase-top { padding-top: 0 !important; margin-top: 0 !important; }
 }
