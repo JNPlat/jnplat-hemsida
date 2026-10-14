@@ -1032,3 +1032,59 @@ body.project-gallery-open { overflow:hidden; }
     margin: 0 !important;
   }
 }
+
+/* Matcha tjänstesidornas logotyp med den större logotypen på startsidan. */
+@media (min-width: 801px) {
+  .inner-page .site-header .brand {
+    flex: 0 0 clamp(180px, 15.5vw, 252px) !important;
+    width: clamp(180px, 15.5vw, 252px) !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    transform: none !important;
+  }
+  .inner-page .site-header .brand img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+  .inner-page .site-header .main-nav {
+    margin-left: clamp(14px, 1.8vw, 30px) !important;
+  }
+}
+
+/* Mobil: flikarna hålls som en centrerad grupp i stället för att spridas ut. */
+@media (max-width: 800px) {
+  .inner-page .site-header .main-nav,
+  .inner-page.service-page .main-nav {
+    justify-content: center !important;
+    gap: clamp(8px, 2.2vw, 14px) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow: visible !important;
+  }
+  .inner-page .site-header .main-nav > .nav-link,
+  .inner-page.service-page .main-nav > .nav-link,
+  .inner-page .site-header .main-nav > .header-contact,
+  .inner-page.service-page .main-nav > .header-contact {
+    flex: 0 0 auto !important;
+  }
+}
+
+/* Pilarna fyller exakt samma höjd som bildraden i projektkarusellen. */
+@media (min-width: 801px) {
+  .inner-page.service-page .service-projects {
+    align-items: stretch !important;
+  }
+  .inner-page.service-page .service-projects .project-carousel {
+    align-self: stretch !important;
+    min-width: 0 !important;
+  }
+  .inner-page.service-page .service-projects .project-side-arrow {
+    align-self: stretch !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+  }
+}

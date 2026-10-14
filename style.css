@@ -1962,3 +1962,24 @@ section {
     font-size: clamp(8px, 2.5vw, 11px) !important;
   }
 }
+
+/* Header: samma centrering och kompakt flikrad på mobil, 2026-10-14 */
+@media (max-width: 800px) {
+  .site-header .main-nav,
+  .inner-page .site-header .main-nav,
+  .inner-page.service-page .main-nav {
+    justify-content: center !important;
+    gap: clamp(8px, 2.2vw, 14px) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow: visible !important;
+  }
+  .site-header .main-nav > .nav-link,
+  .inner-page .site-header .main-nav > .nav-link,
+  .inner-page.service-page .main-nav > .nav-link,
+  .site-header .main-nav > .header-contact,
+  .inner-page .site-header .main-nav > .header-contact,
+  .inner-page.service-page .main-nav > .header-contact {
+    flex: 0 0 auto !important;
+  }
+}
