@@ -1,19 +1,24 @@
-# Kodgenomgång – etapp 2, oktober 2026
+# Kodstädning – oktober 2026
 
-## Åtgärder
-- Tog bort äldre, tomma header-overrideblock som blivit kvar efter tidigare justeringar.
-- Tog bort flera historiska toppavståndsregler från `style.css` och `undersidor.css`; dessa ska nu styras av `header.css`.
-- Tog bort de sista samlade header-overrideblocken i båda innehålls-CSS-filerna.
-- Lät `header.css` äga headerns fasta höjd, logotypmått, navigeringsavstånd, sidornas toppoffset och sektionernas scrollmarginal.
-- Komprimerade mobilheadern från 128 px till 118 px och logotypytan från 82 px till 74 px; måtten är gemensamma för alla sidor på mobil.
-- Tog bort JavaScript som skrev över CSS-variabeln `--header-height` vid laddning och resize. JavaScript använder fortfarande den faktiska headerhöjden för ankarnavigering.
-- Uppdaterade README så att ansvarsfördelningen mellan filerna är tydlig.
+## Kodstruktur
+- Samlade de duplicerade funktionerna för tjänstenamn och HTML-escaping i `site-utils.js`.
+- Uppdaterade tjänstesidorna och projektsidan så att de laddar den gemensamma hjälpfunktionen före sina egna skript.
+- Behöll projektdata, innehåll, bildresurser och den befintliga sidstrukturen.
+- Uppdaterade README med den nya filen och tydligare instruktioner för underhåll och publicering.
 
-## Viktig avgränsning
-Detta är en strukturell städning med fokus på headerkonflikter. Tjänstesidornas hero- och karusellregler har inte skrivits om i sin helhet eftersom de påverkar utseendet och bör jämföras visuellt mot nuvarande version.
+## CSS-städning
+- Tog bort exakta duplicerade CSS-regelblock när selektor, deklarationer och media-query-kontext var identiska.
+- Tog bort tomma CSS-regler/media-query-block och onödiga tomrader.
+- Formaterade CSS-regler med konsekvent indrag och en deklaration per rad; kontrollerade att CSS-AST efter formatering är oförändrat.
+- Bevarade ordningen för kvarvarande regler och deklarationer för att minska risken att ändra webbplatsens utseende.
+- Lät avsiktliga breakpoint- och override-regler ligga kvar; att slå ihop dem utan visuell jämförelse skulle kunna ändra layouten.
 
-## Kontroller
-- CSS-syntax kontrolleras efter ändring.
-- Alla HTML-sidor ska fortsatt länka `header.css` efter sidornas övriga stylesheets.
-- Länkar och lokala resurssökvägar kontrolleras automatiskt.
-- Visuellt test i en riktig mobilwebbläsare behöver fortfarande göras innan publicering; ingen kodändring bör betraktas som visuellt godkänd enbart från statisk kontroll.
+## Automatiska kontroller
+- JavaScript syntaxkontrollerad med `node --check` för alla `.js`-filer.
+- `data/projects.json` kontrollerad som giltig JSON.
+- CSS-filerna parsade utan syntaxfel, inklusive regler inuti media queries.
+- Relativa HTML-resurssökvägar kontrollerade; inga saknade lokala resurser hittades.
+- ZIP-arkivet kontrollerat efter skapande.
+
+## Viktigt inför publicering
+Ingen riktig webbläsare eller visuell regressionstestning kördes i denna miljö. Kontrollera därför startsida, tjänstesidor och projektgalleri på desktop och mobil innan publicering. Syntax- och sökvägskontroller bekräftar inte att layouten ser korrekt ut.

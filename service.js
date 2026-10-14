@@ -1,4 +1,5 @@
 (async function () {
+  const { serviceLabel, escapeHTML, escapeAttribute } = window.JNPlSite;
   const serviceId = document.body.dataset.service;
   const list = document.querySelector('[data-project-list]');
   if (!list || !serviceId) return;
@@ -130,11 +131,5 @@
     if (event.key === 'ArrowRight') showImage(imageIndex + 1);
   });
 
-  function serviceLabel(id) {
-    return ({ byggnadsplatslageri: 'Byggnadsplåtslageri', kopparslageri: 'Kopparslageri', restaurering: 'Restaurering', specialprojekt: 'Specialprojekt' })[id] || 'Projekt';
-  }
-  function escapeHTML(value) {
-    return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
-  }
-  function escapeAttribute(value) { return escapeHTML(value); }
+
 })();

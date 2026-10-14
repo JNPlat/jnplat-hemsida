@@ -23,6 +23,7 @@ Hemsida för J. Norberg Plåtslageri AB.
 - `tjanster/byggnadsplatslageri.html`, `tjanster/kopparslageri.html`, `tjanster/restaurering.html` och `tjanster/specialprojekt.html` är tjänsternas egna sidor.
 - `projekt.html?id=projektets-id` är den gemensamma projektsidemallen.
 - `data/projects.json` styr vilka projekt som visas. Projekt med `"published": false` är utkast och visas inte.
+- `site-utils.js` innehåller gemensamma hjälpfunktioner för tjänstenamn och säker HTML-escaping.
 - `service.js` visar automatiskt publicerade projekt på rätt tjänstesida.
 - `project.js` fyller projektsidan och sköter bildgalleriets förstoring.
 
@@ -67,6 +68,7 @@ Exempel på ett projektobjekt:
 - `tjanster/*.html` – fyra tjänstesidor med gemensam mallstruktur.
 - `projekt.html` – gemensam projektsidemall.
 - `data/projects.json` – projektdata; utkast med `"published": false` visas inte.
+- `site-utils.js` – delade hjälpfunktioner som används av tjänste- och projektsidorna.
 - `service.js` – fyller tjänstesidornas projektkaruseller.
 - `project.js` – fyller projektsidan och sköter bildgalleriet.
 - `project-band.js` – karusell för projektbandet.

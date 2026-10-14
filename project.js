@@ -1,4 +1,5 @@
 (async function () {
+  const { serviceLabel, escapeHTML, escapeAttribute } = window.JNPlSite;
   const params = new URLSearchParams(window.location.search);
   const projectId = params.get('id');
   const content = document.getElementById('project-content');
@@ -46,13 +47,7 @@
     // The HTML fallback remains visible if the project data cannot be loaded.
   }
 
-  function serviceLabel(id) {
-    return ({byggnadsplatslageri:'Byggnadsplåtslageri',kopparslageri:'Kopparslageri',restaurering:'Restaurering',specialprojekt:'Specialprojekt'})[id] || 'Projekt';
-  }
-  function escapeHTML(value) {
-    return String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-  }
-  function escapeAttribute(value) { return escapeHTML(value); }
+
 
   function openLightbox(index, focusTarget) {
     if (!gallery.length) return;

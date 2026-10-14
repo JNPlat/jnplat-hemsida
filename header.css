@@ -1,6 +1,6 @@
-/* J. Norberg Plåtslageri — shared header
+/*J. Norberg Plåtslageri — shared header
    Single source of truth for the header on every page.
-   Header is fixed so mobile Safari/Chrome cannot lose it due to sticky/overflow ancestors. */
+   Header is fixed so mobile Safari/Chrome cannot lose it due to sticky/overflow ancestors.*/
 
 :root {
   --header-height: 88px;
@@ -23,7 +23,8 @@
   backdrop-filter: blur(12px);
 }
 
-/* Header offsets and anchor positions are owned here, not in page stylesheets. */
+/*Header offsets and anchor positions are owned here, not in page stylesheets.*/
+
 section {
   scroll-margin-top: var(--header-height);
 }
@@ -165,7 +166,8 @@ section {
   }
 }
 
-/* Smaller desktop/laptop widths: keep the entire navigation on one line. */
+/*Smaller desktop/laptop widths: keep the entire navigation on one line.*/
+
 @media (min-width: 801px) and (max-width: 1150px) {
   :root {
     --header-height: 82px;
@@ -185,15 +187,15 @@ section {
   }
 }
 
-/* Mobile: compact, identical header on the homepage and all subpages.
-   Fixed positioning is intentional; it does not depend on sticky ancestors. */
+/*Mobile: compact, identical header on the homepage and all subpages.
+   Fixed positioning is intentional; it does not depend on sticky ancestors.*/
+
 @media (max-width: 800px) {
   :root {
     --header-height: 118px;
     --header-logo-width: min(calc(100vw - 28px), 590px);
     --header-nav-gap: clamp(4px, 1.3vw, 9px);
   }
-
   .site-header {
     position: fixed;
     top: 0;
@@ -204,7 +206,6 @@ section {
     min-height: var(--header-height);
     transform: none;
   }
-
   .site-header .nav-wrap {
     width: 100%;
     max-width: none;
@@ -218,7 +219,6 @@ section {
     justify-content: flex-start;
     gap: 0;
   }
-
   .site-header .brand {
     flex: 0 0 74px;
     width: var(--header-logo-width);
@@ -231,7 +231,6 @@ section {
     align-items: center;
     justify-content: center;
   }
-
   .site-header .brand img {
     width: 100%;
     height: 100%;
@@ -239,7 +238,6 @@ section {
     object-fit: contain;
     object-position: center;
   }
-
   .site-header .main-nav {
     display: flex;
     flex: 0 0 31px;
@@ -255,7 +253,6 @@ section {
     gap: var(--header-nav-gap);
     overflow: visible;
   }
-
   .site-header .main-nav > .nav-link {
     flex: 0 1 auto;
     min-width: 0;
@@ -266,7 +263,6 @@ section {
     letter-spacing: 0;
     white-space: nowrap;
   }
-
   .site-header .main-nav > .header-contact {
     flex: 0 0 auto;
     padding: 3px 5px;
@@ -274,12 +270,10 @@ section {
     font-size: inherit;
     line-height: 1.1;
   }
-
   .site-header .main-nav > .header-contact span {
     font-size: inherit;
   }
-
-  /* Reserve space below the fixed header on every page type. */
+  /*Reserve space below the fixed header on every page type.*/
   body > main,
   body > .inner-main,
   main,
@@ -289,13 +283,13 @@ section {
     padding-top: var(--header-height) !important;
     margin-top: 0 !important;
   }
-
   section {
     scroll-margin-top: var(--header-height);
   }
 }
 
-/* Desktop content offset matches the fixed header. */
+/*Desktop content offset matches the fixed header.*/
+
 @media (min-width: 801px) {
   body > main,
   body > .inner-main,
