@@ -144,7 +144,16 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateReferenceCarousel() {
     if (!referenceTrack || !referenceViewport) return;
 
-    fitReferenceCards();
+    const isMobile = window.matchMedia("(max-width: 800px)").matches;
+    if (isMobile) {
+      referenceCards = [...referenceTrack.querySelectorAll(".reference-card")];
+      referenceCards.forEach((card) => {
+        card.style.flexBasis = "";
+        card.style.width = "";
+      });
+    } else {
+      fitReferenceCards();
+    }
 
     if (!referenceCards.length) return;
 
@@ -160,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const hasOverflow = maxScroll > 1;
     const card = referenceCards[currentReferenceIndex];
-    let offset = Math.max(0, card?.offsetLeft ?? 0);
+    let offset = Math.max(0, (card?.offsetLeft ?? 0) - (referenceCards[0]?.offsetLeft ?? 0));
 
     // When several cards are already visible at the far right, their
     // offset is clamped to the same maxScroll position. Treat that
