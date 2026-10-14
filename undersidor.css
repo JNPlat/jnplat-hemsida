@@ -637,11 +637,6 @@ body.lightbox-open {
   font-size: 12px;
 }
 
-.project-bottom-band {
-  min-height: 145px;
-  justify-content: center;
-}
-
 .project-band-inner {
   width: min(100%,1200px);
   margin: auto;
@@ -759,10 +754,7 @@ body.lightbox-open {
     line-height: 1.4;
     margin-bottom: 6px;
   }
-  .project-bottom-band {
-    min-height: 0;
-    padding: 22px 20px;
-  }
+
   .project-band-inner {
     flex-wrap: wrap;
     gap: 8px 16px;
@@ -776,40 +768,8 @@ body.lightbox-open {
   }
 }
 
-.project-bottom-band .references-carousel {
-  width: min(100%,1440px);
-  margin: 0 auto;
-}
-
-.project-bottom-band .reference-arrow {
-  flex: 0 0 34px;
-  border: 1px solid var(--line,#d7cec2);
-  background: transparent;
-  color: var(--text,#29251f);
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.project-bottom-band .project-references-viewport {
-  overflow: hidden;
-}
-
-.project-bottom-band .project-references-track {
-  transition: transform .35s ease;
-}
-
 @media (max-width:800px) {
-  .project-bottom-band .references-carousel {
-    grid-template-columns: 24px minmax(0,1fr) 24px;
-    gap: 6px;
-  }
-  .project-bottom-band .project-references-viewport {
-    overflow: hidden;
-  }
-  .project-bottom-band .reference-card {
-    min-width: 220px;
-    max-width: 78vw;
-  }
+
 }
 
 /*Projekt öppnas i ett bildgalleri i stället för på en separat sida.*/
@@ -2235,8 +2195,7 @@ body.project-gallery-open {
     gap: 0 !important;
     background: transparent !important;
   }
-  .inner-page.service-page .references-carousel .references-viewport,
-  .inner-page.service-page .project-bottom-band .project-references-viewport {
+  .inner-page.service-page .references-carousel .references-viewport{
     display: block !important;
     position: relative !important;
     z-index: 1 !important;
@@ -2249,8 +2208,7 @@ body.project-gallery-open {
     -webkit-overflow-scrolling: touch;
     touch-action: pan-x;
   }
-  .inner-page.service-page .references-carousel .references-track,
-  .inner-page.service-page .project-bottom-band .project-references-track {
+  .inner-page.service-page .references-carousel .references-track{
     display: flex !important;
     width: max-content !important;
     transform: none !important;
@@ -2258,8 +2216,7 @@ body.project-gallery-open {
     gap: 10px !important;
     background: transparent !important;
   }
-  .inner-page.service-page .references-carousel .reference-card,
-  .inner-page.service-page .project-bottom-band .reference-card {
+  .inner-page.service-page .references-carousel .reference-card{
     flex: 0 0 min(82vw,340px) !important;
     width: min(82vw,340px) !important;
     max-width: none !important;
@@ -2268,8 +2225,7 @@ body.project-gallery-open {
     min-height: 0 !important;
     background: var(--card,#e9e2d7) !important;
   }
-  .inner-page.service-page .references-carousel .reference-arrow,
-  .inner-page.service-page .project-bottom-band .reference-arrow {
+  .inner-page.service-page .references-carousel .reference-arrow{
     display: none !important;
   }
 }
@@ -2302,8 +2258,7 @@ body.project-gallery-open {
     width: 100% !important;
     background: transparent !important;
   }
-  .references-carousel .references-viewport,
-  .project-bottom-band .project-references-viewport {
+  .references-carousel .references-viewport{
     display: block !important;
     position: relative !important;
     z-index: 1 !important;
@@ -2316,8 +2271,7 @@ body.project-gallery-open {
     -webkit-overflow-scrolling: touch;
     touch-action: pan-x;
   }
-  .references-carousel .references-track,
-  .project-bottom-band .project-references-track {
+  .references-carousel .references-track{
     display: flex !important;
     width: max-content !important;
     transform: none !important;
@@ -2325,8 +2279,7 @@ body.project-gallery-open {
     gap: 10px !important;
     background: transparent !important;
   }
-  .references-carousel .reference-card,
-  .project-bottom-band .reference-card {
+  .references-carousel .reference-card{
     flex: 0 0 min(82vw,340px) !important;
     width: min(82vw,340px) !important;
     max-width: none !important;
@@ -2335,8 +2288,7 @@ body.project-gallery-open {
     min-height: 0 !important;
     background: var(--card,#e9e2d7) !important;
   }
-  .references-carousel .reference-arrow,
-  .project-bottom-band .reference-arrow {
+  .references-carousel .reference-arrow{
     display: none !important;
   }
 }

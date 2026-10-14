@@ -1,24 +1,24 @@
 # Kodstädning – oktober 2026
 
-## Kodstruktur
-- Samlade de duplicerade funktionerna för tjänstenamn och HTML-escaping i `site-utils.js`.
-- Uppdaterade tjänstesidorna och projektsidan så att de laddar den gemensamma hjälpfunktionen före sina egna skript.
-- Behöll projektdata, innehåll, bildresurser och den befintliga sidstrukturen.
-- Uppdaterade README med den nya filen och tydligare instruktioner för underhåll och publicering.
+## Genomförda ändringar
+- Samlade gemensamma hjälpfunktioner för tjänstenamn och HTML-escaping i `site-utils.js`.
+- Tjänstesidorna och projektsidan laddar hjälpfunktionerna före respektive sidskript.
+- Tog bort `project-band.js`, eftersom ingen HTML-sida laddade skriptet och dess projektbandskomponent inte förekom i sidornas markup.
+- Tog bort oanvända CSS-regler och selector-grenar för `.project-bottom-band` och `.project-references-*`, som enbart tillhörde den borttagna komponenten.
+- Tog bort favicon-filerna `favicon-180.png`, `favicon-192.png` och `favicon-48.png`, som inte refererades av webbplatsen; `favicon-180.png` var dessutom byte-identisk med `apple-touch-icon.png`.
+- Rensade blanktecken och onödiga tomrader i CSS och dokumentation.
+- Uppdaterade README med den faktiska filstrukturen, ansvarsområden och instruktioner för projektdata och testning.
+- Bevarade sidornas befintliga layoutregler och ordning i övrigt för att begränsa risken för visuella regressioner.
 
-## CSS-städning
-- Tog bort exakta duplicerade CSS-regelblock när selektor, deklarationer och media-query-kontext var identiska.
-- Tog bort tomma CSS-regler/media-query-block och onödiga tomrader.
-- Formaterade CSS-regler med konsekvent indrag och en deklaration per rad; kontrollerade att CSS-AST efter formatering är oförändrat.
-- Bevarade ordningen för kvarvarande regler och deklarationer för att minska risken att ändra webbplatsens utseende.
-- Lät avsiktliga breakpoint- och override-regler ligga kvar; att slå ihop dem utan visuell jämförelse skulle kunna ändra layouten.
+## Kontroller
+- Alla kvarvarande JavaScript-filer kontrollerades med `node --check`.
+- `data/projects.json` parsades som giltig JSON.
+- `style.css`, `undersidor.css` och `header.css` parsades utan CSS-syntaxfel.
+- Relativa `src`- och `href`-referenser i HTML kontrollerades; inga saknade lokala resurser hittades.
+- Bildsökvägarna i projektdata kontrollerades; inga saknade projektbilder hittades.
+- ZIP-arkivet kontrollerades efter skapande.
 
-## Automatiska kontroller
-- JavaScript syntaxkontrollerad med `node --check` för alla `.js`-filer.
-- `data/projects.json` kontrollerad som giltig JSON.
-- CSS-filerna parsade utan syntaxfel, inklusive regler inuti media queries.
-- Relativa HTML-resurssökvägar kontrollerade; inga saknade lokala resurser hittades.
-- ZIP-arkivet kontrollerat efter skapande.
+## Begränsning
+Ingen riktig webbläsare eller visuell regressionstestning kördes. Layouten behöver därför kontrolleras på desktop och mobil innan publicering. Automatiska syntax- och sökvägskontroller bekräftar inte att utseendet är identiskt.
 
-## Viktigt inför publicering
-Ingen riktig webbläsare eller visuell regressionstestning kördes i denna miljö. Kontrollera därför startsida, tjänstesidor och projektgalleri på desktop och mobil innan publicering. Syntax- och sökvägskontroller bekräftar inte att layouten ser korrekt ut.
+CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpoint- och override-regler kan vara avsiktliga och deras ordning kan påverka layouten.

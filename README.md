@@ -1,41 +1,63 @@
-# JNPlåt – hemsida
+# J. Norberg Plåtslageri AB – webbplats
 
-Hemsida för J. Norberg Plåtslageri AB.
+Statisk webbplats för J. Norberg Plåtslageri AB. Behåll mappstrukturen och relativa sökvägar när webbplatsen publiceras.
 
-## Struktur
+## Filstruktur
 
-- `index.html` – startsida
-- `style.css` – design och responsiv layout
-- `script.js` – navigation, aktiv sektion och referenskarusell
-- `logo/` – företagets logotyper
-- `images/` – optimerade projekt- och verksamhetsbilder
+```text
+jnplat-hemsida-main/
+├── index.html
+├── projekt.html
+├── style.css
+├── undersidor.css
+├── header.css
+├── script.js
+├── service.js
+├── project.js
+├── site-utils.js
+├── data/
+│   └── projects.json
+├── tjanster/
+│   ├── byggnadsplatslageri.html
+│   ├── kopparslageri.html
+│   ├── restaurering.html
+│   └── specialprojekt.html
+├── images/
+└── logo/
+```
 
-## Nästa steg
+## Vad filerna gör
 
-1. Byt ut bildplatshållarna mot riktiga projektbilder när de är klara.
-2. Lägg till telefonnummer och eventuella företagsuppgifter.
-3. Bygg undersidor vid behov.
-4. Koppla GitHub-repot till Cloudflare.
-5. Koppla `jnplat.se`.
+- `index.html` – startsida.
+- `tjanster/*.html` – fyra tjänstesidor.
+- `projekt.html?id=<projekt-id>` – gemensam projektdetaljsida.
+- `style.css` – startsidans och webbplatsens visuella komponenter.
+- `undersidor.css` – tjänste- och projektsidornas layout, projektkort och gallerier.
+- `header.css` – gemensam header, navigering och sidornas header-offset.
+- `script.js` – startsidans navigering och referenskarusell.
+- `service.js` – laddar publicerade projekt på tjänstesidorna och hanterar projektgalleriet.
+- `project.js` – laddar projektdetaljer och bildgalleri.
+- `site-utils.js` – gemensamma hjälpfunktioner för tjänstenamn och HTML-escaping.
+- `data/projects.json` – projektinnehåll, bildsökvägar och publiceringsstatus.
 
-## Tjänste- och projektsidor
+## CSS-ansvar
 
-- `tjanster/byggnadsplatslageri.html`, `tjanster/kopparslageri.html`, `tjanster/restaurering.html` och `tjanster/specialprojekt.html` är tjänsternas egna sidor.
-- `projekt.html?id=projektets-id` är den gemensamma projektsidemallen.
-- `data/projects.json` styr vilka projekt som visas. Projekt med `"published": false` är utkast och visas inte.
-- `site-utils.js` innehåller gemensamma hjälpfunktioner för tjänstenamn och säker HTML-escaping.
-- `service.js` visar automatiskt publicerade projekt på rätt tjänstesida.
-- `project.js` fyller projektsidan och sköter bildgalleriets förstoring.
+- `header.css` äger headerns placering och mått. Den laddas efter de andra lokala CSS-filerna.
+- `style.css` äger startsidans visuella komponenter.
+- `undersidor.css` äger tjänste- och projektsidornas layout.
 
-### Lägg till ett projekt
+Regler i olika media queries eller senare override-block ska inte slås ihop utan visuell kontroll. Ordningen i CSS kan påverka utseendet även när selektorerna verkar lika.
 
-1. Lägg hero-bilden och galleribilderna i `images/projekt/`.
-2. Lägg till ett objekt i `data/projects.json` med ett unikt `id`, `title`, `service`, `description`, `hero`, `gallery` och `published: true`.
-3. `service` ska vara ett av `byggnadsplatslageri`, `kopparslageri`, `restaurering` eller `specialprojekt`.
-4. Sökvägar i JSON anges från projektets rot, till exempel `images/projekt/villa-bergabo-hero.webp`.
-5. Öppna projektsidan via `projekt.html?id=villa-bergabo` (där `id` matchar projektobjektet).
+## Lägg till eller ändra ett projekt
 
-Exempel på ett projektobjekt:
+1. Lägg bilderna i en lämplig undermapp i `images/`.
+2. Lägg till eller ändra projektobjektet i `data/projects.json`.
+3. Använd ett unikt `id`.
+4. `service` ska vara `byggnadsplatslageri`, `kopparslageri`, `restaurering` eller `specialprojekt`.
+5. Skriv bildsökvägar relativt webbplatsens rot, exempelvis `images/st-johannes.webp`.
+6. Sätt `published` till `true` för att visa projektet. `false` döljer det.
+
+Exempel:
 
 ```json
 {
@@ -44,32 +66,27 @@ Exempel på ett projektobjekt:
   "service": "restaurering",
   "description": "Kort presentation av arbetet.",
   "longDescription": "Valfri längre projektbeskrivning.",
-  "hero": "images/projekt/villa-bergabo-hero.webp",
+  "hero": "images/villa-bergabo.webp",
   "gallery": [
-    "images/projekt/villa-bergabo-01.webp",
-    "images/projekt/villa-bergabo-02.webp"
+    "images/villa-bergabo.webp"
   ],
   "published": true
 }
 ```
 
+Öppna projektet via `projekt.html?id=villa-bergabo`. Om en hero-bild inte finns med i galleriet läggs den till automatiskt av projektskriptet.
 
-## Gemensam header och underhåll
+## Kontroller före publicering
 
-- `header.css` är den enda källan för headerns höjd, logotyp, navigering, positionering och avståndet mellan headern och sidinnehållet.
-- `style.css` innehåller startsidans och webbplatsens visuella komponenter. `undersidor.css` innehåller tjänste- och projektsidornas innehåll och karuseller. Dessa filer ska inte definiera headerns position eller sidornas toppoffset.
-- `script.js` läser headerns faktiska höjd för ankarnavigering, men skriver inte över CSS-variabeln `--header-height`.
-- Headern använder `position: fixed` på både desktop och mobil. `--header-height` reserverar motsvarande utrymme före sidinnehållet.
-- När headern ändras ska minst startsidan och en tjänstesida kontrolleras på desktop och mobil.
+- Kontrollera JavaScript med `node --check` för varje `.js`-fil.
+- Kontrollera att `data/projects.json` är giltig JSON.
+- Testa webbplatsen via en lokal webbserver, särskilt eftersom sidorna hämtar projektdata med `fetch()`. Att öppna HTML direkt via `file://` kan blockera hämtningen.
+- Testa startsida, samtliga tjänstesidor och projektsidan på desktop och mobil.
+- Kontrollera att navigering, ankarlänkar, karuseller och bildgallerier fungerar.
+- Kontrollera att bilder laddas och att sidan inte får horisontell overflow på smala skärmar.
 
-## Projektstruktur
+Automatiska syntaxkontroller ersätter inte ett visuellt test i en riktig webbläsare.
 
-- `index.html` – startsida.
-- `tjanster/*.html` – fyra tjänstesidor med gemensam mallstruktur.
-- `projekt.html` – gemensam projektsidemall.
-- `data/projects.json` – projektdata; utkast med `"published": false` visas inte.
-- `site-utils.js` – delade hjälpfunktioner som används av tjänste- och projektsidorna.
-- `service.js` – fyller tjänstesidornas projektkaruseller.
-- `project.js` – fyller projektsidan och sköter bildgalleriet.
-- `project-band.js` – karusell för projektbandet.
-- `images/` och `logo/` – bild- och logotypresurser.
+## Publicering
+
+Ladda upp innehållet i den här mappen till webbhotellets webbrot. Behåll mappnamnen och relativa sökvägar. Peka därefter domänen `jnplat.se` mot webbhotellet enligt leverantörens instruktioner.
