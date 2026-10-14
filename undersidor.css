@@ -1088,3 +1088,87 @@ body.project-gallery-open { overflow:hidden; }
     margin: 0 !important;
   }
 }
+
+
+/* === Slutlig gemensam header och komplett tjänstehero på mobil === */
+@media (min-width: 801px) {
+  .inner-page .site-header .nav-wrap {
+    width: min(calc(100% - 64px), var(--max-width, 1320px));
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .inner-page .site-header .brand {
+    width: 260px;
+    flex: 0 0 260px;
+    margin: 0;
+    position: relative;
+    left: 0;
+  }
+  .inner-page .site-header .main-nav {
+    margin-left: clamp(22px, 2.8vw, 38px);
+  }
+}
+@media (max-width: 800px) {
+  .inner-page .inner-main { padding-top: var(--header-height, 136px) !important; }
+  .inner-page .site-header .nav-wrap {
+    padding: 6px 0 7px;
+    gap: 5px;
+  }
+  .inner-page .service-showcase {
+    min-height: 0;
+    padding: 0 0 22px;
+    gap: 20px;
+    justify-content: flex-start;
+  }
+  .inner-page .service-showcase-top {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    max-height: none;
+  }
+  .inner-page .service-image-hero {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
+    overflow: hidden;
+    background: var(--bg, #f3eee6);
+  }
+  .inner-page .service-image-hero .service-hero-picture {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  .inner-page .service-image-hero .service-hero-picture img {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+  }
+  .inner-page .service-image-hero .detail-hero-shade {
+    position: absolute;
+    inset: 0;
+  }
+  .inner-page .service-image-hero .detail-hero-title {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 18px 20px 20px;
+  }
+  .inner-page .service-image-hero .detail-hero-title .eyebrow {
+    margin-bottom: 6px;
+    font-size: 10px;
+  }
+  .inner-page .service-image-hero .detail-hero-title h1 {
+    font-size: clamp(34px, 9vw, 48px);
+    line-height: .98;
+  }
+  .inner-page .service-copy { padding: 28px 20px 30px; }
+}

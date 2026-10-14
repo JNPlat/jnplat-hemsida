@@ -1983,3 +1983,67 @@ section {
     flex: 0 0 auto !important;
   }
 }
+
+
+/* === Gemensam headerposition och storlek: startsida + undersidor === */
+@media (min-width: 801px) {
+  .site-header .nav-wrap {
+    width: min(calc(100% - 64px), var(--max-width));
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .site-header .brand {
+    width: 260px;
+    flex: 0 0 260px;
+    margin: 0;
+    position: relative;
+    left: 0;
+  }
+}
+@media (max-width: 800px) {
+  :root { --header-height: 136px; }
+  .site-header { height: auto; min-height: 0; }
+  .site-header .nav-wrap {
+    min-height: 0;
+    height: auto;
+    padding: 6px 0 7px;
+    gap: 5px;
+  }
+  .site-header .brand,
+  .inner-page .site-header .brand {
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+    flex: 0 0 auto;
+    justify-content: center;
+  }
+  .site-header .brand img,
+  .inner-page .site-header .brand img {
+    width: 100%;
+    height: auto;
+    max-height: 78px;
+    object-fit: contain;
+  }
+  .site-header .main-nav,
+  .inner-page .site-header .main-nav {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 2.1vw, 15px);
+    min-width: 0;
+  }
+  .site-header .nav-link,
+  .inner-page .site-header .nav-link {
+    padding: 3px 0;
+    font-size: clamp(11px, 2.9vw, 13px);
+    white-space: nowrap;
+  }
+  .site-header .header-contact,
+  .inner-page .site-header .header-contact {
+    padding: 3px 6px;
+    font-size: clamp(11px, 2.9vw, 13px);
+  }
+  .site-header .header-contact span { font-size: 13px; }
+}
