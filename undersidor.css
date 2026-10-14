@@ -885,3 +885,52 @@ body.project-gallery-open { overflow:hidden; }
   .references-carousel .reference-arrow,
   .project-bottom-band .reference-arrow { display: none !important; }
 }
+
+
+/* Projektkarusell: projektnamnet ligger på bilden för att spara höjd. */
+.inner-page.service-page .service-projects .project-card-image {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate;
+}
+.inner-page.service-page .service-projects .project-card-image::after {
+  content: "";
+  position: absolute;
+  inset: 35% 0 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(25,20,16,0) 0%, rgba(25,20,16,.58) 100%);
+}
+.inner-page.service-page .service-projects .project-card-title {
+  position: absolute !important;
+  left: 16px !important;
+  right: 12px !important;
+  bottom: 13px !important;
+  z-index: 2 !important;
+  display: block !important;
+  margin: 0 !important;
+  color: #fffaf2 !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: clamp(19px, 1.8vw, 25px) !important;
+  font-weight: 500 !important;
+  line-height: 1.05 !important;
+  text-align: left !important;
+  text-shadow: 0 1px 8px rgba(0,0,0,.18);
+  pointer-events: none;
+}
+.inner-page.service-page .service-projects .project-card-info {
+  padding: 6px 0 0 !important;
+  min-height: 24px;
+}
+.inner-page.service-page .service-projects .project-card-info .text-link {
+  display: inline-block !important;
+  margin: 0 !important;
+  font-size: 12px !important;
+}
+@media (max-width: 800px) {
+  .inner-page.service-page .service-projects .project-card-title {
+    left: 12px !important;
+    bottom: 10px !important;
+    font-size: clamp(18px, 5vw, 23px) !important;
+  }
+}

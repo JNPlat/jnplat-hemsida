@@ -28,8 +28,8 @@
         ? `<img src="../${escapeAttribute(image)}" alt="${escapeAttribute(project.title)}" loading="lazy">`
         : '';
       return `<button class="project-card" type="button" data-project-index="${index}" aria-label="Öppna bildgalleri för ${escapeAttribute(project.title)}">` +
-        `<div class="project-card-image">${imageMarkup}<span class="project-card-open">Visa bilder ↗</span></div>` +
-        `<span class="project-card-info"><span class="project-card-title">${escapeHTML(project.title)}</span><span class="text-link">Visa galleri <span>→</span></span></span></button>`;
+        `<div class="project-card-image">${imageMarkup}<span class="project-card-title">${escapeHTML(project.title)}</span><span class="project-card-open">Visa bilder ↗</span></div>` +
+        `<span class="project-card-info"><span class="text-link">Visa galleri <span>→</span></span></span></button>`;
     }).join('');
 
     list.querySelectorAll('[data-project-index]').forEach(button => {
