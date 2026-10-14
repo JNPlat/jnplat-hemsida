@@ -1587,3 +1587,34 @@ section {
 @media (max-width:800px) {
   .references-carousel .reference-arrow { width:26px; }
 }
+
+
+/* Gemensam mobil-logotyp på startsida och tjänstesidor. */
+@media (max-width:800px) {
+  .site-header .brand,
+  .inner-page .site-header .brand {
+    width:calc(100vw - 32px);
+    max-width:calc(100vw - 32px);
+    justify-content:center;
+  }
+  .site-header .brand img,
+  .inner-page .site-header .brand img {
+    width:100%; height:auto; max-height:94px; object-fit:contain;
+  }
+}
+
+/* Referenspilarna använder samma diskreta, smala form som tjänsternas karusellpilar. */
+.references-carousel .reference-arrow {
+  width:clamp(34px,3vw,46px);
+  border:1px solid rgba(130,85,54,.45);
+  background:rgba(243,238,230,.30);
+  color:var(--copper-dark,var(--copper));
+  backdrop-filter:blur(3px);
+  font-size:24px;
+  font-weight:300;
+  transition:background .2s ease,color .2s ease,border-color .2s ease;
+}
+.references-carousel .reference-arrow:hover {
+  background:var(--copper); color:var(--white); border-color:var(--copper);
+}
+@media (max-width:800px) { .references-carousel .reference-arrow { width:26px; } }

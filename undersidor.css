@@ -308,3 +308,18 @@ body.project-gallery-open { overflow:hidden; }
   .service-projects > .project-carousel-prev,
   .service-projects > .project-carousel-next { display:none !important; }
 }
+
+
+/* Slutjustering av tjänstesidor efter önskemål. */
+@media (min-width:801px) {
+  /* Samma rubrikstorlek som övriga stora rubriker; mer horisontellt utrymme. */
+  .service-image-hero .detail-hero-title { padding-left:clamp(18px,2vw,30px); padding-right:12px; }
+  .service-image-hero .detail-hero-title h1 { font-size:clamp(48px,5.2vw,76px); white-space:nowrap; }
+  .service-showcase { padding-left:clamp(20px,2.5vw,40px); padding-right:clamp(20px,2.5vw,40px); }
+}
+@media (max-width:800px) {
+  /* Hero ligger direkt efter headern utan extra toppmarginal. */
+  .inner-page.service-page .inner-main { padding-top:0 !important; }
+  .service-showcase { padding-top:0; }
+  .service-image-hero .detail-hero-title h1 { font-size:clamp(34px,9vw,48px); }
+}

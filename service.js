@@ -42,7 +42,18 @@
       const card = list.querySelector('.project-card');
       if (!card) return;
       const gap = parseFloat(getComputedStyle(list).columnGap || getComputedStyle(list).gap) || 14;
-      list.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap), behavior: 'smooth' });
+      const step = card.getBoundingClientRect().width + gap;
+      const maxScroll = Math.max(0, list.scrollWidth - list.clientWidth);
+      const atStart = list.scrollLeft <= 2;
+      const atEnd = list.scrollLeft >= maxScroll - 2;
+      // Wrap seamlessly: the last visible position continues to the first, and vice versa.
+      if (direction > 0 && atEnd) {
+        list.scrollTo({ left: 0, behavior: 'smooth' });
+      } else if (direction < 0 && atStart) {
+        list.scrollTo({ left: maxScroll, behavior: 'smooth' });
+      } else {
+        list.scrollBy({ left: direction * step, behavior: 'smooth' });
+      }
     };
     previous?.addEventListener('click', () => scrollByCard(-1));
     next?.addEventListener('click', () => scrollByCard(1));
