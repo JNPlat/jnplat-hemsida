@@ -151,7 +151,19 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.flexBasis = "";
         card.style.width = "";
       });
+      // On mobile use native horizontal scrolling so the user can swipe naturally.
+      // Do not translate the track: that created the blank/white area and blocked swiping.
+      referenceTrack.style.transform = "none";
+      referenceTrack.style.transition = "none";
+      referenceViewport.scrollLeft = Math.min(
+        referenceViewport.scrollLeft,
+        Math.max(0, referenceViewport.scrollWidth - referenceViewport.clientWidth)
+      );
+      setReferenceArrowState(referencePrev, false);
+      setReferenceArrowState(referenceNext, false);
+      return;
     } else {
+      referenceTrack.style.transition = "transform 0.4s ease";
       fitReferenceCards();
     }
 

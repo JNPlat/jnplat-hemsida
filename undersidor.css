@@ -934,3 +934,10 @@ body.project-gallery-open { overflow:hidden; }
     font-size: clamp(18px, 5vw, 23px) !important;
   }
 }
+
+
+/* Projektnamnet ligger på bilden; dölj den tomma textraden under korten. */
+.inner-page.service-page .service-projects .project-card-info,
+.inner-page.service-page .service-projects .project-card-info .text-link {
+  display: none !important;
+}

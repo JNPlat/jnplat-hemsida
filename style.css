@@ -1692,3 +1692,67 @@ section {
   .references-carousel .reference-quote { font-size:12px; line-height:1.25; }
   .references-carousel .reference-arrow { position:static !important; display:flex; align-self:stretch !important; width:24px !important; min-width:24px; height:auto !important; min-height:100%; padding:0; }
 }
+
+
+/* Slutlig mobilfix för referenser: native swipe, inga pilar eller tomma ytor. */
+@media (max-width: 800px) {
+  .section-band {
+    display: block !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 12px 0 !important;
+    overflow: hidden !important;
+    box-sizing: border-box;
+  }
+  .references-carousel {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  .references-carousel .references-viewport {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    padding: 0 16px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+    scrollbar-width: none;
+    box-sizing: border-box;
+  }
+  .references-carousel .references-viewport::-webkit-scrollbar { display: none !important; }
+  .references-carousel .references-track {
+    display: flex !important;
+    width: max-content !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    gap: 10px !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+  .references-carousel .reference-card {
+    flex: 0 0 calc(100vw - 64px) !important;
+    width: calc(100vw - 64px) !important;
+    min-width: 0 !important;
+    max-width: 420px !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 14px 16px !important;
+    box-sizing: border-box !important;
+    overflow-wrap: anywhere;
+  }
+  .references-carousel .reference-name { font-size: 17px !important; white-space: normal !important; }
+  .references-carousel .reference-role { font-size: 13px !important; }
+  .references-carousel .reference-quote { font-size: 14px !important; line-height: 1.3 !important; }
+  .references-carousel .reference-arrow { display: none !important; }
+}
