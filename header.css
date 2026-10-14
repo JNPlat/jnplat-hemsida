@@ -141,12 +141,19 @@ section {
 .site-header .main-nav > .header-contact span {
   display: inline;
   margin: 0;
-  font-size: 1.08em;
+  font-size: 1em;
   line-height: 1;
-  transition: transform 0.25s ease;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.site-header .main-nav > .header-contact .header-contact-label {
+  font: inherit;
+  color: inherit;
 }
 
 .site-header .main-nav > .header-contact:hover,
+.site-header .main-nav > .header-contact:hover .header-contact-label,
+.site-header .main-nav > .header-contact:hover .header-contact-arrow,
 .site-header .main-nav > .header-contact.active {
   background: var(--copper, #9a6747);
   color: #fffdf9;
@@ -154,8 +161,9 @@ section {
 
 @media (hover: hover) and (pointer: fine) {
   .site-header .main-nav > .header-contact:hover,
-  .site-header .main-nav > .header-contact:hover span {
-    color: #fffdf9;
+  .site-header .main-nav > .header-contact:hover .header-contact-label,
+  .site-header .main-nav > .header-contact:hover .header-contact-arrow {
+    color: #fffdf9 !important;
   }
 }
 
@@ -204,14 +212,12 @@ section {
     --header-nav-gap: clamp(4px, 1.3vw, 9px);
   }
   .site-header {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: auto;
-    left: 0;
+    position: fixed !important;
+    inset: 0 0 auto 0;
     height: var(--header-height);
     min-height: var(--header-height);
-    transform: none;
+    transform: none !important;
+    z-index: 10000;
   }
   .site-header .nav-wrap {
     width: 100%;
@@ -279,6 +285,10 @@ section {
   }
   .site-header .main-nav > .header-contact span {
     font-size: inherit;
+  }
+  .site-header .main-nav > .header-contact .header-contact-label {
+    font-size: inherit;
+    font-weight: inherit;
   }
   /*Reserve space below the fixed header on every page type.*/
   body > main,
