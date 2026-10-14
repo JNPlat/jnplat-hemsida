@@ -22,3 +22,12 @@
 Ingen riktig webbläsare eller visuell regressionstestning kördes. Layouten behöver därför kontrolleras på desktop och mobil innan publicering. Automatiska syntax- och sökvägskontroller bekräftar inte att utseendet är identiskt.
 
 CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpoint- och override-regler kan vara avsiktliga och deras ordning kan påverka layouten.
+
+
+## Headerjustering – 2026-10-14
+
+- Tog bort länken **Hem** från navigationen på samtliga fyra tjänstesidor.
+- Tog bort CSS-regler som enbart fanns för den borttagna länken.
+- Säkrade vit text och vit pil på Kontakt-knappen vid hover med mus/pekdon på desktop.
+- Behöll headerns befintliga `position: fixed`-lösning på mobil. Den håller redan headern kvar överst vid scroll och har tillhörande innehållsoffset; ingen extra sticky-regel behövdes.
+- Ändrade inte storleken på Kontakt-knappen eller headerns textstorlek; det inväntar mobilbilden.

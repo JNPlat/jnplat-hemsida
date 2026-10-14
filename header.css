@@ -149,7 +149,14 @@ section {
 .site-header .main-nav > .header-contact:hover,
 .site-header .main-nav > .header-contact.active {
   background: var(--copper, #9a6747);
-  color: var(--white, #fffdf9);
+  color: #fffdf9;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-header .main-nav > .header-contact:hover,
+  .site-header .main-nav > .header-contact:hover span {
+    color: #fffdf9;
+  }
 }
 
 .site-header .main-nav > .header-contact:hover span,

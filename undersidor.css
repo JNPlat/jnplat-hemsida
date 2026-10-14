@@ -446,14 +446,6 @@ body.lightbox-open {
   }
 }
 
-.inner-page .services-home-link {
-  color: var(--copper,#825536);
-  margin-right: clamp(2px,1vw,12px);
-}
-
-.inner-page .services-home-link::after {
-  display: none;
-}
 
 /*Tjänsteöversikt: hero med tydlig rubrik på bilden, beskrivning bredvid och projektkarusell i samma sektion*/
 
@@ -681,9 +673,6 @@ body.lightbox-open {
 }
 
 @media (max-width:800px) {
-  .inner-page.service-page .services-home-link {
-    display: none;
-  }
   .inner-page.service-page .inner-main {
     padding-top: 130px;
   }
@@ -1497,24 +1486,6 @@ body.project-gallery-open {
 
 /*Finjustering: tjänstesidor ska följa hemsidans kant-till-kant-layout.*/
 
-.inner-page.service-page .services-home-link,
-.inner-page.service-page .services-home-link:hover {
-  color: var(--text, #29251f);
-  font-weight: 400;
-}
-
-.inner-page.service-page .services-home-link::after {
-  display: none !important;
-  width: 0 !important;
-}
-
-.inner-page.service-page .services-home-link.active {
-  color: var(--text, #29251f);
-}
-
-.inner-page.service-page .services-home-link.active::after {
-  display: none !important;
-}
 
 .service-showcase {
   padding-left: 0;
