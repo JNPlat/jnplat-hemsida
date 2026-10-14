@@ -941,3 +941,46 @@ body.project-gallery-open { overflow:hidden; }
 .inner-page.service-page .service-projects .project-card-info .text-link {
   display: none !important;
 }
+
+/* Tjänstesidor använder exakt samma desktopheader som startsidan. */
+@media (min-width: 801px) {
+  .inner-page .site-header { height: 82px !important; min-height: 82px !important; }
+  .inner-page .site-header .nav-wrap { height: 82px !important; min-height: 82px !important; }
+  .inner-page .site-header .brand { flex: 0 0 clamp(170px,14.33vw,235px) !important; width: clamp(170px,14.33vw,235px) !important; }
+  .inner-page .site-header .main-nav { margin-left: clamp(16px,2.32vw,38px) !important; gap: clamp(12px,1.83vw,30px) !important; }
+  .inner-page .site-header .main-nav .nav-link { font-size: clamp(13px,1.04vw,17px) !important; line-height: 1.2 !important; padding: 8px 0 !important; }
+  .inner-page .site-header .main-nav .header-contact { padding: 8px 15px !important; gap: 9px !important; }
+}
+@media (max-width: 800px) {
+  .inner-page .site-header .main-nav .header-contact {
+    box-sizing: border-box !important; min-height: 32px !important; height: 32px !important;
+    padding: 0 9px !important; display: inline-flex !important; align-items: center !important;
+    justify-content: center !important; gap: 6px !important; line-height: 1 !important;
+  }
+  .inner-page .site-header .main-nav .header-contact span {
+    display: inline-flex !important; align-items: center !important; justify-content: center !important;
+    margin: 0 !important; line-height: 1 !important; font-size: 17px !important;
+  }
+}
+
+/* Headerstandard v2: tjänstesidor använder exakt samma mått och responsiva skalning som startsidan. */
+@media (min-width:801px) {
+  .inner-page .site-header { height:82px !important; min-height:82px !important; }
+  .inner-page .site-header .nav-wrap { width:min(calc(100% - 64px),var(--max-width)) !important; height:82px !important; min-height:82px !important; margin:0 auto !important; padding:0 !important; }
+  .inner-page .site-header .brand { flex:0 0 clamp(170px,14.33vw,235px) !important; width:clamp(170px,14.33vw,235px) !important; max-width:none !important; }
+  .inner-page .site-header .brand img { width:100% !important; height:auto !important; max-height:none !important; }
+  .inner-page .site-header .main-nav { flex:1 1 auto !important; margin-left:clamp(16px,2.32vw,38px) !important; gap:clamp(12px,1.83vw,30px) !important; }
+  .inner-page .site-header .main-nav > .nav-link { font-size:clamp(13px,1.04vw,17px) !important; line-height:1.2 !important; }
+  .inner-page .site-header .main-nav > .header-contact { padding:8px 15px !important; gap:9px !important; }
+}
+@media (max-width:800px) {
+  .inner-page .site-header, .inner-page.service-page .site-header { position:fixed !important; top:0 !important; left:0 !important; right:0 !important; width:100% !important; height:138px !important; min-height:138px !important; }
+  .inner-page .site-header .nav-wrap, .inner-page.service-page .nav-wrap { width:100% !important; max-width:none !important; height:138px !important; min-height:138px !important; margin:0 !important; padding:7px 8px 9px !important; box-sizing:border-box !important; display:flex !important; flex-direction:column !important; flex-wrap:nowrap !important; justify-content:flex-start !important; align-items:center !important; gap:7px !important; }
+  .inner-page .site-header .brand, .inner-page.service-page .brand { display:flex !important; flex:0 0 78px !important; width:min(calc(100vw - 32px),340px) !important; max-width:min(calc(100vw - 32px),340px) !important; height:78px !important; max-height:78px !important; margin:0 auto !important; padding:0 !important; align-self:center !important; align-items:center !important; justify-content:center !important; box-sizing:border-box !important; }
+  .inner-page .site-header .brand img, .inner-page.service-page .brand img { display:block !important; width:100% !important; height:auto !important; max-height:78px !important; object-fit:contain !important; margin:0 auto !important; }
+  .inner-page .site-header .main-nav, .inner-page.service-page .main-nav { display:flex !important; flex:1 1 auto !important; width:100% !important; max-width:100% !important; min-width:0 !important; height:35px !important; min-height:35px !important; margin:0 !important; padding:0 1px !important; box-sizing:border-box !important; flex-direction:row !important; flex-wrap:nowrap !important; justify-content:space-between !important; align-items:center !important; gap:clamp(2px,.65vw,5px) !important; overflow:visible !important; }
+  .inner-page .site-header .main-nav > .nav-link, .inner-page.service-page .main-nav > .nav-link { display:inline-flex !important; flex:0 1 auto !important; min-width:0 !important; align-items:center !important; justify-content:center !important; white-space:nowrap !important; font-size:clamp(8px,2.65vw,12px) !important; line-height:1.15 !important; letter-spacing:-.025em !important; padding:5px 0 !important; margin:0 !important; }
+  .inner-page .site-header .main-nav > .header-contact, .inner-page.service-page .main-nav > .header-contact { flex:0 1 auto !important; display:inline-flex !important; align-items:center !important; justify-content:center !important; gap:.28em !important; width:auto !important; height:auto !important; min-height:0 !important; padding:.38em .48em !important; margin:0 !important; box-sizing:border-box !important; font-size:clamp(8px,2.65vw,12px) !important; line-height:1.15 !important; white-space:nowrap !important; }
+  .inner-page .site-header .main-nav > .header-contact span, .inner-page.service-page .main-nav > .header-contact span { display:inline !important; flex:0 0 auto !important; margin:0 !important; font-size:1.08em !important; line-height:1 !important; transform:none !important; }
+  .inner-page .inner-main, .inner-page main { padding-top:138px !important; }
+}
