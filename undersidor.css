@@ -579,3 +579,95 @@ body.project-gallery-open { overflow:hidden; }
   .inner-page.service-page .service-showcase-top { width:100%; margin:0; }
   .inner-page.service-page .service-projects { width:100%; margin:0; grid-template-columns:34px minmax(0,1fr) 34px; column-gap:10px; }
 }
+
+/* Faktisk slutlig korrigering: undvik att hero hamnar bakom den fasta desktop-headern. */
+@media (min-width:801px) {
+  .inner-page.service-page .inner-main {
+    padding-top: var(--header-height, 88px) !important;
+    margin-top: 0 !important;
+  }
+  .inner-page.service-page .service-showcase {
+    min-height: calc(100svh - var(--header-height, 88px));
+    height: calc(100svh - var(--header-height, 88px));
+    padding: 0 0 12px !important;
+    gap: clamp(12px, 2vh, 20px) !important;
+    justify-content: flex-start !important;
+    box-sizing: border-box;
+  }
+  .inner-page.service-page .service-showcase-top {
+    flex: 0 0 clamp(270px, 39vh, 360px);
+    height: clamp(270px, 39vh, 360px) !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr) !important;
+  }
+  .inner-page.service-page .service-image-hero {
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden;
+  }
+  .inner-page.service-page .service-image-hero .service-hero-picture {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .inner-page.service-page .service-image-hero .service-hero-picture img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+  .inner-page.service-page .service-copy {
+    padding: clamp(24px, 3vw, 44px) !important;
+    overflow: hidden;
+  }
+  .inner-page.service-page .service-projects {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: grid !important;
+    grid-template-columns: 34px minmax(0, 1fr) 34px !important;
+    column-gap: 10px !important;
+    align-items: stretch !important;
+    padding: 0 !important;
+    overflow: visible;
+  }
+  .inner-page.service-page .service-projects .project-carousel {
+    min-width: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 14px;
+    overflow-x: auto;
+    align-items: flex-start;
+  }
+  .inner-page.service-page .service-projects .project-carousel .project-card {
+    flex: 0 0 calc((100% - 42px) / 4);
+    min-width: 0;
+  }
+  .inner-page.service-page .service-projects .project-card-image { aspect-ratio: 16 / 9; }
+  .inner-page.service-page .service-projects .project-side-arrow {
+    position: static !important;
+    display: flex !important;
+    align-self: stretch !important;
+    width: 34px !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    margin: 0;
+    box-sizing: border-box;
+  }
+}
+@media (max-width:800px) {
+  .inner-page.service-page .inner-main { padding-top: 0 !important; margin-top: 0 !important; }
+  .inner-page.service-page .service-showcase { height: auto !important; min-height: 0 !important; padding: 0 0 18px !important; gap: 14px !important; }
+  .inner-page.service-page .service-showcase-top { height: auto !important; min-height: 0 !important; flex: none; }
+  .inner-page.service-page .service-image-hero { height: auto !important; aspect-ratio: 16 / 9; }
+  .inner-page.service-page .service-image-hero .service-hero-picture { position: absolute !important; inset: 0 !important; width: 100%; height: 100%; }
+  .inner-page.service-page .service-image-hero .service-hero-picture img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
+  .inner-page.service-page .service-projects { display: block !important; height: auto; }
+  .inner-page.service-page .service-projects .project-side-arrow { display: none !important; }
+  .inner-page.service-page .service-projects .project-carousel { width: 100%; margin: 0 !important; padding: 0 0 4px !important; }
+}
