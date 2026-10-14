@@ -212,6 +212,7 @@ section {
     --header-height: 118px;
     --header-logo-width: min(calc(100vw - 28px), 590px);
     --header-nav-gap: clamp(4px, 1.3vw, 9px);
+    --header-nav-font-size: clamp(11px, 2.9vw, 14px);
   }
   .site-header {
     position: fixed !important;
@@ -273,7 +274,7 @@ section {
     min-width: 0;
     margin: 0;
     padding: 3px 0;
-    font-size: clamp(10px, 2.75vw, 13px);
+    font-size: var(--header-nav-font-size);
     line-height: 1.15;
     letter-spacing: 0;
     white-space: nowrap;
@@ -282,19 +283,22 @@ section {
     flex: 0 0 auto;
     padding: 3px 4px;
     gap: 2px;
-    font-family: inherit;
-    font-size: inherit;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: var(--header-nav-font-size);
     font-weight: 400;
     line-height: 1.15;
-    letter-spacing: inherit;
+    letter-spacing: 0;
     white-space: nowrap;
   }
   .site-header .main-nav > .header-contact span {
-    font-size: inherit;
+    font-size: var(--header-nav-font-size);
   }
   .site-header .main-nav > .header-contact .header-contact-label {
-    font-size: inherit;
-    font-weight: inherit;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: var(--header-nav-font-size);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: 0;
   }
   /*Reserve space below the fixed header on every page type.*/
   body > main,
