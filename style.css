@@ -1983,3 +1983,20 @@ section {
     flex: 0 0 auto !important;
   }
 }
+
+/* Delad desktop-headergeometri: samma fasta logotyp-position på alla sidor. */
+@media (min-width: 801px) {
+  .site-header .nav-wrap,
+  .inner-page .site-header .nav-wrap { position: relative !important; }
+  .site-header .brand,
+  .inner-page .site-header .brand {
+    position: absolute !important; left: 0 !important; top: 50% !important;
+    transform: translateY(-50%) !important;
+    flex: 0 0 clamp(180px, 15.5vw, 252px) !important;
+    width: clamp(180px, 15.5vw, 252px) !important; margin: 0 !important;
+  }
+  .site-header .main-nav,
+  .inner-page .site-header .main-nav {
+    margin-left: calc(clamp(180px, 15.5vw, 252px) + clamp(14px, 1.8vw, 30px)) !important;
+  }
+}

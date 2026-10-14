@@ -1088,3 +1088,83 @@ body.project-gallery-open { overflow:hidden; }
     margin: 0 !important;
   }
 }
+
+/* Slutfix 2026-10-14: hela tjänstehero-bilden synlig på mobil och kompakt rubrikband. */
+@media (max-width: 800px) {
+  .inner-page.service-page .service-image-hero {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    overflow: visible !important;
+    background: var(--bg, #f3eee6) !important;
+  }
+  .inner-page.service-page .service-image-hero .service-hero-picture {
+    position: relative !important;
+    inset: auto !important;
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    overflow: hidden !important;
+    background: var(--bg, #f3eee6) !important;
+  }
+  .inner-page.service-page .service-image-hero .service-hero-picture img {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+  .inner-page.service-page .service-image-hero .detail-hero-shade { display: none !important; }
+  .inner-page.service-page .service-image-hero .detail-hero-title {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 1 !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 9px 18px 13px !important;
+    margin: 0 !important;
+    background: var(--card, #e9e2d7) !important;
+    color: var(--text, #302a24) !important;
+  }
+  .inner-page.service-page .service-image-hero .detail-hero-title .eyebrow {
+    margin: 0 0 2px !important;
+    color: var(--copper, #9a6747) !important;
+    font-size: 9px !important;
+    line-height: 1.15 !important;
+  }
+  .inner-page.service-page .service-image-hero .detail-hero-title h1 {
+    margin: 0 !important;
+    color: var(--text, #302a24) !important;
+    font-size: clamp(30px, 8vw, 42px) !important;
+    line-height: 1 !important;
+    text-shadow: none !important;
+  }
+}
+
+/* Desktop: logotypen låses till samma vänsterposition på startsida och undersidor. */
+@media (min-width: 801px) {
+  .site-header .nav-wrap,
+  .inner-page .site-header .nav-wrap {
+    position: relative !important;
+  }
+  .site-header .brand,
+  .inner-page .site-header .brand {
+    position: absolute !important;
+    left: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    flex: 0 0 clamp(180px, 15.5vw, 252px) !important;
+    width: clamp(180px, 15.5vw, 252px) !important;
+    margin: 0 !important;
+  }
+  .site-header .main-nav,
+  .inner-page .site-header .main-nav {
+    margin-left: calc(clamp(180px, 15.5vw, 252px) + clamp(14px, 1.8vw, 30px)) !important;
+  }
+}
