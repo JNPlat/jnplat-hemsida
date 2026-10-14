@@ -1618,3 +1618,44 @@ section {
   background:var(--copper); color:var(--white); border-color:var(--copper);
 }
 @media (max-width:800px) { .references-carousel .reference-arrow { width:26px; } }
+
+/* Korrigering: referenskarusellens pilar matchar tjänsternas smala sidoknappar. */
+.references-carousel { position:relative; }
+.references-carousel .reference-arrow {
+  position:absolute !important; top:0; bottom:0; z-index:5;
+  width:clamp(34px,3vw,46px) !important; height:auto !important;
+  border:1px solid rgba(130,85,54,.45) !important;
+  background:rgba(243,238,230,.30) !important;
+  color:var(--copper-dark,var(--copper)) !important;
+  backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px);
+  font-size:24px; font-weight:300;
+  transition:background .2s ease,color .2s ease,border-color .2s ease;
+}
+.references-carousel .reference-prev { left:0; }
+.references-carousel .reference-next { right:0; }
+.references-carousel .reference-arrow:hover {
+  background:var(--copper) !important; color:var(--white) !important; border-color:var(--copper) !important;
+}
+
+/* Referenskarusell: fullbredd med pilar längst ut vid sidkanterna. */
+.section-band { padding-left: 0 !important; padding-right: 0 !important; }
+.references-carousel { position: relative; display: block; width: 100%; }
+.references-carousel .references-viewport { width: 100%; padding-left: clamp(34px, 3vw, 46px); padding-right: clamp(34px, 3vw, 46px); }
+.references-carousel .reference-arrow {
+  position: absolute !important; top: 0; bottom: 0; z-index: 5;
+  width: clamp(34px, 3vw, 46px) !important; height: auto !important;
+  border: 1px solid rgba(130,85,54,.45) !important;
+  background: rgba(243,238,230,.30) !important;
+  color: var(--copper-dark,var(--copper)) !important;
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+  font-size: 24px; font-weight: 300;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.references-carousel .reference-prev { left: 0 !important; }
+.references-carousel .reference-next { right: 0 !important; }
+.references-carousel .reference-arrow:hover { background: var(--copper) !important; color: var(--white) !important; border-color: var(--copper) !important; }
+@media (max-width: 800px) {
+  .section-band { padding-left: 0 !important; padding-right: 0 !important; }
+  .references-carousel .references-viewport { padding-left: 26px; padding-right: 26px; }
+  .references-carousel .reference-arrow { width: 26px !important; }
+}

@@ -323,3 +323,88 @@ body.project-gallery-open { overflow:hidden; }
   .service-showcase { padding-top:0; }
   .service-image-hero .detail-hero-title h1 { font-size:clamp(34px,9vw,48px); }
 }
+
+/* Stabil slutlig korrigering av tjänstesidor */
+@media (min-width:801px) {
+  /* Samma typografiska storlek på alla tjänsters heror. */
+  .service-image-hero .detail-hero-title h1 {
+    font-size:clamp(48px,5.2vw,76px) !important;
+    line-height:.98; letter-spacing:-.025em; white-space:nowrap;
+  }
+  /* Bildens ruta följer bildens 16:9-format och visar hela bilden utan beskärning. */
+  .service-showcase-top { grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); }
+  .service-image-hero { aspect-ratio:16/9; min-width:0; }
+  .service-image-hero .service-hero-picture img { object-fit:contain !important; object-position:center; }
+}
+@media (max-width:800px) {
+  /* På mobil ska headern ligga i dokumentflödet, så herobilden börjar direkt under den. */
+  .inner-page.service-page .site-header { position:relative !important; top:auto; left:auto; right:auto; }
+  .inner-page.service-page .inner-main { padding-top:0 !important; margin-top:0 !important; }
+  .inner-page.service-page .service-showcase { padding-top:0 !important; margin-top:0 !important; gap:14px; }
+  .inner-page.service-page .service-showcase-top { margin-top:0 !important; }
+  .inner-page.service-page .service-image-hero .service-hero-picture img { object-fit:cover !important; object-position:center; }
+  .inner-page.service-page .service-image-hero .detail-hero-title h1 {
+    font-size:clamp(34px,9vw,48px) !important; line-height:.98;
+  }
+}
+
+/* Finjustering: tjänstesidor ska följa hemsidans kant-till-kant-layout. */
+.inner-page.service-page .services-home-link,
+.inner-page.service-page .services-home-link:hover {
+  color: var(--text, #29251f);
+  font-weight: 400;
+}
+.inner-page.service-page .services-home-link::after { display: none !important; width: 0 !important; }
+.inner-page.service-page .services-home-link.active { color: var(--text, #29251f); }
+.inner-page.service-page .services-home-link.active::after { display:none !important; }
+.service-showcase { padding-left:0; padding-right:0; }
+.service-showcase-top { width:100%; }
+.service-projects { grid-template-columns:clamp(34px,3vw,46px) minmax(0,1fr) clamp(34px,3vw,46px); column-gap:0; width:100%; }
+.service-projects > .project-side-arrow { align-self:stretch; width:100%; height:100%; min-height:100%; border:1px solid rgba(130,85,54,.45); background:rgba(243,238,230,.30); color:var(--copper-dark,var(--copper)); backdrop-filter:blur(3px); font-size:24px; font-weight:300; transition:background .2s ease,color .2s ease,border-color .2s ease; }
+.service-projects > .project-side-arrow:hover { background:var(--copper); color:var(--white,#fffaf2); border-color:var(--copper); }
+@media (max-width:800px) {
+  .service-showcase { padding:0 0 24px; }
+  .service-projects { grid-template-columns:minmax(0,1fr); padding:0; column-gap:0; }
+  .service-projects > .project-side-arrow { display:none; }
+}
+
+/* Kant-till-kant-komposition på tjänstesidorna – samma visuella känsla som startsidans tjänsteöversikt */
+@media (min-width:801px) {
+  .inner-page.service-page .inner-main { padding-top:var(--header-height,82px); }
+  .inner-page.service-page .service-showcase {
+    width:100%; min-height:calc(100svh - var(--header-height,82px));
+    padding:0; gap:0; justify-content:flex-start;
+  }
+  .inner-page.service-page .service-showcase-top {
+    width:100%; min-height:clamp(300px,43vh,440px); max-height:none;
+    grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  }
+  .inner-page.service-page .service-image-hero { min-height:0; }
+  .inner-page.service-page .service-copy { min-width:0; }
+  .inner-page.service-page .service-projects {
+    position:relative; width:100%; padding:clamp(18px,2.2vh,26px) 0 0;
+  }
+  .inner-page.service-page .project-carousel {
+    gap:0; padding:0; margin:0; overflow-x:auto;
+  }
+  .inner-page.service-page .project-carousel .project-card {
+    flex:0 0 25%;
+  }
+  .inner-page.service-page .project-carousel .project-card-image { aspect-ratio:16/9; }
+  .inner-page.service-page .project-carousel .project-card-info { padding:10px 18px 0; }
+  .inner-page.service-page .project-side-arrow {
+    position:absolute; z-index:4; top:clamp(18px,2.2vh,26px); bottom:auto;
+    width:clamp(34px,3.2vw,48px); height:auto; min-height:100px;
+    border:1px solid rgba(130,85,54,.55); background:rgba(243,238,230,.76);
+    color:var(--copper,#825536); font-size:23px; display:flex; align-items:center; justify-content:center;
+    transition:background .2s ease,color .2s ease;
+  }
+  .inner-page.service-page .project-side-arrow:hover { background:var(--copper,#825536); color:#fffaf2; }
+  .inner-page.service-page .project-carousel-prev { left:0; }
+  .inner-page.service-page .project-carousel-next { right:0; }
+}
+@media (max-width:800px) {
+  .inner-page.service-page .service-showcase { padding-top:0; }
+  .inner-page.service-page .service-projects { padding-left:0; padding-right:0; }
+  .inner-page.service-page .project-carousel { margin-right:0; padding-right:0; }
+}
