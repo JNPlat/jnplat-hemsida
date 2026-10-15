@@ -222,6 +222,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateLayout();
 
+  // Cross-page links such as /tjanster/... -> /#kontakt should use the same
+  // header offset as in-page navigation, after the destination layout is ready.
+  if (window.location.hash) {
+    const hashTarget = document.querySelector(window.location.hash);
+    if (hashTarget) {
+      const alignHashTarget = () => scrollToSection(hashTarget);
+      window.requestAnimationFrame(() => window.requestAnimationFrame(alignHashTarget));
+      window.addEventListener("load", alignHashTarget, { once: true });
+    }
+  }
+
   window.addEventListener(
     "scroll",
     () => {

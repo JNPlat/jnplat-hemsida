@@ -2566,3 +2566,17 @@ body.project-gallery-open {
 }
 
 @media (max-width: 600px) { .project-gallery-stage, .project-gallery-main-image { touch-action: pan-y pinch-zoom; } }
+
+
+/* Project carousel: reserve arrow space only when horizontal scrolling is needed. */
+.inner-page.service-page .service-projects:not(.has-project-overflow) {
+  grid-template-columns: minmax(0, 1fr) !important;
+  column-gap: 0 !important;
+}
+.inner-page.service-page .service-projects:not(.has-project-overflow) > .project-side-arrow {
+  display: none !important;
+}
+.project-image-zoom-img { cursor: zoom-in; }
+.project-image-zoom-img[style*="scale(2)"],
+.project-image-zoom-img[style*="scale(2."] { cursor: grab; }
+.project-image-zoom-img.is-dragging { cursor: grabbing !important; }

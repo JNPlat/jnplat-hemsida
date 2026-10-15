@@ -69,6 +69,22 @@
     };
     previous?.addEventListener('click', () => scrollByCard(-1));
     next?.addEventListener('click', () => scrollByCard(1));
+
+    const updateProjectCarouselArrows = () => {
+      const hasOverflow = list.scrollWidth > list.clientWidth + 2;
+      const container = list.closest('.service-projects');
+      container?.classList.toggle('has-project-overflow', hasOverflow);
+      [previous, next].forEach(button => {
+        if (!button) return;
+        button.hidden = !hasOverflow;
+        button.setAttribute('aria-hidden', String(!hasOverflow));
+        button.tabIndex = hasOverflow ? 0 : -1;
+      });
+    };
+    updateProjectCarouselArrows();
+    window.addEventListener('resize', updateProjectCarouselArrows);
+    list.addEventListener('scroll', updateProjectCarouselArrows, { passive: true });
+    window.addEventListener('load', updateProjectCarouselArrows);
   } catch (error) {
     list.innerHTML = '<p class="empty-projects">Projektlistan kunde inte laddas just nu.</p>';
   }
@@ -223,6 +239,22 @@
       galleryModal.appendChild(zoom);
       zoom.querySelector('.project-image-zoom-close').addEventListener('click', closeGallery);
       const zoomImage = zoom.querySelector('.project-image-zoom-img');
+      let projectZoomWasDragged = false;
+      zoomImage.addEventListener('click', event => {
+        if (projectZoomWasDragged) {
+          projectZoomWasDragged = false;
+          event.preventDefault();
+          return;
+        }
+        if (projectZoomScale > 1) {
+          resetProjectImageTransform(zoomImage);
+        } else {
+          projectZoomScale = 2;
+          projectZoomX = 0;
+          projectZoomY = 0;
+          applyProjectImageTransform(zoomImage);
+        }
+      });
       zoomImage.addEventListener('wheel', event => {
         if (!event.ctrlKey) return;
         event.preventDefault();
@@ -243,6 +275,9 @@
       });
       zoomImage.addEventListener('pointermove', event => {
         if (!projectZoomDragging) return;
+        if (Math.abs(event.clientX - projectZoomDragStartX) > 3 || Math.abs(event.clientY - projectZoomDragStartY) > 3) {
+          projectZoomWasDragged = true;
+        }
         projectZoomX = projectZoomDragOriginX + event.clientX - projectZoomDragStartX;
         projectZoomY = projectZoomDragOriginY + event.clientY - projectZoomDragStartY;
         applyProjectImageTransform(zoomImage);
