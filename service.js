@@ -111,6 +111,12 @@
     const img = galleryModal.querySelector('.project-gallery-main-image');
     img.src = `../${activeImages[imageIndex]}`;
     img.alt = `${activeProject?.title || 'Projekt'} – bild ${imageIndex + 1}`;
+    const zoom = galleryModal.querySelector('.project-image-zoom');
+    if (zoom && !zoom.hidden) {
+      const zoomImage = zoom.querySelector('.project-image-zoom-img');
+      zoomImage.src = `../${activeImages[imageIndex]}`;
+      zoomImage.alt = img.alt;
+    }
     galleryModal.querySelector('.project-gallery-count').textContent = `${imageIndex + 1} / ${activeImages.length}`;
     const thumbnails = galleryModal.querySelector('.project-gallery-thumbnails');
     const thumbButtons = galleryModal.querySelectorAll('[data-thumb-index]');
@@ -147,9 +153,11 @@
       zoom = document.createElement('div');
       zoom.className = 'project-image-zoom';
       zoom.hidden = true;
-      zoom.innerHTML = '<button class="project-image-zoom-close" type="button" aria-label="Stäng förstorad bild">×</button><img class="project-image-zoom-img" alt="">';
+      zoom.innerHTML = '<button class="project-image-zoom-close" type="button" aria-label="Stäng förstorad bild">×</button><button class="project-image-zoom-prev" type="button" aria-label="Föregående bild">‹</button><img class="project-image-zoom-img" alt=""><button class="project-image-zoom-next" type="button" aria-label="Nästa bild">›</button>';
       galleryModal.appendChild(zoom);
       zoom.querySelector('.project-image-zoom-close').addEventListener('click', closeDesktopImageZoom);
+      zoom.querySelector('.project-image-zoom-prev').addEventListener('click', event => { event.stopPropagation(); showImage(imageIndex - 1); });
+      zoom.querySelector('.project-image-zoom-next').addEventListener('click', event => { event.stopPropagation(); showImage(imageIndex + 1); });
       zoom.addEventListener('click', event => {
         if (event.target === zoom) closeDesktopImageZoom();
       });
@@ -182,6 +190,8 @@
     const zoom = galleryModal.querySelector('.project-image-zoom');
     if (zoom && !zoom.hidden) {
       if (event.key === 'Escape') closeDesktopImageZoom();
+      if (event.key === 'ArrowLeft') { event.preventDefault(); showImage(imageIndex - 1); }
+      if (event.key === 'ArrowRight') { event.preventDefault(); showImage(imageIndex + 1); }
       return;
     }
     if (event.key === 'Escape') closeGallery();
