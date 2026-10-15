@@ -38,5 +38,43 @@
     ],
     "published": true,
     "mockup": false
+  },
+  {
+    "id": "hogalidskyrkan-kopparslageri-2023",
+    "title": "Högalidskyrkan",
+    "service": "kopparslageri",
+    "year": "2023",
+    "description": "Kopparslageri vid Högalidskyrkan, utfört 2023.",
+    "longDescription": "Projektet omfattade kopparslageriarbete vid Högalidskyrkan och utfördes under 2023.",
+    "hero": "images/projekt/hogalidskyrkan/1.jpg",
+    "cardImage": "images/projekt/hogalidskyrkan/1.jpg",
+    "gallery": [
+      "images/projekt/hogalidskyrkan/1.jpg",
+      "images/projekt/hogalidskyrkan/2.jpg",
+      "images/projekt/hogalidskyrkan/3.jpg",
+      "images/projekt/hogalidskyrkan/4.jpg",
+      "images/projekt/hogalidskyrkan/5.jpg",
+      "images/projekt/hogalidskyrkan/6.jpg"
+    ],
+    "published": true,
+    "mockup": false
+  },
+  {
+    "id": "kulturveckan-specialprojekt-2022",
+    "title": "Kulturveckan",
+    "service": "specialprojekt",
+    "year": "2022",
+    "description": "Specialprojekt under Kulturveckan 2022.",
+    "longDescription": "Projektet genomfördes i samband med Kulturveckan 2022.",
+    "hero": "images/projekt/kulturveckan/1.jpg",
+    "cardImage": "images/projekt/kulturveckan/1.jpg",
+    "gallery": [
+      "images/projekt/kulturveckan/1.jpg",
+      "images/projekt/kulturveckan/2.jpg",
+      "images/projekt/kulturveckan/3.jpg",
+      "images/projekt/kulturveckan/4.jpg"
+    ],
+    "published": true,
+    "mockup": false
   }
 ]
