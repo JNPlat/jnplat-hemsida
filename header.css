@@ -23,6 +23,12 @@
   backdrop-filter: blur(12px);
 }
 
+/* Keep the layout viewport the same on pages with different vertical overflow.
+   Otherwise the centered header container can shift horizontally by the scrollbar width. */
+html {
+  scrollbar-gutter: stable;
+}
+
 /*Header offsets and anchor positions are owned here, not in page stylesheets.*/
 
 section {
