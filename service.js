@@ -10,9 +10,6 @@
   let imageIndex = 0;
   let previousFocus = null;
   let touchStartX = 0;
-  let touchStartY = 0;
-  let touchStartCount = 0;
-  let touchMoved = false;
 
   try {
     const response = await fetch('../data/projects.json', { cache: 'no-store' });
@@ -76,46 +73,17 @@
     document.body.appendChild(modal);
     modal.querySelector('.project-gallery-close').addEventListener('click', closeGallery);
     modal.querySelector('[data-gallery-close]').addEventListener('click', closeGallery);
+    modal.querySelector('.project-gallery-main-image').addEventListener('click', openDesktopImageZoom);
     modal.querySelector('.project-gallery-prev').addEventListener('click', () => showImage(imageIndex - 1));
     modal.querySelector('.project-gallery-next').addEventListener('click', () => showImage(imageIndex + 1));
     modal.querySelector('.project-gallery-thumbnails').addEventListener('click', event => {
       const thumb = event.target.closest('[data-thumb-index]');
       if (thumb) showImage(Number(thumb.dataset.thumbIndex));
     });
-    const stage = modal.querySelector('.project-gallery-stage');
-    // Only treat a deliberate, single-finger horizontal swipe as gallery navigation.
-    // Pinch-to-zoom uses two fingers and must never change the active image.
-    stage.addEventListener('touchstart', event => {
-      touchStartCount = event.touches.length;
-      touchMoved = false;
-      if (touchStartCount !== 1) return;
-      touchStartX = event.touches[0].clientX;
-      touchStartY = event.touches[0].clientY;
-    }, { passive: true });
-    stage.addEventListener('touchmove', event => {
-      if (event.touches.length !== 1 || touchStartCount !== 1) {
-        touchMoved = true;
-        return;
-      }
-      const dx = Math.abs(event.touches[0].clientX - touchStartX);
-      const dy = Math.abs(event.touches[0].clientY - touchStartY);
-      if (dy > 10 || dx > 10) touchMoved = true;
-    }, { passive: true });
-    stage.addEventListener('touchend', event => {
-      if (touchStartCount !== 1 || event.changedTouches.length !== 1 || !touchMoved) return;
-      const touch = event.changedTouches[0];
-      const deltaX = touch.clientX - touchStartX;
-      const deltaY = touch.clientY - touchStartY;
-      // Require a clearly horizontal swipe; vertical movement and pinch gestures are ignored.
-      if (Math.abs(deltaX) > 55 && Math.abs(deltaX) > Math.abs(deltaY) * 1.35) {
-        showImage(imageIndex + (deltaX < 0 ? 1 : -1));
-      }
-      touchStartCount = 0;
-      touchMoved = false;
-    }, { passive: true });
-    stage.addEventListener('touchcancel', () => {
-      touchStartCount = 0;
-      touchMoved = false;
+    modal.querySelector('.project-gallery-stage').addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
+    modal.querySelector('.project-gallery-stage').addEventListener('touchend', event => {
+      const delta = event.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(delta) > 45) showImage(imageIndex + (delta < 0 ? 1 : -1));
     }, { passive: true });
     return modal;
   }
@@ -152,13 +120,51 @@
     galleryModal.querySelector('.project-gallery-next').hidden = activeImages.length < 2;
   }
 
+  function openDesktopImageZoom() {
+    // Enlarged image view is desktop-only; touch devices retain their native pinch zoom.
+    if (window.matchMedia('(max-width: 600px), (hover: none)').matches) return;
+    let zoom = galleryModal.querySelector('.project-image-zoom');
+    if (!zoom) {
+      zoom = document.createElement('div');
+      zoom.className = 'project-image-zoom';
+      zoom.hidden = true;
+      zoom.innerHTML = '<button class="project-image-zoom-close" type="button" aria-label="Stäng förstorad bild">×</button><img class="project-image-zoom-img" alt="">';
+      galleryModal.appendChild(zoom);
+      zoom.querySelector('.project-image-zoom-close').addEventListener('click', closeDesktopImageZoom);
+      zoom.addEventListener('click', event => {
+        if (event.target === zoom) closeDesktopImageZoom();
+      });
+    }
+    const zoomImage = zoom.querySelector('.project-image-zoom-img');
+    zoomImage.src = `../${activeImages[imageIndex]}`;
+    zoomImage.alt = `${activeProject?.title || 'Projekt'} – bild ${imageIndex + 1}`;
+    zoom.hidden = false;
+    zoom.querySelector('.project-image-zoom-close').focus();
+  }
+
+  function closeDesktopImageZoom() {
+    const zoom = galleryModal.querySelector('.project-image-zoom');
+    if (zoom) zoom.hidden = true;
+    galleryModal.querySelector('.project-gallery-main-image')?.focus();
+  }
+
   function closeGallery() {
+    const zoom = galleryModal.querySelector('.project-image-zoom');
+    if (zoom && !zoom.hidden) {
+      zoom.hidden = true;
+      return;
+    }
     galleryModal.hidden = true;
     document.body.classList.remove('project-gallery-open');
     if (previousFocus && previousFocus.focus) previousFocus.focus();
   }
   document.addEventListener('keydown', event => {
     if (galleryModal.hidden) return;
+    const zoom = galleryModal.querySelector('.project-image-zoom');
+    if (zoom && !zoom.hidden) {
+      if (event.key === 'Escape') closeDesktopImageZoom();
+      return;
+    }
     if (event.key === 'Escape') closeGallery();
     if (event.key === 'ArrowLeft') showImage(imageIndex - 1);
     if (event.key === 'ArrowRight') showImage(imageIndex + 1);
