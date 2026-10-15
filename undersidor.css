@@ -2514,3 +2514,50 @@ body.project-gallery-open {
 @media (max-width: 600px), (hover: none) {
   .project-image-zoom { display: none !important; }
 }
+
+
+/* Desktop: open projects directly in the large viewer; thumbnails stay in the viewer. */
+.project-gallery-dialog.project-gallery-dialog-under-viewer { visibility: hidden; }
+.project-image-zoom { flex-direction: column; gap: 12px; }
+.project-image-zoom-img { max-width: 94vw; max-height: calc(100vh - 112px); }
+.project-image-zoom-bottom {
+  position: absolute;
+  left: 5vw;
+  right: 5vw;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 64px;
+  padding: 6px 12px;
+  background: rgba(20,18,16,.45);
+  box-sizing: border-box;
+}
+.project-image-zoom-thumbnails {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  padding: 4px 0;
+  scrollbar-width: thin;
+}
+.project-image-zoom-thumbnails button {
+  flex: 0 0 70px;
+  height: 48px;
+  padding: 0;
+  border: 2px solid transparent;
+  background: rgba(255,255,255,.12);
+  cursor: pointer;
+}
+.project-image-zoom-thumbnails button.active { border-color: #c79a70; }
+.project-image-zoom-thumbnails img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.project-image-zoom-count { color: #fffaf2; font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.project-image-zoom-prev[hidden], .project-image-zoom-next[hidden] { display: none !important; }
+@media (max-width: 600px), (hover: none) {
+  .project-gallery-dialog.project-gallery-dialog-under-viewer { visibility: visible; }
+  .project-image-zoom { display: none !important; }
+}
+
+@media (max-width: 600px) { .project-gallery-stage, .project-gallery-main-image { touch-action: pan-y pinch-zoom; } }

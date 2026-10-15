@@ -10,6 +10,9 @@
   let imageIndex = 0;
   let previousFocus = null;
   let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartCount = 0;
+  let touchMoved = false;
 
   try {
     const response = await fetch('../data/projects.json', { cache: 'no-store' });
@@ -80,10 +83,41 @@
       const thumb = event.target.closest('[data-thumb-index]');
       if (thumb) showImage(Number(thumb.dataset.thumbIndex));
     });
-    modal.querySelector('.project-gallery-stage').addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
-    modal.querySelector('.project-gallery-stage').addEventListener('touchend', event => {
-      const delta = event.changedTouches[0].clientX - touchStartX;
-      if (Math.abs(delta) > 45) showImage(imageIndex + (delta < 0 ? 1 : -1));
+    const stage = modal.querySelector('.project-gallery-stage');
+    stage.addEventListener('touchstart', event => {
+      touchStartCount = event.touches.length;
+      touchMoved = false;
+      if (touchStartCount !== 1) return; // Never interpret a pinch as gallery navigation.
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+    }, { passive: true });
+    stage.addEventListener('touchmove', event => {
+      if (touchStartCount !== 1 || event.touches.length !== 1) {
+        touchMoved = true;
+        return;
+      }
+      const dx = Math.abs(event.touches[0].clientX - touchStartX);
+      const dy = Math.abs(event.touches[0].clientY - touchStartY);
+      if (dx > 10 || dy > 10) touchMoved = true;
+    }, { passive: true });
+    stage.addEventListener('touchend', event => {
+      if (touchStartCount !== 1 || event.changedTouches.length !== 1 || !touchMoved) {
+        touchStartCount = 0;
+        touchMoved = false;
+        return;
+      }
+      const touch = event.changedTouches[0];
+      const dx = touch.clientX - touchStartX;
+      const dy = touch.clientY - touchStartY;
+      if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.35) {
+        showImage(imageIndex + (dx < 0 ? 1 : -1));
+      }
+      touchStartCount = 0;
+      touchMoved = false;
+    }, { passive: true });
+    stage.addEventListener('touchcancel', () => {
+      touchStartCount = 0;
+      touchMoved = false;
     }, { passive: true });
     return modal;
   }
@@ -102,7 +136,13 @@
     galleryModal.hidden = false;
     document.body.classList.add('project-gallery-open');
     showImage(0);
-    galleryModal.querySelector('.project-gallery-close').focus();
+    if (isDesktopImageViewer()) {
+      galleryModal.querySelector('.project-gallery-dialog').classList.add('project-gallery-dialog-under-viewer');
+      openDesktopImageZoom();
+    } else {
+      galleryModal.querySelector('.project-gallery-dialog').classList.remove('project-gallery-dialog-under-viewer');
+      galleryModal.querySelector('.project-gallery-close').focus();
+    }
   }
 
   function showImage(index) {
@@ -116,6 +156,19 @@
       const zoomImage = zoom.querySelector('.project-image-zoom-img');
       zoomImage.src = `../${activeImages[imageIndex]}`;
       zoomImage.alt = img.alt;
+      const zoomCount = zoom.querySelector('.project-image-zoom-count');
+      if (zoomCount) zoomCount.textContent = `${imageIndex + 1} / ${activeImages.length}`;
+      const zoomThumbs = zoom.querySelector('.project-image-zoom-thumbnails');
+      zoomThumbs?.querySelectorAll('[data-zoom-thumb-index]').forEach((button, i) => {
+        button.classList.toggle('active', i === imageIndex);
+        if (i === imageIndex) button.setAttribute('aria-current', 'true'); else button.removeAttribute('aria-current');
+      });
+      const activeZoomThumb = zoomThumbs?.querySelector(`[data-zoom-thumb-index="${imageIndex}"]`);
+      activeZoomThumb?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+      const prev = zoom.querySelector('.project-image-zoom-prev');
+      const next = zoom.querySelector('.project-image-zoom-next');
+      if (prev) prev.hidden = activeImages.length < 2;
+      if (next) next.hidden = activeImages.length < 2;
     }
     galleryModal.querySelector('.project-gallery-count').textContent = `${imageIndex + 1} / ${activeImages.length}`;
     const thumbnails = galleryModal.querySelector('.project-gallery-thumbnails');
@@ -145,22 +198,35 @@
     galleryModal.querySelector('.project-gallery-next').hidden = activeImages.length < 2;
   }
 
+  function isDesktopImageViewer() {
+    return !window.matchMedia('(max-width: 600px), (hover: none)').matches;
+  }
+
   function openDesktopImageZoom() {
-    // Enlarged image view is desktop-only; touch devices retain their native pinch zoom.
-    if (window.matchMedia('(max-width: 600px), (hover: none)').matches) return;
+    // Desktop opens directly into the enlarged viewer; touch devices keep the mobile gallery.
+    if (!isDesktopImageViewer()) return;
     let zoom = galleryModal.querySelector('.project-image-zoom');
     if (!zoom) {
       zoom = document.createElement('div');
       zoom.className = 'project-image-zoom';
       zoom.hidden = true;
-      zoom.innerHTML = '<button class="project-image-zoom-close" type="button" aria-label="Stäng förstorad bild">×</button><button class="project-image-zoom-prev" type="button" aria-label="Föregående bild">‹</button><img class="project-image-zoom-img" alt=""><button class="project-image-zoom-next" type="button" aria-label="Nästa bild">›</button>';
+      zoom.innerHTML = '<button class="project-image-zoom-close" type="button" aria-label="Stäng bildvisning">×</button><button class="project-image-zoom-prev" type="button" aria-label="Föregående bild">‹</button><img class="project-image-zoom-img" alt=""><button class="project-image-zoom-next" type="button" aria-label="Nästa bild">›</button><div class="project-image-zoom-bottom"><div class="project-image-zoom-thumbnails" aria-label="Välj projektbild"></div><span class="project-image-zoom-count" aria-live="polite"></span></div>';
       galleryModal.appendChild(zoom);
-      zoom.querySelector('.project-image-zoom-close').addEventListener('click', closeDesktopImageZoom);
+      zoom.querySelector('.project-image-zoom-close').addEventListener('click', closeGallery);
       zoom.querySelector('.project-image-zoom-prev').addEventListener('click', event => { event.stopPropagation(); showImage(imageIndex - 1); });
       zoom.querySelector('.project-image-zoom-next').addEventListener('click', event => { event.stopPropagation(); showImage(imageIndex + 1); });
+      zoom.querySelector('.project-image-zoom-thumbnails').addEventListener('click', event => {
+        const thumb = event.target.closest('[data-zoom-thumb-index]');
+        if (thumb) showImage(Number(thumb.dataset.zoomThumbIndex));
+      });
       zoom.addEventListener('click', event => {
         if (event.target === zoom) closeDesktopImageZoom();
       });
+    }
+    const zoomThumbs = zoom.querySelector('.project-image-zoom-thumbnails');
+    if (zoomThumbs.dataset.projectTitle !== (activeProject?.title || '')) {
+      zoomThumbs.dataset.projectTitle = activeProject?.title || '';
+      zoomThumbs.innerHTML = activeImages.map((src, i) => `<button type="button" data-zoom-thumb-index="${i}" aria-label="Visa bild ${i + 1}"><img src="../${escapeAttribute(src)}" alt="" loading="lazy"></button>`).join('');
     }
     const zoomImage = zoom.querySelector('.project-image-zoom-img');
     zoomImage.src = `../${activeImages[imageIndex]}`;
@@ -182,6 +248,7 @@
       return;
     }
     galleryModal.hidden = true;
+    galleryModal.querySelector('.project-gallery-dialog')?.classList.remove('project-gallery-dialog-under-viewer');
     document.body.classList.remove('project-gallery-open');
     if (previousFocus && previousFocus.focus) previousFocus.focus();
   }
@@ -189,7 +256,7 @@
     if (galleryModal.hidden) return;
     const zoom = galleryModal.querySelector('.project-image-zoom');
     if (zoom && !zoom.hidden) {
-      if (event.key === 'Escape') closeDesktopImageZoom();
+      if (event.key === 'Escape') closeGallery();
       if (event.key === 'ArrowLeft') { event.preventDefault(); showImage(imageIndex - 1); }
       if (event.key === 'ArrowRight') { event.preventDefault(); showImage(imageIndex + 1); }
       return;
