@@ -1,0 +1,17 @@
+{
+  "id": "unikt-projekt-id",
+  "title": "Projektnamn",
+  "service": "byggnadsplatslageri",
+  "description": "Kort beskrivning av uppdraget.",
+  "longDescription": "Beskriv uppdragets omfattning, materialval, utförande och särskilda detaljer.",
+  "hero": "images/projektbild.webp",
+  "cardImage": "images/projektbild.webp",
+  "gallery": [
+    "images/projektbild.webp",
+    "images/projektbild-2.webp"
+  ],
+  "published": true
+}
+
+<!-- Tillåtna service-värden: byggnadsplatslageri, kopparslageri, restaurering, specialprojekt.
+     Kopiera objektet till data/projects.json (som ska vara en JSON-array) när ett riktigt projekt ska publiceras. -->
