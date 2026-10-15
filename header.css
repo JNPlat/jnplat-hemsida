@@ -38,12 +38,18 @@ section {
   padding: 0;
   display: grid;
   grid-template-columns: var(--header-logo-width) minmax(0, 1fr);
+  grid-template-rows: 1fr;
   align-items: center;
   column-gap: clamp(22px, 2.8vw, 38px);
   position: relative;
 }
 
 .site-header .brand {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  align-self: center;
+  transform: none !important;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -67,6 +73,10 @@ section {
 }
 
 .site-header .main-nav {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  transform: none !important;
   display: flex;
   align-items: center;
   justify-content: flex-start;
