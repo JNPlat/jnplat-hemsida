@@ -112,10 +112,29 @@
     img.src = `../${activeImages[imageIndex]}`;
     img.alt = `${activeProject?.title || 'Projekt'} – bild ${imageIndex + 1}`;
     galleryModal.querySelector('.project-gallery-count').textContent = `${imageIndex + 1} / ${activeImages.length}`;
-    galleryModal.querySelectorAll('[data-thumb-index]').forEach((button, i) => {
-      button.classList.toggle('active', i === imageIndex);
-      if (i === imageIndex) button.setAttribute('aria-current', 'true'); else button.removeAttribute('aria-current');
+    const thumbnails = galleryModal.querySelector('.project-gallery-thumbnails');
+    const thumbButtons = galleryModal.querySelectorAll('[data-thumb-index]');
+    thumbButtons.forEach((button, i) => {
+      const isActive = i === imageIndex;
+      button.classList.toggle('active', isActive);
+      if (isActive) button.setAttribute('aria-current', 'true');
+      else button.removeAttribute('aria-current');
     });
+
+    // Keep the selected thumbnail visible as the user advances through the gallery,
+    // especially on mobile where only a few thumbnails fit across the screen.
+    const activeThumb = thumbnails?.querySelector('[data-thumb-index="' + imageIndex + '"]');
+    if (thumbnails && activeThumb) {
+      const thumbLeft = activeThumb.offsetLeft - thumbnails.offsetLeft;
+      const thumbRight = thumbLeft + activeThumb.offsetWidth;
+      const visibleLeft = thumbnails.scrollLeft;
+      const visibleRight = visibleLeft + thumbnails.clientWidth;
+      if (thumbLeft < visibleLeft) {
+        thumbnails.scrollTo({ left: Math.max(0, thumbLeft - 8), behavior: 'smooth' });
+      } else if (thumbRight > visibleRight) {
+        thumbnails.scrollTo({ left: thumbRight - thumbnails.clientWidth + 8, behavior: 'smooth' });
+      }
+    }
     galleryModal.querySelector('.project-gallery-prev').hidden = activeImages.length < 2;
     galleryModal.querySelector('.project-gallery-next').hidden = activeImages.length < 2;
   }

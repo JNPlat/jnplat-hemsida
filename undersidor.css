@@ -815,7 +815,7 @@ body.lightbox-open {
 .project-gallery-modal {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 10001;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -866,10 +866,15 @@ body.lightbox-open {
   width: 42px;
   height: 42px;
   border: 1px solid #d7cec2;
-  background: transparent;
+  background: #f3eee6;
+  color: #29251f;
   font-size: 30px;
   line-height: 1;
   cursor: pointer;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  touch-action: manipulation;
 }
 
 .project-gallery-stage {
@@ -987,6 +992,15 @@ body.project-gallery-open {
   }
   .project-gallery-top {
     margin-bottom: 12px;
+    padding-top: max(0px, env(safe-area-inset-top));
+    position: relative;
+    z-index: 3;
+  }
+  .project-gallery-close {
+    flex-basis: 40px;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
   }
   .project-gallery-stage {
     height: 55svh;
@@ -2450,64 +2464,5 @@ body.project-gallery-open {
   .inner-page.service-page .service-image-hero .detail-hero-title h1 {
     font-size: clamp(30px,8vw,44px) !important;
     line-height: 1 !important;
-  }
-}
-
-
-/* Desktop-only enlarged view for project gallery images. */
-.project-gallery-main-image {
-  cursor: zoom-in;
-}
-
-.project-image-zoom[hidden] {
-  display: none !important;
-}
-
-.project-image-zoom {
-  position: fixed;
-  inset: 0;
-  z-index: 10002;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(24px, 4vw, 64px);
-  background: rgba(25, 22, 19, .58);
-  backdrop-filter: blur(2px);
-  cursor: zoom-out;
-}
-
-.project-image-zoom-img {
-  display: block;
-  max-width: 96%;
-  max-height: 94%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  box-shadow: 0 18px 65px rgba(0,0,0,.24);
-  cursor: default;
-}
-
-.project-image-zoom-close {
-  position: absolute;
-  top: clamp(12px, 2vw, 28px);
-  right: clamp(12px, 2vw, 28px);
-  z-index: 1;
-  width: 46px;
-  height: 46px;
-  border: 1px solid rgba(255,255,255,.72);
-  border-radius: 0;
-  color: #fff;
-  background: rgba(25,22,19,.58);
-  font-size: 32px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-@media (max-width: 600px), (hover: none) {
-  .project-gallery-main-image {
-    cursor: default;
-  }
-  .project-image-zoom {
-    display: none !important;
   }
 }
