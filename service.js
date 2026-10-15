@@ -10,6 +10,9 @@
   let imageIndex = 0;
   let previousFocus = null;
   let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartCount = 0;
+  let touchMoved = false;
 
   try {
     const response = await fetch('../data/projects.json', { cache: 'no-store' });
@@ -75,19 +78,44 @@
     modal.querySelector('[data-gallery-close]').addEventListener('click', closeGallery);
     modal.querySelector('.project-gallery-prev').addEventListener('click', () => showImage(imageIndex - 1));
     modal.querySelector('.project-gallery-next').addEventListener('click', () => showImage(imageIndex + 1));
-
-    // Expand any project's active image to a full-viewport view.
-    modal.querySelector('.project-gallery-main-image').addEventListener('click', () => {
-      modal.classList.toggle('image-expanded');
-    });
     modal.querySelector('.project-gallery-thumbnails').addEventListener('click', event => {
       const thumb = event.target.closest('[data-thumb-index]');
       if (thumb) showImage(Number(thumb.dataset.thumbIndex));
     });
-    modal.querySelector('.project-gallery-stage').addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
-    modal.querySelector('.project-gallery-stage').addEventListener('touchend', event => {
-      const delta = event.changedTouches[0].clientX - touchStartX;
-      if (Math.abs(delta) > 45) showImage(imageIndex + (delta < 0 ? 1 : -1));
+    const stage = modal.querySelector('.project-gallery-stage');
+    // Only treat a deliberate, single-finger horizontal swipe as gallery navigation.
+    // Pinch-to-zoom uses two fingers and must never change the active image.
+    stage.addEventListener('touchstart', event => {
+      touchStartCount = event.touches.length;
+      touchMoved = false;
+      if (touchStartCount !== 1) return;
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+    }, { passive: true });
+    stage.addEventListener('touchmove', event => {
+      if (event.touches.length !== 1 || touchStartCount !== 1) {
+        touchMoved = true;
+        return;
+      }
+      const dx = Math.abs(event.touches[0].clientX - touchStartX);
+      const dy = Math.abs(event.touches[0].clientY - touchStartY);
+      if (dy > 10 || dx > 10) touchMoved = true;
+    }, { passive: true });
+    stage.addEventListener('touchend', event => {
+      if (touchStartCount !== 1 || event.changedTouches.length !== 1 || !touchMoved) return;
+      const touch = event.changedTouches[0];
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+      // Require a clearly horizontal swipe; vertical movement and pinch gestures are ignored.
+      if (Math.abs(deltaX) > 55 && Math.abs(deltaX) > Math.abs(deltaY) * 1.35) {
+        showImage(imageIndex + (deltaX < 0 ? 1 : -1));
+      }
+      touchStartCount = 0;
+      touchMoved = false;
+    }, { passive: true });
+    stage.addEventListener('touchcancel', () => {
+      touchStartCount = 0;
+      touchMoved = false;
     }, { passive: true });
     return modal;
   }
@@ -126,16 +154,12 @@
 
   function closeGallery() {
     galleryModal.hidden = true;
-    galleryModal.classList.remove('image-expanded');
     document.body.classList.remove('project-gallery-open');
     if (previousFocus && previousFocus.focus) previousFocus.focus();
   }
   document.addEventListener('keydown', event => {
     if (galleryModal.hidden) return;
-    if (event.key === 'Escape') {
-      if (galleryModal.classList.contains('image-expanded')) galleryModal.classList.remove('image-expanded');
-      else closeGallery();
-    }
+    if (event.key === 'Escape') closeGallery();
     if (event.key === 'ArrowLeft') showImage(imageIndex - 1);
     if (event.key === 'ArrowRight') showImage(imageIndex + 1);
   });

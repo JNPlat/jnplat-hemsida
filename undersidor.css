@@ -815,7 +815,6 @@ body.lightbox-open {
 .project-gallery-modal {
   position: fixed;
   inset: 0;
-  /* Must sit above the fixed mobile header (z-index: 10000). */
   z-index: 10001;
   display: flex;
   align-items: center;
@@ -867,10 +866,15 @@ body.lightbox-open {
   width: 42px;
   height: 42px;
   border: 1px solid #d7cec2;
-  background: transparent;
+  background: #f3eee6;
+  color: #29251f;
   font-size: 30px;
   line-height: 1;
   cursor: pointer;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  touch-action: manipulation;
 }
 
 .project-gallery-stage {
@@ -988,6 +992,15 @@ body.project-gallery-open {
   }
   .project-gallery-top {
     margin-bottom: 12px;
+    padding-top: max(0px, env(safe-area-inset-top));
+    position: relative;
+    z-index: 3;
+  }
+  .project-gallery-close {
+    flex-basis: 40px;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
   }
   .project-gallery-stage {
     height: 55svh;
