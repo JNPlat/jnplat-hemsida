@@ -75,6 +75,11 @@
     modal.querySelector('[data-gallery-close]').addEventListener('click', closeGallery);
     modal.querySelector('.project-gallery-prev').addEventListener('click', () => showImage(imageIndex - 1));
     modal.querySelector('.project-gallery-next').addEventListener('click', () => showImage(imageIndex + 1));
+
+    // Expand any project's active image to a full-viewport view.
+    modal.querySelector('.project-gallery-main-image').addEventListener('click', () => {
+      modal.classList.toggle('image-expanded');
+    });
     modal.querySelector('.project-gallery-thumbnails').addEventListener('click', event => {
       const thumb = event.target.closest('[data-thumb-index]');
       if (thumb) showImage(Number(thumb.dataset.thumbIndex));
@@ -121,12 +126,16 @@
 
   function closeGallery() {
     galleryModal.hidden = true;
+    galleryModal.classList.remove('image-expanded');
     document.body.classList.remove('project-gallery-open');
     if (previousFocus && previousFocus.focus) previousFocus.focus();
   }
   document.addEventListener('keydown', event => {
     if (galleryModal.hidden) return;
-    if (event.key === 'Escape') closeGallery();
+    if (event.key === 'Escape') {
+      if (galleryModal.classList.contains('image-expanded')) galleryModal.classList.remove('image-expanded');
+      else closeGallery();
+    }
     if (event.key === 'ArrowLeft') showImage(imageIndex - 1);
     if (event.key === 'ArrowRight') showImage(imageIndex + 1);
   });

@@ -2452,3 +2452,68 @@ body.project-gallery-open {
     line-height: 1 !important;
   }
 }
+
+
+/* Full-viewport image view, available for every project gallery. */
+.project-gallery-main-image {
+  cursor: zoom-in;
+}
+
+.project-gallery-modal.image-expanded {
+  padding: 0;
+  background: #14120f;
+}
+
+.project-gallery-modal.image-expanded .project-gallery-backdrop {
+  background: rgba(10,9,8,.98);
+  backdrop-filter: none;
+}
+
+.project-gallery-modal.image-expanded .project-gallery-dialog {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 100svh;
+  overflow: hidden;
+  padding: 0;
+  display: grid;
+  grid-template-rows: 1fr;
+  background: transparent;
+  box-shadow: none;
+}
+
+.project-gallery-modal.image-expanded .project-gallery-top,
+.project-gallery-modal.image-expanded .project-gallery-bottom,
+.project-gallery-modal.image-expanded .project-gallery-thumbnails {
+  display: none;
+}
+
+.project-gallery-modal.image-expanded .project-gallery-stage {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  background: transparent;
+}
+
+.project-gallery-modal.image-expanded .project-gallery-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: zoom-out;
+}
+
+.project-gallery-modal.image-expanded .project-gallery-close {
+  position: fixed;
+  z-index: 5;
+  top: max(14px, env(safe-area-inset-top));
+  right: max(14px, env(safe-area-inset-right));
+  color: #fffaf2;
+  border-color: rgba(255,250,242,.5);
+  background: rgba(20,17,14,.55);
+}
+
+.project-gallery-modal.image-expanded .project-gallery-arrow {
+  position: fixed;
+  z-index: 4;
+}
+
