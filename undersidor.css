@@ -2599,3 +2599,13 @@ body.project-gallery-open {
 
 /* Ankarposition för direktlänkar till Kontakt, inklusive fast header. */
 #kontakt { scroll-margin-top: var(--header-height, 0px); }
+
+
+/* Mobil: diskret sidmarginal runt projektkarusellen på tjänstesidor. */
+@media (max-width: 800px) {
+  .inner-page.service-page .service-projects {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+    box-sizing: border-box !important;
+  }
+}
