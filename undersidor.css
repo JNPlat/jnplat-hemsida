@@ -2580,3 +2580,18 @@ body.project-gallery-open {
 .project-image-zoom-img[style*="scale(2)"],
 .project-image-zoom-img[style*="scale(2."] { cursor: grab; }
 .project-image-zoom-img.is-dragging { cursor: grabbing !important; }
+
+
+/* Desktop: give project imagery a little breathing room from the dialog edges. */
+@media (min-width: 801px) and (hover: hover) {
+  .project-gallery-dialog {
+    width: min(1080px, calc(100% - 36px));
+  }
+  .project-gallery-stage {
+    margin-inline: 8px;
+  }
+  .project-image-zoom-img {
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+}

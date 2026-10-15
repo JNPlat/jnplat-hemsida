@@ -227,9 +227,19 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.location.hash) {
     const hashTarget = document.querySelector(window.location.hash);
     if (hashTarget) {
-      const alignHashTarget = () => scrollToSection(hashTarget);
-      window.requestAnimationFrame(() => window.requestAnimationFrame(alignHashTarget));
+      // Re-align after the destination page has completed layout. This avoids
+      // stale/restored scroll positions winning over the #kontakt destination.
+      const alignHashTarget = () => {
+        window.requestAnimationFrame(() =>
+          window.requestAnimationFrame(() => scrollToSection(hashTarget))
+        );
+      };
+      alignHashTarget();
       window.addEventListener("load", alignHashTarget, { once: true });
+      window.addEventListener("pageshow", alignHashTarget, { once: true });
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(alignHashTarget);
+      }
     }
   }
 
