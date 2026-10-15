@@ -267,4 +267,65 @@
   });
 
 
+  // Desktop: Ctrl + mouse wheel zooms the image under the pointer, not the webpage.
+  // This is delegated at document level so it works for images across the whole site.
+  if (!document.querySelector('.site-image-zoom-overlay')) {
+    const imageZoomOverlay = document.createElement('div');
+    imageZoomOverlay.className = 'site-image-zoom-overlay';
+    imageZoomOverlay.hidden = true;
+    imageZoomOverlay.setAttribute('role', 'dialog');
+    imageZoomOverlay.setAttribute('aria-modal', 'true');
+    imageZoomOverlay.setAttribute('aria-label', 'Förstorad bild');
+    imageZoomOverlay.innerHTML = '<button type="button" class="site-image-zoom-close" aria-label="Stäng förstorad bild">×</button><img class="site-image-zoom-overlay-image" alt=""><p class="site-image-zoom-help">Ctrl + scroll för att zooma · Esc för att stänga</p>';
+    document.body.appendChild(imageZoomOverlay);
+    const zoomedImage = imageZoomOverlay.querySelector('.site-image-zoom-overlay-image');
+    const closeButton = imageZoomOverlay.querySelector('.site-image-zoom-close');
+    let scale = 1;
+    let previousImageFocus = null;
+
+    function closeUniversalImageZoom() {
+      imageZoomOverlay.hidden = true;
+      zoomedImage.removeAttribute('src');
+      zoomedImage.style.transform = 'scale(1)';
+      scale = 1;
+      if (previousImageFocus && previousImageFocus.focus) previousImageFocus.focus();
+    }
+    closeButton.addEventListener('click', closeUniversalImageZoom);
+    imageZoomOverlay.addEventListener('click', event => {
+      if (event.target === imageZoomOverlay) closeUniversalImageZoom();
+    });
+    imageZoomOverlay.addEventListener('wheel', event => {
+      if (!event.ctrlKey) return;
+      event.preventDefault();
+      scale = Math.max(1, Math.min(5, scale * (event.deltaY < 0 ? 1.15 : 1 / 1.15)));
+      zoomedImage.style.transform = `scale(${scale})`;
+    }, { passive: false });
+
+    document.addEventListener('wheel', event => {
+      if (!event.ctrlKey || event.deltaY === 0 || event.target.closest('.site-image-zoom-overlay')) return;
+      if (window.matchMedia('(max-width: 600px), (hover: none)').matches) return;
+      const image = event.target.closest('img');
+      if (!image || image.closest('.site-image-zoom-overlay')) return;
+      // Avoid hijacking Ctrl+wheel while a text input or editable area is focused.
+      if (event.target.closest('input, textarea, [contenteditable="true"]')) return;
+      event.preventDefault();
+      previousImageFocus = image;
+      zoomedImage.src = image.currentSrc || image.src;
+      zoomedImage.alt = image.alt || 'Förstorad bild';
+      scale = 1.15;
+      zoomedImage.style.transform = `scale(${scale})`;
+      imageZoomOverlay.hidden = false;
+      closeButton.focus({ preventScroll: true });
+    }, { passive: false });
+
+    document.addEventListener('keydown', event => {
+      if (!imageZoomOverlay.hidden && event.key === 'Escape') {
+        event.preventDefault();
+        event.stopPropagation();
+        closeUniversalImageZoom();
+      }
+    }, true);
+  }
+
+
 })();
