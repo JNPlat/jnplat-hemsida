@@ -9,6 +9,14 @@
   let activeImages = [];
   let imageIndex = 0;
   let previousFocus = null;
+  let projectZoomScale = 1;
+  let projectZoomX = 0;
+  let projectZoomY = 0;
+  let projectZoomDragging = false;
+  let projectZoomDragStartX = 0;
+  let projectZoomDragStartY = 0;
+  let projectZoomDragOriginX = 0;
+  let projectZoomDragOriginY = 0;
   let touchStartX = 0;
   let touchStartY = 0;
   let touchStartCount = 0;
@@ -156,6 +164,7 @@
       const zoomImage = zoom.querySelector('.project-image-zoom-img');
       zoomImage.src = `../${activeImages[imageIndex]}`;
       zoomImage.alt = img.alt;
+      resetProjectImageTransform(zoomImage);
       const zoomCount = zoom.querySelector('.project-image-zoom-count');
       if (zoomCount) zoomCount.textContent = `${imageIndex + 1} / ${activeImages.length}`;
       const zoomThumbs = zoom.querySelector('.project-image-zoom-thumbnails');
@@ -213,6 +222,34 @@
       zoom.innerHTML = '<button class="project-image-zoom-close" type="button" aria-label="Stäng bildvisning">×</button><button class="project-image-zoom-prev" type="button" aria-label="Föregående bild">‹</button><img class="project-image-zoom-img" alt=""><button class="project-image-zoom-next" type="button" aria-label="Nästa bild">›</button><div class="project-image-zoom-bottom"><div class="project-image-zoom-thumbnails" aria-label="Välj projektbild"></div><span class="project-image-zoom-count" aria-live="polite"></span></div>';
       galleryModal.appendChild(zoom);
       zoom.querySelector('.project-image-zoom-close').addEventListener('click', closeGallery);
+      const zoomImage = zoom.querySelector('.project-image-zoom-img');
+      zoomImage.addEventListener('wheel', event => {
+        if (!event.ctrlKey) return;
+        event.preventDefault();
+        projectZoomScale = Math.max(1, Math.min(5, projectZoomScale * (event.deltaY < 0 ? 1.15 : 1 / 1.15)));
+        if (projectZoomScale === 1) { projectZoomX = 0; projectZoomY = 0; }
+        applyProjectImageTransform(zoomImage);
+      }, { passive: false });
+      zoomImage.addEventListener('pointerdown', event => {
+        if (projectZoomScale <= 1 || event.button !== 0) return;
+        projectZoomDragging = true;
+        projectZoomDragStartX = event.clientX;
+        projectZoomDragStartY = event.clientY;
+        projectZoomDragOriginX = projectZoomX;
+        projectZoomDragOriginY = projectZoomY;
+        zoomImage.classList.add('is-dragging');
+        zoomImage.setPointerCapture(event.pointerId);
+        event.preventDefault();
+      });
+      zoomImage.addEventListener('pointermove', event => {
+        if (!projectZoomDragging) return;
+        projectZoomX = projectZoomDragOriginX + event.clientX - projectZoomDragStartX;
+        projectZoomY = projectZoomDragOriginY + event.clientY - projectZoomDragStartY;
+        applyProjectImageTransform(zoomImage);
+      });
+      const stopProjectImageDrag = () => { projectZoomDragging = false; zoomImage.classList.remove('is-dragging'); };
+      zoomImage.addEventListener('pointerup', stopProjectImageDrag);
+      zoomImage.addEventListener('pointercancel', stopProjectImageDrag);
       zoom.querySelector('.project-image-zoom-prev').addEventListener('click', event => { event.stopPropagation(); showImage(imageIndex - 1); });
       zoom.querySelector('.project-image-zoom-next').addEventListener('click', event => { event.stopPropagation(); showImage(imageIndex + 1); });
       zoom.querySelector('.project-image-zoom-thumbnails').addEventListener('click', event => {
@@ -231,6 +268,7 @@
     const zoomImage = zoom.querySelector('.project-image-zoom-img');
     zoomImage.src = `../${activeImages[imageIndex]}`;
     zoomImage.alt = `${activeProject?.title || 'Projekt'} – bild ${imageIndex + 1}`;
+    resetProjectImageTransform(zoomImage);
     zoom.hidden = false;
     zoom.querySelector('.project-image-zoom-close').focus();
   }
@@ -243,10 +281,7 @@
 
   function closeGallery() {
     const zoom = galleryModal.querySelector('.project-image-zoom');
-    if (zoom && !zoom.hidden) {
-      zoom.hidden = true;
-      return;
-    }
+    if (zoom) zoom.hidden = true;
     galleryModal.hidden = true;
     galleryModal.querySelector('.project-gallery-dialog')?.classList.remove('project-gallery-dialog-under-viewer');
     document.body.classList.remove('project-gallery-open');
@@ -267,65 +302,19 @@
   });
 
 
-  // Desktop: Ctrl + mouse wheel zooms the image under the pointer, not the webpage.
-  // This is delegated at document level so it works for images across the whole site.
-  if (!document.querySelector('.site-image-zoom-overlay')) {
-    const imageZoomOverlay = document.createElement('div');
-    imageZoomOverlay.className = 'site-image-zoom-overlay';
-    imageZoomOverlay.hidden = true;
-    imageZoomOverlay.setAttribute('role', 'dialog');
-    imageZoomOverlay.setAttribute('aria-modal', 'true');
-    imageZoomOverlay.setAttribute('aria-label', 'Förstorad bild');
-    imageZoomOverlay.innerHTML = '<button type="button" class="site-image-zoom-close" aria-label="Stäng förstorad bild">×</button><img class="site-image-zoom-overlay-image" alt=""><p class="site-image-zoom-help">Ctrl + scroll för att zooma · Esc för att stänga</p>';
-    document.body.appendChild(imageZoomOverlay);
-    const zoomedImage = imageZoomOverlay.querySelector('.site-image-zoom-overlay-image');
-    const closeButton = imageZoomOverlay.querySelector('.site-image-zoom-close');
-    let scale = 1;
-    let previousImageFocus = null;
-
-    function closeUniversalImageZoom() {
-      imageZoomOverlay.hidden = true;
-      zoomedImage.removeAttribute('src');
-      zoomedImage.style.transform = 'scale(1)';
-      scale = 1;
-      if (previousImageFocus && previousImageFocus.focus) previousImageFocus.focus();
-    }
-    closeButton.addEventListener('click', closeUniversalImageZoom);
-    imageZoomOverlay.addEventListener('click', event => {
-      if (event.target === imageZoomOverlay) closeUniversalImageZoom();
-    });
-    imageZoomOverlay.addEventListener('wheel', event => {
-      if (!event.ctrlKey) return;
-      event.preventDefault();
-      scale = Math.max(1, Math.min(5, scale * (event.deltaY < 0 ? 1.15 : 1 / 1.15)));
-      zoomedImage.style.transform = `scale(${scale})`;
-    }, { passive: false });
-
-    document.addEventListener('wheel', event => {
-      if (!event.ctrlKey || event.deltaY === 0 || event.target.closest('.site-image-zoom-overlay')) return;
-      if (window.matchMedia('(max-width: 600px), (hover: none)').matches) return;
-      const image = event.target.closest('img');
-      if (!image || image.closest('.site-image-zoom-overlay')) return;
-      // Avoid hijacking Ctrl+wheel while a text input or editable area is focused.
-      if (event.target.closest('input, textarea, [contenteditable="true"]')) return;
-      event.preventDefault();
-      previousImageFocus = image;
-      zoomedImage.src = image.currentSrc || image.src;
-      zoomedImage.alt = image.alt || 'Förstorad bild';
-      scale = 1.15;
-      zoomedImage.style.transform = `scale(${scale})`;
-      imageZoomOverlay.hidden = false;
-      closeButton.focus({ preventScroll: true });
-    }, { passive: false });
-
-    document.addEventListener('keydown', event => {
-      if (!imageZoomOverlay.hidden && event.key === 'Escape') {
-        event.preventDefault();
-        event.stopPropagation();
-        closeUniversalImageZoom();
-      }
-    }, true);
+  // Zoom and pan are intentionally limited to the enlarged project-gallery image.
+  function applyProjectImageTransform(img) {
+    img.style.transform = `translate(${projectZoomX}px, ${projectZoomY}px) scale(${projectZoomScale})`;
+    img.style.cursor = projectZoomScale > 1 ? (projectZoomDragging ? 'grabbing' : 'grab') : 'zoom-in';
   }
-
+  function resetProjectImageTransform(img) {
+    projectZoomScale = 1;
+    projectZoomX = 0;
+    projectZoomY = 0;
+    projectZoomDragging = false;
+    img.style.transform = 'translate(0px, 0px) scale(1)';
+    img.style.cursor = 'zoom-in';
+    img.classList.remove('is-dragging');
+  }
 
 })();
