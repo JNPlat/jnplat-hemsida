@@ -2582,16 +2582,20 @@ body.project-gallery-open {
 .project-image-zoom-img.is-dragging { cursor: grabbing !important; }
 
 
-/* Desktop: give project imagery a little breathing room from the dialog edges. */
-@media (min-width: 801px) and (hover: hover) {
-  .project-gallery-dialog {
-    width: min(1080px, calc(100% - 36px));
+/* Finjustering 2026-10-15: balanserade sidmarginaler för tjänsternas karuseller. */
+@media (min-width: 801px) {
+  .inner-page.service-page .service-projects {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+    box-sizing: border-box;
   }
-  .project-gallery-stage {
-    margin-inline: 8px;
-  }
-  .project-image-zoom-img {
-    max-width: 90vw;
-    max-height: 90vh;
+  .inner-page.service-page .references-carousel {
+    margin-left: 18px !important;
+    margin-right: 18px !important;
+    width: calc(100% - 36px) !important;
+    box-sizing: border-box;
   }
 }
+
+/* Ankarposition för direktlänkar till Kontakt, inklusive fast header. */
+#kontakt { scroll-margin-top: var(--header-height, 0px); }

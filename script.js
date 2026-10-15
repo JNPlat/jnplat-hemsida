@@ -222,24 +222,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateLayout();
 
-  // Cross-page links such as /tjanster/... -> /#kontakt should use the same
-  // header offset as in-page navigation, after the destination layout is ready.
+  // Cross-page hash navigation: wait until the destination page has completed
+  // layout, then align the target once without competing smooth-scroll calls.
   if (window.location.hash) {
-    const hashTarget = document.querySelector(window.location.hash);
+    let hashTarget = null;
+    try { hashTarget = document.querySelector(window.location.hash); } catch (_) {}
     if (hashTarget) {
-      // Re-align after the destination page has completed layout. This avoids
-      // stale/restored scroll positions winning over the #kontakt destination.
       const alignHashTarget = () => {
-        window.requestAnimationFrame(() =>
-          window.requestAnimationFrame(() => scrollToSection(hashTarget))
-        );
+        const top = hashTarget.getBoundingClientRect().top + window.scrollY - getHeaderHeight();
+        window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
       };
-      alignHashTarget();
-      window.addEventListener("load", alignHashTarget, { once: true });
-      window.addEventListener("pageshow", alignHashTarget, { once: true });
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(alignHashTarget);
-      }
+      const alignAfterLayout = () => {
+        requestAnimationFrame(() => requestAnimationFrame(alignHashTarget));
+        window.setTimeout(alignHashTarget, 180);
+        window.setTimeout(alignHashTarget, 500);
+      };
+      if (document.readyState === "complete") alignAfterLayout();
+      else window.addEventListener("load", alignAfterLayout, { once: true });
     }
   }
 
