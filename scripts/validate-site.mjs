@@ -58,7 +58,7 @@ for (const stylesheet of ["style.css", "undersidor.css", "header.css"]) {
     if (quote) {
       if (escaped) {
         escaped = false;
-      } else if (character === "\\\\") {
+      } else if (character === "\\") {
         escaped = true;
       } else if (character === quote) {
         quote = null;
@@ -70,7 +70,7 @@ for (const stylesheet of ["style.css", "undersidor.css", "header.css"]) {
       index++;
       continue;
     }
-    if (character === "\\"" || character === "'") {
+    if (character === '"' || character === "'") {
       quote = character;
     } else if (character === "{") {
       depth++;
