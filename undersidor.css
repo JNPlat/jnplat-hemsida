@@ -971,18 +971,7 @@ body.project-gallery-open {
   overflow: hidden;
 }
 
-@media (hover:none) {
-  .project-card-open {
-    opacity: 1;
-  }
-}
 
-/* Dölj etiketten på projektkarusellens bildkort på mobil. */
-@media (max-width: 800px) {
-  .project-card-open {
-    display: none;
-  }
-}
 
 @media (max-width:600px) {
   .project-gallery-modal {
