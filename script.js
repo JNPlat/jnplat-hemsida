@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateReferenceCarousel() {
     if (!referenceTrack || !referenceViewport) return;
 
-    const isMobile = window.matchMedia("(max-width: 800px)").matches;
+    const isMobile = window.matchMedia("(max-width: 810px)").matches;
     if (isMobile) {
       referenceCards = [...referenceTrack.querySelectorAll(".reference-card")];
       referenceCards.forEach((card) => {
