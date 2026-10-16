@@ -400,7 +400,7 @@ body.lightbox-open {
     padding: 28px 0 22px;
   }
   .service-intro p {
-    font-size: 15px;
+    font-size: var(--font-body-subpage-mobile, 15px);
   }
   .service-intro .intro-lead {
     font-size: 28px;
@@ -2150,7 +2150,7 @@ body.project-gallery-open {
     font-size: 28px !important;
   }
   .inner-page.service-page .service-copy > p:not(.eyebrow):not(.intro-lead) {
-    font-size: 14px !important;
+    font-size: var(--font-body-service-copy-mobile, 14px) !important;
   }
   .inner-page.service-page .service-projects {
     display: block !important;
