@@ -2616,3 +2616,57 @@ body.project-gallery-open {
     display: none !important;
   }
 }
+
+
+/* Desktop service pages: keep hero and first project card within one viewport. */
+@media (min-width: 811px) {
+  .inner-page.service-page .service-showcase {
+    height: calc(100svh - var(--header-height, 82px)) !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    gap: clamp(10px, 1.5vh, 16px) !important;
+    padding-top: clamp(10px, 1.5vh, 16px) !important;
+    padding-bottom: clamp(10px, 1.5vh, 16px) !important;
+  }
+
+  .inner-page.service-page .service-showcase-top {
+    flex: 0 1 auto !important;
+    min-height: 0 !important;
+    height: min(45vh, 340px) !important;
+    max-height: 45vh !important;
+  }
+
+  .inner-page.service-page .service-image-hero {
+    min-height: 0 !important;
+    height: 100% !important;
+  }
+
+  .inner-page.service-page .service-copy {
+    min-height: 0 !important;
+    overflow: auto;
+    padding: clamp(18px, 2vw, 30px) !important;
+  }
+
+  .inner-page.service-page .service-projects {
+    flex: 0 0 auto !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel {
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-image {
+    flex-basis: clamp(240px, 24vw, 360px) !important;
+    width: clamp(240px, 24vw, 360px) !important;
+    min-width: clamp(240px, 24vw, 360px) !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+}
