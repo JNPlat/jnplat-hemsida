@@ -41,7 +41,9 @@
         : '';
       return `<button class="project-card" type="button" data-project-index="${index}" aria-label="Öppna bildgalleri för ${escapeAttribute(project.title)}">` +
         `<div class="project-card-image">${imageMarkup}<span class="project-card-title">${escapeHTML(project.title)}</span><span class="project-card-open">Visa bilder ↗</span></div>` +
-        `<span class="project-card-info"></span></button>`;
+        `<span class="project-card-info"><span class="project-card-info-title">${escapeHTML(project.title)}</span>` +
+        `<span class="project-card-description">${escapeHTML(project.description || '')}</span>` +
+        `<span class="project-card-show-link">Se bilder <span aria-hidden="true">→</span></span></span></button>`;
     }).join('');
 
     list.querySelectorAll('[data-project-index]').forEach(button => {
