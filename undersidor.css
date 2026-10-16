@@ -90,7 +90,7 @@
 
 .service-intro p {
   max-width: 900px;
-  font-size: 16px;
+  font-size: var(--font-body-subpage, 16px);
   line-height: 1.7;
   color: var(--muted,#696158);
   margin: 10px 0 0;
@@ -400,7 +400,7 @@ body.lightbox-open {
     padding: 28px 0 22px;
   }
   .service-intro p {
-    font-size: 15px;
+    font-size: var(--font-body-subpage-mobile, 15px);
   }
   .service-intro .intro-lead {
     font-size: 28px;
@@ -757,9 +757,6 @@ body.lightbox-open {
   }
 }
 
-@media (max-width:800px) {
-
-}
 
 /*Projekt öppnas i ett bildgalleri i stället för på en separat sida.*/
 
@@ -1991,7 +1988,7 @@ body.project-gallery-open {
 
 .inner-page.service-page .service-copy > p:not(.eyebrow):not(.intro-lead) {
   font-family: "Cormorant Garamond", Georgia, serif !important;
-  font-size: 15px !important;
+  font-size: var(--font-body-service-copy, 15px) !important;
   line-height: 1.65 !important;
 }
 
@@ -2153,7 +2150,7 @@ body.project-gallery-open {
     font-size: 28px !important;
   }
   .inner-page.service-page .service-copy > p:not(.eyebrow):not(.intro-lead) {
-    font-size: 14px !important;
+    font-size: var(--font-body-service-copy-mobile, 14px) !important;
   }
   .inner-page.service-page .service-projects {
     display: block !important;

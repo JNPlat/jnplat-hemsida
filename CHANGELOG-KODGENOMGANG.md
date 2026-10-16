@@ -31,3 +31,29 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 - Säkrade vit text och vit pil på Kontakt-knappen vid hover med mus/pekdon på desktop.
 - Behöll headerns befintliga `position: fixed`-lösning på mobil. Den håller redan headern kvar överst vid scroll och har tillhörande innehållsoffset; ingen extra sticky-regel behövdes.
 - Ändrade inte storleken på Kontakt-knappen eller headerns textstorlek; det inväntar mobilbilden.
+
+
+## Repo-inventering – 2026-10-16
+
+- Skapade arbetsgrenen `chore/repo-cleanup` från den fungerande `main`-versionen.
+- Förtydligade README med en snabbguide för vanliga ändringar och tydliga filansvar.
+- Identifierade `projects.json` i rotmappen som en tom JSON-array. Projektdata läses från `data/projects.json`; inga aktiva HTML- eller JavaScript-referenser till rotfilen hittades.
+- Behöll `project-template.json.txt`: den är en användbar mall för att lägga till projekt.
+- Typografins standardisering återstår som separat steg efter inventeringen, för att undvika oavsiktliga visuella ändringar.
+
+
+## Typografiska variabler – 2026-10-16
+
+- Lade till namngivna CSS-variabler för utvalda brödtextstorlekar på startsidan och undersidorna.
+- Kopplade hero-ingress, tjänstekortens brödtext och vanliga brödtextregler på undersidorna till dessa variabler.
+- Behöll nuvarande pixelvärden för att inte ändra utseendet avsiktligt i detta steg.
+- Rubriker, knappar, små etiketter och många specialkomponenter har fortfarande separata värden; detta är ett första kontrollerat steg, inte en fullständig typografisk omarbetning.
+- Ändringarna är statiskt kontrollerade mot de aktuella CSS-reglerna; ingen webbläsarbaserad visuell regressionstestning är gjord.
+
+## CSS-granskning av undersidor – 2026-10-16
+
+- Tog bort en tom `@media (max-width:800px)`-regel i `undersidor.css`; den innehöll inga deklarationer och kunde inte påverka layouten.
+- Kartlade upprepade selektorer. Tjänstehero och projektkarusell har många senare regler som avsiktligt eller historiskt skriver över tidigare deklarationer, ofta med `!important`.
+- Lät dessa regler vara orörda i detta steg. Att slå ihop dem utan webbläsarbaserad kontroll riskerar att ändra den fungerande desktop- eller mobilayouten.
+- Ingen visuell webbläsartestning har utförts; ändringen är en begränsad, statisk städning.
+- Tog bort en oanvänd variabel för mobil brödtext; den hade ingen CSS-regel som använde den.
