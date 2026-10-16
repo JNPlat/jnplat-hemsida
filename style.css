@@ -711,7 +711,7 @@ h6 {
   color: var(--copper);
 }
 
-@media (min-width: 811px) {
+@media (max-width: 1150px) {
   .container {
     width: min(
         calc(100% - 48px),
