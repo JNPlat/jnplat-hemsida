@@ -296,6 +296,11 @@ section {
     letter-spacing: 0;
     white-space: nowrap;
   }
+  /* Service-page tabs use a slightly smaller type size to keep clear spacing.
+     The contact button deliberately retains the shared homepage size and position. */
+  .inner-page.service-page .site-header .main-nav > .nav-link {
+    font-size: clamp(10px, 2.8vw, 13px);
+  }
   .site-header .main-nav > .header-contact {
     flex: 0 0 auto;
     margin-left: auto;
