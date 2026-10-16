@@ -2562,7 +2562,7 @@ body.project-gallery-open {
     border: 0 !important;
     text-align: left !important;
     background: transparent !important;
-    overflow: hidden !important;
+    overflow: visible !important;
   }
 
   .inner-page.service-page .service-projects .project-carousel .project-card-image {
@@ -2584,8 +2584,9 @@ body.project-gallery-open {
 
   .inner-page.service-page .service-projects .project-carousel .project-card-description {
     display: flex !important;
-    flex: 0 0 var(--project-description-width, 280px) !important;
-    width: var(--project-description-width, 280px) !important;
+    flex: 0 0 auto !important;
+    width: max-content !important;
+    max-width: min(48vw, 680px) !important;
     min-width: 0 !important;
     box-sizing: border-box;
     flex-direction: column;
@@ -2708,8 +2709,9 @@ body.project-gallery-open {
   .inner-page.service-page .service-projects .project-carousel .project-card-description {
     height: 100% !important;
     max-height: 100% !important;
-    overflow: hidden !important;
-    flex: 0 0 var(--project-description-width, 280px) !important;
-    width: var(--project-description-width, 280px) !important;
+    overflow: visible !important;
+    flex: 0 0 auto !important;
+    width: max-content !important;
+    max-width: min(48vw, 680px) !important;
   }
 }
