@@ -64,7 +64,21 @@ jnplat-hemsida/
 
 ## Typografi och design
 
-Typografin är ännu inte helt standardiserad mellan startsidan och undersidorna. Innan vi gör en större CSS-omstrukturering ska vi kartlägga nuvarande storlekar och besluta en gemensam skala för brödtext, mellanrubriker och rubriker. Ändra inte alla storlekar i ett svep: vissa rubriker, etiketter och knappar behöver egna proportioner och mobilregler.
+Typografin är ännu inte helt standardiserad mellan startsidan och undersidorna. Nuvarande utgångspunkter i koden är bland annat:
+
+- Startsidan: ingress i heron 20 px på desktop; tjänstekortens brödtext 18 px på desktop och 17 px i mobilregler.
+- Tjänste-/projektsidor: vanlig introduktionstext har en grundregel på 16 px, men den aktiva tjänstesidans senare regel sätter brödtexten i `.service-copy` till 15 px med `!important`.
+- Ingressar, huvudrubriker, korttitlar, små etiketter och knappar har separata storleksregler och ska inte behandlas som vanlig brödtext.
+
+Detta är en karta över nuläget, inte en rekommendation att behålla alla värden. Innan vi ändrar storlekarna ska vi besluta en gemensam skala och sedan uppdatera rätt regler på desktop och mobil. Ändra inte alla storlekar i ett svep: vissa element behöver egna proportioner.
+
+### Kända CSS-underhållspunkter
+
+- `style.css` innehåller flera senare regler för samma väljare, särskilt runt referenskarusellen och startsidans sektioner.
+- `undersidor.css` har många återkommande väljare och `!important`-regler. Tjänstesidornas utseende påverkas delvis av senare regler långt ned i filen.
+- `header.css` innehåller också överstyrningar, men äger avsiktligt headerns höjd, navigering och sidornas offset. Den filen ska inte städas genom att flytta regler till andra stilmallar.
+
+Upprepade väljare är inte automatiskt fel: media queries och senare överstyrningar kan vara avsiktliga. Slå bara ihop eller ta bort regler efter att deras ordning, brytpunkter och visuella effekt har kontrollerats.
 
 Färgvariabler och gemensamma designvärden finns i början av `style.css`. Headerns gemensamma storlekar finns i `header.css`. Undvik att duplicera variabler i flera filer utan ett tydligt skäl.
 
