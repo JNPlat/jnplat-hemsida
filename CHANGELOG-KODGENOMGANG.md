@@ -66,7 +66,7 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 - Gjorde flera desktopmått flytande med `clamp()`, bland annat headerns logotyp, navigationens mellanrum, innehållsbredd och utvalda rubrik-/panelmått.
 - Samlade tjänstetiketter och tjänstesidornas sökvägar i `site-utils.js`, så projektsidan inte behöver en separat kopia av tjänstekartan.
 - Utökade `scripts/validate-site.mjs` med kontroll av projektkatalogens grundstruktur, unika projekt-ID:n, tillåtna tjänstekategorier och den gemensamma breakpoint-konventionen.
-- Tog bort en oanvänd `fileSet)-variabel från valideraren.
+- Tog bort en oanvänd `fileSet`-variabel från valideraren.
 
 ## Kontroller och begränsningar
 
