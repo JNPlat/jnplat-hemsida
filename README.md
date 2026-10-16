@@ -98,7 +98,8 @@ Färgvariabler och gemensamma designvärden finns i början av `style.css`. Där
 
 ## Grundkontroller före publicering
 
-- Kör `node scripts/validate-site.mjs` för JavaScript-, JSON-, projektdata-, brytpunkts- och lokala sökvägskontroller.\n- Kontrollera att `data/projects.json` är giltig JSON.
+- Kör `node scripts/validate-site.mjs` för JavaScript-, JSON-, projektdata-, brytpunkts- och lokala sökvägskontroller.
+- Kontrollera att `data/projects.json` är giltig JSON.
 - Kontrollera att alla lokala `src`- och `href`-sökvägar pekar på befintliga filer.
 - Kontrollera projektbilderna och att projekt med `published: false` inte visas.
 - Testa startsida, alla tjänstesidor och projektdetaljsidan på både desktop och mobil.
