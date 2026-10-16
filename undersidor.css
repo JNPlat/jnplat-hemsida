@@ -2547,3 +2547,171 @@ body.project-gallery-open {
     box-sizing: border-box !important;
   }
 }
+
+
+/* Desktop project cards: override the legacy fixed card sizing intentionally. */
+@media (min-width: 811px) {
+  .inner-page.service-page .service-projects .project-carousel .project-card {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    align-items: stretch !important;
+    width: max-content !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    text-align: left !important;
+    background: transparent !important;
+    overflow: visible !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-image {
+    position: relative !important;
+    flex: 0 0 clamp(260px, 24vw, 388px) !important;
+    width: clamp(260px, 24vw, 388px) !important;
+    min-width: clamp(260px, 24vw, 388px) !important;
+    aspect-ratio: 16 / 9 !important;
+    overflow: hidden !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-image::after {
+    display: none !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-title {
+    display: none !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-description {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    width: max-content !important;
+    max-width: min(48vw, 680px) !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    padding: clamp(20px, 2vw, 34px);
+    background: #eae2d7;
+    color: var(--text, #29251f);
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-description-title {
+    display: block !important;
+    font: 400 clamp(22px, 1.8vw, 30px)/1.05 "Cormorant Garamond", Georgia, serif;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-description-text {
+    display: block !important;
+    color: var(--muted, #696158);
+    font-size: clamp(13px, .95vw, 15px);
+    line-height: 1.55;
+  }
+}
+
+@media (max-width: 810px) {
+  .inner-page.service-page .service-projects .project-carousel .project-card-description {
+    display: none !important;
+  }
+}
+
+
+/* Desktop service pages: keep hero and first project card within one viewport. */
+@media (min-width: 811px) {
+  .inner-page.service-page .service-showcase {
+    height: calc(100svh - var(--header-height, 82px)) !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    gap: clamp(10px, 1.5vh, 16px) !important;
+    padding-top: clamp(10px, 1.5vh, 16px) !important;
+    padding-bottom: clamp(10px, 1.5vh, 16px) !important;
+  }
+
+  .inner-page.service-page .service-showcase-top {
+    flex: 0 1 auto !important;
+    min-height: 0 !important;
+    height: min(45vh, 340px) !important;
+    max-height: 45vh !important;
+  }
+
+  .inner-page.service-page .service-image-hero {
+    min-height: 0 !important;
+    height: 100% !important;
+  }
+
+  .inner-page.service-page .service-copy {
+    min-height: 0 !important;
+    overflow: auto;
+    padding: clamp(18px, 2vw, 30px) !important;
+  }
+
+  .inner-page.service-page .service-projects {
+    flex: 0 0 auto !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .inner-page.service-page .service-projects {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  .inner-page.service-page .service-projects > .project-carousel-prev,
+  .inner-page.service-page .service-projects > .project-carousel-next {
+    display: none !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 0 4px !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    direction: ltr !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel > .project-card {
+    flex: 0 0 auto !important;
+    width: max-content !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    order: initial !important;
+  }
+
+  /* Give every project card a fixed row height. The text panel may grow horizontally,
+     but never increases the carousel height. */
+  .inner-page.service-page .service-projects .project-carousel .project-card {
+    height: clamp(150px, 23vh, 210px) !important;
+    max-height: clamp(150px, 23vh, 210px) !important;
+    align-items: stretch !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-image {
+    flex: 0 0 clamp(240px, 24vw, 360px) !important;
+    width: clamp(240px, 24vw, 360px) !important;
+    min-width: clamp(240px, 24vw, 360px) !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: 100% !important;
+    aspect-ratio: auto !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-description {
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow: visible !important;
+    flex: 0 0 auto !important;
+    width: max-content !important;
+    max-width: min(48vw, 680px) !important;
+  }
+}

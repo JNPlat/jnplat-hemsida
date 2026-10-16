@@ -39,9 +39,10 @@
       const imageMarkup = image
         ? `<img src="../${escapeAttribute(image)}" alt="${escapeAttribute(project.title)}" loading="lazy">`
         : '';
+      const description = project.description || '';
       return `<button class="project-card" type="button" data-project-index="${index}" aria-label="Öppna bildgalleri för ${escapeAttribute(project.title)}">` +
         `<div class="project-card-image">${imageMarkup}<span class="project-card-title">${escapeHTML(project.title)}</span></div>` +
-        `<span class="project-card-info"></span></button>`;
+        `<span class="project-card-description"><span class="project-card-description-title">${escapeHTML(project.title)}</span><span class="project-card-description-text">${escapeHTML(description)}</span></span></button>`;
     }).join('');
 
     list.querySelectorAll('[data-project-index]').forEach(button => {
