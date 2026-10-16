@@ -2313,7 +2313,7 @@ body.project-gallery-open {
   }
 }
 
-/*Karusellens pilar ska endast vara lika höga som bildraden.*/
+/* Desktop: karusellens pilar följer bildradens höjd. */
 
 @media (min-width: 811px) {
   .inner-page.service-page .service-showcase {
@@ -2325,33 +2325,17 @@ body.project-gallery-open {
   }
   .inner-page.service-page .service-projects {
     flex: 0 0 auto !important;
-    align-items: start !important;
-    padding: 0 !important;
+    display: grid !important;
+    grid-template-columns: 34px minmax(0,1fr) 34px !important;
     gap: 10px !important;
-  }
-  .inner-page.service-page .service-projects .project-carousel {
-    height: auto !important;
-    align-items: flex-start !important;
-  }
-  .inner-page.service-page .service-projects .project-side-arrow {
-    align-self: flex-start !important;
-    height: auto !important;
-    aspect-ratio: 1 / 1 !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    margin: 0 !important;
-  }
-}
-
-/*Pilarna fyller exakt samma höjd som bildraden i projektkarusellen.*/
-
-@media (min-width: 811px) {
-  .inner-page.service-page .service-projects {
     align-items: stretch !important;
+    padding: 0 !important;
   }
   .inner-page.service-page .service-projects .project-carousel {
+    height: auto !important;
     align-self: stretch !important;
     min-width: 0 !important;
+    align-items: flex-start !important;
   }
   .inner-page.service-page .service-projects .project-side-arrow {
     align-self: stretch !important;
