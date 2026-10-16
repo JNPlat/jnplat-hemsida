@@ -80,7 +80,7 @@ Detta är en karta över nuläget, inte en rekommendation att behålla alla vär
 
 Upprepade väljare är inte automatiskt fel: media queries och senare överstyrningar kan vara avsiktliga. Slå bara ihop eller ta bort regler efter att deras ordning, brytpunkter och visuella effekt har kontrollerats.
 
-Färgvariabler och gemensamma designvärden finns i början av `style.css`. Headerns gemensamma storlekar finns i `header.css`. Undvik att duplicera variabler i flera filer utan ett tydligt skäl.
+Färgvariabler och gemensamma designvärden finns i början av `style.css`. Där finns nu även namngivna variabler för utvalda brödtextstorlekar på startsidan och undersidorna. Ändra dessa värden för att justera de berörda textrollerna; kontrollera att mobilregler och specialrubriker fortsatt ska ha egna värden. Headerns gemensamma storlekar finns i `header.css`. Undvik att duplicera variabler i flera filer utan ett tydligt skäl.
 
 ## Lägg till eller ändra ett projekt
 
