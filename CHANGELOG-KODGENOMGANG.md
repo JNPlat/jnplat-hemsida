@@ -49,3 +49,10 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 - Behöll nuvarande pixelvärden för att inte ändra utseendet avsiktligt i detta steg.
 - Rubriker, knappar, små etiketter och många specialkomponenter har fortfarande separata värden; detta är ett första kontrollerat steg, inte en fullständig typografisk omarbetning.
 - Ändringarna är statiskt kontrollerade mot de aktuella CSS-reglerna; ingen webbläsarbaserad visuell regressionstestning är gjord.
+
+## CSS-granskning av undersidor – 2026-10-16
+
+- Tog bort en tom `@media (max-width:800px)`-regel i `undersidor.css`; den innehöll inga deklarationer och kunde inte påverka layouten.
+- Kartlade upprepade selektorer. Tjänstehero och projektkarusell har många senare regler som avsiktligt eller historiskt skriver över tidigare deklarationer, ofta med `!important`.
+- Lät dessa regler vara orörda i detta steg. Att slå ihop dem utan webbläsarbaserad kontroll riskerar att ändra den fungerande desktop- eller mobilayouten.
+- Ingen visuell webbläsartestning har utförts; ändringen är en begränsad, statisk städning.
