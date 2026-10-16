@@ -24,6 +24,16 @@ const files = walk(root);
 const relative = (file) => path.relative(root, file).split(path.sep).join("/");
 const fileSet = new Set(files.map((file) => relative(file)));
 
+/* Keep the main responsive layout boundary aligned between CSS and JavaScript. */
+const headerCss = fs.readFileSync(path.join(root, "header.css"), "utf8");
+const homepageScript = fs.readFileSync(path.join(root, "script.js"), "utf8");
+if (!/@media\s*\(max-width:\s*810px\)/.test(headerCss)) {
+  errors.push("The shared header must use 810px as its mobile layout boundary.");
+}
+if (!/matchMedia\(["']\(max-width:\s*810px\)["']\)/.test(homepageScript)) {
+  errors.push("The homepage carousel must use 810px as its mobile layout boundary.");
+}
+
 for (const file of files.filter((item) => item.endsWith(".js"))) {
   const result = spawnSync(process.execPath, ["--check", file], { encoding: "utf8" });
   checked.javascript++;
