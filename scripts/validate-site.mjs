@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const errors = [];
-const checked = { javascript: 0, json: 0, localReferences: 0 };
+const checked = { javascript: 0, json: 0, localReferences: 0, projects: 0 };
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -22,7 +22,6 @@ function walk(dir) {
 
 const files = walk(root);
 const relative = (file) => path.relative(root, file).split(path.sep).join("/");
-const fileSet = new Set(files.map((file) => relative(file)));
 
 /* Keep the main responsive layout boundary aligned between CSS and JavaScript. */
 const headerCss = fs.readFileSync(path.join(root, "header.css"), "utf8");
@@ -67,6 +66,52 @@ function checkReference(sourceFile, rawValue, kind) {
   }
 }
 
+// Validate the project catalogue's shape and identifiers before the UI consumes it.
+const projectsFile = path.join(root, "data", "projects.json");
+if (fs.existsSync(projectsFile)) {
+  try {
+    const projects = JSON.parse(fs.readFileSync(projectsFile, "utf8"));
+    const allowedServices = new Set([
+      "byggnadsplatslageri",
+      "kopparslageri",
+      "restaurering",
+      "specialprojekt"
+    ]);
+    const ids = new Set();
+
+    if (!Array.isArray(projects)) {
+      errors.push("data/projects.json must contain an array of projects.");
+    } else {
+      checked.projects = projects.length;
+      projects.forEach((project, index) => {
+        const label = `data/projects.json project #${index + 1}`;
+        if (!project || typeof project !== "object" || Array.isArray(project)) {
+          errors.push(`${label} must be an object.`);
+          return;
+        }
+        if (typeof project.id !== "string" || !project.id.trim()) {
+          errors.push(`${label} is missing a non-empty id.`);
+        } else if (ids.has(project.id)) {
+          errors.push(`Duplicate project id in data/projects.json: "${project.id}".`);
+        } else {
+          ids.add(project.id);
+        }
+        if (typeof project.title !== "string" || !project.title.trim()) {
+          errors.push(`${label} is missing a non-empty title.`);
+        }
+        if (!allowedServices.has(project.service)) {
+          errors.push(`${label} has an unknown service: "${project.service}".`);
+        }
+        if (project.gallery !== undefined && !Array.isArray(project.gallery)) {
+          errors.push(`${label} gallery must be an array when provided.`);
+        }
+      });
+    }
+  } catch (error) {
+    errors.push(`Unable to validate data/projects.json: ${error.message}`);
+  }
+}
+
 for (const file of files.filter((item) => item.endsWith(".html"))) {
   const html = fs.readFileSync(file, "utf8");
   for (const match of html.matchAll(/\b(?:href|src)\s*=\s*["']([^"']+)["']/gi)) {
@@ -76,6 +121,17 @@ for (const file of files.filter((item) => item.endsWith(".html"))) {
 
 for (const file of files.filter((item) => item.endsWith(".css"))) {
   const css = fs.readFileSync(file, "utf8");
+
+  // The site uses one width breakpoint for its two layout modes: 810px / 811px.
+  // Small mobile refinements and height/hover queries remain allowed.
+  if (["style.css", "undersidor.css", "header.css"].includes(path.basename(file))) {
+    if (/@media[^{}]*max-width\s*:\s*(?:1100|1150)px/i.test(css)) {
+      errors.push(`Obsolete intermediate desktop breakpoint found in ${relative(file)}.`);
+    }
+    if (/@media[^{}]*min-width\s*:\s*801px/i.test(css) || /@media[^{}]*max-width\s*:\s*800px/i.test(css)) {
+      errors.push(`Inconsistent 810px / 811px layout boundary found in ${relative(file)}.`);
+    }
+  }
   for (const match of css.matchAll(/url\(\s*["']?([^"'\)]+)["']?\s*\)/gi)) {
     checkReference(file, match[1], "CSS asset");
   }
@@ -86,5 +142,5 @@ if (errors.length) {
   process.exitCode = 1;
 } else {
   console.log("Site validation passed.");
-  console.log(`Checked ${checked.javascript} JavaScript files, ${checked.json} JSON files and ${checked.localReferences} local references.`);
+  console.log(`Checked ${checked.javascript} JavaScript files, ${checked.json} JSON files, ${checked.projects} projects and ${checked.localReferences} local references.`);
 }
