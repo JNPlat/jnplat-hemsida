@@ -2699,8 +2699,8 @@ body.project-gallery-open {
     display: block;
     margin: 0;
     color: #5e5145;
-    font-size: 20px !important;
-    line-height: 1.55;
+    font-size: 15px !important;
+    line-height: 1.65;
     white-space: normal;
     overflow-wrap: anywhere;
   }

@@ -25,18 +25,19 @@
   try {
     let response;
     let lastLoadError;
-    for (let attempt = 0; attempt < 3; attempt += 1) {
+    for (let attempt = 0; attempt < 5; attempt += 1) {
       try {
         response = await fetch('../data/projects.json', { cache: 'no-store' });
         if (!response.ok) throw new Error(`Kunde inte läsa projektlistan (${response.status})`);
         break;
       } catch (error) {
         lastLoadError = error;
-        if (attempt < 2) await new Promise(resolve => window.setTimeout(resolve, 250 * (attempt + 1)));
+        if (attempt < 4) await new Promise(resolve => window.setTimeout(resolve, 300 * (attempt + 1)));
       }
     }
     if (!response || !response.ok) throw lastLoadError || new Error('Kunde inte läsa projektlistan');
     const projects = await response.json();
+    if (!Array.isArray(projects)) throw new Error('Projektlistan har fel format');
     // Visa endast publicerade projekt som tillhör just den aktuella tjänsten.
     const visibleProjects = projects.filter(project => project.published !== false && project.service === serviceId);
 
@@ -84,7 +85,9 @@
     next?.addEventListener('click', () => scrollByCard(1));
 
     const updateProjectCarouselArrows = () => {
-      const hasOverflow = list.scrollWidth > list.clientWidth + 2;
+      // Pilar behövs bara när minst två projekt finns och listan faktiskt kan rullas.
+      const hasEnoughProjects = list.querySelectorAll('.project-card').length > 1;
+      const hasOverflow = hasEnoughProjects && list.scrollWidth > list.clientWidth + 2;
       const container = list.closest('.service-projects');
       container?.classList.toggle('has-project-overflow', hasOverflow);
       [previous, next].forEach(button => {
@@ -94,10 +97,24 @@
         button.tabIndex = hasOverflow ? 0 : -1;
       });
     };
+    const scheduleArrowUpdate = () => window.requestAnimationFrame(updateProjectCarouselArrows);
     updateProjectCarouselArrows();
-    window.addEventListener('resize', updateProjectCarouselArrows);
-    list.addEventListener('scroll', updateProjectCarouselArrows, { passive: true });
-    window.addEventListener('load', updateProjectCarouselArrows);
+    window.addEventListener('resize', scheduleArrowUpdate, { passive: true });
+    list.addEventListener('scroll', scheduleArrowUpdate, { passive: true });
+    list.querySelectorAll('img').forEach(image => {
+      if (image.complete) scheduleArrowUpdate();
+      else {
+        image.addEventListener('load', scheduleArrowUpdate, { once: true });
+        image.addEventListener('error', scheduleArrowUpdate, { once: true });
+      }
+    });
+    if ('ResizeObserver' in window) {
+      const carouselResizeObserver = new ResizeObserver(scheduleArrowUpdate);
+      carouselResizeObserver.observe(list);
+      if (list.parentElement) carouselResizeObserver.observe(list.parentElement);
+    }
+    window.addEventListener('load', scheduleArrowUpdate, { once: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleArrowUpdate).catch(() => {});
   } catch (error) {
     list.innerHTML = '<p class="empty-projects">Projektlistan kunde inte laddas just nu.</p>';
   }
