@@ -74,3 +74,10 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 - GitHub Actions-valideringen passerar för den version som senast kontrollerades.
 - En extern byggkontroll för publiceringsplattformen rapporterade fel; orsaken är ännu inte verifierad och ska inte antas vara ett kodfel eller ett konfigurationsfel utan att granska loggarna.
 - Ingen visuell webbläsartestning har utförts. De responsiva CSS-ändringarna behöver därför verifieras i en riktig webbläsare innan de betraktas som färdiggranskade.
+
+## Konsolidering av desktopkarusellens CSS – 2026-10-16
+
+- Slog ihop två intilliggande desktopregler för tjänstesidornas projektkarusell till en regeluppsättning.
+- Tog bort motstridiga mellanvärden för pilarnas höjd och justering som omedelbart skrevs över av nästa regel; den slutliga layouten behålls uttryckligen: pilarna sträcker sig med karusellraden.
+- Behöll övriga deklarationer som styr gridkolumner, mellanrum och karusellens innehåll.
+- Detta är en CSS-kaskadstädning utifrån deklarationsordningen, inte en visuell verifiering. Webbläsartestning återstår.
