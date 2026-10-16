@@ -64,7 +64,7 @@ jnplat-hemsida/
 
 ## Typografi och design
 
-Typografin är ännu inte helt standardiserad mellan startsidan och undersidorna. Nuvarande utgångspunkter i koden är bland annat:
+Typografin är ännu inte helt standardiserad mellan startsidan och undersidorna. Layouten har två lägen: mobil/surfplatta till och med 810 px och desktop från 811 px. Inom respektive läge ska storlekar och mellanrum skalas flytande i stället för att lägga till nya brytpunkter för varje skärmbredd. Nuvarande utgångspunkter i koden är bland annat:
 
 - Startsidan: ingress i heron 20 px på desktop; tjänstekortens brödtext 18 px på desktop och 17 px i mobilregler.
 - Tjänste-/projektsidor: vanlig introduktionstext har en grundregel på 16 px, men den aktiva tjänstesidans senare regel sätter brödtexten i `.service-copy` till 15 px med `!important`.
