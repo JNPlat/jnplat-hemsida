@@ -393,8 +393,8 @@ body.lightbox-open {
     font-size: 28px;
   }
   .project-grid {
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    gap: 26px 14px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: clamp(24px, 4vw, 28px) clamp(14px, 2vw, 20px);
   }
   .project-card-info h3 {
     font-size: 25px;
@@ -420,18 +420,6 @@ body.lightbox-open {
   }
 }
 
-@media (max-width:460px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-  .project-card-image {
-    aspect-ratio: 16/10;
-  }
-  .project-gallery {
-    grid-template-columns: repeat(2,minmax(0,1fr));
-  }
-}
 
 
 /*Tjänsteöversikt: hero med tydlig rubrik på bilden, beskrivning bredvid och projektkarusell i samma sektion*/
