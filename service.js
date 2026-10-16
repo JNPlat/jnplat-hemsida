@@ -1,8 +1,16 @@
 (async function () {
-  const { serviceLabel, escapeHTML, escapeAttribute } = window.JNPlSite;
+  const siteUtils = window.JNPlSite;
+  const serviceLabel = siteUtils?.serviceLabel || (service => service || 'Projekt');
+  const escapeHTML = siteUtils?.escapeHTML || (value => String(value ?? '').replace(/[&<>\"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[char])));
+  const escapeAttribute = siteUtils?.escapeAttribute || escapeHTML;
   const serviceId = document.body.dataset.service;
   const list = document.querySelector('[data-project-list]');
   if (!list || !serviceId) return;
+  // Keep a visible fallback in case data or a dependency fails to load.
+  list.innerHTML = '<p class="empty-projects">Laddar projekt…</p>';
+  const serviceScript = Array.from(document.scripts).find(script => /(?:^|\/)service\.js(?:[?#].*)?$/.test(script.src));
+  const siteRoot = serviceScript?.src ? new URL('.', serviceScript.src) : new URL('../', document.baseURI);
+  const projectDataUrl = new URL('data/projects.json', siteRoot).href;
 
   const galleryModal = createGalleryModal();
   let activeProject = null;
@@ -27,7 +35,7 @@
     let lastLoadError;
     for (let attempt = 0; attempt < 5; attempt += 1) {
       try {
-        response = await fetch('../data/projects.json', { cache: 'no-store' });
+        response = await fetch(projectDataUrl, { cache: 'no-store' });
         if (!response.ok) throw new Error(`Kunde inte läsa projektlistan (${response.status})`);
         break;
       } catch (error) {
@@ -49,7 +57,7 @@
     list.innerHTML = visibleProjects.map((project, index) => {
       const image = project.cardImage || project.hero || (project.gallery && project.gallery[0]);
       const imageMarkup = image
-        ? `<img src="../${escapeAttribute(image)}" alt="${escapeAttribute(project.title)}" loading="lazy">`
+        ? `<img src="${escapeAttribute(new URL(image.replace(/^\/+/, ''), siteRoot).href)}" alt="${escapeAttribute(project.title)}" loading="lazy">`
         : '';
       return `<button class="project-card" type="button" data-project-index="${index}" aria-label="Öppna bildgalleri för ${escapeAttribute(project.title)}">` +
         `<div class="project-card-image">${imageMarkup}<span class="project-card-title">${escapeHTML(project.title)}</span><span class="project-card-open">Visa bilder ↗</span></div>` +
@@ -116,7 +124,10 @@
     window.addEventListener('load', scheduleArrowUpdate, { once: true });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleArrowUpdate).catch(() => {});
   } catch (error) {
-    list.innerHTML = '<p class="empty-projects">Projektlistan kunde inte laddas just nu.</p>';
+    console.error('Projektkarusellen kunde inte laddas:', error);
+    list.innerHTML = '<p class="empty-projects">Projektlistan kunde inte laddas just nu. Ladda om sidan om en stund.</p>';
+    const container = list.closest('.service-projects');
+    container?.classList.remove('has-project-overflow');
   }
 
   function createGalleryModal() {

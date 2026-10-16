@@ -2721,3 +2721,7 @@ body.project-gallery-open {
     font-size: 19px;
   }
 }
+
+
+/* Hidden carousel arrows must remain hidden even when desktop layout rules set display:flex. */
+.inner-page.service-page .service-projects > .project-side-arrow[hidden] { display: none !important; }
