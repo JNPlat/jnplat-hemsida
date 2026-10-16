@@ -1486,15 +1486,7 @@ h6 {
   border-color: var(--copper) !important;
 }
 
-@media (max-width: 810px) {
-  .references-carousel {
-    grid-template-columns: 24px minmax(0,1fr) 24px !important;
-    gap: 5px !important;
-  }
-  .references-carousel .reference-arrow {
-    width: 24px !important;
-  }
-}
+
 
 /*Mobilfix: referenskarusellen ska visa korten och pilarna som egna sidoblock.*/
 
