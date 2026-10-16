@@ -73,3 +73,19 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 - GitHub Actions-valideringen har passerat före den senaste utökningen av valideraren; den senaste körningen är igång.
 - CSS-klamrar och kvarvarande breddsbrytpunkter har kontrollerats statiskt.
 - Ingen visuell webbläsartestning har utförts. De responsiva CSS-ändringarna behöver därför verifieras på riktiga skärmstorlekar innan de betraktas som färdiggranskade.
+
+## Responsiv refaktorering och gemensam konfiguration – 2026-10-16
+
+- Tog bort de separata desktopreglerna vid 1150 px i startsidans CSS och headern samt 1100 px på undersidorna.
+- Ersatte stegvisa mått med flytande CSS-värden där det gick att bevara samma grundlayout.
+- Lät den gemensamma layoutgränsen vara 810 px för mobil/surfplatta och 811 px för desktop. Startsidan och headern använder nu samma gräns.
+- Samlade tjänstenamn och sökvägar i site-utils.js, så project.js inte behöver hålla en separat kopia av tjänstekonfigurationen.
+- Utökade scripts/validate-site.mjs med kontroll av projektdata, överensstämmelse mellan headerns och karusellens brytpunkt, oönskade mellanbrytningar vid 1100/1150 px samt balanserade CSS-klamrar.
+- Uppdaterade README med responsiv arkitektur och ansvarsfördelningen för gemensam tjänstekonfiguration.
+
+## Kontroller och begränsningar
+
+- GitHub Actions för den senaste ändringen rapporterade godkänt resultat.
+- Statisk kontroll visar att de tre stilmallarna inte längre har layoutbrytningar vid 1100/1150 px.
+- Detta är en kontrollerad första etapp av ombyggnaden, inte ett påstående om att all äldre CSS är färdigstädad.
+- Visuell regressionstestning i en riktig webbläsare har inte körts här. Den behövs innan layoutförändringarna kan betraktas som fullständigt verifierade.
