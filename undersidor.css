@@ -2687,10 +2687,29 @@ body.project-gallery-open {
     order: initial !important;
   }
 
+  /* Give every project card a fixed row height. The text panel may grow horizontally,
+     but never increases the carousel height. */
+  .inner-page.service-page .service-projects .project-carousel .project-card {
+    height: clamp(150px, 23vh, 210px) !important;
+    max-height: clamp(150px, 23vh, 210px) !important;
+    align-items: stretch !important;
+  }
+
   .inner-page.service-page .service-projects .project-carousel .project-card-image {
-    flex-basis: clamp(240px, 24vw, 360px) !important;
+    flex: 0 0 clamp(240px, 24vw, 360px) !important;
     width: clamp(240px, 24vw, 360px) !important;
     min-width: clamp(240px, 24vw, 360px) !important;
-    aspect-ratio: 16 / 9 !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: 100% !important;
+    aspect-ratio: auto !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-description {
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+    flex: 0 0 var(--project-description-width, 280px) !important;
+    width: var(--project-description-width, 280px) !important;
   }
 }
