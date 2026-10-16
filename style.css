@@ -764,7 +764,7 @@ h6 {
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 810px) {
   .hero-section {
     height: auto;
     min-height: 0;
@@ -1130,7 +1130,7 @@ h6 {
   }
 }
 
-@media (min-width: 801px) and (max-height: 780px) {
+@media (min-width: 811px) and (max-height: 780px) {
   .hero-content {
     padding-top: 35px;
     padding-bottom: 35px;
@@ -1225,7 +1225,7 @@ h6 {
 /*Om J. Norberg: en skärmhög sektion, beskär bilden nedifrån/uppifrån
    så att nederdelen av motivet prioriteras.*/
 
-@media (min-width: 801px) {
+@media (min-width: 811px) {
   .about-section {
     height: calc(100vh - var(--header-height));
     min-height: calc(100vh - var(--header-height));
@@ -1249,7 +1249,7 @@ h6 {
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 810px) {
   .references-viewport {
     overflow-x: auto;
     overflow-y: visible;
@@ -1374,7 +1374,7 @@ h6 {
 /*Mobil: varje huvudsektion fyller minst den synliga skärmhöjden.
    Innehåll får fortfarande göra sektionen högre vid behov.*/
 
-@media (max-width: 800px) {
+@media (max-width: 810px) {
   .hero-section,
   .services-section,
   .current-section,
@@ -1413,7 +1413,7 @@ h6 {
   transition: background .2s ease,color .2s ease,border-color .2s ease;
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .references-carousel .reference-arrow {
     width: 26px;
   }
@@ -1438,7 +1438,7 @@ h6 {
   border-color: var(--copper);
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .references-carousel .reference-arrow {
     width: 26px;
   }
@@ -1519,7 +1519,7 @@ h6 {
   right: 0 !important;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 810px) {
   .section-band {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -1569,7 +1569,7 @@ h6 {
   border-color: var(--copper) !important;
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .references-carousel {
     grid-template-columns: 24px minmax(0,1fr) 24px !important;
     gap: 5px !important;
@@ -1581,7 +1581,7 @@ h6 {
 
 /*Mobilfix: referenskarusellen ska visa korten och pilarna som egna sidoblock.*/
 
-@media (max-width: 800px) {
+@media (max-width: 810px) {
   .section-band {
     width: 100%;
     padding: 10px 0 !important;
@@ -1645,7 +1645,7 @@ h6 {
 
 /*Slutlig mobilfix för referenser: native swipe, inga pilar eller tomma ytor.*/
 
-@media (max-width: 800px) {
+@media (max-width: 810px) {
   .section-band {
     display: block !important;
     width: 100% !important;
