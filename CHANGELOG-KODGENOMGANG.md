@@ -87,3 +87,9 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 - Tog bort en tidigare mobilregeluppsättning för referenskarusellen som skrevs över av den senare slutliga lösningen för svepning.
 - Behöll den sista regeln som styr mobilens horisontella svep, kortbredd, inre sidmarginaler och dolda pilar.
 - Syftet är att minska mängden CSS som ser aktiv ut men inte längre styr slutresultatet. Ingen visuell webbläsartestning har utförts, så ändringen är ännu inte visuellt verifierad.
+
+## Ytterligare konsolidering av referenskarusellen – 2026-10-16
+
+- Tog bort en äldre desktopregeluppsättning som lade pilar ovanpå korten och skapade extra sidpadding i viewporten.
+- Behöll den senare regeluppsättningen där pilarna ligger i egna gridkolumner och viewporten/kortspåret styrs separat. Den kant-till-kant-regeln för referensbandet är kvar.
+- Automatisk validering körs på den nya committen. Visuell kontroll i webbläsare återstår.
