@@ -39,8 +39,8 @@
       const imageMarkup = image
         ? `<img src="../${escapeAttribute(image)}" alt="${escapeAttribute(project.title)}" loading="lazy">`
         : '';
-      return `<button class="project-card" type="button" data-project-index="${index}" aria-label="Se bilder från ${escapeAttribute(project.title)}">` +
-        `<div class="project-card-image">${imageMarkup}<span class="project-card-title project-card-title-image">${escapeHTML(project.title)}</span><span class="project-card-open" aria-hidden="true">↗</span></div>` +
+      return `<button class="project-card" type="button" data-project-index="${index}" aria-label="Öppna bildgalleri för ${escapeAttribute(project.title)}">` +
+        `<div class="project-card-image">${imageMarkup}<span class="project-card-title project-card-title-image">${escapeHTML(project.title)}</span><span class="project-card-open">Visa bilder ↗</span></div>` +
         `<span class="project-card-info"><span class="project-card-title project-card-title-info">${escapeHTML(project.title)}</span>` +
         `<span class="project-card-description">${escapeHTML(project.description || '')}</span>` +
         `<span class="text-link project-card-show-link">Se bilder <span aria-hidden="true">→</span></span></span></button>`;
@@ -239,7 +239,7 @@
       zoom.hidden = true;
       zoom.innerHTML = '<button class="project-image-zoom-close" type="button" aria-label="Stäng bildvisning">×</button><button class="project-image-zoom-prev" type="button" aria-label="Föregående bild">‹</button><img class="project-image-zoom-img" alt=""><button class="project-image-zoom-next" type="button" aria-label="Nästa bild">›</button><div class="project-image-zoom-bottom"><div class="project-image-zoom-thumbnails" aria-label="Välj projektbild"></div><span class="project-image-zoom-count" aria-live="polite"></span></div>';
       galleryModal.appendChild(zoom);
-      zoom.querySelector('.project-image-zoom-close').addEventListener('click', event => { event.stopPropagation(); closeGallery(); });
+      zoom.querySelector('.project-image-zoom-close').addEventListener('click', closeGallery);
       const zoomImage = zoom.querySelector('.project-image-zoom-img');
       let projectZoomWasDragged = false;
       zoomImage.addEventListener('click', event => {
@@ -323,9 +323,6 @@
     galleryModal.querySelector('.project-gallery-dialog')?.classList.remove('project-gallery-dialog-under-viewer');
     document.body.classList.remove('project-gallery-open');
     if (previousFocus && previousFocus.focus) previousFocus.focus();
-    activeProject = null;
-    activeImages = [];
-    imageIndex = 0;
   }
   document.addEventListener('keydown', event => {
     if (galleryModal.hidden) return;
