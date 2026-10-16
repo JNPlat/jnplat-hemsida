@@ -40,7 +40,7 @@
         ? `<img src="../${escapeAttribute(image)}" alt="${escapeAttribute(project.title)}" loading="lazy">`
         : '';
       return `<button class="project-card" type="button" data-project-index="${index}" aria-label="Öppna bildgalleri för ${escapeAttribute(project.title)}">` +
-        `<div class="project-card-image">${imageMarkup}<span class="project-card-title">${escapeHTML(project.title)}</span><span class="project-card-open">Visa bilder ↗</span></div>` +
+        `<div class="project-card-image">${imageMarkup}<span class="project-card-title">${escapeHTML(project.title)}</span></div>` +
         `<span class="project-card-info"></span></button>`;
     }).join('');
 
