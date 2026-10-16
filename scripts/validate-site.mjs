@@ -176,6 +176,48 @@ if (fs.existsSync(projectsFile)) {
   }
 }
 
+// Shared utilities must load before scripts that depend on window.JNPlSite.
+const scriptDependencies = [
+  { page: "projekt.html", dependency: "site-utils.js", consumer: "project.js" },
+  ...[
+    "tjanster/byggnadsplatslageri.html",
+    "tjanster/kopparslageri.html",
+    "tjanster/restaurering.html",
+    "tjanster/specialprojekt.html"
+  ].map((page) => ({ page, dependency: "../site-utils.js", consumer: "../service.js" }))
+];
+for (const { page, dependency, consumer } of scriptDependencies) {
+  const pagePath = path.join(root, page);
+  if (!fs.existsSync(pagePath)) {
+    errors.push(`Expected page is missing: ${page}`);
+    continue;
+  }
+  const html = fs.readFileSync(pagePath, "utf8");
+  const dependencyIndex = html.indexOf(`src="${dependency}"`);
+  const consumerIndex = html.indexOf(`src="${consumer}"`);
+  if (dependencyIndex < 0 || consumerIndex < 0 || dependencyIndex > consumerIndex) {
+    errors.push(`${page} must load ${dependency} before ${consumer}.`);
+  }
+}
+
+// Keep the shared service map and the actual service pages in sync.
+const serviceConfigMatch = fs.readFileSync(path.join(root, "site-utils.js"), "utf8")
+  .match(/const services = Object\.freeze\(\{([\s\S]*?)\n  \}\);/);
+if (!serviceConfigMatch) {
+  errors.push("site-utils.js is missing the shared services configuration.");
+} else {
+  const configuredPaths = [...serviceConfigMatch[1].matchAll(/path:\s*"([^"]+)"/g)]
+    .map((match) => match[1]);
+  if (configuredPaths.length !== 4) {
+    errors.push(`Expected four configured service pages, found ${configuredPaths.length}.`);
+  }
+  for (const servicePath of configuredPaths) {
+    if (!fs.existsSync(path.join(root, servicePath))) {
+      errors.push(`site-utils.js points to a missing service page: "${servicePath}".`);
+    }
+  }
+}
+
 for (const file of files.filter((item) => item.endsWith(".html"))) {
   const html = fs.readFileSync(file, "utf8");
   for (const match of html.matchAll(/\b(?:href|src)\s*=\s*["']([^"']+)["']/gi)) {
