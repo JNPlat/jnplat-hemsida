@@ -11,13 +11,6 @@
   let currentImage = 0;
   let previousFocus = null;
 
-  const servicePages = {
-    byggnadsplatslageri: 'tjanster/byggnadsplatslageri.html',
-    kopparslageri: 'tjanster/kopparslageri.html',
-    restaurering: 'tjanster/restaurering.html',
-    specialprojekt: 'tjanster/specialprojekt.html'
-  };
-
   try {
     const response = await fetch('data/projects.json', { cache: 'no-store' });
     if (!response.ok) throw new Error('Kunde inte läsa projektlistan');
@@ -25,7 +18,7 @@
     const project = projects.find(item => item.id === projectId && item.published !== false);
     if (!project) return;
 
-    const serviceUrl = servicePages[project.service] || 'index.html#tjanster';
+    const serviceUrl = window.JNPlSite.servicePath(project.service);
     backLink.href = serviceUrl;
     document.querySelectorAll('[data-service-link]').forEach(link => {
       const active = link.dataset.serviceLink === project.service;

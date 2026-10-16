@@ -57,3 +57,39 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 - Lät dessa regler vara orörda i detta steg. Att slå ihop dem utan webbläsarbaserad kontroll riskerar att ändra den fungerande desktop- eller mobilayouten.
 - Ingen visuell webbläsartestning har utförts; ändringen är en begränsad, statisk städning.
 - Tog bort en oanvänd variabel för mobil brödtext; den hade ingen CSS-regel som använde den.
+
+
+## Responsiv refaktorering och validering – 2026-10-16
+
+- Tog bort de separata desktopreglerna vid 1150 px i startsidans CSS och headern samt 1100 px på undersidorna.
+- Tog även bort den extra 460 px-brytpunkt som tidigare växlade projektkorten till en kolumn. Mobilens projektgrid använder nu `auto-fit` med en minsta kortbredd på 190 px, så antalet kolumner anpassas flytande inom samma mobil-/surfplatteläge.
+- Ersatte stegvisa mått med flytande CSS-värden där det gick att bevara samma grundlayout.
+- Behöll två övergripande layoutlägen: mobil/surfplatta till och med 810 px och desktop från 811 px. Mindre mobiljusteringar och särskilda regler för höjd eller pekdon finns kvar där de fyller en separat funktion.
+- Samlade tjänstenamn och tjänstesidornas sökvägar i `site-utils.js`, så `project.js` inte behöver en separat kopia av tjänstekonfigurationen.
+- Utökade `scripts/validate-site.mjs` med kontroller av projektdata, unika projekt-ID:n, tillåtna tjänstekategorier, befintliga projektbilder, CSS-klamrar, lokala sökvägar och skriptens laddningsordning.
+- Lade till kontroll av att tjänstesidornas sökvägar i den gemensamma konfigurationen finns och att startsidans karusell använder samma layoutgräns som headern.
+
+### Kontroller och begränsningar
+
+- GitHub Actions-valideringen passerar för den version som senast kontrollerades.
+- En extern byggkontroll för publiceringsplattformen rapporterade fel; orsaken är ännu inte verifierad och ska inte antas vara ett kodfel eller ett konfigurationsfel utan att granska loggarna.
+- Ingen visuell webbläsartestning har utförts. De responsiva CSS-ändringarna behöver därför verifieras i en riktig webbläsare innan de betraktas som färdiggranskade.
+
+## Konsolidering av desktopkarusellens CSS – 2026-10-16
+
+- Slog ihop två intilliggande desktopregler för tjänstesidornas projektkarusell till en regeluppsättning.
+- Tog bort motstridiga mellanvärden för pilarnas höjd och justering som omedelbart skrevs över av nästa regel; den slutliga layouten behålls uttryckligen: pilarna sträcker sig med karusellraden.
+- Behöll övriga deklarationer som styr gridkolumner, mellanrum och karusellens innehåll.
+- Detta är en CSS-kaskadstädning utifrån deklarationsordningen, inte en visuell verifiering. Webbläsartestning återstår.
+
+## Konsolidering av mobilens referenskarusell – 2026-10-16
+
+- Tog bort en tidigare mobilregeluppsättning för referenskarusellen som skrevs över av den senare slutliga lösningen för svepning.
+- Behöll den sista regeln som styr mobilens horisontella svep, kortbredd, inre sidmarginaler och dolda pilar.
+- Syftet är att minska mängden CSS som ser aktiv ut men inte längre styr slutresultatet. Ingen visuell webbläsartestning har utförts, så ändringen är ännu inte visuellt verifierad.
+
+## Ytterligare konsolidering av referenskarusellen – 2026-10-16
+
+- Tog bort en äldre desktopregeluppsättning som lade pilar ovanpå korten och skapade extra sidpadding i viewporten.
+- Behöll den senare regeluppsättningen där pilarna ligger i egna gridkolumner och viewporten/kortspåret styrs separat. Den kant-till-kant-regeln för referensbandet är kvar.
+- Automatisk validering körs på den nya committen. Visuell kontroll i webbläsare återstår.

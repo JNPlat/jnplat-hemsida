@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const errors = [];
-const checked = { javascript: 0, json: 0, localReferences: 0 };
+const checked = { javascript: 0, json: 0, localReferences: 0, projects: 0, projectImages: 0 };
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -22,7 +22,63 @@ function walk(dir) {
 
 const files = walk(root);
 const relative = (file) => path.relative(root, file).split(path.sep).join("/");
-const fileSet = new Set(files.map((file) => relative(file)));
+
+/* Keep the main responsive layout boundary aligned between CSS and JavaScript. */
+const headerCss = fs.readFileSync(path.join(root, "header.css"), "utf8");
+const homepageScript = fs.readFileSync(path.join(root, "script.js"), "utf8");
+if (!/@media\s*\(max-width:\s*810px\)/.test(headerCss)) {
+  errors.push("The shared header must use 810px as its mobile layout boundary.");
+}
+if (!/matchMedia\(["']\(max-width:\s*810px\)["']\)/.test(homepageScript)) {
+  errors.push("The homepage carousel must use 810px as its mobile layout boundary.");
+}
+
+for (const stylesheet of ["style.css", "undersidor.css", "header.css"]) {
+  const css = fs.readFileSync(path.join(root, stylesheet), "utf8");
+  // Lightweight delimiter check that catches accidental unmatched CSS braces
+  // without introducing a parser dependency into this static site.
+  let depth = 0;
+  let quote = null;
+  let inComment = false;
+  let escaped = false;
+  for (let index = 0; index < css.length; index++) {
+    const character = css[index];
+    const next = css[index + 1];
+    if (inComment) {
+      if (character === "*" && next === "/") {
+        inComment = false;
+        index++;
+      }
+      continue;
+    }
+    if (quote) {
+      if (escaped) {
+        escaped = false;
+      } else if (character === "\\") {
+        escaped = true;
+      } else if (character === quote) {
+        quote = null;
+      }
+      continue;
+    }
+    if (character === "/" && next === "*") {
+      inComment = true;
+      index++;
+      continue;
+    }
+    if (character === '"' || character === "'") {
+      quote = character;
+    } else if (character === "{") {
+      depth++;
+    } else if (character === "}") {
+      depth--;
+      if (depth < 0) break;
+    }
+  }
+  if (depth !== 0 || inComment || quote) {
+    errors.push(`${stylesheet} has unbalanced CSS delimiters.`);
+  }
+}
 
 for (const file of files.filter((item) => item.endsWith(".js"))) {
   const result = spawnSync(process.execPath, ["--check", file], { encoding: "utf8" });
@@ -57,6 +113,107 @@ function checkReference(sourceFile, rawValue, kind) {
   }
 }
 
+// Validate the project catalogue's shape and identifiers before the UI consumes it.
+const projectsFile = path.join(root, "data", "projects.json");
+if (fs.existsSync(projectsFile)) {
+  try {
+    const projects = JSON.parse(fs.readFileSync(projectsFile, "utf8"));
+    const allowedServices = new Set([
+      "byggnadsplatslageri",
+      "kopparslageri",
+      "restaurering",
+      "specialprojekt"
+    ]);
+    const ids = new Set();
+
+    if (!Array.isArray(projects)) {
+      errors.push("data/projects.json must contain an array of projects.");
+    } else {
+      checked.projects = projects.length;
+      projects.forEach((project, index) => {
+        const label = `data/projects.json project #${index + 1}`;
+        if (!project || typeof project !== "object" || Array.isArray(project)) {
+          errors.push(`${label} must be an object.`);
+          return;
+        }
+        if (typeof project.id !== "string" || !project.id.trim()) {
+          errors.push(`${label} is missing a non-empty id.`);
+        } else if (ids.has(project.id)) {
+          errors.push(`Duplicate project id in data/projects.json: "${project.id}".`);
+        } else {
+          ids.add(project.id);
+        }
+        if (typeof project.title !== "string" || !project.title.trim()) {
+          errors.push(`${label} is missing a non-empty title.`);
+        }
+        if (!allowedServices.has(project.service)) {
+          errors.push(`${label} has an unknown service: "${project.service}".`);
+        }
+        if (project.gallery !== undefined && !Array.isArray(project.gallery)) {
+          errors.push(`${label} gallery must be an array when provided.`);
+        }
+
+        const imagePaths = [
+          project.hero,
+          project.cardImage,
+          ...(Array.isArray(project.gallery) ? project.gallery : [])
+        ].filter((imagePath) => typeof imagePath === "string" && imagePath.trim());
+        for (const imagePath of new Set(imagePaths)) {
+          checked.projectImages++;
+          const resolvedImage = path.resolve(root, imagePath);
+          if (!resolvedImage.startsWith(root + path.sep) || !fs.existsSync(resolvedImage)) {
+            errors.push(`${label} references a missing or invalid project image: "${imagePath}".`);
+          }
+        }
+      });
+    }
+  } catch (error) {
+    errors.push(`Unable to validate data/projects.json: ${error.message}`);
+  }
+}
+
+// Shared utilities must load before scripts that depend on window.JNPlSite.
+const scriptDependencies = [
+  { page: "projekt.html", dependency: "site-utils.js", consumer: "project.js" },
+  ...[
+    "tjanster/byggnadsplatslageri.html",
+    "tjanster/kopparslageri.html",
+    "tjanster/restaurering.html",
+    "tjanster/specialprojekt.html"
+  ].map((page) => ({ page, dependency: "../site-utils.js", consumer: "../service.js" }))
+];
+for (const { page, dependency, consumer } of scriptDependencies) {
+  const pagePath = path.join(root, page);
+  if (!fs.existsSync(pagePath)) {
+    errors.push(`Expected page is missing: ${page}`);
+    continue;
+  }
+  const html = fs.readFileSync(pagePath, "utf8");
+  const dependencyIndex = html.indexOf(`src="${dependency}"`);
+  const consumerIndex = html.indexOf(`src="${consumer}"`);
+  if (dependencyIndex < 0 || consumerIndex < 0 || dependencyIndex > consumerIndex) {
+    errors.push(`${page} must load ${dependency} before ${consumer}.`);
+  }
+}
+
+// Keep the shared service map and the actual service pages in sync.
+const serviceConfigMatch = fs.readFileSync(path.join(root, "site-utils.js"), "utf8")
+  .match(/const services = Object\.freeze\(\{([\s\S]*?)\n  \}\);/);
+if (!serviceConfigMatch) {
+  errors.push("site-utils.js is missing the shared services configuration.");
+} else {
+  const configuredPaths = [...serviceConfigMatch[1].matchAll(/path:\s*"([^"]+)"/g)]
+    .map((match) => match[1]);
+  if (configuredPaths.length !== 4) {
+    errors.push(`Expected four configured service pages, found ${configuredPaths.length}.`);
+  }
+  for (const servicePath of configuredPaths) {
+    if (!fs.existsSync(path.join(root, servicePath))) {
+      errors.push(`site-utils.js points to a missing service page: "${servicePath}".`);
+    }
+  }
+}
+
 for (const file of files.filter((item) => item.endsWith(".html"))) {
   const html = fs.readFileSync(file, "utf8");
   for (const match of html.matchAll(/\b(?:href|src)\s*=\s*["']([^"']+)["']/gi)) {
@@ -66,6 +223,17 @@ for (const file of files.filter((item) => item.endsWith(".html"))) {
 
 for (const file of files.filter((item) => item.endsWith(".css"))) {
   const css = fs.readFileSync(file, "utf8");
+
+  // The site uses one width breakpoint for its two layout modes: 810px / 811px.
+  // Small mobile refinements and height/hover queries remain allowed.
+  if (["style.css", "undersidor.css", "header.css"].includes(path.basename(file))) {
+    if (/@media[^{}]*max-width\s*:\s*(?:1100|1150)px/i.test(css)) {
+      errors.push(`Obsolete intermediate desktop breakpoint found in ${relative(file)}.`);
+    }
+    if (/@media[^{}]*min-width\s*:\s*801px/i.test(css) || /@media[^{}]*max-width\s*:\s*800px/i.test(css)) {
+      errors.push(`Inconsistent 810px / 811px layout boundary found in ${relative(file)}.`);
+    }
+  }
   for (const match of css.matchAll(/url\(\s*["']?([^"'\)]+)["']?\s*\)/gi)) {
     checkReference(file, match[1], "CSS asset");
   }
@@ -76,5 +244,5 @@ if (errors.length) {
   process.exitCode = 1;
 } else {
   console.log("Site validation passed.");
-  console.log(`Checked ${checked.javascript} JavaScript files, ${checked.json} JSON files and ${checked.localReferences} local references.`);
+  console.log(`Checked ${checked.javascript} JavaScript files, ${checked.json} JSON files, ${checked.projects} projects, ${checked.projectImages} project images and ${checked.localReferences} local references.`);
 }

@@ -17,7 +17,7 @@ Statisk webbplats för J. Norberg Plåtslageri AB. Publiceras som statiska filer
 | Projektdetaljsida och galleri | `project.js` |
 | Gemensamma JavaScript-hjälpfunktioner | `site-utils.js` |
 
-**Viktigt:** börja med rätt fil och sök efter den aktuella klassens namn innan du lägger till nya CSS-regler. Lägg inte till en ny override om en befintlig regel kan ändras på ett säkert sätt. Headerns mått ägs av `header.css`.
+**Viktigt:** börja med rätt fil och sök efter den aktuella klassens namn innan du lägger till nya CSS-regler. Lägg inte till en ny override om en befintlig regel kan ändras på ett säkert sätt. Headerns mått ägs av `header.css`. Den gemensamma listan över tjänstenamn och tjänstesidornas sökvägar ägs av `site-utils.js`.
 
 ## Filstruktur
 
@@ -62,9 +62,13 @@ jnplat-hemsida/
 - `project-template.json.txt` – exempel på ett projektobjekt att kopiera till projektlistan.
 - `images/` och `logo/` – bilder, logotyp och ikoner.
 
+## Responsiv struktur
+
+Webbplatsens två grundläggande layoutlägen har en gemensam gräns: **811 px och uppåt är desktop, 810 px och nedåt är mobil/surfplatta**. Headern och startsidans referenskarusell ska använda samma gräns för att växla layoutläge. Smalare media queries får finnas kvar för specialbeteenden som touch, bildzoom eller små detaljjusteringar, men ska inte skapa ett tredje övergripande layoutläge. På desktop ska mått i första hand skala flytande med CSS-funktioner som `clamp()` i stället för att införa nya layoutvarianter vid ytterligare bredder.
+
 ## Typografi och design
 
-Typografin är ännu inte helt standardiserad mellan startsidan och undersidorna. Nuvarande utgångspunkter i koden är bland annat:
+Typografin är ännu inte helt standardiserad mellan startsidan och undersidorna. Layouten har två lägen: mobil/surfplatta till och med 810 px och desktop från 811 px. Inom respektive läge ska storlekar och mellanrum skalas flytande i stället för att lägga till nya brytpunkter för varje skärmbredd. Nuvarande utgångspunkter i koden är bland annat:
 
 - Startsidan: ingress i heron 20 px på desktop; tjänstekortens brödtext 18 px på desktop och 17 px i mobilregler.
 - Tjänste-/projektsidor: vanlig introduktionstext har en grundregel på 16 px, men den aktiva tjänstesidans senare regel sätter brödtexten i `.service-copy` till 15 px med `!important`.
@@ -94,6 +98,7 @@ Färgvariabler och gemensamma designvärden finns i början av `style.css`. Där
 
 ## Grundkontroller före publicering
 
+- Kör `node scripts/validate-site.mjs` för JavaScript-, JSON-, projektdata-, brytpunkts- och lokala sökvägskontroller.
 - Kontrollera att `data/projects.json` är giltig JSON.
 - Kontrollera att alla lokala `src`- och `href`-sökvägar pekar på befintliga filer.
 - Kontrollera projektbilderna och att projekt med `published: false` inte visas.
