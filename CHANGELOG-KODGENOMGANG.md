@@ -40,3 +40,12 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 - Identifierade `projects.json` i rotmappen som en tom JSON-array. Projektdata läses från `data/projects.json`; inga aktiva HTML- eller JavaScript-referenser till rotfilen hittades.
 - Behöll `project-template.json.txt`: den är en användbar mall för att lägga till projekt.
 - Typografins standardisering återstår som separat steg efter inventeringen, för att undvika oavsiktliga visuella ändringar.
+
+
+## Typografiska variabler – 2026-10-16
+
+- Lade till namngivna CSS-variabler för utvalda brödtextstorlekar på startsidan och undersidorna.
+- Kopplade hero-ingress, tjänstekortens brödtext och vanliga brödtextregler på undersidorna till dessa variabler.
+- Behöll nuvarande pixelvärden för att inte ändra utseendet avsiktligt i detta steg.
+- Rubriker, knappar, små etiketter och många specialkomponenter har fortfarande separata värden; detta är ett första kontrollerat steg, inte en fullständig typografisk omarbetning.
+- Ändringarna är statiskt kontrollerade mot de aktuella CSS-reglerna; ingen webbläsarbaserad visuell regressionstestning är gjord.
