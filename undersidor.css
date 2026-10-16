@@ -977,6 +977,13 @@ body.project-gallery-open {
   }
 }
 
+/* Dölj etiketten på projektkarusellens bildkort på mobil. */
+@media (max-width: 800px) {
+  .project-card-open {
+    display: none;
+  }
+}
+
 @media (max-width:600px) {
   .project-gallery-modal {
     padding: 0;
