@@ -2612,3 +2612,104 @@ body.project-gallery-open {
     box-sizing: border-box !important;
   }
 }
+
+
+/* Avgränsad desktopändring: behåll projektbildens ursprungliga bredd, höjd och beskärning.
+   Den nya textrutan läggs till bredvid bilden och ökar endast kortets totala bredd. */
+@media (min-width: 801px) {
+  .inner-page.service-page .service-projects > .project-carousel {
+    container-type: inline-size;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card {
+    display: flex !important;
+    flex: 0 0 calc((100cqw - 42px) / 4 + 320px) !important;
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    gap: 24px !important;
+    align-items: stretch !important;
+    overflow: visible !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-image {
+    flex: 0 0 calc((100cqw - 42px) / 4) !important;
+    width: calc((100cqw - 42px) / 4) !important;
+    min-width: 0 !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-title-image,
+  .inner-page.service-page .service-projects .project-carousel .project-card-image::after,
+  .inner-page.service-page .service-projects .project-carousel .project-card-open {
+    display: none !important;
+    opacity: 0 !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-info {
+    display: flex !important;
+    flex: 0 0 296px !important;
+    width: 296px !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    padding: 22px 24px !important;
+    background: #e7dbcb !important;
+    text-align: left !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-title-info {
+    position: static !important;
+    display: block !important;
+    margin: 0 0 12px !important;
+    color: #29251f !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: clamp(24px, 2vw, 32px) !important;
+    font-weight: 400 !important;
+    line-height: 1.1 !important;
+    text-shadow: none !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-description {
+    display: block !important;
+    color: #66584b !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-show-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-top: auto !important;
+    padding-top: 18px !important;
+    color: #8b5a37 !important;
+    font-size: 13px !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-show-link span {
+    color: #8b5a37 !important;
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .inner-page.service-page .service-projects .project-carousel .project-card-title-image {
+    display: block;
+  }
+  .inner-page.service-page .service-projects .project-carousel .project-card-title-info,
+  .inner-page.service-page .service-projects .project-carousel .project-card-description,
+  .inner-page.service-page .service-projects .project-carousel .project-card-show-link {
+    display: none !important;
+  }
+}
