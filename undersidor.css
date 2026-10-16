@@ -359,7 +359,7 @@ body.lightbox-open {
   }
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .inner-main {
     padding-top: 184px;
   }
@@ -654,7 +654,7 @@ body.lightbox-open {
   white-space: nowrap;
 }
 
-@media (max-height:760px) and (min-width:801px) {
+@media (max-height:760px) and (min-width: 811px) {
   .service-showcase {
     gap: 14px;
     padding-top: 14px;
@@ -672,7 +672,7 @@ body.lightbox-open {
   }
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .inner-page.service-page .inner-main {
     padding-top: 130px;
   }
@@ -1084,7 +1084,7 @@ body.project-gallery-open {
   margin-top: 7px;
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .service-showcase {
     min-height: 0;
     height: auto;
@@ -1147,7 +1147,7 @@ body.project-gallery-open {
   min-width: 0;
 }
 
-@media (max-height:850px) and (min-width:801px) {
+@media (max-height:850px) and (min-width: 811px) {
   .service-showcase {
     gap: clamp(10px,1.5vh,16px);
     padding-top: 12px;
@@ -1181,7 +1181,7 @@ body.project-gallery-open {
   }
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .service-projects {
     grid-template-columns: 28px minmax(0,1fr) 28px;
     column-gap: 7px;
@@ -1209,7 +1209,7 @@ body.project-gallery-open {
 
 /*Korrigering efter visuell kontroll: håll hero och projektkarusell åtskilda.*/
 
-@media (min-width:801px) {
+@media (min-width: 811px) {
   .service-showcase {
     display: flex;
     flex-direction: column;
@@ -1232,7 +1232,7 @@ body.project-gallery-open {
   }
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .service-showcase {
     padding-top: 0;
     gap: 14px;
@@ -1257,7 +1257,7 @@ body.project-gallery-open {
 
 /*Slutlig finjustering: visa hela tjänstebilden och låt pilknapparna ligga över karusellen.*/
 
-@media (min-width:801px) {
+@media (min-width: 811px) {
   .service-image-hero {
     background: var(--cream,#f3eee6);
   }
@@ -1310,7 +1310,7 @@ body.project-gallery-open {
   }
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .service-image-hero .service-hero-picture img {
     object-fit: contain;
     object-position: center;
@@ -1319,7 +1319,7 @@ body.project-gallery-open {
 
 /*Finjustering: fullbredds-karusell på mobil och pilar utanför korten på desktop.*/
 
-@media (min-width:801px) {
+@media (min-width: 811px) {
   .service-showcase {
     min-height: calc(100svh - var(--header-height,82px));
     gap: clamp(16px,2.2vh,24px);
@@ -1372,7 +1372,7 @@ body.project-gallery-open {
   }
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   /*Karusellen går hela vägen till högerkanten utan en extra tom remsa.*/
   .service-projects {
     display: block;
@@ -1400,7 +1400,7 @@ body.project-gallery-open {
 
 /*Slutjustering av tjänstesidor efter önskemål.*/
 
-@media (min-width:801px) {
+@media (min-width: 811px) {
   /*Samma rubrikstorlek som övriga stora rubriker; mer horisontellt utrymme.*/
   .service-image-hero .detail-hero-title {
     padding-left: clamp(18px,2vw,30px);
@@ -1416,7 +1416,7 @@ body.project-gallery-open {
   }
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   /*Hero ligger direkt efter headern utan extra toppmarginal.*/
   .inner-page.service-page .inner-main {
     padding-top: 0 !important;
@@ -1431,7 +1431,7 @@ body.project-gallery-open {
 
 /*Stabil slutlig korrigering av tjänstesidor*/
 
-@media (min-width:801px) {
+@media (min-width: 811px) {
   /*Samma typografiska storlek på alla tjänsters heror.*/
   .service-image-hero .detail-hero-title h1 {
     font-size: clamp(48px,5.2vw,76px) !important;
@@ -1453,7 +1453,7 @@ body.project-gallery-open {
   }
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   /*På mobil ska headern ligga i dokumentflödet, så herobilden börjar direkt under den.*/
   .inner-page.service-page .inner-main {
     padding-top: 0 !important;
@@ -1515,7 +1515,7 @@ body.project-gallery-open {
   border-color: var(--copper);
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .service-showcase {
     padding: 0 0 24px;
   }
@@ -1531,7 +1531,7 @@ body.project-gallery-open {
 
 /*Kant-till-kant-komposition på tjänstesidorna – samma visuella känsla som startsidans tjänsteöversikt*/
 
-@media (min-width:801px) {
+@media (min-width: 811px) {
   .inner-page.service-page .service-showcase {
     width: 100%;
     min-height: calc(100svh - var(--header-height,82px));
@@ -1600,7 +1600,7 @@ body.project-gallery-open {
   }
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .inner-page.service-page .service-showcase {
     padding-top: 0;
   }
@@ -1616,7 +1616,7 @@ body.project-gallery-open {
 
 /*Slutlig layoutjustering: fullbreddshero, fristående karusellpilar och konsekvent mobilheader.*/
 
-@media (min-width:801px) {
+@media (min-width: 811px) {
   .service-showcase {
     width: 100%;
     min-height: calc(100svh - var(--header-height,82px));
@@ -1730,7 +1730,7 @@ body.project-gallery-open {
   border-color: var(--copper,#a87957) !important;
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .inner-page.service-page .inner-main {
     padding-top: 0 !important;
   }
@@ -1773,7 +1773,7 @@ body.project-gallery-open {
 
 /*Final korrigering 2026-10-14: tjänsteheadern ska vara centrerad och rymma alla flikar.*/
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .inner-page.service-page .inner-main {
     padding-top: 0 !important;
   }
@@ -1796,7 +1796,7 @@ body.project-gallery-open {
 
 /*Desktop: hero ska ligga direkt mot sidkanterna; pilarna är egna block.*/
 
-@media (min-width:801px) {
+@media (min-width: 811px) {
   .inner-page.service-page .inner-main {
     padding-top: 0 !important;
   }
@@ -1820,7 +1820,7 @@ body.project-gallery-open {
 
 /*Faktisk slutlig korrigering: undvik att hero hamnar bakom den fasta desktop-headern.*/
 
-@media (min-width:801px) {
+@media (min-width: 811px) {
   .inner-page.service-page .inner-main {
     margin-top: 0 !important;
   }
@@ -1901,7 +1901,7 @@ body.project-gallery-open {
   }
 }
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .inner-page.service-page .inner-main {
     padding-top: 0 !important;
     margin-top: 0 !important;
@@ -1978,7 +1978,7 @@ body.project-gallery-open {
   border-radius: 0 !important;
 }
 
-@media (min-width:801px) {
+@media (min-width: 811px) {
   .inner-page.service-page .service-showcase {
     height: calc(100svh - var(--header-height,82px)) !important;
     min-height: 0 !important;
@@ -2076,7 +2076,7 @@ body.project-gallery-open {
 
 /*Mobil: hero börjar direkt under headern och referenserna får aldrig ett täckande lager.*/
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .inner-page.service-page .inner-main {
     padding-top: 0 !important;
     margin-top: 0 !important;
@@ -2196,7 +2196,7 @@ body.project-gallery-open {
 
 /*Bildens naturliga 16:9-format används på desktop: ingen beskärning och inga sidofält.*/
 
-@media (min-width:801px) {
+@media (min-width: 811px) {
   .inner-page.service-page .service-showcase-top {
     height: auto !important;
     flex: 0 0 auto !important;
@@ -2216,7 +2216,7 @@ body.project-gallery-open {
 
 /*Referenskarusellen på startsidan: mobil ska kunna svepa fritt, utan vit overlay.*/
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .references-carousel {
     display: block !important;
     width: 100% !important;
@@ -2303,7 +2303,7 @@ body.project-gallery-open {
   font-size: 12px !important;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 810px) {
   .inner-page.service-page .service-projects .project-card-title {
     left: 12px !important;
     bottom: 10px !important;
@@ -2320,7 +2320,7 @@ body.project-gallery-open {
 
 /*Slutjustering: mobilhero visar hela bildytan utan oavsiktlig beskärning.*/
 
-@media (max-width: 800px) {
+@media (max-width: 810px) {
   .inner-page.service-page .service-image-hero {
     aspect-ratio: 16 / 9 !important;
     height: auto !important;
@@ -2340,7 +2340,7 @@ body.project-gallery-open {
 
 /*Karusellens pilar ska endast vara lika höga som bildraden.*/
 
-@media (min-width: 801px) {
+@media (min-width: 811px) {
   .inner-page.service-page .service-showcase {
     height: auto !important;
     min-height: calc(100svh - var(--header-height, 82px)) !important;
@@ -2370,7 +2370,7 @@ body.project-gallery-open {
 
 /*Pilarna fyller exakt samma höjd som bildraden i projektkarusellen.*/
 
-@media (min-width: 801px) {
+@media (min-width: 811px) {
   .inner-page.service-page .service-projects {
     align-items: stretch !important;
   }
@@ -2390,7 +2390,7 @@ body.project-gallery-open {
 
 /*FINAL SERVICE PAGE FIX: hero begins below the fixed header and keeps full image visible on mobile.*/
 
-@media (max-width:800px) {
+@media (max-width: 810px) {
   .inner-page.service-page .service-showcase {
     padding: 0 0 22px !important;
     gap: 18px !important;
@@ -2562,7 +2562,7 @@ body.project-gallery-open {
 
 
 /* Finjustering 2026-10-15: balanserade sidmarginaler för tjänsternas karuseller. */
-@media (min-width: 801px) {
+@media (min-width: 811px) {
   .inner-page.service-page .service-projects {
     padding-left: 18px !important;
     padding-right: 18px !important;
@@ -2581,7 +2581,7 @@ body.project-gallery-open {
 
 
 /* Mobil: diskret sidmarginal runt projektkarusellen på tjänstesidor. */
-@media (max-width: 800px) {
+@media (max-width: 810px) {
   .inner-page.service-page .service-projects {
     padding-left: 18px !important;
     padding-right: 18px !important;

@@ -201,7 +201,7 @@ section {
 
 /*Smaller desktop/laptop widths: keep the entire navigation on one line.*/
 
-@media (min-width: 801px) and (max-width: 1150px) {
+@media (min-width: 811px) and (max-width: 1150px) {
   :root {
     --header-height: 82px;
     --header-logo-width: 220px;
@@ -223,7 +223,7 @@ section {
 /*Mobile: compact, identical header on the homepage and all subpages.
    Fixed positioning is intentional; it does not depend on sticky ancestors.*/
 
-@media (max-width: 800px) {
+@media (max-width: 810px) {
   :root {
     --header-height: 118px;
     --header-logo-width: min(calc(100vw - 28px), 590px);
@@ -340,7 +340,7 @@ section {
 
 /*Desktop content offset matches the fixed header.*/
 
-@media (min-width: 801px) {
+@media (min-width: 811px) {
   body > main,
   body > .inner-main,
   main {
