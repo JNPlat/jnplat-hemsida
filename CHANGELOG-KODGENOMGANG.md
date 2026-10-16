@@ -65,12 +65,12 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 - Tog bort de mellanliggande breddsbrytpunkterna i startsidans CSS, undersidornas CSS och headerns CSS. Den gemensamma layoutgränsen är fortsatt 810/811 px; mindre mobiljusteringar samt höjd- och pekdonsspecifika regler finns kvar där de har en egen funktion.
 - Gjorde flera desktopmått flytande med `clamp()`, bland annat headerns logotyp, navigationens mellanrum, innehållsbredd och utvalda rubrik-/panelmått.
 - Samlade tjänstetiketter och tjänstesidornas sökvägar i `site-utils.js`, så projektsidan inte behöver en separat kopia av tjänstekartan.
-- Utökade `scripts/validate-site.mjs` med kontroll av projektkatalogens grundstruktur, unika projekt-ID:n, tillåtna tjänstekategorier och den gemensamma breakpoint-konventionen.
+- Utökade `scripts/validate-site.mjs` med kontroll av projektkatalogens grundstruktur, unika projekt-ID:n, tillåtna tjänstekategorier, befintliga projektbilder och den gemensamma breakpoint-konventionen.
 - Tog bort en oanvänd `fileSet`-variabel från valideraren.
 
 ## Kontroller och begränsningar
 
-- GitHub Actions-valideringen har passerat före den senaste utökningen av valideraren; den senaste körningen är igång.
+- GitHub Actions-valideringen passerar för den senaste versionen av arbetsgrenen.
 - CSS-klamrar och kvarvarande breddsbrytpunkter har kontrollerats statiskt.
 - Ingen visuell webbläsartestning har utförts. De responsiva CSS-ändringarna behöver därför verifieras på riktiga skärmstorlekar innan de betraktas som färdiggranskade.
 
