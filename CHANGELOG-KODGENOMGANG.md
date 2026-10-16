@@ -62,7 +62,7 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 ## Responsiv refaktorering och validering – 2026-10-16
 
 - Tog bort de separata desktopreglerna vid 1150 px i startsidans CSS och headern samt 1100 px på undersidorna.
-- Tog även bort den extra 460 px-brytpunkt som tidigare växlade projektkorten till en kolumn. Mobilens projektgrid använder nu `auto-fit` med en minsta kortbredd, så antalet kolumner anpassas flytande inom samma mobil-/surfplatteläge.
+- Tog även bort den extra 460 px-brytpunkt som tidigare växlade projektkorten till en kolumn. Mobilens projektgrid använder nu `auto-fit` med en minsta kortbredd på 190 px, så antalet kolumner anpassas flytande inom samma mobil-/surfplatteläge.
 - Ersatte stegvisa mått med flytande CSS-värden där det gick att bevara samma grundlayout.
 - Behöll två övergripande layoutlägen: mobil/surfplatta till och med 810 px och desktop från 811 px. Mindre mobiljusteringar och särskilda regler för höjd eller pekdon finns kvar där de fyller en separat funktion.
 - Samlade tjänstenamn och tjänstesidornas sökvägar i `site-utils.js`, så `project.js` inte behöver en separat kopia av tjänstekonfigurationen.
