@@ -81,3 +81,9 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 - Tog bort motstridiga mellanvärden för pilarnas höjd och justering som omedelbart skrevs över av nästa regel; den slutliga layouten behålls uttryckligen: pilarna sträcker sig med karusellraden.
 - Behöll övriga deklarationer som styr gridkolumner, mellanrum och karusellens innehåll.
 - Detta är en CSS-kaskadstädning utifrån deklarationsordningen, inte en visuell verifiering. Webbläsartestning återstår.
+
+## Konsolidering av mobilens referenskarusell – 2026-10-16
+
+- Tog bort en tidigare mobilregeluppsättning för referenskarusellen som skrevs över av den senare slutliga lösningen för svepning.
+- Behöll den sista regeln som styr mobilens horisontella svep, kortbredd, inre sidmarginaler och dolda pilar.
+- Syftet är att minska mängden CSS som ser aktiv ut men inte längre styr slutresultatet. Ingen visuell webbläsartestning har utförts, så ändringen är ännu inte visuellt verifierad.
