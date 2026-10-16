@@ -273,15 +273,16 @@ section {
   .site-header .main-nav {
     display: flex;
     flex: 0 0 31px;
-    width: max-content;
-    max-width: 100%;
+    width: 100%;
+    max-width: none;
     min-width: 0;
-    margin: 0 auto;
-    padding: 0;
+    margin: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: var(--header-nav-gap);
     overflow: visible;
   }
@@ -297,6 +298,7 @@ section {
   }
   .site-header .main-nav > .header-contact {
     flex: 0 0 auto;
+    margin-left: auto;
     padding: 2px 3px;
     gap: 2px;
     font-family: "Cormorant Garamond", Georgia, serif;
