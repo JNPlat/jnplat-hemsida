@@ -40,8 +40,8 @@
         ? `<img src="../${escapeAttribute(image)}" alt="${escapeAttribute(project.title)}" loading="lazy">`
         : '';
       return `<button class="project-card" type="button" data-project-index="${index}" aria-label="Se bilder från ${escapeAttribute(project.title)}">` +
-        `<div class="project-card-image">${imageMarkup}<span class="project-card-open" aria-hidden="true">↗</span></div>` +
-        `<span class="project-card-info"><span class="project-card-title">${escapeHTML(project.title)}</span>` +
+        `<div class="project-card-image">${imageMarkup}<span class="project-card-title project-card-title-image">${escapeHTML(project.title)}</span><span class="project-card-open" aria-hidden="true">↗</span></div>` +
+        `<span class="project-card-info"><span class="project-card-title project-card-title-info">${escapeHTML(project.title)}</span>` +
         `<span class="project-card-description">${escapeHTML(project.description || '')}</span>` +
         `<span class="text-link project-card-show-link">Se bilder <span aria-hidden="true">→</span></span></span></button>`;
     }).join('');

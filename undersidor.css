@@ -2717,3 +2717,104 @@ body.project-gallery-open {
     background: rgba(243, 238, 230, .96);
   }
 }
+
+
+/* Precisionsfix: separata titlar för desktop och mobil, utan ändring av bildens grundstorlek. */
+.project-gallery-modal[hidden],
+.project-image-zoom[hidden] {
+  display: none !important;
+}
+
+@media (min-width: 801px) {
+  .inner-page.service-page .service-projects .project-carousel .project-card {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, .72fr);
+    gap: clamp(18px, 2vw, 30px);
+    align-items: stretch;
+    height: auto !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-image {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-title-image {
+    display: none !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-info {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px 0 !important;
+    min-height: 0 !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-title-info {
+    position: static !important;
+    inset: auto !important;
+    display: block !important;
+    margin: 0 0 12px !important;
+    color: var(--text, #29251f) !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: clamp(24px, 2.2vw, 34px) !important;
+    font-weight: 400 !important;
+    line-height: 1.08 !important;
+    text-shadow: none !important;
+    pointer-events: auto !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-description {
+    display: block !important;
+    color: var(--text, #29251f);
+    font-size: clamp(14px, 1.05vw, 16px);
+    line-height: 1.6;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-show-link {
+    margin-top: auto !important;
+    padding-top: 18px;
+    color: var(--copper, #825536) !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .inner-page.service-page .service-projects .project-carousel .project-card {
+    display: block !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-title-image {
+    display: block !important;
+    position: absolute !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 10px !important;
+    z-index: 2 !important;
+    color: #fffaf2 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: clamp(18px, 5vw, 23px) !important;
+    font-weight: 500 !important;
+    line-height: 1.05 !important;
+    text-shadow: 0 1px 8px rgba(0,0,0,.18) !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel .project-card-title-info,
+  .inner-page.service-page .service-projects .project-carousel .project-card-description,
+  .inner-page.service-page .service-projects .project-carousel .project-card-show-link {
+    display: none !important;
+  }
+}
+
+/* Showroomets backdrop: mörk gräddvit transparens, som i referensbilden. */
+.project-gallery-backdrop {
+  background: rgba(91, 79, 64, .5) !important;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
