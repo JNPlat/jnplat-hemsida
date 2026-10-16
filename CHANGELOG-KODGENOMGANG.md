@@ -93,3 +93,12 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 - Tog bort en äldre desktopregeluppsättning som lade pilar ovanpå korten och skapade extra sidpadding i viewporten.
 - Behöll den senare regeluppsättningen där pilarna ligger i egna gridkolumner och viewporten/kortspåret styrs separat. Den kant-till-kant-regeln för referensbandet är kvar.
 - Automatisk validering körs på den nya committen. Visuell kontroll i webbläsare återstår.
+
+## Refaktorering av tjänstesidor och projektpaneler – 2026-10-16
+
+- Samlade tjänsteheron, textpanelen och projektkarusellen i en enda tydlig uppsättning basregler och två responsiva layoutlägen.
+- Tog bort äldre, överlappande tjänstesidesregler i stället för att lägga till ytterligare en korrigeringssektion.
+- Projektkort på desktop visar bild till vänster och beskrivning i en sammanhängande varmgrå panel till höger. Mobil behåller bildkort med projektnamn överlagrat.
+- Projektbeskrivningarna hämtas från `data/projects.json` och HTML-escapas innan de renderas.
+- Tog bort samtliga `!important`-deklarationer från CSS-filerna.
+- Automatisk syntax- och referenskontroll utförs separat; visuell kontroll i riktig webbläsare måste fortfarande göras innan publicering.

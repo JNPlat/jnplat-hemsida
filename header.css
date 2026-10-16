@@ -55,7 +55,7 @@ section {
   grid-row: 1;
   justify-self: start;
   align-self: center;
-  transform: none !important;
+  transform: none;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -82,7 +82,7 @@ section {
   grid-column: 2;
   grid-row: 1;
   align-self: center;
-  transform: none !important;
+  transform: none;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -181,7 +181,7 @@ section {
   .site-header .main-nav > .header-contact:hover,
   .site-header .main-nav > .header-contact:hover .header-contact-label,
   .site-header .main-nav > .header-contact:hover .header-contact-arrow {
-    color: #fffdf9 !important;
+    color: #fffdf9;
   }
 }
 
@@ -212,11 +212,11 @@ section {
     --header-nav-font-size: clamp(12px, 3.2vw, 15px);
   }
   .site-header {
-    position: fixed !important;
+    position: fixed;
     inset: 0 0 auto 0;
     height: var(--header-height);
     min-height: var(--header-height);
-    transform: none !important;
+    transform: none;
     z-index: 10000;
   }
   .site-header .nav-wrap {
@@ -311,8 +311,8 @@ section {
   .inner-main,
   .inner-page .inner-main,
   .inner-page.service-page .inner-main {
-    padding-top: var(--header-height) !important;
-    margin-top: 0 !important;
+    padding-top: var(--header-height);
+    margin-top: 0;
   }
   section {
     scroll-margin-top: var(--header-height);
@@ -325,9 +325,9 @@ section {
   body > main,
   body > .inner-main,
   main {
-    padding-top: var(--header-height) !important;
+    padding-top: var(--header-height);
   }
   .inner-page.service-page .inner-main {
-    padding-top: var(--header-height) !important;
+    padding-top: var(--header-height);
   }
 }
