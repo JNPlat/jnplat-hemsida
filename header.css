@@ -4,8 +4,8 @@
 
 :root {
   --header-height: 82px;
-  --header-logo-width: 280px;
-  --header-nav-gap: 28px;
+  --header-logo-width: clamp(220px, 20vw, 280px);
+  --header-nav-gap: clamp(14px, 1.3vw, 28px);
 }
 
 .site-header {
@@ -36,7 +36,7 @@ section {
 }
 
 .site-header .nav-wrap {
-  width: min(calc(100% - 64px), var(--max-width, 1320px));
+  width: min(calc(100% - clamp(40px, 4vw, 64px)), var(--max-width, 1320px));
   max-width: var(--max-width, 1320px);
   height: 100%;
   min-height: 0;
@@ -46,7 +46,7 @@ section {
   grid-template-columns: var(--header-logo-width) minmax(0, 1fr);
   grid-template-rows: 1fr;
   align-items: center;
-  column-gap: clamp(22px, 2.8vw, 38px);
+  column-gap: clamp(18px, 2.4vw, 38px);
   position: relative;
 }
 
@@ -107,7 +107,7 @@ section {
   padding: 8px 0;
   color: var(--text, #302a24);
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 16px;
+  font-size: clamp(14px, 1.4vw, 16px);
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0.01em;
@@ -199,26 +199,7 @@ section {
   }
 }
 
-/*Smaller desktop/laptop widths: keep the entire navigation on one line.*/
-
-@media (min-width: 811px) and (max-width: 1150px) {
-  :root {
-    --header-height: 82px;
-    --header-logo-width: 220px;
-    --header-nav-gap: 14px;
-  }
-  .site-header .nav-wrap {
-    width: calc(100% - 40px);
-    column-gap: 20px;
-  }
-  .site-header .main-nav > .nav-link {
-    font-size: 14px;
-  }
-  .site-header .main-nav > .header-contact {
-    padding: 7px 10px;
-    font-size: 14px;
-  }
-}
+/* Desktop sizing scales fluidly; 811px is the only layout breakpoint. */
 
 /*Mobile: compact, identical header on the homepage and all subpages.
    Fixed positioning is intentional; it does not depend on sticky ancestors.*/
