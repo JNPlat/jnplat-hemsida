@@ -1766,3 +1766,13 @@ h6 {
     line-height: 1.35 !important;
   }
 }
+
+
+/* Startsida mobil: separera tjänster från Aktuellt och tajta till rubrik/bild */
+@media (max-width: 600px) {
+  #tjanster { margin-bottom: 34px; }
+  #aktuellt { margin-top: 0; padding-top: 0; }
+  #aktuellt .current-content { padding-top: 28px; padding-bottom: 30px; }
+  #aktuellt .current-content h2 { margin-top: 0; margin-bottom: 10px; }
+  #aktuellt .current-gallery { margin-top: 0; }
+}

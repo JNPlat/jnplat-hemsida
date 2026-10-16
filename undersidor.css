@@ -781,7 +781,8 @@ body.lightbox-open {
 .project-card-open {
   position: absolute;
   right: 10px;
-  bottom: 10px;
+  top: 10px;
+  bottom: auto;
   padding: 7px 10px;
   color: #fffaf2;
   background: rgba(30,25,20,.72);
@@ -825,7 +826,7 @@ body.lightbox-open {
 .project-gallery-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(20,17,14,.82);
+  background: rgba(243,238,230,.91);
   backdrop-filter: blur(5px);
 }
 
@@ -884,7 +885,7 @@ body.lightbox-open {
   justify-content: center;
   min-height: 180px;
   height: min(58svh,620px);
-  background: #ded6ca;
+  background: #eee7dc;
 }
 
 .project-gallery-main-image {
@@ -2649,3 +2650,46 @@ body.project-gallery-open {
     display: none !important;
   }
 }
+
+
+/* Samlad uppdatering: projektgalleri och mobil tjänstehero */
+.project-gallery-dialog { background: #f3eee6; }
+.project-gallery-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(240px, .8fr);
+  gap: clamp(18px, 2.5vw, 32px);
+  align-items: stretch;
+}
+.project-gallery-stage { min-width: 0; background: #eee7dc; }
+.project-gallery-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  padding: clamp(16px, 2vw, 28px);
+  background: #eee7dc;
+}
+.project-gallery-side .project-gallery-description { max-width: none; }
+.project-gallery-side .project-gallery-count { align-self: flex-start; }
+.project-gallery-thumbnails {
+  position: static;
+  margin-top: 14px;
+  padding: 8px 0 2px;
+  background: transparent;
+}
+.project-card-open { top: 10px; right: 10px; bottom: auto; }
+@media (max-width: 800px) {
+  .service-image-hero .detail-hero-title .eyebrow { display: none !important; }
+}
+@media (max-width: 600px) {
+  .project-gallery-content { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .project-gallery-side { padding: 12px 0 4px; background: transparent; gap: 8px; }
+  .project-gallery-side .project-gallery-description { font-size: 14px; line-height: 1.45; }
+  .project-gallery-side .project-gallery-count { font-size: 11px; }
+  .project-gallery-thumbnails { margin-top: 8px; }
+}
+
+.project-gallery-side-heading h2 { margin: 0 0 18px; font: 400 clamp(27px,3vw,38px)/1.05 "Cormorant Garamond",Georgia,serif; color: #29251f; }
+.project-gallery-side-heading .eyebrow { margin: 0 0 8px; color: var(--copper,#825536); font-size: 10px; letter-spacing: .13em; }
+.project-gallery-top { min-height: 0; margin-bottom: 4px; justify-content: flex-end; }
+@media (max-width:600px) { .project-gallery-side-heading h2 { margin-bottom: 10px; } }
