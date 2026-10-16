@@ -1710,3 +1710,59 @@ h6 {
     display: none !important;
   }
 }
+
+/* Mobil: tjänsternas rubrik och beskrivning ligger direkt på bilden. Desktop behålls oförändrad. */
+@media (max-width: 800px) {
+  .services-section .services-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+  .services-section .service-card {
+    position: relative !important;
+    display: block !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    background: transparent !important;
+  }
+  .services-section .service-image {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    overflow: hidden !important;
+  }
+  .services-section .service-image::after {
+    content: "";
+    position: absolute;
+    inset: 25% 0 0;
+    background: linear-gradient(to bottom, rgba(20,16,13,0), rgba(20,16,13,.68));
+    pointer-events: none;
+  }
+  .services-section .service-info {
+    position: absolute !important;
+    inset: auto 0 0 !important;
+    z-index: 1 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 24px 20px 22px !important;
+    box-sizing: border-box !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .services-section .service-info h3 {
+    margin: 0 0 7px !important;
+    color: #fffaf2 !important;
+    font-size: clamp(25px, 6.6vw, 34px) !important;
+    line-height: 1.02 !important;
+  }
+  .services-section .service-info p {
+    margin: 0 !important;
+    color: rgba(255,250,242,.92) !important;
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+  }
+}

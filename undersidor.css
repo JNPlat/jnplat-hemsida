@@ -2612,3 +2612,40 @@ body.project-gallery-open {
     box-sizing: border-box !important;
   }
 }
+
+/* Mobil: tjänstesidans ingress och brödtext visas på hero-bilden under rubriken. Desktop oförändrad. */
+.mobile-service-copy { display: none; }
+@media (max-width: 800px) {
+  .inner-page.service-page .service-image-hero .detail-hero-title {
+    inset: auto 0 0 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 18px 20px 20px !important;
+    background: linear-gradient(to bottom, rgba(24,19,15,0), rgba(24,19,15,.78)) !important;
+  }
+  .inner-page.service-page .service-image-hero .detail-hero-title h1 {
+    margin: 0 0 7px !important;
+    color: #fffaf2 !important;
+  }
+  .inner-page.service-page .mobile-service-copy {
+    display: block !important;
+    max-width: 680px;
+    color: rgba(255,250,242,.94) !important;
+    font-size: 15px !important;
+    line-height: 1.35 !important;
+  }
+  .inner-page.service-page .mobile-service-copy p {
+    margin: 0 !important;
+    color: inherit !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+  .inner-page.service-page .mobile-service-copy .mobile-service-lead {
+    margin-bottom: 5px !important;
+    font-size: 17px !important;
+    line-height: 1.25 !important;
+  }
+  .inner-page.service-page .service-copy {
+    display: none !important;
+  }
+}
