@@ -2713,3 +2713,16 @@ body.project-gallery-open {
   }
   .inner-page.service-page .service-copy { display: none !important; }
 }
+
+
+/* Mobil: håll brödtexten visuellt separat från projektkarusellen. */
+@media (max-width: 800px) {
+  .inner-page.service-page .mobile-service-copy {
+    background: #e9e2d7 !important;
+    color: #493a30 !important;
+    border-bottom: 1px solid #d9cdbd;
+  }
+  .inner-page.service-page .service-projects {
+    background: #faf7f1 !important;
+  }
+}
