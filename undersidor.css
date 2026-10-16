@@ -2654,13 +2654,36 @@ body.project-gallery-open {
     overflow: hidden !important;
   }
 
+  .inner-page.service-page .service-projects {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  .inner-page.service-page .service-projects > .project-carousel-prev,
+  .inner-page.service-page .service-projects > .project-carousel-next {
+    display: none !important;
+  }
+
   .inner-page.service-page .service-projects .project-carousel {
+    display: flex !important;
     justify-content: flex-start !important;
     align-items: flex-start !important;
     min-width: 0 !important;
     width: 100% !important;
+    margin: 0 !important;
+    padding: 0 0 4px !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    direction: ltr !important;
+  }
+
+  .inner-page.service-page .service-projects .project-carousel > .project-card {
+    flex: 0 0 clamp(240px, 24vw, 360px) !important;
+    min-width: 0 !important;
     margin-left: 0 !important;
-    padding-left: 0 !important;
+    order: initial !important;
   }
 
   .inner-page.service-page .service-projects .project-carousel .project-card-image {
