@@ -1,11 +1,28 @@
 # J. Norberg Plåtslageri AB – webbplats
 
-Statisk webbplats för J. Norberg Plåtslageri AB. Behåll mappstrukturen och relativa sökvägar när webbplatsen publiceras.
+Statisk webbplats för J. Norberg Plåtslageri AB. Publiceras som statiska filer. Behåll mappstrukturen och relativa sökvägar.
+
+## Snabbguide: vad vill du ändra?
+
+| Jag vill ändra… | Börja här |
+|---|---|
+| Text, bilder eller sektioner på startsidan | `index.html` |
+| Texten på en tjänstesida | Relevant fil i `tjanster/` |
+| Vilka projekt som visas och deras beskrivningar | `data/projects.json` |
+| Typsnitt, storlekar, färger och layout på startsidan | `style.css` |
+| Utseende på tjänste- och projektsidor | `undersidor.css` |
+| Header, logotyp, navigering och headerhöjd | `header.css` |
+| Startsida: navigering och referenskarusell | `script.js` |
+| Tjänstesidor: projektkort och bildgalleri | `service.js` |
+| Projektdetaljsida och galleri | `project.js` |
+| Gemensamma JavaScript-hjälpfunktioner | `site-utils.js` |
+
+**Viktigt:** börja med rätt fil och sök efter den aktuella klassens namn innan du lägger till nya CSS-regler. Lägg inte till en ny override om en befintlig regel kan ändras på ett säkert sätt. Headerns mått ägs av `header.css`.
 
 ## Filstruktur
 
 ```text
-jnplat-hemsida-main/
+jnplat-hemsida/
 ├── index.html
 ├── projekt.html
 ├── style.css
@@ -23,70 +40,50 @@ jnplat-hemsida-main/
 │   ├── restaurering.html
 │   └── specialprojekt.html
 ├── images/
-└── logo/
+├── logo/
+├── project-template.json.txt
+├── README.md
+└── CHANGELOG-KODGENOMGANG.md
 ```
 
 ## Vad filerna gör
 
-- `index.html` – startsida.
-- `tjanster/*.html` – fyra tjänstesidor.
+- `index.html` – startsidans innehåll och struktur.
+- `tjanster/*.html` – innehåll och struktur för de fyra tjänstesidorna.
 - `projekt.html?id=<projekt-id>` – gemensam projektdetaljsida.
 - `style.css` – startsidans och webbplatsens visuella komponenter.
 - `undersidor.css` – tjänste- och projektsidornas layout, projektkort och gallerier.
 - `header.css` – gemensam header, navigering och sidornas header-offset.
 - `script.js` – startsidans navigering och referenskarusell.
-- `service.js` – laddar publicerade projekt på tjänstesidorna och hanterar projektgalleriet.
+- `service.js` – laddar projekt på tjänstesidorna och hanterar projektgalleriet.
 - `project.js` – laddar projektdetaljer och bildgalleri.
 - `site-utils.js` – gemensamma hjälpfunktioner för tjänstenamn och HTML-escaping.
 - `data/projects.json` – projektinnehåll, bildsökvägar och publiceringsstatus.
+- `project-template.json.txt` – exempel på ett projektobjekt att kopiera till projektlistan.
+- `images/` och `logo/` – bilder, logotyp och ikoner.
 
-## CSS-ansvar
+## Typografi och design
 
-- `header.css` äger headerns placering och mått. Den laddas efter de andra lokala CSS-filerna.
-- `style.css` äger startsidans visuella komponenter.
-- `undersidor.css` äger tjänste- och projektsidornas layout.
+Typografin är ännu inte helt standardiserad mellan startsidan och undersidorna. Innan vi gör en större CSS-omstrukturering ska vi kartlägga nuvarande storlekar och besluta en gemensam skala för brödtext, mellanrubriker och rubriker. Ändra inte alla storlekar i ett svep: vissa rubriker, etiketter och knappar behöver egna proportioner och mobilregler.
 
-Regler i olika media queries eller senare override-block ska inte slås ihop utan visuell kontroll. Ordningen i CSS kan påverka utseendet även när selektorerna verkar lika.
+Färgvariabler och gemensamma designvärden finns i början av `style.css`. Headerns gemensamma storlekar finns i `header.css`. Undvik att duplicera variabler i flera filer utan ett tydligt skäl.
 
 ## Lägg till eller ändra ett projekt
 
-1. Lägg bilderna i en lämplig undermapp i `images/`.
+1. Lägg bilderna i en lämplig undermapp i `images/projekt/`.
 2. Lägg till eller ändra projektobjektet i `data/projects.json`.
 3. Använd ett unikt `id`.
 4. `service` ska vara `byggnadsplatslageri`, `kopparslageri`, `restaurering` eller `specialprojekt`.
-5. Skriv bildsökvägar relativt webbplatsens rot, exempelvis `images/st-johannes.webp`.
-6. Sätt `published` till `true` för att visa projektet. `false` döljer det.
+5. Skriv bildsökvägar relativt webbplatsens rot, exempelvis `images/projekt/nytt-projekt/1.jpg`.
+6. Sätt `published` till `true` för att visa projektet och `false` för att dölja det.
+7. Använd `project-template.json.txt` som mall och kopiera själva JSON-objektet, inte HTML-kommentaren längst ned i mallfilen.
 
-Exempel:
+## Grundkontroller före publicering
 
-```json
-{
-  "id": "villa-bergabo",
-  "title": "Villa Bergabo",
-  "service": "restaurering",
-  "description": "Kort presentation av arbetet.",
-  "longDescription": "Valfri längre projektbeskrivning.",
-  "hero": "images/villa-bergabo.webp",
-  "gallery": [
-    "images/villa-bergabo.webp"
-  ],
-  "published": true
-}
-```
-
-Öppna projektet via `projekt.html?id=villa-bergabo`. Om en hero-bild inte finns med i galleriet läggs den till automatiskt av projektskriptet.
-
-## Kontroller före publicering
-
-- Kontrollera JavaScript med `node --check` för varje `.js`-fil.
 - Kontrollera att `data/projects.json` är giltig JSON.
-- Testa webbplatsen via en lokal webbserver, särskilt eftersom sidorna hämtar projektdata med `fetch()`. Att öppna HTML direkt via `file://` kan blockera hämtningen.
-- Testa startsida, samtliga tjänstesidor och projektsidan på desktop och mobil.
-- Kontrollera att navigering, ankarlänkar, karuseller och bildgallerier fungerar.
-- Kontrollera att bilder laddas och att sidan inte får horisontell overflow på smala skärmar.
+- Kontrollera att alla lokala `src`- och `href`-sökvägar pekar på befintliga filer.
+- Kontrollera projektbilderna och att projekt med `published: false` inte visas.
+- Testa startsida, alla tjänstesidor och projektdetaljsidan på både desktop och mobil.
+- Kontrollera särskilt header, karuseller, bildgallerier och horisontell sidscrollning.
 
-Automatiska syntaxkontroller ersätter inte ett visuellt test i en riktig webbläsare.
-
-## Publicering
-
-Ladda upp innehållet i den här mappen till webbhotellets webbrot. Behåll mappnamnen och relativa sökvägar. Peka därefter domänen `jnplat.se` mot webbhotellet enligt leverantörens instruktioner.
+En lyckad syntaxkontroll ersätter inte visuell testning i en riktig webbläsare.
