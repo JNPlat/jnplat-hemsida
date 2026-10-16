@@ -40,9 +40,7 @@
         ? `<img src="../${escapeAttribute(image)}" alt="${escapeAttribute(project.title)}" loading="lazy">`
         : '';
       const description = project.description || '';
-      const descriptionLength = description.trim().length;
-      const panelWidth = Math.min(420, Math.max(230, 230 + Math.max(0, descriptionLength - 90) * 0.55));
-      return `<button class="project-card" type="button" data-project-index="${index}" style="--project-description-width:${panelWidth}px" aria-label="Öppna bildgalleri för ${escapeAttribute(project.title)}">` +
+      return `<button class="project-card" type="button" data-project-index="${index}" aria-label="Öppna bildgalleri för ${escapeAttribute(project.title)}">` +
         `<div class="project-card-image">${imageMarkup}<span class="project-card-title">${escapeHTML(project.title)}</span></div>` +
         `<span class="project-card-description"><span class="project-card-description-title">${escapeHTML(project.title)}</span><span class="project-card-description-text">${escapeHTML(description)}</span></span></button>`;
     }).join('');
