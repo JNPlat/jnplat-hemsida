@@ -56,3 +56,4 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 - Kartlade upprepade selektorer. Tjänstehero och projektkarusell har många senare regler som avsiktligt eller historiskt skriver över tidigare deklarationer, ofta med `!important`.
 - Lät dessa regler vara orörda i detta steg. Att slå ihop dem utan webbläsarbaserad kontroll riskerar att ändra den fungerande desktop- eller mobilayouten.
 - Ingen visuell webbläsartestning har utförts; ändringen är en begränsad, statisk städning.
+- Tog bort en oanvänd variabel för mobil brödtext; den hade ingen CSS-regel som använde den.
