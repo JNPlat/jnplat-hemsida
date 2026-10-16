@@ -23,8 +23,19 @@
   let touchMoved = false;
 
   try {
-    const response = await fetch('../data/projects.json', { cache: 'no-store' });
-    if (!response.ok) throw new Error('Kunde inte läsa projektlistan');
+    let response;
+    let lastLoadError;
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      try {
+        response = await fetch('../data/projects.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Kunde inte läsa projektlistan (${response.status})`);
+        break;
+      } catch (error) {
+        lastLoadError = error;
+        if (attempt < 2) await new Promise(resolve => window.setTimeout(resolve, 250 * (attempt + 1)));
+      }
+    }
+    if (!response || !response.ok) throw lastLoadError || new Error('Kunde inte läsa projektlistan');
     const projects = await response.json();
     // Visa endast publicerade projekt som tillhör just den aktuella tjänsten.
     const visibleProjects = projects.filter(project => project.published !== false && project.service === serviceId);
