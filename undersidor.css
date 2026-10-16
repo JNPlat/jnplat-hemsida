@@ -2680,7 +2680,8 @@ body.project-gallery-open {
   }
 
   .inner-page.service-page .service-projects .project-carousel > .project-card {
-    flex: 0 0 clamp(240px, 24vw, 360px) !important;
+    flex: 0 0 auto !important;
+    width: max-content !important;
     min-width: 0 !important;
     margin-left: 0 !important;
     order: initial !important;
