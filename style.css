@@ -84,10 +84,7 @@ h6 {
 }
 
 .container {
-  width: min(
-      calc(100% - 64px),
-      var(--max-width)
-    );
+  width: min(calc(100% - clamp(40px, 4vw, 64px)), var(--max-width));
   margin: 0 auto;
 }
 
@@ -116,12 +113,7 @@ h6 {
   width: 100%;
   min-width: 0;
   max-width: none;
-  padding: 60px
-    clamp(
-      40px,
-      7vw,
-      120px
-    );
+  padding: clamp(50px, 5.2vw, 60px) clamp(40px, 7vw, 120px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -131,11 +123,7 @@ h6 {
 .hero-content h1 {
   margin: 0 0 26px;
   max-width: 620px;
-  font-size: clamp(
-      52px,
-      5.4vw,
-      80px
-    );
+  font-size: clamp(46px, 5.4vw, 80px);
   line-height: 0.98;
   font-weight: 400;
   letter-spacing: -0.045em;
@@ -357,13 +345,13 @@ h6 {
 .service-info {
   flex: 0 0 37%;
   min-height: 205px;
-  padding: 28px 30px 32px;
+  padding: clamp(24px, 2.4vw, 28px) clamp(22px, 2.6vw, 30px) clamp(28px, 2.8vw, 32px);
   background: var(--card);
 }
 
 .service-info h3 {
   margin: 0 0 20px;
-  font-size: 27px;
+  font-size: clamp(24px, 2.35vw, 27px);
   line-height: 1.1;
   font-weight: 400 !important;
   font-style: normal !important;
@@ -441,12 +429,7 @@ h6 {
   grid-row: 1;
   width: 100%;
   max-width: none;
-  padding: 60px
-    clamp(
-      40px,
-      6vw,
-      100px
-    );
+  padding: clamp(50px, 5.2vw, 60px) clamp(40px, 6vw, 100px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -455,11 +438,7 @@ h6 {
 
 .current-content h2 {
   margin: 0 0 24px;
-  font-size: clamp(
-      40px,
-      4vw,
-      60px
-    );
+  font-size: clamp(40px, 4vw, 60px);
   line-height: 1.1;
   font-weight: 400;
   letter-spacing: -0.02em;
@@ -558,12 +537,7 @@ h6 {
 
 .about-content {
   width: 100%;
-  padding: 60px
-    clamp(
-      40px,
-      7vw,
-      120px
-    );
+  padding: clamp(50px, 5.2vw, 60px) clamp(40px, 7vw, 120px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -572,11 +546,7 @@ h6 {
 
 .about-content h2 {
   margin: 0 0 24px;
-  font-size: clamp(
-      40px,
-      4vw,
-      60px
-    );
+  font-size: clamp(40px, 4vw, 60px);
   line-height: 1.1;
   font-weight: 400;
   letter-spacing: -0.02em;
@@ -607,7 +577,7 @@ h6 {
   top: 0;
   right: 0;
   bottom: 0;
-  left: 58%;
+  left: clamp(58%, calc(58% + 1vw), 62%);
   z-index: 1;
   overflow: hidden;
   pointer-events: none;
@@ -627,7 +597,7 @@ h6 {
 .contact-panel {
   position: relative;
   z-index: 2;
-  width: 58%;
+  width: clamp(58%, calc(58% + 1vw), 62%);
   min-height: calc(
       100vh - var(--header-height)
     );
@@ -639,7 +609,7 @@ h6 {
         (100vw - var(--max-width)) / 2
       )
     );
-  padding-right: 100px;
+  padding-right: clamp(60px, 7vw, 100px);
   display: flex;
   align-items: center;
   background: var(--bg-light);
@@ -709,59 +679,6 @@ h6 {
 
 .contact-item a:hover {
   color: var(--copper);
-}
-
-@media (max-width: 1150px) {
-  .container {
-    width: min(
-        calc(100% - 48px),
-        var(--max-width)
-      );
-  }
-  .hero-content {
-    padding: 50px;
-  }
-  .hero-content h1 {
-    font-size: clamp(
-        46px,
-        6.5vw,
-        68px
-      );
-  }
-  .service-info {
-    padding: 24px 22px 28px;
-    min-height: 190px;
-  }
-  .service-info h3 {
-    font-size: 24px;
-  }
-  .service-info p {
-    font-size: var(--font-body-service-card-mobile);
-  }
-  .current-content {
-    padding: 50px;
-  }
-  .current-content h2 {
-    font-size: 45px;
-  }
-  .about-content {
-    padding: 50px;
-  }
-  .about-content h2 {
-    font-size: 45px;
-  }
-  .contact-background {
-    left: 62%;
-  }
-  .contact-panel {
-    width: 62%;
-    padding-right: 60px;
-  }
-  .reference-card {
-    flex-basis: calc(
-        (100% - 30px) / 4
-      );
-  }
 }
 
 @media (max-width: 810px) {
