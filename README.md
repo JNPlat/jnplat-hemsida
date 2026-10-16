@@ -101,3 +101,5 @@ Färgvariabler och gemensamma designvärden finns i början av `style.css`. Där
 - Kontrollera särskilt header, karuseller, bildgallerier och horisontell sidscrollning.
 
 En lyckad syntaxkontroll ersätter inte visuell testning i en riktig webbläsare.
+
+`--font-body-subpage-mobile` styr vanlig brödtext på undersidor i mobilvy, och `--font-body-service-copy-mobile` styr den löpande texten i tjänstesidornas introduktionsruta på mobil.
