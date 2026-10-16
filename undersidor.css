@@ -2549,31 +2549,33 @@ body.project-gallery-open {
 }
 
 
-/* Desktop project cards: retain the image dimensions and add a flush description panel. */
+/* Desktop project cards: override the legacy fixed card sizing intentionally. */
 @media (min-width: 811px) {
   .inner-page.service-page .service-projects .project-carousel .project-card {
-    display: flex;
-    flex: 0 0 auto;
-    align-items: stretch;
-    width: max-content;
-    max-width: none;
-    padding: 0;
-    border: 0;
-    text-align: left;
-    background: transparent;
-    overflow: hidden;
+    display: flex !important;
+    flex: 0 0 auto !important;
+    align-items: stretch !important;
+    width: max-content !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    text-align: left !important;
+    background: transparent !important;
+    overflow: hidden !important;
   }
 
   .inner-page.service-page .service-projects .project-carousel .project-card-image {
-    position: relative;
-    flex: 0 0 clamp(260px, 24vw, 388px);
-    width: clamp(260px, 24vw, 388px);
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
+    position: relative !important;
+    flex: 0 0 clamp(260px, 24vw, 388px) !important;
+    width: clamp(260px, 24vw, 388px) !important;
+    min-width: clamp(260px, 24vw, 388px) !important;
+    aspect-ratio: 16 / 9 !important;
+    overflow: hidden !important;
   }
 
   .inner-page.service-page .service-projects .project-carousel .project-card-image::after {
-    display: none;
+    display: none !important;
   }
 
   .inner-page.service-page .service-projects .project-carousel .project-card-title {
@@ -2581,9 +2583,10 @@ body.project-gallery-open {
   }
 
   .inner-page.service-page .service-projects .project-carousel .project-card-description {
-    display: flex;
-    flex: 0 0 var(--project-description-width, 280px);
-    width: var(--project-description-width, 280px);
+    display: flex !important;
+    flex: 0 0 var(--project-description-width, 280px) !important;
+    width: var(--project-description-width, 280px) !important;
+    min-width: 0 !important;
     box-sizing: border-box;
     flex-direction: column;
     justify-content: center;
@@ -2592,15 +2595,16 @@ body.project-gallery-open {
     background: #eae2d7;
     color: var(--text, #29251f);
     white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .inner-page.service-page .service-projects .project-carousel .project-card-description-title {
-    display: block;
+    display: block !important;
     font: 400 clamp(22px, 1.8vw, 30px)/1.05 "Cormorant Garamond", Georgia, serif;
   }
 
   .inner-page.service-page .service-projects .project-carousel .project-card-description-text {
-    display: block;
+    display: block !important;
     color: var(--muted, #696158);
     font-size: clamp(13px, .95vw, 15px);
     line-height: 1.55;
@@ -2609,6 +2613,6 @@ body.project-gallery-open {
 
 @media (max-width: 810px) {
   .inner-page.service-page .service-projects .project-carousel .project-card-description {
-    display: none;
+    display: none !important;
   }
 }
