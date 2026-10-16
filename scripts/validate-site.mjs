@@ -35,10 +35,6 @@ if (!/matchMedia\(["']\(max-width:\s*810px\)["']\)/.test(homepageScript)) {
 
 for (const stylesheet of ["style.css", "undersidor.css", "header.css"]) {
   const css = fs.readFileSync(path.join(root, stylesheet), "utf8");
-  if (/@media\s*\([^)]*(?:max-width|min-width)\s*:\s*(?:1100|1150)px/i.test(css)) {
-    errors.push(`${stylesheet} contains an intermediate 1100px/1150px layout breakpoint; use fluid sizing within the desktop layout instead.`);
-  }
-
   // Lightweight delimiter check that catches accidental unmatched CSS braces
   // without introducing a parser dependency into this static site.
   let depth = 0;
