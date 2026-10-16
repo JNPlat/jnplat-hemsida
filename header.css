@@ -201,7 +201,7 @@ section {
 
 /*Smaller desktop/laptop widths: keep the entire navigation on one line.*/
 
-@media (min-width: 811px) and (max-width: 1150px) {
+@media (min-width: 811px) {
   :root {
     --header-height: 82px;
     --header-logo-width: 220px;
