@@ -393,7 +393,7 @@ body.lightbox-open {
     font-size: 28px;
   }
   .project-grid {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
     gap: clamp(24px, 4vw, 28px) clamp(14px, 2vw, 20px);
   }
   .project-card-info h3 {
