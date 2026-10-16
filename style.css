@@ -9,6 +9,13 @@
   --white: #fffdf9;
   --line: rgba(48, 42, 36, 0.14);
   --max-width: 1320px;
+  /* Typografi: gemensamma, lättredigerade storlekar. Behåll mobilvärden där de skiljer sig. */
+  --font-body-home: 20px;
+  --font-body-home-mobile: 17px;
+  --font-body-service-card: 18px;
+  --font-body-service-card-mobile: 17px;
+  --font-body-subpage: 16px;
+  --font-body-service-copy: 15px;
 }
 
 * {
@@ -133,10 +140,10 @@ h6 {
   letter-spacing: -0.045em;
 }
 
-.hero-text {
+ .hero-text {
   max-width: 560px;
   margin: 0 0 22px;
-  font-size: 20px;
+  font-size: var(--font-body-home);
   line-height: 1.55;
   color: var(--muted);
 }
@@ -372,7 +379,7 @@ h6 {
 .service-info p {
   margin: 0;
   max-width: 290px;
-  font-size: 18px;
+  font-size: var(--font-body-service-card);
   line-height: 1.5;
   color: var(--muted);
 }
@@ -728,7 +735,7 @@ h6 {
     font-size: 24px;
   }
   .service-info p {
-    font-size: 17px;
+    font-size: var(--font-body-service-card-mobile);
   }
   .current-content {
     padding: 50px;
@@ -927,7 +934,7 @@ h6 {
     display: block;
     max-width: none;
     margin: 0;
-    font-size: 17px;
+    font-size: var(--font-body-service-card-mobile);
     line-height: 1.5;
     color: var(--muted);
   }
