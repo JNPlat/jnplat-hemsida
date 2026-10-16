@@ -33,6 +33,57 @@ if (!/matchMedia\(["']\(max-width:\s*810px\)["']\)/.test(homepageScript)) {
   errors.push("The homepage carousel must use 810px as its mobile layout boundary.");
 }
 
+for (const stylesheet of ["style.css", "undersidor.css", "header.css"]) {
+  const css = fs.readFileSync(path.join(root, stylesheet), "utf8");
+  if (/@media\s*\([^)]*(?:max-width|min-width)\s*:\s*(?:1100|1150)px/i.test(css)) {
+    errors.push(`${stylesheet} contains an intermediate 1100px/1150px layout breakpoint; use fluid sizing within the desktop layout instead.`);
+  }
+
+  // Lightweight delimiter check that catches accidental unmatched CSS braces
+  // without introducing a parser dependency into this static site.
+  let depth = 0;
+  let quote = null;
+  let inComment = false;
+  let escaped = false;
+  for (let index = 0; index < css.length; index++) {
+    const character = css[index];
+    const next = css[index + 1];
+    if (inComment) {
+      if (character === "*" && next === "/") {
+        inComment = false;
+        index++;
+      }
+      continue;
+    }
+    if (quote) {
+      if (escaped) {
+        escaped = false;
+      } else if (character === "\\\\") {
+        escaped = true;
+      } else if (character === quote) {
+        quote = null;
+      }
+      continue;
+    }
+    if (character === "/" && next === "*") {
+      inComment = true;
+      index++;
+      continue;
+    }
+    if (character === "\\"" || character === "'") {
+      quote = character;
+    } else if (character === "{") {
+      depth++;
+    } else if (character === "}") {
+      depth--;
+      if (depth < 0) break;
+    }
+  }
+  if (depth !== 0 || inComment || quote) {
+    errors.push(`${stylesheet} has unbalanced CSS delimiters.`);
+  }
+}
+
 for (const file of files.filter((item) => item.endsWith(".js"))) {
   const result = spawnSync(process.execPath, ["--check", file], { encoding: "utf8" });
   checked.javascript++;
