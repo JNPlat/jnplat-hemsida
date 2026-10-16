@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const errors = [];
-const checked = { javascript: 0, json: 0, localReferences: 0, projects: 0 };
+const checked = { javascript: 0, json: 0, localReferences: 0, projects: 0, projectImages: 0 };
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -156,6 +156,19 @@ if (fs.existsSync(projectsFile)) {
         if (project.gallery !== undefined && !Array.isArray(project.gallery)) {
           errors.push(`${label} gallery must be an array when provided.`);
         }
+
+        const imagePaths = [
+          project.hero,
+          project.cardImage,
+          ...(Array.isArray(project.gallery) ? project.gallery : [])
+        ].filter((imagePath) => typeof imagePath === "string" && imagePath.trim());
+        for (const imagePath of new Set(imagePaths)) {
+          checked.projectImages++;
+          const resolvedImage = path.resolve(root, imagePath);
+          if (!resolvedImage.startsWith(root + path.sep) || !fs.existsSync(resolvedImage)) {
+            errors.push(`${label} references a missing or invalid project image: "${imagePath}".`);
+          }
+        }
       });
     }
   } catch (error) {
@@ -193,5 +206,5 @@ if (errors.length) {
   process.exitCode = 1;
 } else {
   console.log("Site validation passed.");
-  console.log(`Checked ${checked.javascript} JavaScript files, ${checked.json} JSON files, ${checked.projects} projects and ${checked.localReferences} local references.`);
+  console.log(`Checked ${checked.javascript} JavaScript files, ${checked.json} JSON files, ${checked.projects} projects, ${checked.projectImages} project images and ${checked.localReferences} local references.`);
 }
