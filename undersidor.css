@@ -2687,3 +2687,29 @@ body.project-gallery-open {
   }
   .inner-page.service-page .service-copy { display: none !important; }
 }
+
+
+/* Mobil korrigering: beskrivningen ligger efter hero, inte inuti den. Rubriken saknar mörk textruta. */
+@media (max-width: 800px) {
+  .inner-page.service-page .service-image-hero .detail-hero-title {
+    background: transparent !important;
+    padding: 15px 18px 17px !important;
+    text-shadow: 0 1px 8px rgba(0,0,0,.42);
+  }
+  .inner-page.service-page .service-image-hero .detail-hero-title h1 {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: 0 1px 8px rgba(0,0,0,.42);
+  }
+  .inner-page.service-page .mobile-service-copy {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 18px 20px 22px !important;
+    box-sizing: border-box !important;
+    background: #f3eee6 !important;
+    color: #493a30 !important;
+  }
+  .inner-page.service-page .service-copy { display: none !important; }
+}
