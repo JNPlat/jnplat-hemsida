@@ -35,7 +35,7 @@
   background: #e9e1d5;
 }
 
-.detail-hero picture img,n.detail-hero > img{
+.detail-hero picture img, .detail-hero > img{
   position: relative;
   inset: auto;
   display: block;
@@ -363,13 +363,9 @@ body.lightbox-open{
     aspect-ratio: auto;
     min-height: 0;
   }
-  .detail-hero picture img,n.detail-hero > img{
-    position: relative;
-    width: 100%;
+  .detail-hero picture img, .detail-hero > img{
     height: auto;
     max-height: none;
-    object-fit: contain;
-    object-position: left center;
   }
   .detail-hero-title{
     padding: 24px 20px 28px;

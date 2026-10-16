@@ -71,7 +71,7 @@ Webbplatsens två grundläggande layoutlägen har en gemensam gräns: **811 px o
 Typografin är ännu inte helt standardiserad mellan startsidan och undersidorna. Layouten har två lägen: mobil/surfplatta till och med 810 px och desktop från 811 px. Inom respektive läge ska storlekar och mellanrum skalas flytande i stället för att lägga till nya brytpunkter för varje skärmbredd. Nuvarande utgångspunkter i koden är bland annat:
 
 - Startsidan: ingress i heron 20 px på desktop; tjänstekortens brödtext 18 px på desktop och 17 px i mobilregler.
-- Tjänste-/projektsidor: vanlig introduktionstext har en grundregel på 16 px, men den aktiva tjänstesidans senare regel sätter brödtexten i `.service-copy` till 15 px med `!important`.
+- Tjänste-/projektsidor: vanlig introduktionstext har en grundregel på 16 px. Brödtexten i `.service-copy` använder `--font-body-service-copy` (15 px som standard) och `--font-body-service-copy-mobile` (14 px på mobil).
 - Ingressar, huvudrubriker, korttitlar, små etiketter och knappar har separata storleksregler och ska inte behandlas som vanlig brödtext.
 
 Detta är en karta över nuläget, inte en rekommendation att behålla alla värden. Innan vi ändrar storlekarna ska vi besluta en gemensam skala och sedan uppdatera rätt regler på desktop och mobil. Ändra inte alla storlekar i ett svep: vissa element behöver egna proportioner.
@@ -79,7 +79,7 @@ Detta är en karta över nuläget, inte en rekommendation att behålla alla vär
 ### Kända CSS-underhållspunkter
 
 - `style.css` innehåller flera senare regler för samma väljare, särskilt runt referenskarusellen och startsidans sektioner.
-- `undersidor.css` har många återkommande väljare och `!important`-regler. Tjänstesidornas utseende påverkas delvis av senare regler långt ned i filen.
+- `undersidor.css` har återkommande väljare och senare regler som påverkar tjänstesidornas utseende. Kontrollera regelordning och brytpunkter innan du slår ihop dem.
 - `header.css` innehåller också överstyrningar, men äger avsiktligt headerns höjd, navigering och sidornas offset. Den filen ska inte städas genom att flytta regler till andra stilmallar.
 
 Upprepade väljare är inte automatiskt fel: media queries och senare överstyrningar kan vara avsiktliga. Slå bara ihop eller ta bort regler efter att deras ordning, brytpunkter och visuella effekt har kontrollerats.

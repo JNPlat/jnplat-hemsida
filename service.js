@@ -326,6 +326,29 @@
   document.addEventListener('keydown', event => {
     if (galleryModal.hidden) return;
     const zoom = galleryModal.querySelector('.project-image-zoom');
+    const focusScope = zoom && !zoom.hidden
+      ? zoom
+      : galleryModal.querySelector('.project-gallery-dialog');
+    if (event.key === 'Tab' && focusScope) {
+      const focusable = [...focusScope.querySelectorAll(
+        'button:not([disabled]):not([hidden]), [href], input:not([disabled]):not([hidden]), select:not([disabled]):not([hidden]), textarea:not([disabled]):not([hidden]), [tabindex]:not([tabindex="-1"]):not([disabled])'
+      )].filter(element => element.getClientRects().length > 0);
+      if (!focusable.length) {
+        event.preventDefault();
+        return;
+      }
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const focusIsOutside = !focusScope.contains(document.activeElement);
+      if (event.shiftKey && (document.activeElement === first || focusIsOutside)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || focusIsOutside)) {
+        event.preventDefault();
+        first.focus();
+      }
+      return;
+    }
     if (zoom && !zoom.hidden) {
       if (event.key === 'Escape') closeGallery();
       if (event.key === 'ArrowLeft') { event.preventDefault(); showImage(imageIndex - 1); }
