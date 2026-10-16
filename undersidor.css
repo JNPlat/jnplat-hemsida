@@ -13,7 +13,7 @@
 
 .detail-hero {
   display: grid;
-  grid-template-columns: minmax(0, clamp(1.05fr, 1.18fr, 1.18fr)) minmax(280px, .82fr);
+  grid-template-columns: minmax(0, 1.18fr) minmax(320px, .82fr);
   align-items: stretch;
   width: 100%;
   height: clamp(340px, 39vw, 540px);
