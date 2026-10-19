@@ -369,7 +369,8 @@
   color: var(--ink-soft);
 }
 
-.about-merits strong {
+.about-merits strong,
+.about-projects-intro strong {
   display: block;
   font: 600 calc(var(--fs-lead) * 1.15)/1.15 var(--serif);
   color: var(--ink);
@@ -597,6 +598,7 @@
   .about-master { margin-top: 0; padding: clamp(6px, 1.4vh, 16px) var(--s3); }
   .about-projects li { white-space: nowrap; }
   .about-projects { display: flex; flex-wrap: wrap; gap: 2px 18px; max-width: 640px; margin-bottom: clamp(8px, 2vh, 24px); line-height: 1.4; }
+  .about-projects-intro strong { display: inline; margin-right: .3em; }
   .about-content .about-projects-intro { margin-bottom: clamp(2px, 0.6vh, 8px); }
   .about-master-year { font-size: calc(var(--fs-h2) * 0.85); }
 
