@@ -91,7 +91,7 @@
   flex: 1 1 auto;
 }
 
-.hero-image { order: -1; height: clamp(220px, 36svh, 460px); }
+.hero-image { order: -1; height: clamp(200px, 30svh, 460px); }
 .hero-content h1 { margin-bottom: var(--s3); }
 .hero-text:last-child { margin-bottom: 0; }
 
