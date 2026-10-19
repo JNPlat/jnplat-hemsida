@@ -1,0 +1,9 @@
+// Cloudflare Workers: publicerar sajten som statiska filer.
+// Cloudflare kör "npx wrangler deploy" vid varje push till main.
+{
+  "name": "jnplat-hemsida",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./"
+  }
+}
