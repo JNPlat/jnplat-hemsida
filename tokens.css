@@ -1,0 +1,178 @@
+/* J. Norberg Plåtslageri – grunden (designsystem v1)
+   Ägare av: färger, typsnitt, avstånd, knappar, överrubriker och layoutlägen.
+   Läses in FÖRE alla andra stilmallar på varje sida.
+
+   LAYOUTLÄGEN – inga pixelbrytpunkter:
+   - Liggande skärm (orientation: landscape): text och bild bredvid varandra,
+     varje sektion fyller exakt skärmen under headern (min-height).
+   - Stående skärm (orientation: portrait): bild över text, svepbara kort.
+   Låg liggande skärm (mobil på sidan, max-height 560px) får samma layout
+   men sektionerna får växa så att inget klipps. */
+
+:root {
+  /* Färger */
+  --paper: #f3eee6;
+  --paper-2: #ebe4d8;
+  --card: #fbf8f3;
+  --ink: #2a2622;
+  --ink-soft: #6b6358;
+  --copper: #b4693c;
+  --copper-dark: #8f4f27;
+  --patina: #5f8575;
+  --line: #d9d0c1;
+
+  /* Typsnitt */
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Form och avstånd (bara dessa steg) */
+  --r: 6px;
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 40px;
+  --s5: 64px;
+
+  /* Äldre namn som undersidorna fortfarande använder */
+  --bg: var(--paper);
+  --bg-light: var(--paper-2);
+  --cream: var(--paper);
+  --text: var(--ink);
+  --muted: var(--ink-soft);
+  --white: #fffdf9;
+  --max-width: 1320px;
+  --font-body-subpage: 16px;
+  --font-body-subpage-mobile: 15px;
+  --font-body-service-copy: 15px;
+  --font-body-service-copy-mobile: 14px;
+
+  /* Layoutläge: stående är grundläget */
+  --header-height: 118px;
+  --header-logo-width: min(calc(100vw - 28px), 590px);
+  --screen-h: calc(100vh - var(--header-height));
+  --fs-body: clamp(16px, 4.3vw, 18px);
+  --fs-lead: clamp(18px, 4.8vw, 22px);
+  --fs-h1: clamp(40px, 11.5vw, 64px);
+  --fs-h2: clamp(32px, 9vw, 44px);
+  --fs-h3: 24px;
+  --pad-v: var(--s4);
+  --pad-h: 20px;
+}
+
+@supports (height: 100svh) {
+  :root { --screen-h: calc(100svh - var(--header-height)); }
+}
+
+/* Liggande skärm: allt skalas efter skärmhöjden så att en sektion ryms på en skärm */
+@media (orientation: landscape) {
+  :root {
+    --header-height: 82px;
+    --header-logo-width: clamp(170px, 20vw, 280px);
+    --fs-body: clamp(14px, min(2.15vh, 1.45vw), 18px);
+    --fs-lead: clamp(16px, 2.8vh, 22px);
+    --fs-h1: clamp(34px, min(5vw, 9vh), 76px);
+    --fs-h2: clamp(30px, min(3.8vw, 6.4vh), 56px);
+    --fs-h3: clamp(22px, min(2.3vw, 4vh), 30px);
+    --pad-v: clamp(20px, 5vh, 64px);
+    --pad-h: clamp(24px, 4.5vw, 112px);
+  }
+}
+
+/* Låg liggande skärm (mobil på sidan): kompakt header */
+@media (orientation: landscape) and (max-height: 560px) {
+  :root { --header-height: 60px; }
+}
+
+/* Grundtypografi */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  max-width: 100%;
+  overflow-x: clip;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 16px/1.65 var(--sans);
+  -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+p { margin: 0 0 var(--s2); }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font: inherit; }
+
+.container {
+  width: min(calc(100% - clamp(40px, 4vw, 64px)), var(--max-width));
+  margin: 0 auto;
+}
+
+/* Överrubrik: en liten per sektion */
+.eyebrow {
+  margin: 0 0 var(--s1);
+  font: 600 0.72rem/1 var(--sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+
+/* Knappar */
+.btn,
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: fit-content;
+  padding: 12px 22px;
+  border: 1px solid var(--copper);
+  border-radius: var(--r);
+  background: var(--copper);
+  color: #fff;
+  font: 600 0.95rem/1.1 var(--sans);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: var(--copper-dark);
+  border-color: var(--copper-dark);
+  color: #fff;
+}
+
+.btn--ghost,
+.text-link {
+  background: transparent;
+  color: var(--copper);
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus-visible,
+.text-link:hover,
+.text-link:focus-visible {
+  background: var(--copper);
+  border-color: var(--copper);
+  color: #fff;
+}
+
+.btn span,
+.text-link span { transition: transform 0.2s ease; }
+.btn:hover span,
+.text-link:hover span { transform: translateX(3px); }
+
+:focus-visible { outline: 2px solid var(--copper-dark); outline-offset: 2px; }

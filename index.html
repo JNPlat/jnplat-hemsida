@@ -33,16 +33,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="header.css">
 
 </head>
 
-<body>
+<body class="home-page">
 
   <header class="site-header">
 
@@ -134,7 +134,7 @@
           <img
             src="images/hero-bild.webp"
             alt="Plåtslageriarbete på tak"
-            sizes="(max-width: 800px) 100vw, 40vw"
+            sizes="(orientation: portrait) 100vw, 40vw"
             width="6016"
             height="4016"
             fetchpriority="high"
@@ -241,16 +241,10 @@
 
               <picture>
 
-                <source
-                  media="(max-width: 800px)"
-                  srcset="images/byggnadsplatslageri-mobil.webp"
-                  sizes="100vw"
-                >
-
                 <img
                   src="images/byggnadsplatslageri-desktop.webp"
                   alt="Byggnadsplåtslageri"
-                  sizes="(max-width: 800px) 100vw, 25vw"
+                  sizes="(orientation: portrait) 78vw, 25vw"
 
                   loading="lazy"
                   decoding="async"
@@ -287,16 +281,10 @@
 
               <picture>
 
-                <source
-                  media="(max-width: 800px)"
-                  srcset="images/kopparslageri-mobil.webp"
-                  sizes="100vw"
-                >
-
                 <img
                   src="images/kopparslageri-desktop.webp"
                   alt="Kopparslageri"
-                  sizes="(max-width: 800px) 100vw, 25vw"
+                  sizes="(orientation: portrait) 78vw, 25vw"
 
                   loading="lazy"
                   decoding="async"
@@ -333,16 +321,10 @@
 
               <picture>
 
-                <source
-                  media="(max-width: 800px)"
-                  srcset="images/restaurering-mobil.webp"
-                  sizes="100vw"
-                >
-
                 <img
                   src="images/restaurering-desktop.webp"
                   alt="Restaurering"
-                  sizes="(max-width: 800px) 100vw, 25vw"
+                  sizes="(orientation: portrait) 78vw, 25vw"
 
                   loading="lazy"
                   decoding="async"
@@ -379,16 +361,10 @@
 
               <picture>
 
-                <source
-                  media="(max-width: 800px)"
-                  srcset="images/specialprojekt-mobil.webp"
-                  sizes="100vw"
-                >
-
                 <img
                   src="images/specialprojekt-desktop.webp"
                   alt="Specialprojekt"
-                  sizes="(max-width: 800px) 100vw, 25vw"
+                  sizes="(orientation: portrait) 78vw, 25vw"
 
                   loading="lazy"
                   decoding="async"
@@ -454,6 +430,7 @@
 
           <div class="current-content">
 
+            <p class="eyebrow">Pågående arbete</p>
             <h2>
               Aktuellt
             </h2>
@@ -471,7 +448,7 @@
               href="https://sv.wikipedia.org/wiki/Villa_Bergabo"
               target="_blank"
               rel="noopener noreferrer"
-              class="read-more"
+              class="btn btn--ghost"
             >
               Läs mer om Villa Bergabo
               <span>→</span>
@@ -497,16 +474,10 @@
           <div class="about-image">
 
             <picture>
-              <source
-                media="(max-width: 800px)"
-                srcset="images/om-j-norberg-mobil.webp"
-                sizes="100vw"
-              >
-
               <img
                 src="images/om-j-norberg-desktop.webp"
                 alt="J. Norberg arbetar i plåtverkstaden"
-                sizes="(max-width: 800px) 100vw, 50vw"
+                sizes="(orientation: portrait) 100vw, 50vw"
 
                 loading="lazy"
                 decoding="async"
@@ -517,6 +488,7 @@
 
           <div class="about-content">
 
+            <p class="eyebrow">Hantverkaren</p>
             <h2>
               Om J. Norberg
             </h2>
@@ -563,7 +535,7 @@
         <img
           src="images/st-johannes.webp"
           alt="Kopparplåt och tegel vid St Johannes"
-          sizes="(max-width: 800px) 100vw, 42vw"
+          sizes="(orientation: portrait) 100vw, 42vw"
           width="2268"
           height="4032"
           loading="lazy"
@@ -576,6 +548,7 @@
 
         <div class="contact-content">
 
+          <p class="eyebrow">Hör av dig</p>
           <h2>
             Kontakt
           </h2>

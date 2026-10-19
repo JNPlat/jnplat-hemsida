@@ -1,12 +1,6 @@
-/*J. Norberg Plåtslageri — shared header
-   Single source of truth for the header on every page.
-   Header is fixed so mobile Safari/Chrome cannot lose it due to sticky/overflow ancestors.*/
-
-:root {
-  --header-height: 82px;
-  --header-logo-width: clamp(220px, 20vw, 280px);
-  --header-nav-gap: clamp(14px, 1.3vw, 28px);
-}
+/* J. Norberg Plåtslageri – gemensam header
+   Mått och layoutläge kommer från tokens.css (--header-height, --header-logo-width).
+   Stående: logotyp överst, navigation under. Liggande: logotyp och navigation på en rad. */
 
 .site-header {
   position: fixed;
@@ -14,320 +8,168 @@
   z-index: 1000;
   width: 100%;
   height: var(--header-height);
-  min-height: var(--header-height);
-  margin: 0;
-  padding: 0;
   background: rgba(243, 238, 230, 0.97);
-  border-bottom: 1px solid rgba(48, 42, 36, 0.14);
+  border-bottom: 1px solid var(--line);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
 
-/* Keep the layout viewport the same on pages with different vertical overflow.
-   Otherwise the centered header container can shift horizontally by the scrollbar width. */
-html {
-  scrollbar-gutter: stable;
-}
+html { scrollbar-gutter: stable; }
 
-/*Header offsets and anchor positions are owned here, not in page stylesheets.*/
+section { scroll-margin-top: var(--header-height); }
 
-section {
-  scroll-margin-top: var(--header-height);
+body > main,
+body > .inner-main,
+.inner-page .inner-main,
+.inner-page.service-page .inner-main {
+  padding-top: var(--header-height);
 }
 
 .site-header .nav-wrap {
-  width: min(calc(100% - clamp(40px, 4vw, 64px)), var(--max-width, 1320px));
-  max-width: var(--max-width, 1320px);
   height: 100%;
-  min-height: 0;
-  margin-inline: auto;
-  padding: 0;
-  display: grid;
-  grid-template-columns: var(--header-logo-width) minmax(0, 1fr);
-  grid-template-rows: 1fr;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  column-gap: clamp(18px, 2.4vw, 38px);
-  position: relative;
+  padding: 4px max(8px, env(safe-area-inset-right)) 5px max(8px, env(safe-area-inset-left));
 }
 
 .site-header .brand {
-  grid-column: 1;
-  grid-row: 1;
-  justify-self: start;
-  align-self: center;
-  transform: none;
+  flex: 0 0 74px;
+  width: var(--header-logo-width);
+  max-width: 100%;
+  height: 74px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  width: var(--header-logo-width);
-  min-width: 0;
-  max-width: 100%;
-  height: 100%;
-  min-height: 0;
-  margin: 0;
-  padding: 0;
-  flex: none;
+  justify-content: center;
 }
 
 .site-header .brand img {
-  display: block;
   width: 100%;
-  height: auto;
-  max-height: 100%;
+  height: 100%;
   object-fit: contain;
-  object-position: center;
 }
 
 .site-header .main-nav {
-  grid-column: 2;
-  grid-row: 1;
-  align-self: center;
-  transform: none;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: var(--header-nav-gap);
+  flex: 0 0 31px;
   width: 100%;
   min-width: 0;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: visible;
+  padding: 0 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
+
+.site-header .main-nav::-webkit-scrollbar { display: none; }
 
 .site-header .main-nav > .nav-link {
   position: relative;
-  display: inline-flex;
-  align-items: center;
   flex: 0 0 auto;
-  min-width: 0;
-  margin: 0;
-  padding: 8px 0;
-  color: var(--text, #302a24);
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(14px, 1.4vw, 16px);
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: 0.01em;
+  padding: 3px 0;
+  color: var(--ink);
+  font: 500 clamp(11px, 3.1vw, 14px)/1.15 var(--sans);
   white-space: nowrap;
-  text-decoration: none;
 }
 
 .site-header .main-nav > .nav-link::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 2px;
+  bottom: 0;
   width: 0;
   height: 1px;
-  background: var(--copper, #9a6747);
+  background: var(--copper);
   transition: width 0.25s ease;
 }
 
-.site-header .main-nav > .nav-link.active {
-  color: var(--copper-dark, #704936);
-}
+.site-header .main-nav > .nav-link.active { color: var(--copper-dark); }
+.site-header .main-nav > .nav-link.active::after { width: 100%; }
 
-.site-header .main-nav > .nav-link.active::after {
-  width: 100%;
-}
-
+/* Kontakt är knappen från designsystemet */
 .site-header .main-nav > .header-contact {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  flex: 0 0 auto;
-  padding: 8px 10px;
-  border: 1px solid var(--copper, #9a6747);
-  background: transparent;
-  color: var(--copper-dark, #704936);
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: inherit;
-  line-height: 1.2;
-  font-weight: 400;
-  white-space: nowrap;
-  transition: background 0.25s ease, color 0.25s ease;
+  margin-left: auto;
+  padding: 5px 12px;
+  gap: 6px;
+  border: 1px solid var(--copper);
+  border-radius: var(--r);
+  background: var(--copper);
+  color: #fff;
+  font-weight: 600;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-.site-header .main-nav > .header-contact::after {
-  display: none;
-}
+.site-header .main-nav > .header-contact::after { display: none; }
 
 .site-header .main-nav > .header-contact span {
   display: inline;
-  margin: 0;
-  font-size: 1em;
-  line-height: 1;
-  transition: color 0.25s ease, transform 0.25s ease;
-}
-
-.site-header .main-nav > .header-contact .header-contact-label {
-  font: inherit;
-  color: inherit;
+  transition: transform 0.2s ease;
 }
 
 .site-header .main-nav > .header-contact:hover,
-.site-header .main-nav > .header-contact:hover .header-contact-label,
-.site-header .main-nav > .header-contact:hover .header-contact-arrow,
 .site-header .main-nav > .header-contact.active {
-  background: var(--copper, #9a6747);
-  color: #fffdf9;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .site-header .main-nav > .header-contact:hover,
-  .site-header .main-nav > .header-contact:hover .header-contact-label,
-  .site-header .main-nav > .header-contact:hover .header-contact-arrow {
-    color: #fffdf9;
-  }
+  background: var(--copper-dark);
+  border-color: var(--copper-dark);
+  color: #fff;
 }
 
 .site-header .main-nav > .header-contact:hover span,
-.site-header .main-nav > .header-contact.active span {
-  transform: translateX(3px);
-}
+.site-header .main-nav > .header-contact.active span { transform: translateX(3px); }
 
 @media (hover: hover) and (pointer: fine) {
-  .site-header .main-nav > .nav-link:hover {
-    color: var(--copper-dark, #704936);
-  }
-  .site-header .main-nav > .nav-link:hover::after {
-    width: 100%;
-  }
+  .site-header .main-nav > .nav-link:hover { color: var(--copper-dark); }
+  .site-header .main-nav > .nav-link:hover::after { width: 100%; }
 }
 
-/* Desktop sizing scales fluidly; 811px is the only layout breakpoint. */
+/* Tjänstesidor har fler länkar: något mindre text */
+.inner-page.service-page .site-header .main-nav > .nav-link {
+  font-size: clamp(10px, 2.75vw, 13px);
+}
 
-/*Mobile: compact, identical header on the homepage and all subpages.
-   Fixed positioning is intentional; it does not depend on sticky ancestors.*/
-
-@media (max-width: 810px) {
-  :root {
-    --header-height: 118px;
-    --header-logo-width: min(calc(100vw - 28px), 590px);
-    --header-nav-gap: clamp(2px, 0.7vw, 5px);
-    --header-nav-font-size: clamp(12px, 3.2vw, 15px);
-  }
-  .site-header {
-    position: fixed;
-    inset: 0 0 auto 0;
-    height: var(--header-height);
-    min-height: var(--header-height);
-    transform: none;
-    z-index: 10000;
-  }
+/* ---------- Liggande skärm ---------- */
+@media (orientation: landscape) {
   .site-header .nav-wrap {
-    width: 100%;
-    max-width: none;
-    height: var(--header-height);
-    min-height: 0;
-    margin: 0;
-    padding: 4px 8px 5px;
-    display: flex;
-    flex-direction: column;
+    width: min(calc(100% - clamp(40px, 4vw, 64px)), var(--max-width));
+    margin-inline: auto;
+    padding: 0;
+    display: grid;
+    grid-template-columns: var(--header-logo-width) minmax(0, 1fr);
     align-items: center;
-    justify-content: flex-start;
-    gap: 0;
+    column-gap: clamp(18px, 2.4vw, 38px);
   }
+
   .site-header .brand {
-    flex: 0 0 74px;
-    width: var(--header-logo-width);
-    min-width: 0;
-    max-width: 100%;
-    height: 74px;
-    min-height: 74px;
-    max-height: 74px;
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-  }
-  .site-header .brand img {
-    width: 100%;
+    flex: none;
     height: 100%;
-    max-height: 74px;
-    object-fit: contain;
-    object-position: center;
-  }
-  .site-header .main-nav {
-    display: flex;
-    flex: 0 0 31px;
-    width: 100%;
-    max-width: none;
-    min-width: 0;
-    margin: 0;
-    padding: 0 10px;
-    box-sizing: border-box;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
     justify-content: flex-start;
-    gap: var(--header-nav-gap);
-    overflow: visible;
   }
+
+  .site-header .brand img {
+    height: auto;
+    max-height: calc(var(--header-height) - 16px);
+    object-position: left center;
+  }
+
+  .site-header .main-nav {
+    flex: none;
+    gap: var(--header-nav-gap, clamp(14px, 1.6vw, 28px));
+    padding: 0;
+  }
+
   .site-header .main-nav > .nav-link {
-    flex: 0 1 auto;
-    min-width: 0;
-    margin: 0;
-    padding: 3px 0;
-    font-size: var(--header-nav-font-size);
-    line-height: 1.15;
-    letter-spacing: 0;
-    white-space: nowrap;
+    padding: 8px 0;
+    font-size: clamp(13px, 1.15vw, 15px);
   }
-  /* Service-page tabs use a slightly smaller type size to keep clear spacing.
-     The contact button deliberately retains the shared homepage size and position. */
+
   .inner-page.service-page .site-header .main-nav > .nav-link {
-    font-size: clamp(10px, 2.8vw, 13px);
+    font-size: clamp(13px, 1.15vw, 15px);
   }
+
+  .site-header .main-nav > .nav-link::after { bottom: 2px; }
+
   .site-header .main-nav > .header-contact {
-    flex: 0 0 auto;
-    margin-left: auto;
-    padding: 2px 3px;
-    gap: 2px;
-    font-family: "Cormorant Garamond", Georgia, serif;
-    font-size: var(--header-nav-font-size);
-    font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: 0;
-    white-space: nowrap;
-  }
-  .site-header .main-nav > .header-contact span {
-    font-size: var(--header-nav-font-size);
-  }
-  .site-header .main-nav > .header-contact .header-contact-label {
-    font-family: "Cormorant Garamond", Georgia, serif;
-    font-size: var(--header-nav-font-size);
-    font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: 0;
-  }
-  /*Reserve space below the fixed header on every page type.*/
-  body > main,
-  body > .inner-main,
-  main,
-  .inner-main,
-  .inner-page .inner-main,
-  .inner-page.service-page .inner-main {
-    padding-top: var(--header-height);
-    margin-top: 0;
-  }
-  section {
-    scroll-margin-top: var(--header-height);
-  }
-}
-
-/*Desktop content offset matches the fixed header.*/
-
-@media (min-width: 811px) {
-  body > main,
-  body > .inner-main,
-  main {
-    padding-top: var(--header-height);
-  }
-  .inner-page.service-page .inner-main {
-    padding-top: var(--header-height);
+    padding: 8px 16px;
+    gap: 8px;
   }
 }

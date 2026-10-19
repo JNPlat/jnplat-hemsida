@@ -102,3 +102,16 @@ CSS-regler som verkar överlappande har inte mass-slagits ihop: separata breakpo
 - Projektbeskrivningarna hämtas från `data/projects.json` och HTML-escapas innan de renderas.
 - Tog bort samtliga `!important`-deklarationer från CSS-filerna.
 - Automatisk syntax- och referenskontroll utförs separat; visuell kontroll i riktig webbläsare måste fortfarande göras innan publicering.
+
+
+## Grunden: designsystem, layoutlägen, en skärm per sektion – 2026-10-19
+
+- Nytt `tokens.css` med designsystem v1 (färger, Cormorant Garamond för rubriker, Inter för brödtext, 6 px radie, avståndssteg, knappar och överrubriker). Äldre variabelnamn finns kvar som alias.
+- Ersatte brytpunkten 810/811 px med orientering (liggande/stående) i `header.css`, `style.css`, `undersidor.css` och `script.js`. Valideringsskriptet uppdaterat.
+- Skrev om `style.css` och `header.css` från grunden (de hade många överlagrade override-regler). Startsidans sektioner fyller i liggande exakt skärmen under headern och skalas efter skärmhöjd; mjuk uppsnappning (`scroll-snap`, proximity) på riktiga liggande skärmar.
+- Stående: bild över text, tjänsterna som svepbara kort med de höga bilderna (inte de breda).
+- Knappar: Kontakt i headern, "Läs mer om Villa Bergabo" och "Prata med oss" följer designsystemets knappar. Referenspilarna har 6 px radie.
+- Lade till tre överrubriker på startsidan: "Pågående arbete", "Hantverkaren", "Hör av dig". Ändra eller ta bort i `index.html`.
+- Textinnehållet på startsidan och tjänstesidorna är oförändrat.
+
+Kontrollerat i Chromium (1920×1080, 1440×900, 1366×650, 1024×768, 820×1180, 390×844, 360×640, 844×390): inga horisontella scrollbars, och varje sektion i liggande är lika hög som skärmen under headern. Google Fonts kunde inte hämtas i testmiljön, så typsnittsmåtten är ungefärliga: kontrollera i en riktig webbläsare.

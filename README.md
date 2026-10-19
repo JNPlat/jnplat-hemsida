@@ -9,7 +9,8 @@ Statisk webbplats för J. Norberg Plåtslageri AB. Publiceras som statiska filer
 | Text, bilder eller sektioner på startsidan | `index.html` |
 | Texten på en tjänstesida | Relevant fil i `tjanster/` |
 | Vilka projekt som visas och deras beskrivningar | `data/projects.json` |
-| Typsnitt, storlekar, färger och layout på startsidan | `style.css` |
+| Färger, typsnitt, avstånd, knappar, rubrikstorlekar och layoutlägen | `tokens.css` |
+| Layout på startsidans sektioner | `style.css` |
 | Utseende på tjänste- och projektsidor | `undersidor.css` |
 | Header, logotyp, navigering och headerhöjd | `header.css` |
 | Startsida: navigering och referenskarusell | `script.js` |
@@ -25,6 +26,7 @@ Statisk webbplats för J. Norberg Plåtslageri AB. Publiceras som statiska filer
 jnplat-hemsida/
 ├── index.html
 ├── projekt.html
+├── tokens.css
 ├── style.css
 ├── undersidor.css
 ├── header.css
@@ -51,7 +53,8 @@ jnplat-hemsida/
 - `index.html` – startsidans innehåll och struktur.
 - `tjanster/*.html` – innehåll och struktur för de fyra tjänstesidorna.
 - `projekt.html?id=<projekt-id>` – gemensam projektdetaljsida.
-- `style.css` – startsidans och webbplatsens visuella komponenter.
+- `tokens.css` – grunden från designsystem v1: färger, typsnitt, avstånd (8/16/24/40/64), knappar (`.btn`, `.btn--ghost`), överrubrik (`.eyebrow`), fluida textstorlekar och layoutlägen. Läses in först på varje sida.
+- `style.css` – startsidans sektioner.
 - `undersidor.css` – tjänste- och projektsidornas layout, projektkort och gallerier.
 - `header.css` – gemensam header, navigering och sidornas header-offset.
 - `script.js` – startsidans navigering och referenskarusell.
@@ -64,17 +67,19 @@ jnplat-hemsida/
 
 ## Responsiv struktur
 
-Webbplatsens två grundläggande layoutlägen har en gemensam gräns: **811 px och uppåt är desktop, 810 px och nedåt är mobil/surfplatta**. Headern och startsidans referenskarusell ska använda samma gräns för att växla layoutläge. Smalare media queries får finnas kvar för specialbeteenden som touch, bildzoom eller små detaljjusteringar, men ska inte skapa ett tredje övergripande layoutläge. På desktop ska mått i första hand skala flytande med CSS-funktioner som `clamp()` i stället för att införa nya layoutvarianter vid ytterligare bredder.
+Sajten har två layoutlägen som väljs efter skärmens **orientering**, inte efter pixelbredd:
+
+- **Liggande** (`@media (orientation: landscape)`): text och bild bredvid varandra. Varje startsidesektion fyller exakt skärmen under headern (`min-height: var(--screen-h)`). Textstorlekar och avstånd skalas med skärmhöjden (`--fs-body`, `--fs-h1`, `--pad-v` m.fl. i `tokens.css`) så att innehållet ryms på en skärm.
+- **Stående** (`@media (orientation: portrait)` eller som grundläge): bild över text, tjänsterna som svepbara kort.
+- **Låg liggande skärm** (mobil på sidan, `max-height: 560px`): liggande layout med kompakt header (60 px). Sektionerna får växa i stället för att klippa text.
+
+Header-höjden (`--header-height`) och sektionshöjden (`--screen-h`, byggd på `svh`) definieras bara i `tokens.css`. Bilder ligger absolut i sin ruta (`object-fit: cover`) och styr aldrig sektionens höjd. Lägg inte till nya pixelbrytpunkter för layout; `node scripts/validate-site.mjs` underkänner 800/810/801/811 px.
+
+Bildfilerna `*-desktop.webp` är höga (nästan kvadratiska) och används på startsidan i båda lägena. `*-mobil.webp` är breda 16:9 och används på tjänstesidornas hero.
 
 ## Typografi och design
 
-Typografin är ännu inte helt standardiserad mellan startsidan och undersidorna. Layouten har två lägen: mobil/surfplatta till och med 810 px och desktop från 811 px. Inom respektive läge ska storlekar och mellanrum skalas flytande i stället för att lägga till nya brytpunkter för varje skärmbredd. Nuvarande utgångspunkter i koden är bland annat:
-
-- Startsidan: ingress i heron 20 px på desktop; tjänstekortens brödtext 18 px på desktop och 17 px i mobilregler.
-- Tjänste-/projektsidor: vanlig introduktionstext har en grundregel på 16 px. Brödtexten i `.service-copy` använder `--font-body-service-copy` (15 px som standard) och `--font-body-service-copy-mobile` (14 px på mobil).
-- Ingressar, huvudrubriker, korttitlar, små etiketter och knappar har separata storleksregler och ska inte behandlas som vanlig brödtext.
-
-Detta är en karta över nuläget, inte en rekommendation att behålla alla värden. Innan vi ändrar storlekarna ska vi besluta en gemensam skala och sedan uppdatera rätt regler på desktop och mobil. Ändra inte alla storlekar i ett svep: vissa element behöver egna proportioner.
+Rubriker: Cormorant Garamond 600. Brödtext och knappar: Inter. Färger, radie (6 px) och avstånd kommer från designsystem v1. Undersidornas (`undersidor.css`) textstorlekar är fortfarande inte standardiserade mot den fluida skalan.
 
 ### Kända CSS-underhållspunkter
 
