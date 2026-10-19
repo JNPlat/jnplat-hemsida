@@ -57,7 +57,7 @@ jnplat-hemsida/
 - `style.css` – startsidans sektioner.
 - `undersidor.css` – tjänste- och projektsidornas layout, projektkort och gallerier.
 - `header.css` – gemensam header, navigering och sidornas header-offset.
-- `script.js` – startsidans navigering och referenskarusell.
+- `script.js` – startsidans navigering (aktiv länk vid scroll).
 - `service.js` – laddar projekt på tjänstesidorna och hanterar projektgalleriet.
 - `project.js` – laddar projektdetaljer och bildgalleri.
 - `site-utils.js` – gemensamma hjälpfunktioner för tjänstenamn och HTML-escaping.
@@ -89,7 +89,7 @@ Rubriker: Cormorant Garamond 600. Brödtext och knappar: Inter. Färger, radie (
 
 ### Kända CSS-underhållspunkter
 
-- `style.css` innehåller flera senare regler för samma väljare, särskilt runt referenskarusellen och startsidans sektioner.
+- `style.css` innehåller flera senare regler för samma väljare kring startsidans sektioner.
 - `undersidor.css` har återkommande väljare och senare regler som påverkar tjänstesidornas utseende. Kontrollera regelordning och brytpunkter innan du slår ihop dem.
 - `header.css` innehåller också överstyrningar, men äger avsiktligt headerns höjd, navigering och sidornas offset. Den filen ska inte städas genom att flytta regler till andra stilmallar.
 
@@ -118,4 +118,4 @@ Färgvariabler och gemensamma designvärden finns i början av `style.css`. Där
 
 En lyckad syntaxkontroll ersätter inte visuell testning i en riktig webbläsare.
 
-`--font-body-subpage-mobile` styr vanlig brödtext på undersidor i mobilvy, och `--font-body-service-copy-mobile` styr den löpande texten i tjänstesidornas introduktionsruta på mobil.
+Tjänstesidornas och projektsidans brödtext använder `--fs-body` från `tokens.css`, samma som startsidan.

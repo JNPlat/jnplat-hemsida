@@ -43,8 +43,6 @@
   --max-width: 1320px;
   --font-body-subpage: 16px;
   --font-body-subpage-mobile: 15px;
-  --font-body-service-copy: 15px;
-  --font-body-service-copy-mobile: 14px;
 
   /* Layoutläge: stående är grundläget */
   --header-height: 118px;
@@ -176,3 +174,9 @@ button, input, textarea, select { font: inherit; }
 .text-link:hover span { transform: translateX(3px); }
 
 :focus-visible { outline: 2px solid var(--copper-dark); outline-offset: 2px; }
+
+/* Respektera besökare som valt minskad rörelse */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

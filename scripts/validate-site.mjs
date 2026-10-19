@@ -29,8 +29,8 @@ const homepageScript = fs.readFileSync(path.join(root, "script.js"), "utf8");
 if (!/@media\s*\(orientation:\s*landscape\)/.test(headerCss)) {
   errors.push("The shared header must switch layout with (orientation: landscape).");
 }
-if (!/matchMedia\(["']\(orientation:\s*portrait\)["']\)/.test(homepageScript)) {
-  errors.push("The homepage carousel must use (orientation: portrait) as its mobile layout boundary.");
+if (/max-width:\s*(?:800|810)px|min-width:\s*(?:801|811)px/.test(homepageScript)) {
+  errors.push("script.js must not use the old pixel layout boundary; use orientation.");
 }
 
 for (const stylesheet of ["style.css", "undersidor.css", "header.css"]) {

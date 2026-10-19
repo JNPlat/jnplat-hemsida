@@ -918,59 +918,6 @@ body.project-gallery-open{
 
 
 
-/*Referenspilarna ska vara egna block bredvid korten, inte ligga ovanpå dem.*/
-
-.references-carousel{
-  display: grid;
-  grid-template-columns: 34px minmax(0,1fr) 34px;
-  align-items: stretch;
-  gap: 10px;
-  width: 100%;
-}
-
-.references-carousel .references-viewport{
-  width: 100%;
-  min-width: 0;
-  padding: 0;
-}
-
-.references-carousel .reference-arrow{
-  position: static;
-  inset: auto;
-  align-self: stretch;
-  width: 34px;
-  height: auto;
-  min-height: 100%;
-  border: 1px solid var(--copper,#a87957);
-  background: transparent;
-  color: var(--copper-dark,#825536);
-  transition: background .2s ease,color .2s ease,border-color .2s ease;
-}
-
-.references-carousel .reference-arrow:hover{
-  background: var(--copper,#a87957);
-  color: #fffaf2;
-  border-color: var(--copper,#a87957);
-}
-
-@media (orientation: portrait) {
-  
-  
-  
-  
-  
-  
-  
-  
-  .references-carousel{
-    grid-template-columns: 24px minmax(0,1fr) 24px;
-    gap: 6px;
-  }
-  .references-carousel .reference-arrow{
-    width: 24px;
-  }
-}
-
 /*Final korrigering 2026-10-14: tjänsteheadern ska vara centrerad och rymma alla flikar.*/
 
 
@@ -1011,111 +958,9 @@ body.project-gallery-open{
   
 }
 
-/*Mobil: hero börjar direkt under headern och referenserna får aldrig ett täckande lager.*/
-
-@media (orientation: portrait) {
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  .inner-page.service-page .references-carousel{
-    display: flex;
-    width: 100%;
-    gap: 0;
-    background: transparent;
-  }
-  .inner-page.service-page .references-carousel .references-viewport{
-    display: block;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    min-width: 0;
-    height: auto;
-    overflow-x: auto;
-    overflow-y: visible;
-    background: transparent;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
-  }
-  .inner-page.service-page .references-carousel .references-track{
-    display: flex;
-    width: max-content;
-    transform: none;
-    transition: none;
-    gap: 10px;
-    background: transparent;
-  }
-  .inner-page.service-page .references-carousel .reference-card{
-    flex: 0 0 min(82vw,340px);
-    width: min(82vw,340px);
-    max-width: none;
-    min-width: 0;
-    height: auto;
-    min-height: 0;
-    background: var(--card,#e9e2d7);
-  }
-  .inner-page.service-page .references-carousel .reference-arrow{
-    display: none;
-  }
-}
-
 /*Bildens naturliga 16:9-format används på desktop: ingen beskärning och inga sidofält.*/
 
 
-
-/*Referenskarusellen på startsidan: mobil ska kunna svepa fritt, utan vit overlay.*/
-
-@media (orientation: portrait) {
-  .references-carousel{
-    display: block;
-    width: 100%;
-    background: transparent;
-  }
-  .references-carousel .references-viewport{
-    display: block;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    min-width: 0;
-    height: auto;
-    overflow-x: auto;
-    overflow-y: visible;
-    background: transparent;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
-  }
-  .references-carousel .references-track{
-    display: flex;
-    width: max-content;
-    transform: none;
-    transition: none;
-    gap: 10px;
-    background: transparent;
-  }
-  .references-carousel .reference-card{
-    flex: 0 0 min(82vw,340px);
-    width: min(82vw,340px);
-    max-width: none;
-    min-width: 0;
-    height: auto;
-    min-height: 0;
-    background: var(--card,#e9e2d7);
-  }
-  .references-carousel .reference-arrow{
-    display: none;
-  }
-}
 
 /*Projektkarusell: projektnamnet ligger på bilden för att spara höjd.*/
 
@@ -1253,17 +1098,6 @@ body.project-gallery-open{
 .project-image-zoom-img.is-dragging{ cursor: grabbing; }
 
 
-/* Finjustering 2026-10-15: balanserade sidmarginaler för tjänsternas karuseller. */
-@media (orientation: landscape) {
-  
-  .inner-page.service-page .references-carousel{
-    margin-left: 18px;
-    margin-right: 18px;
-    width: calc(100% - 36px);
-    box-sizing: border-box;
-  }
-}
-
 /* Ankarposition för direktlänkar till Kontakt, inklusive fast header. */
 #kontakt{ scroll-margin-top: var(--header-height, 0px); }
 
@@ -1382,7 +1216,7 @@ body.project-gallery-open{
 .inner-page.service-page .service-copy .text-link { margin-top: 2px; }
 .inner-page.service-page .service-projects {
   display: grid;
-  grid-template-columns: 34px minmax(0, 1fr) 34px;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
   align-items: stretch;
   gap: 10px;
   width: 100%;
@@ -1397,11 +1231,12 @@ body.project-gallery-open{
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: stretch;
-  width: 34px;
-  min-height: 100%;
+  align-self: center;
+  width: 44px;
+  height: 44px;
   padding: 0;
-  border: 1px solid rgba(154,103,71,.55);
+  border: 1px solid var(--copper);
+  border-radius: var(--r);
   background: transparent;
   color: var(--copper-dark, #704936);
   font-size: 20px;
@@ -1409,6 +1244,7 @@ body.project-gallery-open{
   cursor: pointer;
   transition: background .2s ease, color .2s ease, border-color .2s ease;
 }
+.inner-page.service-page .service-projects .project-side-arrow[hidden] { display: none; }
 .inner-page.service-page .service-projects .project-side-arrow:hover {
   border-color: var(--copper, #9a6747);
   background: var(--copper, #9a6747);
@@ -1494,6 +1330,23 @@ body.project-gallery-open{
   font: 600 var(--fs-h3)/1.1 var(--serif);
 }
 .inner-page.service-page .service-projects .project-card-description-text { display: block; }
+
+/* Kontaktrad längst ned på tjänstesidorna */
+.inner-page.service-page .service-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2) var(--s3);
+  margin-top: auto;
+  padding: var(--s3) var(--pad-h);
+  border-top: 1px solid var(--line);
+}
+.inner-page.service-page .service-contact p {
+  margin: 0;
+  font: 600 var(--fs-h3)/1.15 var(--serif);
+}
+.inner-page.service-page .service-contact-links { display: flex; flex-wrap: wrap; gap: var(--s2); }
 
 @media (orientation: landscape) {
   .inner-page.service-page .service-showcase { gap: clamp(10px, 1.4vh, 14px); }
