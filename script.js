@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let scrollTicking = false;
 
+  // Mjuk scroll bara när besökaren inte valt minskad rörelse
+  const scrollBehavior = () =>
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+
   function getHeaderHeight() {
     return header ? header.getBoundingClientRect().height : 0;
   }
@@ -50,13 +54,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.scrollTo({
       top: Math.max(0, top),
-      behavior: "smooth"
+      behavior: scrollBehavior()
     });
   }
 
   brand?.addEventListener("click", (event) => {
     event.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: scrollBehavior() });
   });
 
   navLinks.forEach((link) => {
@@ -74,11 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  function updateLayout() {
-    updateActiveSection();
-  }
-
-  updateLayout();
+  updateActiveSection();
 
   // Cross-page hash navigation: wait until the destination page has completed
   // layout, then align the target once without competing smooth-scroll calls.
@@ -114,6 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: true }
   );
 
-  window.addEventListener("resize", updateLayout);
-  window.addEventListener("load", updateLayout);
+  window.addEventListener("resize", updateActiveSection);
+  window.addEventListener("load", updateActiveSection);
 });

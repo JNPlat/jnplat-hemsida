@@ -97,6 +97,22 @@
 
 .hero-content .eyebrow { margin-bottom: var(--s2); }
 .hero-content .btn { margin-top: var(--s1); }
+
+.hero-phone {
+  margin: var(--s2) 0 0;
+  font-size: var(--fs-body);
+  color: var(--ink-soft);
+}
+
+.hero-phone a {
+  display: inline-block;
+  padding: 6px 0;
+  color: var(--copper-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 4px;
+}
 .hero-text { font-size: var(--fs-lead); color: var(--ink); max-width: 480px; margin-bottom: var(--s3); }
 
 /* ---------- Löftet ---------- */
@@ -146,7 +162,7 @@
   display: block;
   margin-bottom: var(--s1);
   font: 600 var(--fs-h3)/1 var(--serif);
-  color: var(--copper);
+  color: var(--patina);
 }
 
 .process-steps h3 { margin-bottom: var(--s1); font-size: var(--fs-h3); }
@@ -238,6 +254,12 @@
 .services-head { padding: var(--pad-v) var(--pad-h) 0; }
 .services-head h2 { font-size: var(--fs-h2); }
 
+.services-hint {
+  margin: var(--s1) 0 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
 .services-grid {
   width: 100%;
   display: flex;
@@ -316,6 +338,8 @@
 }
 
 .current-gallery .current-image-main figcaption a {
+  display: inline-block;
+  padding: 4px 2px;
   color: var(--copper-dark);
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -350,6 +374,24 @@
   font: 600 calc(var(--fs-lead) * 1.15)/1.15 var(--serif);
   color: var(--ink);
 }
+
+.about-content .about-projects-intro { margin-bottom: var(--s1); }
+
+.about-projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px var(--s3);
+  max-width: 600px;
+  margin: 0 0 var(--s3);
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.about-projects li { white-space: nowrap; }
+.about-projects li::before { content: "– "; color: var(--copper); }
 
 .about-master {
   display: flex;
@@ -480,6 +522,7 @@
   /* Tjänster: fyra kolumner, bild överst, text under */
   .services-section { align-items: stretch; }
   .services-section > .container { display: flex; flex-direction: column; }
+  .services-hint { display: none; }
   .services-head { padding: clamp(14px, 3vh, 32px) var(--pad-h) clamp(10px, 2.4vh, 24px); border-bottom: 1px solid var(--line); }
 
   .services-grid {
@@ -528,7 +571,9 @@
   .about-image { height: auto; }
   .about-content p:not(.eyebrow) { margin-bottom: clamp(8px, 1.8vh, 18px); }
   .about-merits { gap: clamp(6px, 1.4vh, 16px) var(--s3); margin: 0 0 clamp(8px, 2vh, 24px); padding-top: clamp(8px, 1.6vh, 16px); }
-  .about-master { padding: clamp(6px, 1.4vh, 16px) var(--s3); }
+  .about-master { margin-top: 0; padding: clamp(6px, 1.4vh, 16px) var(--s3); }
+  .about-projects { display: flex; flex-wrap: wrap; gap: 2px 18px; max-width: 640px; margin-bottom: clamp(8px, 2vh, 24px); line-height: 1.4; }
+  .about-content .about-projects-intro { margin-bottom: clamp(2px, 0.6vh, 8px); }
   .about-master-year { font-size: calc(var(--fs-h2) * 0.85); }
 
   /* Kontakt: text vänster, bild höger */

@@ -10,6 +10,8 @@
   let imageIndex = 0;
   let previousFocus = null;
   let projectZoomScale = 1;
+  // Mjuk scroll bara när besökaren inte valt minskad rörelse
+  const scrollBehavior = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
   let projectZoomX = 0;
   let projectZoomY = 0;
   let projectZoomDragging = false;
@@ -61,11 +63,11 @@
       const atEnd = list.scrollLeft >= maxScroll - 2;
       // Wrap seamlessly: the last visible position continues to the first, and vice versa.
       if (direction > 0 && atEnd) {
-        list.scrollTo({ left: 0, behavior: 'smooth' });
+        list.scrollTo({ left: 0, behavior: scrollBehavior() });
       } else if (direction < 0 && atStart) {
-        list.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        list.scrollTo({ left: maxScroll, behavior: scrollBehavior() });
       } else {
-        list.scrollBy({ left: direction * step, behavior: 'smooth' });
+        list.scrollBy({ left: direction * step, behavior: scrollBehavior() });
       }
     };
     previous?.addEventListener('click', () => scrollByCard(-1));
@@ -190,7 +192,7 @@
         if (i === imageIndex) button.setAttribute('aria-current', 'true'); else button.removeAttribute('aria-current');
       });
       const activeZoomThumb = zoomThumbs?.querySelector(`[data-zoom-thumb-index="${imageIndex}"]`);
-      activeZoomThumb?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+      activeZoomThumb?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: scrollBehavior() });
       const prev = zoom.querySelector('.project-image-zoom-prev');
       const next = zoom.querySelector('.project-image-zoom-next');
       if (prev) prev.hidden = activeImages.length < 2;
@@ -215,9 +217,9 @@
       const visibleLeft = thumbnails.scrollLeft;
       const visibleRight = visibleLeft + thumbnails.clientWidth;
       if (thumbLeft < visibleLeft) {
-        thumbnails.scrollTo({ left: Math.max(0, thumbLeft - 8), behavior: 'smooth' });
+        thumbnails.scrollTo({ left: Math.max(0, thumbLeft - 8), behavior: scrollBehavior() });
       } else if (thumbRight > visibleRight) {
-        thumbnails.scrollTo({ left: thumbRight - thumbnails.clientWidth + 8, behavior: 'smooth' });
+        thumbnails.scrollTo({ left: thumbRight - thumbnails.clientWidth + 8, behavior: scrollBehavior() });
       }
     }
     galleryModal.querySelector('.project-gallery-prev').hidden = activeImages.length < 2;

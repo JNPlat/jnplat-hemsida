@@ -93,8 +93,8 @@ body > .inner-main,
   position: sticky;
   right: 0;
   margin-left: auto;
-  padding: 8px 12px;
-  box-shadow: -14px 0 12px -4px rgba(243, 238, 230, 0.97);
+  padding: 10px 12px;
+  box-shadow: -28px 0 18px -6px var(--paper);
   gap: 6px;
   border: 1px solid var(--copper);
   border-radius: var(--r);
