@@ -27,6 +27,8 @@
     const nextId = serviceIds[(index + step + serviceIds.length) % serviceIds.length];
     window.location.href = `${nextId}.html`;
   }, { passive: true });
+  document.querySelector('.service-copy')?.insertAdjacentHTML('beforeend',
+    '<p class="service-swipe-hint"><span aria-hidden="true">←</span> Svep för nästa tjänst <span aria-hidden="true">→</span></p>');
 
   const galleryModal = createGalleryModal();
   let activeProject = null;
