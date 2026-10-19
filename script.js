@@ -17,6 +17,17 @@ document.addEventListener("DOMContentLoaded", () => {
     return header ? header.getBoundingClientRect().height : 0;
   }
 
+  // Mobilmenyn: svep fram den aktiva länken så att den inte döljs bakom Kontakt
+  let revealedLink = null;
+  function revealNavLink(link) {
+    if (link === revealedLink) return;
+    revealedLink = link;
+    const nav = link.closest(".main-nav");
+    if (!nav || nav.scrollWidth <= nav.clientWidth) return;
+    const offset = link.getBoundingClientRect().left - nav.getBoundingClientRect().left;
+    nav.scrollTo({ left: Math.max(0, nav.scrollLeft + offset - nav.clientWidth / 3), behavior: scrollBehavior() });
+  }
+
   function updateActiveSection() {
     if (!sections.length) return;
 
@@ -40,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (active) {
         link.setAttribute("aria-current", "page");
+        revealNavLink(link);
       } else {
         link.removeAttribute("aria-current");
       }
