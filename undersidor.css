@@ -1252,6 +1252,11 @@ body.project-gallery-open{
   transition: background .2s ease, color .2s ease, border-color .2s ease;
 }
 .inner-page.service-page .service-projects .project-side-arrow[hidden] { display: none; }
+/* Utan pilar behövs inga pilkolumner: kortet linjerar med sidans kanter */
+.inner-page.service-page .service-projects:not(.has-project-overflow) {
+  grid-template-columns: 0 minmax(0, 1fr) 0;
+  gap: 0;
+}
 .inner-page.service-page .service-projects .project-side-arrow:hover {
   border-color: var(--copper, #9a6747);
   background: var(--copper, #9a6747);
@@ -1403,6 +1408,7 @@ body.project-gallery-open{
     overflow: visible;
   }
   .inner-page.service-page .service-projects .project-side-arrow { display: none; }
+  .inner-page.service-page .service-projects .project-carousel > .project-card:only-child { flex: 0 0 calc(100% - 40px); }
   .inner-page.service-page .service-projects .project-carousel {
     width: calc(100% + 20px);
     margin: 0 -20px 0 0;
