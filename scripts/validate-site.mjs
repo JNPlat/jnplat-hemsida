@@ -26,11 +26,11 @@ const relative = (file) => path.relative(root, file).split(path.sep).join("/");
 /* Keep the main responsive layout boundary aligned between CSS and JavaScript. */
 const headerCss = fs.readFileSync(path.join(root, "header.css"), "utf8");
 const homepageScript = fs.readFileSync(path.join(root, "script.js"), "utf8");
-if (!/@media\s*\(max-width:\s*810px\)/.test(headerCss)) {
-  errors.push("The shared header must use 810px as its mobile layout boundary.");
+if (!/@media\s*\(orientation:\s*landscape\)/.test(headerCss)) {
+  errors.push("The shared header must switch layout with (orientation: landscape).");
 }
-if (!/matchMedia\(["']\(max-width:\s*810px\)["']\)/.test(homepageScript)) {
-  errors.push("The homepage carousel must use 810px as its mobile layout boundary.");
+if (!/matchMedia\(["']\(orientation:\s*portrait\)["']\)/.test(homepageScript)) {
+  errors.push("The homepage carousel must use (orientation: portrait) as its mobile layout boundary.");
 }
 
 for (const stylesheet of ["style.css", "undersidor.css", "header.css"]) {
@@ -224,14 +224,14 @@ for (const file of files.filter((item) => item.endsWith(".html"))) {
 for (const file of files.filter((item) => item.endsWith(".css"))) {
   const css = fs.readFileSync(file, "utf8");
 
-  // The site uses one width breakpoint for its two layout modes: 810px / 811px.
+  // The site switches between its two layout modes with orientation, not pixel width.
   // Small mobile refinements and height/hover queries remain allowed.
   if (["style.css", "undersidor.css", "header.css"].includes(path.basename(file))) {
     if (/@media[^{}]*max-width\s*:\s*(?:1100|1150)px/i.test(css)) {
       errors.push(`Obsolete intermediate desktop breakpoint found in ${relative(file)}.`);
     }
-    if (/@media[^{}]*min-width\s*:\s*801px/i.test(css) || /@media[^{}]*max-width\s*:\s*800px/i.test(css)) {
-      errors.push(`Inconsistent 810px / 811px layout boundary found in ${relative(file)}.`);
+    if (/@media[^{}]*(?:min-width\s*:\s*(?:801|811)px|max-width\s*:\s*(?:800|810)px)/i.test(css)) {
+      errors.push(`Old pixel layout boundary found in ${relative(file)}; use orientation.`);
     }
   }
   for (const match of css.matchAll(/url\(\s*["']?([^"'\)]+)["']?\s*\)/gi)) {
