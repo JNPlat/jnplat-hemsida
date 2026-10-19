@@ -543,9 +543,18 @@
     flex: 1 1 auto;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: minmax(0, 1fr) auto;
     gap: 0;
     padding: 0;
     overflow: visible;
+  }
+
+  /* Korten delar rader (subgrid) så att bilder och rubriker linjerar
+     även när en text är längre än de andra */
+  .service-card {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
   }
 
   .service-card {
@@ -608,7 +617,7 @@
    bilder i fast format, så att bilderna inte kläms ihop och långa
    rubriker får plats. Sektionen får växa. */
 @media (orientation: landscape) and (max-height: 560px) {
-  .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
   .service-card:nth-child(2n) { border-right: 0; }
   .service-card:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
   .service-image { flex: 0 0 auto; aspect-ratio: 16 / 9; }
