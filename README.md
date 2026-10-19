@@ -75,6 +75,11 @@ Sajten har två layoutlägen som väljs efter skärmens **orientering**, inte ef
 
 Header-höjden (`--header-height`) och sektionshöjden (`--screen-h`, byggd på `svh`) definieras bara i `tokens.css`. Bilder ligger absolut i sin ruta (`object-fit: cover`) och styr aldrig sektionens höjd. Lägg inte till nya pixelbrytpunkter för layout; `node scripts/validate-site.mjs` underkänner 800/810/801/811 px.
 
+## Bildversioner för stående och liggande skärm
+
+- **Herobilden** finns i två versioner: `images/hero-bild.webp` (bred, visas på stående skärm) och `images/hero-bild-liggande.webp` (nästan kvadratisk, visas på liggande skärm och dator). Byt mot egna versioner med samma filnamn.
+- **Tjänstebilderna** finns som `*-desktop.webp` (hög) och `*-mobil.webp` (bred 16:9). Startsidans tjänstekort använder den breda versionen på mobil i liggande läge, tjänstesidornas toppbild använder alltid den breda.
+
 ## Citat (Förtroende) och meriter (John Norberg)
 
 - **Citat** ligger i sektionen `#fortroende` i `index.html`. Det finns tre färdiga platser för konsult, plåtkonsult och antikvarie. Fyll i texten och ta bort ordet `hidden` så syns kortet. Är bara ett citat ifyllt visas det stort; fylls fler i blir alla kort lika stora automatiskt.

@@ -1484,3 +1484,8 @@ body.project-gallery-open{ overflow: hidden; }
     letter-spacing: .02em;
   }
 }
+
+/* Mobil på sidan: tjänstebilden får mer bredd så att den beskärs mindre */
+@media (orientation: landscape) and (max-height: 560px) {
+  .inner-page.service-page .service-showcase-top { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); }
+}

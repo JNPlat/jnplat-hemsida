@@ -142,14 +142,20 @@
 
         <div class="hero-image">
 
-          <img
-            src="images/hero-bild.webp"
-            alt="Plåtslageriarbete på tak"
-            width="2400"
-            height="1602"
-            fetchpriority="high"
-            decoding="async"
-          >
+          <!-- HEROBILD: hero-bild.webp visas på stående skärm (bred bild),
+               hero-bild-liggande.webp på liggande skärm (smalare, nästan kvadratisk).
+               Byt filerna mot egna versioner med samma namn. -->
+          <picture>
+            <source media="(orientation: landscape)" srcset="images/hero-bild-liggande.webp" width="1441" height="1602">
+            <img
+              src="images/hero-bild.webp"
+              alt="Plåtslageriarbete på tak"
+              width="2400"
+              height="1602"
+              fetchpriority="high"
+              decoding="async"
+            >
+          </picture>
 
         </div>
 
@@ -203,6 +209,8 @@
 
               <picture>
 
+                <source media="(orientation: landscape) and (max-height: 560px)" srcset="images/byggnadsplatslageri-mobil.webp" width="1672" height="941">
+
                 <img
                   src="images/byggnadsplatslageri-desktop.webp"
                   alt="Byggnadsplåtslageri"
@@ -242,6 +250,8 @@
             <div class="service-image">
 
               <picture>
+
+                <source media="(orientation: landscape) and (max-height: 560px)" srcset="images/kopparslageri-mobil.webp" width="1672" height="941">
 
                 <img
                   src="images/kopparslageri-desktop.webp"
@@ -283,6 +293,8 @@
 
               <picture>
 
+                <source media="(orientation: landscape) and (max-height: 560px)" srcset="images/restaurering-mobil.webp" width="1672" height="941">
+
                 <img
                   src="images/restaurering-desktop.webp"
                   alt="Restaurering"
@@ -322,6 +334,8 @@
             <div class="service-image">
 
               <picture>
+
+                <source media="(orientation: landscape) and (max-height: 560px)" srcset="images/specialprojekt-mobil.webp" width="2048" height="1152">
 
                 <img
                   src="images/specialprojekt-desktop.webp"
