@@ -29,8 +29,8 @@ const homepageScript = fs.readFileSync(path.join(root, "script.js"), "utf8");
 if (!/@media\s*\(orientation:\s*landscape\)/.test(headerCss)) {
   errors.push("The shared header must switch layout with (orientation: landscape).");
 }
-if (!/matchMedia\(["']\(orientation:\s*portrait\)["']\)/.test(homepageScript)) {
-  errors.push("The homepage carousel must use (orientation: portrait) as its mobile layout boundary.");
+if (/max-width:\s*(?:800|810)px|min-width:\s*(?:801|811)px/.test(homepageScript)) {
+  errors.push("script.js must not use the old pixel layout boundary; use orientation.");
 }
 
 for (const stylesheet of ["style.css", "undersidor.css", "header.css"]) {
@@ -233,6 +233,10 @@ for (const file of files.filter((item) => item.endsWith(".css"))) {
     if (/@media[^{}]*(?:min-width\s*:\s*(?:801|811)px|max-width\s*:\s*(?:800|810)px)/i.test(css)) {
       errors.push(`Old pixel layout boundary found in ${relative(file)}; use orientation.`);
     }
+  }
+  // Catch selector lists that lost their line break, e.g. ".a,n.b".
+  if (/,n\.[a-z]/i.test(css)) {
+    errors.push(`Broken selector list (",n.") found in ${relative(file)}.`);
   }
   for (const match of css.matchAll(/url\(\s*["']?([^"'\)]+)["']?\s*\)/gi)) {
     checkReference(file, match[1], "CSS asset");

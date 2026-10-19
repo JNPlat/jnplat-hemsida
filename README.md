@@ -13,7 +13,7 @@ Statisk webbplats för J. Norberg Plåtslageri AB. Publiceras som statiska filer
 | Layout på startsidans sektioner | `style.css` |
 | Utseende på tjänste- och projektsidor | `undersidor.css` |
 | Header, logotyp, navigering och headerhöjd | `header.css` |
-| Startsida: navigering och referenskarusell | `script.js` |
+| Startsida: navigering | `script.js` |
 | Tjänstesidor: projektkort och bildgalleri | `service.js` |
 | Projektdetaljsida och galleri | `project.js` |
 | Gemensamma JavaScript-hjälpfunktioner | `site-utils.js` |
@@ -57,7 +57,7 @@ jnplat-hemsida/
 - `style.css` – startsidans sektioner.
 - `undersidor.css` – tjänste- och projektsidornas layout, projektkort och gallerier.
 - `header.css` – gemensam header, navigering och sidornas header-offset.
-- `script.js` – startsidans navigering och referenskarusell.
+- `script.js` – startsidans navigering (aktiv länk vid scroll).
 - `service.js` – laddar projekt på tjänstesidorna och hanterar projektgalleriet.
 - `project.js` – laddar projektdetaljer och bildgalleri.
 - `site-utils.js` – gemensamma hjälpfunktioner för tjänstenamn och HTML-escaping.
@@ -75,6 +75,12 @@ Sajten har två layoutlägen som väljs efter skärmens **orientering**, inte ef
 
 Header-höjden (`--header-height`) och sektionshöjden (`--screen-h`, byggd på `svh`) definieras bara i `tokens.css`. Bilder ligger absolut i sin ruta (`object-fit: cover`) och styr aldrig sektionens höjd. Lägg inte till nya pixelbrytpunkter för layout; `node scripts/validate-site.mjs` underkänner 800/810/801/811 px.
 
+## Citat (Förtroende) och meriter (John Norberg)
+
+- **Citat** ligger i sektionen `#fortroende` i `index.html`. Det finns tre färdiga platser för konsult, plåtkonsult och antikvarie. Fyll i texten och ta bort ordet `hidden` så syns kortet. Är bara ett citat ifyllt visas det stort; fylls fler i blir alla kort lika stora automatiskt.
+- **Meriter** är en lista (`about-merits`) i sektionen `#om`. En `<li>` per merit.
+- **Undersidornas textstorlekar** (tjänstesidor, projektsida, galleri) använder samma variabler som startsidan: `--fs-h1`, `--fs-h2`, `--fs-h3` och `--fs-body` i `tokens.css`.
+
 Bildfilerna `*-desktop.webp` är höga (nästan kvadratiska) och används på startsidan i båda lägena. `*-mobil.webp` är breda 16:9 och används på tjänstesidornas hero.
 
 ## Typografi och design
@@ -83,7 +89,7 @@ Rubriker: Cormorant Garamond 600. Brödtext och knappar: Inter. Färger, radie (
 
 ### Kända CSS-underhållspunkter
 
-- `style.css` innehåller flera senare regler för samma väljare, särskilt runt referenskarusellen och startsidans sektioner.
+- `style.css` innehåller flera senare regler för samma väljare kring startsidans sektioner.
 - `undersidor.css` har återkommande väljare och senare regler som påverkar tjänstesidornas utseende. Kontrollera regelordning och brytpunkter innan du slår ihop dem.
 - `header.css` innehåller också överstyrningar, men äger avsiktligt headerns höjd, navigering och sidornas offset. Den filen ska inte städas genom att flytta regler till andra stilmallar.
 
@@ -112,4 +118,4 @@ Färgvariabler och gemensamma designvärden finns i början av `style.css`. Där
 
 En lyckad syntaxkontroll ersätter inte visuell testning i en riktig webbläsare.
 
-`--font-body-subpage-mobile` styr vanlig brödtext på undersidor i mobilvy, och `--font-body-service-copy-mobile` styr den löpande texten i tjänstesidornas introduktionsruta på mobil.
+Tjänstesidornas och projektsidans brödtext använder `--fs-body` från `tokens.css`, samma som startsidan.

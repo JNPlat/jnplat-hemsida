@@ -82,14 +82,6 @@
         </a>
 
         <a
-          href="#aktuellt"
-          class="nav-link"
-          data-section="aktuellt"
-        >
-          Aktuellt
-        </a>
-
-        <a
           href="#om"
           class="nav-link"
           data-section="om"
@@ -98,12 +90,20 @@
         </a>
 
         <a
+          href="#aktuellt"
+          class="nav-link"
+          data-section="aktuellt"
+        >
+          Aktuellt
+        </a>
+
+        <a
           href="#kontakt"
           class="nav-link header-contact"
           data-section="kontakt"
         >
           <span class="header-contact-label">Kontakt</span>
-          <span class="header-contact-arrow">→</span>
+          <span class="header-contact-arrow" aria-hidden="true">→</span>
         </a>
 
       </nav>
@@ -133,7 +133,9 @@
             Direkt kontakt med den som utför arbetet, från offert till faktura.
           </p>
 
-          <a href="#kontakt" class="btn">Kontakta mig <span>→</span></a>
+          <a href="#kontakt" class="btn">Kontakta mig <span aria-hidden="true">→</span></a>
+
+          <p class="hero-phone">eller ring <a href="tel:0722848557">072-284 85 57</a></p>
 
         </div>
 
@@ -142,86 +144,11 @@
           <img
             src="images/hero-bild.webp"
             alt="Plåtslageriarbete på tak"
-            sizes="(orientation: portrait) 100vw, 40vw"
-            width="6016"
-            height="4016"
+            width="2400"
+            height="1602"
             fetchpriority="high"
             decoding="async"
           >
-
-        </div>
-
-      </div>
-
-      <!-- REFERENSER – DEL AV HERO -->
-
-      <div class="section-band">
-
-        <div class="references-carousel">
-
-          <button
-            class="reference-arrow reference-prev"
-            type="button"
-            aria-label="Föregående referens"
-          >
-            ←
-          </button>
-
-          <div class="references-viewport">
-
-            <div class="references-track">
-
-              <!-- =====================================================
-                   REFERENS 1
-                   ÄNDRA BARA TEXTEN MELLAN FÄLTEN NEDAN.
-                   Projekt-raden kan lämnas tom om referensen inte gäller
-                   ett specifikt projekt.
-                   ===================================================== -->
-
-              <article class="reference-card">
-
-                <p class="reference-name">
-                  Conny Lundell
-                </p>
-
-                <p class="reference-role">
-                  Platschef, Kyrkans Byggmästarbolag AB
-                </p>
-
-                <p class="reference-quote">
-                  Mycket kunnig och lösningsorienterad en riktig konstnär med plåt.
-                </p>
-
-                <p class="reference-project">
-                  St: Johannes Kyrka
-                </p>
-
-              </article>
-
-
-              <!--
-                MALL FÖR NY REFERENS – kopiera och fyll i när du har en ny referens.
-                Ta bort kommentarstarten och kommentaravslutet för att publicera kortet.
-
-                <article class="reference-card">
-                  <p class="reference-name">Namn</p>
-                  <p class="reference-role">Roll, företag</p>
-                  <p class="reference-quote">Citat från referensen.</p>
-                  <p class="reference-project">Projekt (valfritt)</p>
-                </article>
-              -->
-
-            </div>
-
-          </div>
-
-          <button
-            class="reference-arrow reference-next"
-            type="button"
-            aria-label="Nästa referens"
-          >
-            →
-          </button>
 
         </div>
 
@@ -256,6 +183,12 @@
 
       <div class="container">
 
+        <div class="services-head">
+          <p class="eyebrow">Mitt hantverk</p>
+          <h2>Det här gör jag</h2>
+          <p class="services-hint">Svep för att se alla fyra <span aria-hidden="true">→</span></p>
+        </div>
+
         <div class="services-grid">
 
           <!-- BYGGNADSPLÅTSLAGERI -->
@@ -272,8 +205,8 @@
                 <img
                   src="images/byggnadsplatslageri-desktop.webp"
                   alt="Byggnadsplåtslageri"
-                  sizes="(orientation: portrait) 78vw, 25vw"
-
+                  width="942"
+                  height="1028"
                   loading="lazy"
                   decoding="async"
                 >
@@ -312,8 +245,8 @@
                 <img
                   src="images/kopparslageri-desktop.webp"
                   alt="Kopparslageri"
-                  sizes="(orientation: portrait) 78vw, 25vw"
-
+                  width="942"
+                  height="1028"
                   loading="lazy"
                   decoding="async"
                 >
@@ -352,8 +285,8 @@
                 <img
                   src="images/restaurering-desktop.webp"
                   alt="Restaurering"
-                  sizes="(orientation: portrait) 78vw, 25vw"
-
+                  width="942"
+                  height="1028"
                   loading="lazy"
                   decoding="async"
                 >
@@ -392,8 +325,8 @@
                 <img
                   src="images/specialprojekt-desktop.webp"
                   alt="Specialprojekt"
-                  sizes="(orientation: portrait) 78vw, 25vw"
-
+                  width="942"
+                  height="1028"
                   loading="lazy"
                   decoding="async"
                 >
@@ -466,6 +399,149 @@
 
     </section>
 
+    <section class="trust-section" id="fortroende">
+
+      <div class="trust-inner">
+
+        <div class="trust-head">
+          <p class="eyebrow">Förtroende</p>
+          <h2>De jag arbetar med</h2>
+        </div>
+
+        <div class="trust-quotes">
+
+          <!-- =====================================================
+               CITAT. Ändra bara texten i fälten.
+               De tre korten med "hidden" är platser för citat från
+               konsult, plåtkonsult och antikvarie. Fyll i texten och
+               ta bort ordet hidden så syns kortet på sajten.
+               ===================================================== -->
+
+          <figure class="trust-quote trust-quote--featured">
+            <blockquote>
+              <p>Mycket kunnig och lösningsorienterad, en riktig konstnär med plåt.</p>
+            </blockquote>
+            <figcaption>
+              <span class="trust-name">Conny Lundell</span>
+              <span class="trust-role">Platschef, Kyrkans Byggmästarbolag AB</span>
+              <span class="trust-project">S:t Johannes kyrka</span>
+            </figcaption>
+          </figure>
+
+          <figure class="trust-quote" hidden>
+            <blockquote>
+              <p>Citat från konsult.</p>
+            </blockquote>
+            <figcaption>
+              <span class="trust-name">Namn</span>
+              <span class="trust-role">Konsult, företag</span>
+              <span class="trust-project">Projekt (valfritt)</span>
+            </figcaption>
+          </figure>
+
+          <figure class="trust-quote" hidden>
+            <blockquote>
+              <p>Citat från plåtkonsult.</p>
+            </blockquote>
+            <figcaption>
+              <span class="trust-name">Namn</span>
+              <span class="trust-role">Plåtkonsult, företag</span>
+              <span class="trust-project">Projekt (valfritt)</span>
+            </figcaption>
+          </figure>
+
+          <figure class="trust-quote" hidden>
+            <blockquote>
+              <p>Citat från antikvarie.</p>
+            </blockquote>
+            <figcaption>
+              <span class="trust-name">Namn</span>
+              <span class="trust-role">Antikvarie, företag</span>
+              <span class="trust-project">Projekt (valfritt)</span>
+            </figcaption>
+          </figure>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section
+      class="about-section"
+      id="om"
+    >
+
+      <div class="container">
+
+        <div class="about-grid">
+
+          <div class="about-image">
+
+            <picture>
+              <img
+                src="images/om-j-norberg-desktop.webp"
+                alt="John Norberg arbetar i plåtverkstaden"
+                width="1536"
+                height="2048"
+                loading="lazy"
+                decoding="async"
+              >
+            </picture>
+
+          </div>
+
+          <div class="about-content">
+
+            <p class="eyebrow">Hantverkaren</p>
+            <h2>
+              John Norberg
+            </h2>
+
+            <p>
+              Jag heter John Norberg och driver J. Norberg Plåtslageri AB,
+              med samma passion för traditionellt hantverk och hög kvalitet
+              som under mina tio år på Bång &amp; Lewerth.
+            </p>
+
+            <!-- MERITER: en rad per merit. Kopiera en <li> för att lägga till fler. -->
+            <ul class="about-merits">
+              <li><strong>10 år på Bång &amp; Lewerth</strong> Restaurering av kulturhistoriskt värdefulla byggnader.</li>
+              <li><strong>SM-silver 2016</strong> Andra plats i SM i plåtslageri.</li>
+              <li><strong>Ambassadör för PVF</strong> Plåt &amp; Ventföretagen, branschens organisation.</li>
+              <li><strong>Stipendium 2023</strong> Utbildningsresa till VMZINC i Frankrike.</li>
+            </ul>
+
+            <p class="about-projects-intro">
+              Som anställd på Bång &amp; Lewerth har jag haft förtroendet att arbeta på:
+            </p>
+
+            <ul class="about-projects">
+              <li>Högalidskyrkan</li>
+              <li>S:t Johannes kyrka</li>
+              <li>Stockholms stadshus</li>
+              <li>Utrikesdepartementet</li>
+              <li>Riddarholmskyrkan</li>
+              <li>Engelbrektskyrkan</li>
+            </ul>
+
+            <div class="about-master">
+              <span class="about-master-year">2027</span>
+              <p>
+                <strong>Mästarbrev</strong>
+                Mitt mål är att föra det traditionella hantverket vidare och ta
+                mitt mästarbrev, planerat till början av 2027.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
     <section
       class="current-section"
       id="aktuellt"
@@ -502,7 +578,7 @@
 
             <p class="eyebrow">Pågående arbete</p>
             <h2>
-              Aktuellt
+              Villa Bergabo
             </h2>
 
             <p>
@@ -533,69 +609,6 @@
     </section>
 
     <section
-      class="about-section"
-      id="om"
-    >
-
-      <div class="container">
-
-        <div class="about-grid">
-
-          <div class="about-image">
-
-            <picture>
-              <img
-                src="images/om-j-norberg-desktop.webp"
-                alt="J. Norberg arbetar i plåtverkstaden"
-                sizes="(orientation: portrait) 100vw, 50vw"
-
-                loading="lazy"
-                decoding="async"
-              >
-            </picture>
-
-          </div>
-
-          <div class="about-content">
-
-            <p class="eyebrow">Hantverkaren</p>
-            <h2>
-              Om J. Norberg
-            </h2>
-            
-<p>
-  Jag heter John Norberg och driver J. Norberg Plåtslageri AB.
-  Efter tio år på Bång & Lewerth, med fokus på restaurering av
-  kulturhistoriskt värdefulla byggnader, driver jag nu eget med samma
-  passion för traditionellt hantverk och hög kvalitet.
-</p>
-
-<p>
-  Jag kom på andra plats i SM i plåtslageri 2016, har varit ambassadör
-  för PVF och tilldelades 2023 ett stipendium för en utbildningsresa
-  till VMZINC i Frankrike.
-</p>
-
-<p>
-  Några nämnvärda projekt jag haft förtroendet att jobba på som anställd på Bång & Lewerth är
-  Högalidskyrkan, S:t Johannes kyrka, Stockholms stadshus, Utrikesdepartementet, Riddarholmskyrkan
-  och Engelbrektskyrkan.
-</p>
-
-<p>
-  Mitt mål är att föra det traditionella hantverket vidare och ta
-  mitt mästarbrev, planerat till början av 2027.
-</p>
-            
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <section
       class="contact-section"
       id="kontakt"
     >
@@ -605,9 +618,8 @@
         <img
           src="images/st-johannes.webp"
           alt="Kopparplåt och tegel vid St Johannes"
-          sizes="(orientation: portrait) 100vw, 42vw"
-          width="2268"
-          height="4032"
+          width="1200"
+          height="2133"
           loading="lazy"
           decoding="async"
         >
@@ -626,10 +638,23 @@
           <p class="contact-intro">
             Har du ett projekt inom plåt, koppar eller
             restaurering? Kontakta mig gärna för att
-            diskutera arbetet.
+            diskutera arbetet. Både byggföretag och
+            privatpersoner med äldre hus är välkomna.
           </p>
 
           <div class="contact-details">
+
+            <div class="contact-item">
+
+              <span>
+                Kontaktperson
+              </span>
+
+              <p>
+                John Norberg, gesäll i plåtslageri (yrkesexamen)
+              </p>
+
+            </div>
 
             <div class="contact-item">
 

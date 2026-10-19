@@ -34,10 +34,10 @@ body > .inner-main,
 }
 
 .site-header .brand {
-  flex: 0 0 74px;
+  flex: 0 0 66px;
   width: var(--header-logo-width);
   max-width: 100%;
-  height: 74px;
+  height: 66px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,10 +50,10 @@ body > .inner-main,
 }
 
 .site-header .main-nav {
-  flex: 0 0 31px;
+  flex: 0 0 42px;
   width: 100%;
   min-width: 0;
-  padding: 0 10px;
+  padding: 0 0 0 10px;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -67,7 +67,7 @@ body > .inner-main,
 .site-header .main-nav > .nav-link {
   position: relative;
   flex: 0 0 auto;
-  padding: 3px 0;
+  padding: 12px 0;
   color: var(--ink);
   font: 500 clamp(11px, 3.1vw, 14px)/1.15 var(--sans);
   white-space: nowrap;
@@ -87,10 +87,14 @@ body > .inner-main,
 .site-header .main-nav > .nav-link.active { color: var(--copper-dark); }
 .site-header .main-nav > .nav-link.active::after { width: 100%; }
 
-/* Kontakt är knappen från designsystemet */
+/* Kontakt är knappen från designsystemet. I stående läge ligger den fast
+   till höger så att den alltid syns även när menyn svepas. */
 .site-header .main-nav > .header-contact {
+  position: sticky;
+  right: 0;
   margin-left: auto;
-  padding: 5px 12px;
+  padding: 10px 12px;
+  box-shadow: -28px 0 18px -6px var(--paper);
   gap: 6px;
   border: 1px solid var(--copper);
   border-radius: var(--r);
@@ -158,7 +162,7 @@ body > .inner-main,
   }
 
   .site-header .main-nav > .nav-link {
-    padding: 8px 0;
+    padding: 12px 0;
     font-size: clamp(13px, 1.15vw, 15px);
   }
 
@@ -169,7 +173,9 @@ body > .inner-main,
   .site-header .main-nav > .nav-link::after { bottom: 2px; }
 
   .site-header .main-nav > .header-contact {
+    position: relative;
     padding: 8px 16px;
     gap: 8px;
+    box-shadow: none;
   }
 }
