@@ -129,7 +129,18 @@
     document.body.appendChild(modal);
     modal.querySelector('.project-gallery-close').addEventListener('click', closeGallery);
     modal.querySelector('[data-gallery-close]').addEventListener('click', closeGallery);
-    modal.querySelector('.project-gallery-main-image').addEventListener('click', openDesktopImageZoom);
+    // Dator: klick på bilden öppnar bildzoomen. Pekskärm: tryck på vänster
+    // eller höger halva av bilden för föregående eller nästa bild.
+    modal.querySelector('.project-gallery-stage').addEventListener('click', event => {
+      if (event.target.closest('.project-gallery-arrow')) return;
+      if (isDesktopImageViewer()) {
+        if (event.target.closest('.project-gallery-main-image')) openDesktopImageZoom();
+        return;
+      }
+      if (activeImages.length < 2) return;
+      const rect = event.currentTarget.getBoundingClientRect();
+      showImage(imageIndex + (event.clientX < rect.left + rect.width / 2 ? -1 : 1));
+    });
     modal.querySelector('.project-gallery-prev').addEventListener('click', () => showImage(imageIndex - 1));
     modal.querySelector('.project-gallery-next').addEventListener('click', () => showImage(imageIndex + 1));
     modal.querySelector('.project-gallery-thumbnails').addEventListener('click', event => {
