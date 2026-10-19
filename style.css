@@ -91,7 +91,7 @@
   flex: 1 1 auto;
 }
 
-.hero-image { order: -1; height: clamp(240px, 40svh, 460px); }
+.hero-image { order: -1; height: clamp(220px, 36svh, 460px); }
 .hero-content h1 { margin-bottom: var(--s3); }
 .hero-text:last-child { margin-bottom: 0; }
 
@@ -256,7 +256,7 @@
 
 .services-hint {
   margin: var(--s1) 0 0;
-  font-size: 0.85rem;
+  font-size: var(--fs-body);
   color: var(--ink-soft);
 }
 
@@ -357,7 +357,7 @@
 
 .about-merits {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11em), 1fr));
   gap: var(--s2) var(--s3);
   max-width: 600px;
   margin: var(--s1) 0 var(--s3);
@@ -379,7 +379,7 @@
 
 .about-projects {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11em), 1fr));
   gap: 2px var(--s3);
   max-width: 600px;
   margin: 0 0 var(--s3);
@@ -390,7 +390,6 @@
   color: var(--ink);
 }
 
-.about-projects li { white-space: nowrap; }
 .about-projects li::before { content: "– "; color: var(--copper); }
 
 .about-master {
@@ -570,8 +569,9 @@
 
   .about-image { height: auto; }
   .about-content p:not(.eyebrow) { margin-bottom: clamp(8px, 1.8vh, 18px); }
-  .about-merits { gap: clamp(6px, 1.4vh, 16px) var(--s3); margin: 0 0 clamp(8px, 2vh, 24px); padding-top: clamp(8px, 1.6vh, 16px); }
+  .about-merits { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(6px, 1.4vh, 16px) var(--s3); margin: 0 0 clamp(8px, 2vh, 24px); padding-top: clamp(8px, 1.6vh, 16px); }
   .about-master { margin-top: 0; padding: clamp(6px, 1.4vh, 16px) var(--s3); }
+  .about-projects li { white-space: nowrap; }
   .about-projects { display: flex; flex-wrap: wrap; gap: 2px 18px; max-width: 640px; margin-bottom: clamp(8px, 2vh, 24px); line-height: 1.4; }
   .about-content .about-projects-intro { margin-bottom: clamp(2px, 0.6vh, 8px); }
   .about-master-year { font-size: calc(var(--fs-h2) * 0.85); }

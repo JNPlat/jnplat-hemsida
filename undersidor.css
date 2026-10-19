@@ -1428,3 +1428,9 @@ body.project-gallery-open{
   }
   .inner-page.service-page .service-projects .project-card-info { display: none; }
 }
+
+/* "Se projektet" visar att projektkortet går att öppna */
+.inner-page.service-page .service-projects .project-card-more {
+  color: var(--copper-dark);
+  font: 600 0.95rem/1.2 var(--sans);
+}

@@ -44,7 +44,7 @@
       const description = project.description || project.longDescription || '';
       return `<button class="project-card" type="button" data-project-index="${index}" aria-label="Öppna bildgalleri för ${escapeAttribute(project.title)}">` +
         `<div class="project-card-image">${imageMarkup}<span class="project-card-title">${escapeHTML(project.title)}</span></div>` +
-        `<span class="project-card-info"><h3 class="project-card-description-title">${escapeHTML(project.title)}</h3><span class="project-card-description"><span class="project-card-description-text">${escapeHTML(description)}</span></span></span></button>`;
+        `<span class="project-card-info"><h3 class="project-card-description-title">${escapeHTML(project.title)}</h3><span class="project-card-description"><span class="project-card-description-text">${escapeHTML(description)}</span></span><span class="project-card-more">Se projektet <span aria-hidden="true">→</span></span></span></button>`;
     }).join('');
 
     list.querySelectorAll('[data-project-index]').forEach(button => {

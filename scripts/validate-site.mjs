@@ -234,6 +234,10 @@ for (const file of files.filter((item) => item.endsWith(".css"))) {
       errors.push(`Old pixel layout boundary found in ${relative(file)}; use orientation.`);
     }
   }
+  // Catch selector lists that lost their line break, e.g. ".a,n.b".
+  if (/,n\.[a-z]/i.test(css)) {
+    errors.push(`Broken selector list (",n.") found in ${relative(file)}.`);
+  }
   for (const match of css.matchAll(/url\(\s*["']?([^"'\)]+)["']?\s*\)/gi)) {
     checkReference(file, match[1], "CSS asset");
   }

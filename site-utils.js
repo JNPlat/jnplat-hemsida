@@ -35,4 +35,13 @@
     escapeHTML,
     escapeAttribute: escapeHTML
   });
+
+  // Mobilmenyn: svep fram den aktiva sidan så att den inte döljs bakom Kontakt.
+  document.addEventListener("DOMContentLoaded", () => {
+    const active = document.querySelector(".main-nav .nav-link.active");
+    const nav = active?.closest(".main-nav");
+    if (!nav || nav.scrollWidth <= nav.clientWidth) return;
+    const offset = active.getBoundingClientRect().left - nav.getBoundingClientRect().left;
+    nav.scrollLeft = Math.max(0, nav.scrollLeft + offset - nav.clientWidth / 3);
+  });
 })();
