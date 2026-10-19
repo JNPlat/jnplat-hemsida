@@ -1,0 +1,11 @@
+# Filer som inte ska publiceras på sajten
+.git/
+.github/
+.assetsignore
+wrangler.jsonc
+scripts/
+README.md
+CHANGELOG-KODGENOMGANG.md
+project-template.json.txt
+node_modules/
+.wrangler/
