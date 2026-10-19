@@ -4,6 +4,32 @@
   const list = document.querySelector('[data-project-list]');
   if (!list || !serviceId) return;
 
+  // Svep åt vänster eller höger på sidan för att gå till nästa eller föregående tjänst.
+  // Svep i projektkarusellen, menyn och bildvisningen räknas inte.
+  const serviceIds = window.JNPlSite.serviceIds;
+  let swipeStart = null;
+  document.addEventListener('touchstart', event => {
+    const ignored = event.target.closest('.project-carousel, .project-gallery-modal, .project-image-zoom, .main-nav');
+    swipeStart = event.touches.length === 1 && !ignored
+      ? { x: event.touches[0].clientX, y: event.touches[0].clientY }
+      : null;
+  }, { passive: true });
+  document.addEventListener('touchend', event => {
+    if (!swipeStart || document.body.classList.contains('project-gallery-open')) return;
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - swipeStart.x;
+    const dy = touch.clientY - swipeStart.y;
+    swipeStart = null;
+    if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    const index = serviceIds.indexOf(serviceId);
+    if (index < 0) return;
+    const step = dx < 0 ? 1 : -1;
+    const nextId = serviceIds[(index + step + serviceIds.length) % serviceIds.length];
+    window.location.href = `${nextId}.html`;
+  }, { passive: true });
+  document.querySelector('.service-copy')?.insertAdjacentHTML('beforeend',
+    '<p class="service-swipe-hint"><span aria-hidden="true">←</span> Svep för nästa tjänst <span aria-hidden="true">→</span></p>');
+
   const galleryModal = createGalleryModal();
   let activeProject = null;
   let activeImages = [];

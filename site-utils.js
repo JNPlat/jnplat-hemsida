@@ -32,6 +32,7 @@
   window.JNPlSite = Object.freeze({
     serviceLabel: (id) => services[id]?.label || "Projekt",
     servicePath: (id) => services[id]?.path || "index.html#tjanster",
+    serviceIds: Object.freeze(Object.keys(services)),
     escapeHTML,
     escapeAttribute: escapeHTML
   });

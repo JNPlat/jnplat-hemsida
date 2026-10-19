@@ -598,6 +598,16 @@
   .service-card:hover .service-info h3 { color: var(--copper); }
 }
 
+/* Låg liggande skärm (mobil på sidan): tjänstekorten i två kolumner med
+   bilder i fast format, så att bilderna inte kläms ihop och långa
+   rubriker får plats. Sektionen får växa. */
+@media (orientation: landscape) and (max-height: 560px) {
+  .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .service-card:nth-child(2n) { border-right: 0; }
+  .service-card:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+  .service-image { flex: 0 0 auto; aspect-ratio: 16 / 9; }
+}
+
 /* Mjuk uppsnappning mellan skärmarna på riktiga liggande skärmar */
 @media (orientation: landscape) and (min-height: 561px) {
   html:has(.home-page) { scroll-snap-type: y proximity; }
