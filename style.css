@@ -67,7 +67,7 @@
 .hero-image picture,
 .about-image picture { display: contents; }
 
-.hero-image img { object-position: 72% center; }
+.hero-image img { object-position: 60% 45%; }
 .about-image img { object-position: center bottom; }
 .contact-background img { object-position: center 60%; }
 
@@ -415,21 +415,36 @@
 
 /* ---------- Kontakt ---------- */
 
+/* Kopparbilden ligger som bakgrund över hela sektionen; texten står på ett ljust kort */
 .contact-section {
-  display: flex;
-  flex-direction: column;
-  background: var(--paper-2);
-  border-top: 1px solid var(--line);
-}
-
-.contact-background { height: clamp(200px, 30svh, 320px); }
-
-.contact-panel {
-  flex: 1 1 auto;
+  position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
   padding: var(--pad-v) var(--pad-h);
-  background: var(--paper-2);
+  background: var(--ink);
+}
+
+.contact-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.contact-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(42, 38, 34, .25), rgba(42, 38, 34, .55));
+}
+
+.contact-panel {
+  width: 100%;
+  max-width: 600px;
+  padding: var(--s4) var(--s3);
+  border-radius: var(--r);
+  background: rgba(243, 238, 230, .96);
+  box-shadow: 0 18px 50px rgba(20, 17, 14, .28);
 }
 
 .contact-content { width: 100%; max-width: 560px; }
@@ -576,19 +591,10 @@
   .about-content .about-projects-intro { margin-bottom: clamp(2px, 0.6vh, 8px); }
   .about-master-year { font-size: calc(var(--fs-h2) * 0.85); }
 
-  /* Kontakt: text vänster, bild höger */
-  .contact-section {
-    display: grid;
-    grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
-  }
-
-  .contact-panel {
-    order: 0;
-    padding-left: max(var(--pad-h), calc((100vw - var(--max-width)) / 2));
-    background: var(--paper-2);
-  }
-
-  .contact-background { order: 1; height: auto; }
+  /* Kontakt: kortet till vänster, kopparbilden syns till höger */
+  .contact-section { padding-left: max(var(--pad-h), calc((100vw - var(--max-width)) / 2)); }
+  .contact-panel { padding: clamp(20px, 4.5vh, 48px) clamp(24px, 3vw, 48px); }
+  .contact-background::after { background: linear-gradient(90deg, rgba(42, 38, 34, .45), rgba(42, 38, 34, .05) 70%); }
   .contact-intro { margin-bottom: clamp(14px, 3.4vh, 32px); }
   .contact-item { padding: clamp(8px, 1.8vh, 16px) 0; }
 }
