@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector(".site-header");
   const brand = document.querySelector(".brand");
   const navLinks = [...document.querySelectorAll(".nav-link")];
-  const sections = ["hem", "tjanster", "aktuellt", "om", "kontakt"]
+  const sections = ["hem", "tjanster", "sa-jobbar-jag", "aktuellt", "om", "kontakt"]
     .map((id) => document.getElementById(id))
     .filter(Boolean);
   const contactSection = document.getElementById("kontakt");
