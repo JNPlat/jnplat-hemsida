@@ -8,6 +8,7 @@
 .hero-section,
 .promise-section,
 .process-section,
+.trust-section,
 .services-section,
 .current-section,
 .about-section,
@@ -26,8 +27,8 @@
 .hero-content h1 { font-size: var(--fs-h1); letter-spacing: -0.02em; }
 
 .hero-text,
-.current-content p,
-.about-content p {
+.current-content p:not(.eyebrow),
+.about-content p:not(.eyebrow) {
   max-width: 600px;
   font-size: var(--fs-body);
   line-height: 1.6;
@@ -151,72 +152,84 @@
 .process-steps h3 { margin-bottom: var(--s1); font-size: var(--fs-h3); }
 .process-steps p { margin: 0; font-size: var(--fs-body); line-height: 1.55; color: var(--ink-soft); }
 
-/* ---------- Referenser ---------- */
+/* ---------- Förtroende ---------- */
 
-.section-band {
+.trust-section {
+  display: flex;
+  align-items: center;
+  padding: var(--pad-v) var(--pad-h);
   background: var(--paper-2);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding: var(--s2) 0;
-  overflow: hidden;
 }
 
-.references-carousel { position: relative; width: 100%; }
+.trust-inner { width: 100%; max-width: var(--max-width); margin: 0 auto; }
+.trust-head { margin-bottom: var(--s4); }
+.trust-head h2 { font-size: var(--fs-h2); }
 
-.references-viewport {
-  width: 100%;
-  padding: 0 var(--s2);
-  overflow-x: auto;
-  overflow-y: hidden;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
+.trust-quotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: var(--s3);
 }
 
-.references-viewport::-webkit-scrollbar { display: none; }
-
-.references-track { display: flex; gap: 10px; width: max-content; }
-
-.reference-card {
-  flex: 0 0 min(84vw, 380px);
-  padding: var(--s2);
+.trust-quote {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  margin: 0;
+  padding: var(--s3);
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--r);
-  overflow-wrap: anywhere;
 }
 
-.reference-name {
-  margin: 0 0 2px;
-  font: 600 19px/1.1 var(--serif);
-}
+.trust-quote[hidden] { display: none; }
 
-.reference-role {
-  margin: 0 0 var(--s1);
-  font: 400 12.5px/1.3 var(--sans);
-  color: var(--ink-soft);
-}
+.trust-quote blockquote { margin: 0; }
 
-.reference-quote {
+.trust-quote blockquote p {
   margin: 0;
-  font: 400 14px/1.45 var(--sans);
+  font: 500 var(--fs-h3)/1.25 var(--serif);
   color: var(--ink);
 }
 
-.reference-project {
-  display: none;
-  margin: var(--s1) 0 0;
-  font: 600 11px/1.2 var(--sans);
-  letter-spacing: 0.1em;
+.trust-quote blockquote p::before {
+  content: "\201D";
+  display: block;
+  height: 0.55em;
+  font: 600 2.4em/1 var(--serif);
+  color: var(--copper);
+}
+
+.trust-quote--featured { grid-column: 1 / -1; }
+.trust-quote--featured blockquote p { font-size: var(--fs-h2); line-height: 1.15; max-width: 28ch; }
+
+/* När fler citat är ifyllda blir alla kort lika stora */
+.trust-quotes:has(.trust-quote:not([hidden]) ~ .trust-quote:not([hidden])) .trust-quote--featured { grid-column: auto; }
+.trust-quotes:has(.trust-quote:not([hidden]) ~ .trust-quote:not([hidden])) .trust-quote blockquote p { font-size: calc(var(--fs-lead) * 1.15); line-height: 1.3; }
+
+.trust-quote figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: var(--s2);
+  border-top: 1px solid var(--line);
+}
+
+.trust-name { font: 600 var(--fs-body)/1.3 var(--sans); }
+.trust-role { font: 400 var(--fs-body)/1.4 var(--sans); color: var(--ink-soft); }
+
+.trust-project {
+  margin-top: var(--s1);
+  font: 600 0.72rem/1.2 var(--sans);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--copper);
 }
 
-.reference-project:not(:empty) { display: block; }
-.reference-arrow { display: none; }
+.trust-project:empty { display: none; }
 
 /* ---------- Tjänster: svepbara kort i stående ---------- */
 
@@ -305,7 +318,7 @@
   text-underline-offset: 2px;
 }
 
-.current-content p { margin-bottom: var(--s3); }
+.current-content p:not(.eyebrow) { margin-bottom: var(--s3); }
 .current-content .btn { margin-top: var(--s1); }
 
 /* ---------- Om ---------- */
@@ -313,8 +326,49 @@
 .about-section { box-shadow: inset 0 1px 0 var(--line); }
 .about-grid { display: flex; flex-direction: column; }
 .about-image { height: clamp(300px, 52svh, 520px); }
-.about-content p { margin-bottom: var(--s2); }
+.about-content p:not(.eyebrow) { margin-bottom: var(--s2); }
 .about-content p:last-child { margin-bottom: 0; }
+
+.about-merits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s2) var(--s3);
+  max-width: 600px;
+  margin: var(--s1) 0 var(--s3);
+  padding: var(--s2) 0 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-body);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.about-merits strong {
+  display: block;
+  font: 600 calc(var(--fs-lead) * 1.15)/1.15 var(--serif);
+  color: var(--ink);
+}
+
+.about-master {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  max-width: 600px;
+  margin-top: var(--s1);
+  padding: var(--s2) var(--s3);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--copper);
+  border-radius: var(--r);
+}
+
+.about-master-year {
+  font: 600 var(--fs-h2)/1 var(--serif);
+  color: var(--copper);
+}
+
+.about-content .about-master p { margin: 0; color: var(--ink); }
+.about-master strong { display: block; font: 600 0.72rem/1.4 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; color: var(--copper); }
 
 /* ---------- Kontakt ---------- */
 
@@ -382,35 +436,6 @@
   .hero-content h1 { margin-bottom: clamp(12px, 3vh, 28px); }
   .hero-text { margin-bottom: clamp(10px, 2.2vh, 22px); }
 
-  .section-band { padding: 10px 0; }
-  .references-carousel {
-    display: grid;
-    grid-template-columns: 34px minmax(0, 1fr) 34px;
-    gap: 10px;
-    padding: 0 var(--s2);
-  }
-  .references-viewport { padding: 0; overflow: hidden; }
-  .references-track { transition: transform 0.4s ease; will-change: transform; }
-  .reference-card { flex: 0 0 auto; width: max-content; min-width: 220px; max-width: min(360px, 34vw); padding: 10px 14px; }
-
-  .reference-arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-self: stretch;
-    width: 34px;
-    padding: 0;
-    border: 1px solid var(--copper);
-    border-radius: var(--r);
-    background: transparent;
-    color: var(--copper);
-    font: 600 18px/1 var(--sans);
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-
-  .reference-arrow:hover { background: var(--copper); color: #fff; }
-
   /* Så jobbar jag: fyra kolumner */
   .process-head { margin-bottom: clamp(20px, 5vh, 48px); }
 
@@ -425,6 +450,21 @@
     border-bottom: 0;
     border-top: 1px solid var(--line);
   }
+
+  /* Förtroende: rubrik vänster, citat höger */
+  .trust-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 30fr) minmax(0, 70fr);
+    gap: clamp(24px, 4vw, 80px);
+    align-items: center;
+  }
+
+  .trust-head { margin-bottom: 0; }
+  .trust-inner:has(.trust-quote:not([hidden]) ~ .trust-quote:not([hidden])) { display: block; }
+  .trust-inner:has(.trust-quote:not([hidden]) ~ .trust-quote:not([hidden])) .trust-head { margin-bottom: clamp(16px, 4vh, 40px); }
+  .trust-quotes:has(.trust-quote:not([hidden]) ~ .trust-quote:not([hidden])) { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); }
+  .trust-quotes { gap: clamp(12px, 2.4vh, 24px); }
+  .trust-quote { gap: clamp(12px, 2.6vh, 24px); padding: clamp(16px, 3.4vh, 32px) clamp(18px, 2vw, 32px); }
 
   /* Tjänster: fyra kolumner, bild överst, text under */
   .services-section { align-items: stretch; }
@@ -467,12 +507,15 @@
   /* Om: bild vänster, text höger */
   .about-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
     min-height: var(--screen-h);
   }
 
   .about-image { height: auto; }
-  .about-content p { margin-bottom: clamp(8px, 1.8vh, 18px); }
+  .about-content p:not(.eyebrow) { margin-bottom: clamp(8px, 1.8vh, 18px); }
+  .about-merits { gap: clamp(6px, 1.4vh, 16px) var(--s3); margin: 0 0 clamp(8px, 2vh, 24px); padding-top: clamp(8px, 1.6vh, 16px); }
+  .about-master { padding: clamp(6px, 1.4vh, 16px) var(--s3); }
+  .about-master-year { font-size: calc(var(--fs-h2) * 0.85); }
 
   /* Kontakt: text vänster, bild höger */
   .contact-section {

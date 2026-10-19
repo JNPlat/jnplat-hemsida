@@ -70,9 +70,9 @@
 
 .detail-hero-title h1{
   margin: 0;
-  font-family: "Cormorant Garamond",Georgia,serif;
+  font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(44px,5.4vw,78px);
+  font-size: var(--fs-h1);
   line-height: .98;
   letter-spacing: -.025em;
   text-wrap: balance;
@@ -120,9 +120,9 @@
 
 .section-heading h2{
   margin: 0;
-  font-family: "Cormorant Garamond",Georgia,serif;
+  font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(32px,3.7vw,48px);
+  font-size: var(--fs-h2);
   line-height: 1.05;
 }
 
@@ -214,21 +214,22 @@
 
 .project-description p{
   max-width: 780px;
-  font-size: 17px;
+  font-size: var(--fs-body);
   line-height: 1.75;
   color: var(--muted,#696158);
 }
 
 .project-description .intro-lead{
   color: var(--text,#29251f);
-  font-family: "Cormorant Garamond",Georgia,serif;
-  font-size: clamp(27px,3vw,40px);
+  font-family: var(--serif);
+  font-size: var(--fs-h3);
   line-height: 1.2;
   margin-top: 0;
 }
 
 .project-long-description{
   max-width: 780px;
+  font-size: var(--fs-body);
   line-height: 1.8;
   color: var(--muted,#696158);
 }
@@ -364,9 +365,6 @@ body.lightbox-open{
   }
   .detail-hero-title .eyebrow{
     margin-bottom: 8px;
-  }
-  .detail-hero-title h1{
-    font-size: clamp(42px,11vw,64px);
   }
   .content-width{
     width: calc(100% - 40px);
@@ -608,14 +606,11 @@ body.lightbox-open{
 
 .project-gallery-top .eyebrow{
   margin: 0 0 3px;
-  color: var(--copper,#825536);
-  font-size: 10px;
-  letter-spacing: .13em;
 }
 
 .project-gallery-top h2{
   margin: 0;
-  font: 600 clamp(27px,3vw,38px)/1.05 "Cormorant Garamond",Georgia,serif;
+  font: 600 var(--fs-h3)/1.05 var(--serif);
 }
 
 .project-gallery-close{
@@ -687,7 +682,7 @@ body.lightbox-open{
   min-width: 0;
   margin: 0;
   color: #696158;
-  font-size: clamp(15px, 1.25vw, 18px);
+  font-size: var(--fs-body);
   line-height: 1.55;
   max-width: 76ch;
 }
@@ -1348,7 +1343,7 @@ body.project-gallery-open{
 .inner-page.service-page .service-image-hero .detail-hero-title h1 {
   margin: 0;
   color: #fffaf2;
-  font-size: clamp(36px, 4.5vw, 68px);
+  font-size: var(--fs-h1);
   line-height: .98;
   letter-spacing: -.025em;
   text-wrap: balance;
@@ -1366,26 +1361,23 @@ body.project-gallery-open{
 }
 .inner-page.service-page .service-copy > .eyebrow {
   margin: 0 0 12px;
-  color: var(--copper, #825536);
-  font-size: 11px;
-  letter-spacing: .13em;
 }
 .inner-page.service-page .service-copy .intro-lead {
   max-width: 34ch;
   margin: 0 0 12px;
   color: var(--text, #29251f);
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(24px, 2.55vw, 36px);
-  font-weight: 400;
-  line-height: 1.08;
+  font-family: var(--serif);
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  line-height: 1.15;
 }
 .inner-page.service-page .service-copy > p:not(.eyebrow):not(.intro-lead) {
   max-width: 58ch;
   margin: 0 0 16px;
   color: var(--muted, #696158);
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: var(--font-body-service-copy, 15px);
-  line-height: 1.55;
+  font-family: var(--sans);
+  font-size: var(--fs-body);
+  line-height: 1.6;
 }
 .inner-page.service-page .service-copy .text-link { margin-top: 2px; }
 .inner-page.service-page .service-projects {
@@ -1486,20 +1478,20 @@ body.project-gallery-open{
 .inner-page.service-page .service-projects .project-card-info h3 {
   margin: 0;
   color: var(--text, #29251f);
-  font: 500 clamp(19px, 1.8vw, 25px)/1.05 "Cormorant Garamond", Georgia, serif;
+  font: 600 var(--fs-h3)/1.1 var(--serif);
 }
 .inner-page.service-page .service-projects .project-card-description {
   display: block;
   max-width: 52ch;
   color: var(--muted, #696158);
-  font: 600 14px/1.45 "Cormorant Garamond", Georgia, serif;
+  font: 400 var(--fs-body)/1.5 var(--sans);
   overflow-wrap: normal;
 }
 .inner-page.service-page .service-projects .project-card-description-title {
   display: block;
   margin: 0;
   color: var(--text, #29251f);
-  font: 500 clamp(19px, 1.8vw, 25px)/1.05 "Cormorant Garamond", Georgia, serif;
+  font: 600 var(--fs-h3)/1.1 var(--serif);
 }
 .inner-page.service-page .service-projects .project-card-description-text { display: block; }
 
@@ -1535,16 +1527,8 @@ body.project-gallery-open{
     aspect-ratio: 16 / 9;
   }
   .inner-page.service-page .service-image-hero .detail-hero-title { padding: 18px 20px 20px; }
-  .inner-page.service-page .service-image-hero .detail-hero-title h1 {
-    font-size: clamp(34px, 9vw, 48px);
-    white-space: normal;
-  }
+  .inner-page.service-page .service-image-hero .detail-hero-title h1 { white-space: normal; }
   .inner-page.service-page .service-copy { padding: 24px 20px 26px; overflow: visible; }
-  .inner-page.service-page .service-copy .intro-lead { font-size: 28px; }
-  .inner-page.service-page .service-copy > p:not(.eyebrow):not(.intro-lead) {
-    font-family: "Cormorant Garamond", Georgia, serif;
-    font-size: var(--font-body-service-copy-mobile, 14px);
-  }
   .inner-page.service-page .service-projects {
     display: block;
     width: 100%;
@@ -1572,7 +1556,7 @@ body.project-gallery-open{
     margin: 0;
     padding: 12px 14px;
     color: #fffaf2;
-    font: 500 clamp(18px, 5vw, 23px)/1.05 "Cormorant Garamond", Georgia, serif;
+    font: 600 var(--fs-h3)/1.1 var(--serif);
     background: linear-gradient(0deg, rgba(25,20,16,.7), transparent);
   }
   .inner-page.service-page .service-projects .project-card-info { display: none; }

@@ -13,7 +13,7 @@ Statisk webbplats för J. Norberg Plåtslageri AB. Publiceras som statiska filer
 | Layout på startsidans sektioner | `style.css` |
 | Utseende på tjänste- och projektsidor | `undersidor.css` |
 | Header, logotyp, navigering och headerhöjd | `header.css` |
-| Startsida: navigering och referenskarusell | `script.js` |
+| Startsida: navigering | `script.js` |
 | Tjänstesidor: projektkort och bildgalleri | `service.js` |
 | Projektdetaljsida och galleri | `project.js` |
 | Gemensamma JavaScript-hjälpfunktioner | `site-utils.js` |
@@ -74,6 +74,12 @@ Sajten har två layoutlägen som väljs efter skärmens **orientering**, inte ef
 - **Låg liggande skärm** (mobil på sidan, `max-height: 560px`): liggande layout med kompakt header (60 px). Sektionerna får växa i stället för att klippa text.
 
 Header-höjden (`--header-height`) och sektionshöjden (`--screen-h`, byggd på `svh`) definieras bara i `tokens.css`. Bilder ligger absolut i sin ruta (`object-fit: cover`) och styr aldrig sektionens höjd. Lägg inte till nya pixelbrytpunkter för layout; `node scripts/validate-site.mjs` underkänner 800/810/801/811 px.
+
+## Citat (Förtroende) och meriter (John Norberg)
+
+- **Citat** ligger i sektionen `#fortroende` i `index.html`. Det finns tre färdiga platser för konsult, plåtkonsult och antikvarie. Fyll i texten och ta bort ordet `hidden` så syns kortet. Är bara ett citat ifyllt visas det stort; fylls fler i blir alla kort lika stora automatiskt.
+- **Meriter** är en lista (`about-merits`) i sektionen `#om`. En `<li>` per merit.
+- **Undersidornas textstorlekar** (tjänstesidor, projektsida, galleri) använder samma variabler som startsidan: `--fs-h1`, `--fs-h2`, `--fs-h3` och `--fs-body` i `tokens.css`.
 
 Bildfilerna `*-desktop.webp` är höga (nästan kvadratiska) och används på startsidan i båda lägena. `*-mobil.webp` är breda 16:9 och används på tjänstesidornas hero.
 
