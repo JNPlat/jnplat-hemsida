@@ -1278,13 +1278,6 @@ body.project-gallery-open{
   scrollbar-width: none;
 }
 .inner-page.service-page .service-projects .project-carousel::-webkit-scrollbar { display: none; }
-/* Ett ensamt projektkort fyller hela raden */
-.inner-page.service-page .service-projects .project-carousel > .project-card:only-child {
-  flex: 1 1 100%;
-  width: 100%;
-  max-width: none;
-}
-.inner-page.service-page .service-projects .project-carousel > .project-card:only-child .project-card-info { width: auto; }
 .inner-page.service-page .service-projects .project-carousel .project-card {
   display: grid;
   grid-template-columns: minmax(220px, 24vw) minmax(250px, max-content);
@@ -1408,7 +1401,6 @@ body.project-gallery-open{
     overflow: visible;
   }
   .inner-page.service-page .service-projects .project-side-arrow { display: none; }
-  .inner-page.service-page .service-projects .project-carousel > .project-card:only-child { flex: 0 0 calc(100% - 40px); }
   .inner-page.service-page .service-projects .project-carousel {
     width: calc(100% + 20px);
     margin: 0 -20px 0 0;
