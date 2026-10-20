@@ -3,10 +3,11 @@
 {
   "name": "jnplat-hemsida",
   "compatibility_date": "2026-10-01",
-  // Kontrollen körs före varje publicering. Hittar den ett fel (t.ex. en
-  // saknad bild) avbryts publiceringen och den förra versionen ligger kvar.
+  // Före varje publicering: bygget fyller i texterna från content/*.json
+  // (Pages CMS), sedan körs kontrollen. Blir något fel avbryts publiceringen
+  // och den förra versionen ligger kvar.
   "build": {
-    "command": "node scripts/validate-site.mjs"
+    "command": "node scripts/build.mjs && node scripts/validate-site.mjs"
   },
   "assets": {
     "directory": "./"

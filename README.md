@@ -107,6 +107,12 @@ Upprepade väljare är inte automatiskt fel: media queries och senare överstyrn
 
 Färgvariabler och gemensamma designvärden finns i början av `style.css`. Där finns nu även namngivna variabler för utvalda brödtextstorlekar på startsidan och undersidorna. Ändra dessa värden för att justera de berörda textrollerna; kontrollera att mobilregler och specialrubriker fortsatt ska ha egna värden. Headerns gemensamma storlekar finns i `header.css`. Undvik att duplicera variabler i flera filer utan ett tydligt skäl.
 
+## Texter och bilder på startsidan
+
+Startsidans texter och bilder ligger i `content/startsida.json` och redigeras i Pages CMS under **Startsidan**. `scripts/build.mjs` fyller i `index.html` mellan markeringar som `<!-- cms:hem.title -->…<!-- /cms:hem.title -->`. Cloudflare kör bygget före varje publicering; kör `node scripts/build.mjs` lokalt efter en ändring.
+
+Ändra inte text mellan markeringarna direkt i HTML-filen – den skrivs över av bygget. Utseendet (klasser och layout) ändras i `scripts/build.mjs` och CSS.
+
 ## Lägg till eller ändra ett projekt
 
 **Enklast: Pages CMS.** Logga in på https://app.pagescms.org med GitHub-kontot, välj repot och gå till **Projekt**. Fyll i namn, tjänst, text och bilder och tryck Spara. Inställningarna finns i `.pages.yml`.

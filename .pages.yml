@@ -3,10 +3,44 @@
 # Uppladdade bilder krymps automatiskt (.github/workflows/krymp-bilder.yml).
 
 media:
-  input: images/projekt
-  output: images/projekt
-  extensions: [jpg, jpeg, png, webp]
-  rename: true
+  - name: projekt
+    input: images/projekt
+    output: images/projekt
+    extensions: [jpg, jpeg, png, webp]
+    rename: true
+  - name: bilder
+    input: images
+    output: images
+    extensions: [jpg, jpeg, png, webp]
+    rename: true
+
+# Återanvända fält
+components:
+  eyebrow:
+    label: Liten rubrik ovanför
+    type: string
+    description: Den lilla kopparfärgade raden. Lämna tom för att dölja den.
+    options:
+      maxlength: 40
+  rubrik:
+    label: Rubrik
+    type: string
+    required: true
+    options:
+      maxlength: 80
+  bild:
+    label: Bild
+    type: image
+    required: true
+    options:
+      media: bilder
+      extensions: [jpg, jpeg, png, webp]
+  bildtext:
+    label: Bildbeskrivning
+    type: string
+    description: Kort beskrivning av bilden, för synskadade och Google.
+    options:
+      maxlength: 120
 
 content:
   - name: projekt
@@ -50,6 +84,7 @@ content:
         required: true
         description: Första bilden blir projektkortets bild. Ordningen här är ordningen i galleriet.
         options:
+          media: projekt
           multiple:
             max: 40
           unique: true
@@ -59,3 +94,215 @@ content:
         type: boolean
         default: true
         description: Stäng av för att spara projektet som utkast.
+
+  - name: startsida
+    label: Startsidan
+    type: file
+    path: content/startsida.json
+    format: json
+    fields:
+      - name: hem
+        label: Toppen
+        type: object
+        fields:
+          - { name: eyebrow, component: eyebrow }
+          - { name: title, component: rubrik }
+          - name: text
+            label: Text
+            type: text
+            options:
+              maxlength: 300
+          - { name: image, component: bild }
+          - { name: imageAlt, component: bildtext }
+      - name: loftet
+        label: Mitt löfte och citat
+        type: object
+        fields:
+          - { name: eyebrow, component: eyebrow }
+          - { name: title, component: rubrik }
+          - name: text
+            label: Text
+            type: text
+            description: En tom rad ger ett nytt stycke.
+            options:
+              maxlength: 800
+          - name: quotesEyebrow
+            label: Rubrik ovanför citaten
+            type: string
+            options:
+              maxlength: 40
+          - name: quotes
+            label: Citat
+            type: object
+            description: Ett citat fyller bredden; fler läggs på rad och sveps mellan.
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{name}"
+            fields:
+              - name: quote
+                label: Citat
+                type: text
+                required: true
+                options:
+                  maxlength: 300
+              - name: name
+                label: Namn
+                type: string
+                options:
+                  maxlength: 60
+              - name: role
+                label: Roll och företag
+                type: string
+                options:
+                  maxlength: 80
+              - name: project
+                label: Projekt (valfritt)
+                type: string
+                options:
+                  maxlength: 60
+      - name: saJobbarJag
+        label: Så jobbar jag
+        type: object
+        fields:
+          - { name: eyebrow, component: eyebrow }
+          - { name: title, component: rubrik }
+          - { name: image, component: bild }
+          - { name: imageAlt, component: bildtext }
+          - name: steps
+            label: Steg
+            type: object
+            description: Numreras automatiskt (01, 02 …). Högst 5 så att allt ryms på en skärm.
+            list:
+              max: 5
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - name: title
+                label: Rubrik
+                type: string
+                required: true
+                options:
+                  maxlength: 40
+              - name: text
+                label: Text
+                type: text
+                options:
+                  maxlength: 200
+      - name: om
+        label: Om John
+        type: object
+        fields:
+          - { name: eyebrow, component: eyebrow }
+          - { name: title, component: rubrik }
+          - name: text
+            label: Text
+            type: text
+            options:
+              maxlength: 400
+          - { name: image, component: bild }
+          - { name: imageAlt, component: bildtext }
+          - name: merits
+            label: Meriter
+            type: object
+            list:
+              max: 6
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - name: title
+                label: Merit (fetstil)
+                type: string
+                options:
+                  maxlength: 40
+              - name: text
+                label: Förklaring
+                type: string
+                options:
+                  maxlength: 100
+          - name: projectsTitle
+            label: Rubrik över byggnaderna
+            type: string
+            options:
+              maxlength: 60
+          - name: projectsText
+            label: Text över byggnaderna
+            type: text
+            options:
+              maxlength: 200
+          - name: projects
+            label: Byggnader
+            type: string
+            list:
+              max: 12
+            options:
+              maxlength: 40
+          - name: goalYear
+            label: Mål, årtal
+            type: string
+            options:
+              maxlength: 4
+          - name: goalTitle
+            label: Mål, rubrik
+            type: string
+            options:
+              maxlength: 40
+          - name: goalText
+            label: Mål, text
+            type: text
+            options:
+              maxlength: 200
+      - name: aktuellt
+        label: Aktuellt
+        type: object
+        fields:
+          - { name: eyebrow, component: eyebrow }
+          - { name: title, component: rubrik }
+          - name: text
+            label: Text
+            type: text
+            options:
+              maxlength: 500
+          - { name: image, component: bild }
+          - { name: imageAlt, component: bildtext }
+          - name: imageCredit
+            label: Fotograf / källa
+            type: string
+            description: "Valfritt. En länk skrivs [text](https://…). Lämna tom för egna bilder."
+            options:
+              maxlength: 300
+          - name: linkText
+            label: Knapptext
+            type: string
+            description: Lämna tom för att dölja knappen.
+            options:
+              maxlength: 50
+          - name: linkUrl
+            label: Knappens länk
+            type: string
+            description: Hela adressen, t.ex. https://…
+      - name: kontakt
+        label: Kontakt
+        type: object
+        fields:
+          - { name: eyebrow, component: eyebrow }
+          - { name: title, component: rubrik }
+          - name: text
+            label: Text
+            type: text
+            options:
+              maxlength: 200
+          - name: image
+            label: Bild (mobil, stående)
+            type: image
+            required: true
+            options:
+              media: bilder
+          - name: imageWide
+            label: Bild (dator, liggande)
+            type: image
+            options:
+              media: bilder
+          - { name: imageAlt, component: bildtext }

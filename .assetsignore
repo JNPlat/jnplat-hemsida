@@ -4,6 +4,7 @@
 .assetsignore
 wrangler.jsonc
 .pages.yml
+content/
 scripts/
 README.md
 CHANGELOG-KODGENOMGANG.md

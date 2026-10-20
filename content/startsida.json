@@ -1,0 +1,91 @@
+{
+  "hem": {
+    "eyebrow": "Kommande 2027",
+    "title": "Rätt lösning för byggnader som ska stå i hundra år",
+    "text": "Stora som små jobb, på villor lika gärna som kyrkor. Direkt kontakt med mig som gör jobbet, från offert till faktura.",
+    "image": "images/hero-bild.webp",
+    "imageAlt": "Plåtslageriarbete på tak"
+  },
+  "loftet": {
+    "eyebrow": "Mitt löfte",
+    "title": "Du pratar direkt med plåtslagaren.",
+    "text": "När du anlitar J. Norberg Plåtslageri AB har du direkt kontakt med mig som gör jobbet, från offert till faktura. Det betyder att kunskap, erfarenhet och känsla för hantverket följer med genom hela projektet – utan onödiga mellanhänder.\n\nVarje arbete utför jag med stor noggrannhet, respekt för det traditionella hantverket och höga krav på kvalitet.",
+    "quotesEyebrow": "De jag arbetar med",
+    "quotes": [
+      {
+        "quote": "Mycket kunnig och lösningsorienterad, en riktig konstnär med plåt.",
+        "name": "Conny Lundell",
+        "role": "Platschef, Kyrkans Byggmästarbolag AB",
+        "project": "S:t Johannes kyrka"
+      }
+    ]
+  },
+  "saJobbarJag": {
+    "eyebrow": "Arbetssätt",
+    "title": "Så jobbar jag",
+    "image": "images/sa-jobbar-jag.jpg",
+    "imageAlt": "John Norberg falsar ett plåttak",
+    "steps": [
+      {
+        "title": "Samtal",
+        "text": "Du berättar vad som behövs. Jag lyssnar och ställer frågorna som avgör rätt lösning."
+      },
+      {
+        "title": "Platsbesök",
+        "text": "Jag tittar på byggnaden, underlaget och detaljerna på plats innan något bestäms."
+      },
+      {
+        "title": "Lösning och offert",
+        "text": "Jag räknar, väljer lösning och lämnar en tydlig offert."
+      },
+      {
+        "title": "Utförande",
+        "text": "Jag utför arbetet med noggrannhet och respekt för byggnaden, och du har mig som kontakt hela vägen."
+      }
+    ]
+  },
+  "om": {
+    "eyebrow": "Hantverkaren",
+    "title": "John Norberg",
+    "text": "Jag heter John Norberg och driver J. Norberg Plåtslageri AB, med passion för traditionellt hantverk och hög kvalitet.",
+    "image": "images/om-j-norberg-desktop.webp",
+    "imageAlt": "John Norberg arbetar i plåtverkstaden",
+    "merits": [
+      { "title": "SM-silver 2016", "text": "Andra plats i SM i plåtslageri." },
+      { "title": "Ambassadör för PVF", "text": "Plåt & Ventföretagen, branschens organisation." },
+      { "title": "Stipendium 2023", "text": "Utbildningsresa till VMZINC i Frankrike." }
+    ],
+    "projectsTitle": "10 år på Bång & Lewerth",
+    "projectsText": "Jag har restaurerat kulturhistoriskt värdefulla byggnader och haft förtroendet att arbeta på:",
+    "projects": [
+      "Högalidskyrkan",
+      "S:t Johannes kyrka",
+      "Stockholms stadshus",
+      "Utrikesdepartementet",
+      "Riddarholmskyrkan",
+      "Engelbrektskyrkan",
+      "Sollentuna kyrka"
+    ],
+    "goalYear": "2027",
+    "goalTitle": "Mästarbrev",
+    "goalText": "Mitt mål är att föra det traditionella hantverket vidare och ta mitt mästarbrev, planerat till början av 2027."
+  },
+  "aktuellt": {
+    "eyebrow": "Pågående arbete",
+    "title": "Villa Bergabo",
+    "text": "Just nu arbetar jag med restaureringen av koppardetaljerna på Villa Bergabo på Södra Djurgården. Arbetet omfattar demontering av den befintliga kopparen, renovering och anpassning av underlaget samt återmontering av detaljerna.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Djurg%C3%A5rden_villa_2006b.jpg",
+    "imageAlt": "Villa Bergabo vid Djurgårdsvägen på Södra Djurgården",
+    "imageCredit": "Foto: Holger.Ellgaard · Wikimedia Commons · [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) · [Källa](https://commons.wikimedia.org/wiki/File:Djurg%C3%A5rden_villa_2006b.jpg)",
+    "linkText": "Läs mer om Villa Bergabo",
+    "linkUrl": "https://sv.wikipedia.org/wiki/Villa_Bergabo"
+  },
+  "kontakt": {
+    "eyebrow": "Hör av dig",
+    "title": "Kontakt",
+    "text": "Har du ett projekt? Kontakta mig gärna för att diskutera arbetet.",
+    "image": "images/st-johannes.webp",
+    "imageWide": "images/st-johannes-bred.webp",
+    "imageAlt": "Kopparplåt och tegel vid St Johannes"
+  }
+}

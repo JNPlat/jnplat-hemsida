@@ -666,6 +666,10 @@
   .process-head { margin-bottom: clamp(14px, 3.4vh, 36px); }
   .process-steps li { padding: clamp(8px, 2vh, 20px) 0; }
   .process-steps li::before { top: calc(clamp(8px, 2vh, 20px) + var(--fs-h3) * .5 - 5px); }
+  /* Fler än fyra steg (läggs till i Pages CMS): tätare så att allt ryms på skärmen */
+  .process-steps:has(> li:nth-child(5)) li { padding-block: clamp(4px, 1vh, 12px); }
+  .process-steps:has(> li:nth-child(5)) li::before { top: calc(clamp(4px, 1vh, 12px) + var(--fs-h3) * .5 - 5px); }
+  .process-steps:has(> li:nth-child(5)) p { line-height: 1.4; }
 
   /* Mitt löfte: text vänster, citat höger */
   .promise-inner {
