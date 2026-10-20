@@ -59,7 +59,3 @@ content:
         type: boolean
         default: true
         description: Stäng av för att spara projektet som utkast.
-      - name: id
-        label: Id
-        type: uuid
-        hidden: true

@@ -136,8 +136,11 @@ if (fs.existsSync(projectsFile)) {
           errors.push(`${label} must be an object.`);
           return;
         }
-        if (typeof project.id !== "string" || !project.id.trim()) {
-          errors.push(`${label} is missing a non-empty id.`);
+        // id är frivilligt (Pages CMS skapar inget); bara dubbletter är fel
+        if (project.id === undefined || project.id === "") {
+          // inget id
+        } else if (typeof project.id !== "string") {
+          errors.push(`${label} has an id that is not text.`);
         } else if (ids.has(project.id)) {
           errors.push(`Duplicate project id in data/projects.json: "${project.id}".`);
         } else {
