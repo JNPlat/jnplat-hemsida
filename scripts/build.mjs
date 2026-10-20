@@ -76,21 +76,97 @@ function imageSize(buf) {
   return null;
 }
 
-function img(src, alt, label, extra = 'loading="lazy" decoding="async"') {
+function img(src, alt, label, extra = 'loading="lazy" decoding="async"', prefix = "") {
   const image = localImage(src, label);
   const size = image.size ? ` width="${image.size.w}" height="${image.size.h}"` : "";
-  return `<img src="${esc(image.src)}" alt="${esc(clean(alt))}"${size} ${extra}>`;
+  const url = /^https?:/.test(image.src) ? image.src : prefix + image.src;
+  return `<img src="${esc(url)}" alt="${esc(clean(alt))}"${size} ${extra}>`;
 }
 
 const eyebrow = (value) => optional(value, `<p class="eyebrow">${esc(clean(value))}</p>`);
 const list = (value) => (Array.isArray(value) ? value : []);
 
+// ---------- Delat: företagsuppgifter ----------
+
+const tel = (phone) => "tel:" + clean(phone).replace(/[^\d+]/g, "");
+const services = ["byggnadsplatslageri", "kopparslageri", "restaurering", "specialprojekt"];
+const serviceLabels = { byggnadsplatslageri: "Byggnadsplåtslageri", kopparslageri: "Kopparslageri", restaurering: "Restaurering", specialprojekt: "Specialprojekt" };
+
+function footer(f) {
+  return [
+    `<div class="container footer-inner">`,
+    `  <div class="footer-col">`,
+    `    <p class="footer-name">${esc(clean(f.name))}</p>`,
+    optional(f.orgnr, `    <p>Org.nr ${esc(clean(f.orgnr))}</p>`),
+    optional(f.taxText, `    <p>${esc(clean(f.taxText))}</p>`),
+    `  </div>`,
+    `  <div class="footer-col">`,
+    optional(f.street, `    <p>${esc(clean(f.street))}</p>`),
+    optional(f.postal, `    <p>${esc(clean(f.postal))}</p>`),
+    `  </div>`,
+    `  <div class="footer-col">`,
+    `    <p><a href="${tel(f.phone)}">${esc(clean(f.phone))}</a></p>`,
+    `    <p><a href="mailto:${esc(clean(f.email))}">${esc(clean(f.email))}</a></p>`,
+    `  </div>`,
+    `</div>`,
+    `<p class="container footer-copy">© ${new Date().getFullYear()} ${esc(clean(f.name))}</p>`
+  ].filter(Boolean).join("\n");
+}
+
 // ---------- Startsidan ----------
 
-function startsida(c) {
+function startsida(c, f, t) {
   const hem = c.hem || {}, loftet = c.loftet || {}, steg = c.saJobbarJag || {};
   const om = c.om || {}, akt = c.aktuellt || {}, kontakt = c.kontakt || {};
+  const seo = c.seo || {}, tj = c.tjanster || {};
+  const share = localImage(seo.shareImage, "Sökmotor, delningsbild");
+  const shareUrl = "https://jnplat.se/" + share.src;
   return {
+    "seo": [
+      `<title>${esc(clean(seo.title))}</title>`,
+      `<meta name="description" content="${esc(clean(seo.description))}">`,
+      `<meta property="og:type" content="website">`,
+      `<meta property="og:locale" content="sv_SE">`,
+      `<meta property="og:site_name" content="${esc(clean(f.name))}">`,
+      `<meta property="og:title" content="${esc(clean(seo.title))}">`,
+      `<meta property="og:description" content="${esc(clean(seo.shareDescription || seo.description))}">`,
+      `<meta property="og:url" content="https://jnplat.se/">`,
+      `<meta property="og:image" content="${esc(shareUrl)}">`,
+      share.size ? `<meta property="og:image:width" content="${share.size.w}">` : "",
+      share.size ? `<meta property="og:image:height" content="${share.size.h}">` : "",
+      `<meta name="twitter:card" content="summary_large_image">`,
+      `<meta name="twitter:image" content="${esc(shareUrl)}">`
+    ].filter(Boolean).join("\n"),
+    "hem.phone": optional(f.phone, `<p class="hero-phone">eller ring <a href="${tel(f.phone)}">${esc(clean(f.phone))}</a></p>`),
+    "tjanster.head": [eyebrow(tj.eyebrow), `<h2>${esc(clean(tj.title))}</h2>`].filter(Boolean).join("\n"),
+    "tjanster.cards": services.map((id) => {
+      const item = (t.items || {})[id] || {};
+      const wide = localImage(item.image, `${serviceLabels[id]}, bred bild`);
+      const wideSize = wide.size ? ` width="${wide.size.w}" height="${wide.size.h}"` : "";
+      return [
+        `<a href="tjanster/${id}.html" class="service-card">`,
+        `  <div class="service-image">`,
+        `    <picture>`,
+        `      <source media="(orientation: landscape) and (max-height: 560px)" srcset="${esc(wide.src)}"${wideSize}>`,
+        `      ${img(item.cardImage, serviceLabels[id], `${serviceLabels[id]}, kortbild`)}`,
+        `    </picture>`,
+        `  </div>`,
+        `  <div class="service-info">`,
+        `    <h3>${serviceLabels[id]}</h3>`,
+        `    <p>${inline(item.cardText)}</p>`,
+        `    <span class="service-more">Läs mer</span>`,
+        `  </div>`,
+        `</a>`
+      ].join("\n");
+    }).join("\n\n"),
+    "kontakt.details": [
+      ["Kontaktperson", optional(f.contactPerson, `<p>${esc(clean(f.contactPerson))}</p>`)],
+      ["Telefon", optional(f.phone, `<a href="${tel(f.phone)}">${esc(clean(f.phone))}</a>`)],
+      ["E-post", optional(f.email, `<a href="mailto:${esc(clean(f.email))}">${esc(clean(f.email))}</a>`)],
+      ["Verksamhetsområde", optional(f.area, `<p>${esc(clean(f.area))}</p>`)]
+    ].filter(([, value]) => value).map(([label, value]) =>
+      `<div class="contact-item">\n  <span>${label}</span>\n  ${value}\n</div>`).join("\n\n"),
+    "footer": footer(f),
     "hem.eyebrow": eyebrow(hem.eyebrow),
     "hem.title": `<h1>${esc(clean(hem.title))}</h1>`,
     "hem.text": paragraphs(hem.text, "hero-text"),
@@ -166,25 +242,59 @@ function startsida(c) {
   };
 }
 
+// ---------- Tjänstesidorna ----------
+
+function tjanst(id, t, f) {
+  const item = (t.items || {})[id] || {};
+  const label = serviceLabels[id];
+  const points = list(item.points).map(clean).filter(Boolean);
+  if (!points.length) errors.push(`${label}: minst en punkt behövs.`);
+  return {
+    "seo": `<title>${label} | ${esc(clean(f.name))}</title><meta name="description" content="${esc(clean(item.seoDescription))}">`,
+    "image": img(item.image, label, `${label}, toppbild`, 'fetchpriority="high"', "../"),
+    "copy": [
+      eyebrow(item.eyebrow),
+      optional(item.intro, `<p class="intro-lead">${inline(item.intro)}</p>`),
+      `<ul class="service-points">${points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>`
+    ].filter(Boolean).join("\n"),
+    "contact": [
+      optional(t.contactText, `<p>${inline(t.contactText)}</p>`),
+      `<div class="service-contact-links"><a class="btn" href="${tel(f.phone)}">Ring mig: ${esc(clean(f.phone))}</a><a class="btn btn--ghost" href="mailto:${esc(clean(f.email))}">${esc(clean(f.email))}</a></div>`
+    ].filter(Boolean).join("\n"),
+    "footer": footer(f)
+  };
+}
+
 // ---------- Fyll i sidorna ----------
 
+const read = (file) => JSON.parse(fs.readFileSync(path.join(root, file), "utf8"));
+const foretag = read("content/foretag.json");
+const tjanster = read("content/tjanster.json");
+const js = (value) => JSON.stringify(clean(value));
+
 const pages = [
-  { file: "index.html", content: "content/startsida.json", render: startsida }
+  { file: "index.html", values: () => startsida(read("content/startsida.json"), foretag, tjanster) },
+  ...services.map((id) => ({ file: `tjanster/${id}.html`, values: () => tjanst(id, tjanster, foretag) })),
+  { file: "menu.js", values: () => ({
+    "kontakt": `const phone = { href: ${js(tel(foretag.phone))}, label: ${js(foretag.phone)} };\nconst mail = ${js(foretag.email)};`
+  }) }
 ];
 
+// Markeringar: <!-- cms:nyckel -->…<!-- /cms:nyckel --> i HTML och /* cms:nyckel */…/* /cms:nyckel */ i JS.
+const markerPattern = /([ \t]*)(<!--|\/\*) cms:([\w.]+) (-->|\*\/)[\s\S]*?\2 \/cms:\3 \4/g;
+
 for (const page of pages) {
-  const content = JSON.parse(fs.readFileSync(path.join(root, page.content), "utf8"));
-  const values = page.render(content);
+  const values = page.values();
   const htmlFile = path.join(root, page.file);
   const html = fs.readFileSync(htmlFile, "utf8");
   const eol = html.includes("\r\n") ? "\r\n" : "\n";
   const used = new Set();
 
-  const output = html.replace(/([ \t]*)<!-- cms:([\w.]+) -->[\s\S]*?<!-- \/cms:\2 -->/g, (match, indent, key) => {
+  const output = html.replace(markerPattern, (match, indent, open, key, close) => {
     if (!(key in values)) { errors.push(`${page.file}: okänd markering "${key}".`); return match; }
     used.add(key);
     const body = values[key] ? values[key].split("\n").map((line) => (line ? indent + line : line)).join(eol) + eol : "";
-    return `${indent}<!-- cms:${key} -->${eol}${body}${indent}<!-- /cms:${key} -->`;
+    return `${indent}${open} cms:${key} ${close}${eol}${body}${indent}${open} /cms:${key} ${close}`;
   });
 
   for (const key of Object.keys(values)) {

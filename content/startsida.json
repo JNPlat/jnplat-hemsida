@@ -1,4 +1,10 @@
 {
+  "seo": {
+    "title": "J. Norberg Plåtslageri AB | Plåtslageri i Stockholm",
+    "description": "J. Norberg Plåtslageri AB – traditionellt byggnadsplåtslageri, kopparslageri, restaurering och specialprojekt i Stockholm.",
+    "shareDescription": "Traditionellt byggnadsplåtslageri, kopparslageri, restaurering och specialprojekt i Stockholm.",
+    "shareImage": "images/social-share.png"
+  },
   "hem": {
     "eyebrow": "Kommande 2027",
     "title": "Rätt lösning för byggnader som ska stå i hundra år",
@@ -19,6 +25,10 @@
         "project": "S:t Johannes kyrka"
       }
     ]
+  },
+  "tjanster": {
+    "eyebrow": "Mitt hantverk",
+    "title": "Det här gör jag"
   },
   "saJobbarJag": {
     "eyebrow": "Arbetssätt",

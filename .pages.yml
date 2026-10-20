@@ -101,6 +101,36 @@ content:
     path: content/startsida.json
     format: json
     fields:
+      - name: seo
+        label: Sökmotor och delning
+        type: object
+        fields:
+          - name: title
+            label: Sidans titel
+            type: string
+            required: true
+            description: Visas i Google och på webbläsarfliken. Ca 50–60 tecken.
+            options:
+              maxlength: 70
+          - name: description
+            label: Beskrivning för Google
+            type: text
+            description: Ca 150 tecken.
+            options:
+              maxlength: 170
+          - name: shareDescription
+            label: Text när sidan delas
+            type: text
+            description: Visas t.ex. i Messenger och på Facebook. Lämna tom för att använda beskrivningen ovan.
+            options:
+              maxlength: 170
+          - name: shareImage
+            label: Bild när sidan delas
+            type: image
+            required: true
+            description: Bäst i formatet 1200 × 630.
+            options:
+              media: bilder
       - name: hem
         label: Toppen
         type: object
@@ -161,6 +191,13 @@ content:
                 type: string
                 options:
                   maxlength: 60
+      - name: tjanster
+        label: Tjänster (rubrik)
+        type: object
+        description: Tjänsterna själva ändras under Tjänster i menyn.
+        fields:
+          - { name: eyebrow, component: eyebrow }
+          - { name: title, component: rubrik }
       - name: saJobbarJag
         label: Så jobbar jag
         type: object
@@ -306,3 +343,260 @@ content:
             options:
               media: bilder
           - { name: imageAlt, component: bildtext }
+
+  - name: tjanster
+    label: Tjänster
+    type: file
+    path: content/tjanster.json
+    format: json
+    fields:
+      - name: contactText
+        label: Text vid kontaktknapparna
+        type: string
+        description: Visas längst ned på alla tjänstesidor.
+        options:
+          maxlength: 80
+      - name: items
+        label: Tjänsterna
+        type: object
+        description: Tjänsternas namn är fasta, eftersom de används i menyer och adresser.
+        fields:
+          - name: byggnadsplatslageri
+            label: Byggnadsplåtslageri
+            type: object
+            fields:
+              - { name: eyebrow, component: eyebrow }
+              - name: intro
+                label: Ingress
+                type: text
+                description: Kort mening under rubriken. Döljs automatiskt om sidan inte ryms på skärmen.
+                options:
+                  maxlength: 120
+              - name: points
+                label: Punkter
+                type: string
+                list:
+                  min: 1
+                  max: 6
+                options:
+                  maxlength: 45
+              - name: image
+                label: Toppbild (bred, 16:9)
+                type: image
+                required: true
+                description: Visas överst på tjänstesidan.
+                options:
+                  media: bilder
+              - name: cardImage
+                label: Bild på startsidan (hög)
+                type: image
+                required: true
+                description: Visas på tjänstekortet på startsidan.
+                options:
+                  media: bilder
+              - name: cardText
+                label: Text på startsidan
+                type: string
+                description: En kort rad under tjänstens namn på startsidan.
+                options:
+                  maxlength: 70
+              - name: seoDescription
+                label: Beskrivning för Google
+                type: text
+                options:
+                  maxlength: 170
+
+          - name: kopparslageri
+            label: Kopparslageri
+            type: object
+            fields:
+              - { name: eyebrow, component: eyebrow }
+              - name: intro
+                label: Ingress
+                type: text
+                description: Kort mening under rubriken. Döljs automatiskt om sidan inte ryms på skärmen.
+                options:
+                  maxlength: 120
+              - name: points
+                label: Punkter
+                type: string
+                list:
+                  min: 1
+                  max: 6
+                options:
+                  maxlength: 45
+              - name: image
+                label: Toppbild (bred, 16:9)
+                type: image
+                required: true
+                description: Visas överst på tjänstesidan.
+                options:
+                  media: bilder
+              - name: cardImage
+                label: Bild på startsidan (hög)
+                type: image
+                required: true
+                description: Visas på tjänstekortet på startsidan.
+                options:
+                  media: bilder
+              - name: cardText
+                label: Text på startsidan
+                type: string
+                description: En kort rad under tjänstens namn på startsidan.
+                options:
+                  maxlength: 70
+              - name: seoDescription
+                label: Beskrivning för Google
+                type: text
+                options:
+                  maxlength: 170
+
+          - name: restaurering
+            label: Restaurering
+            type: object
+            fields:
+              - { name: eyebrow, component: eyebrow }
+              - name: intro
+                label: Ingress
+                type: text
+                description: Kort mening under rubriken. Döljs automatiskt om sidan inte ryms på skärmen.
+                options:
+                  maxlength: 120
+              - name: points
+                label: Punkter
+                type: string
+                list:
+                  min: 1
+                  max: 6
+                options:
+                  maxlength: 45
+              - name: image
+                label: Toppbild (bred, 16:9)
+                type: image
+                required: true
+                description: Visas överst på tjänstesidan.
+                options:
+                  media: bilder
+              - name: cardImage
+                label: Bild på startsidan (hög)
+                type: image
+                required: true
+                description: Visas på tjänstekortet på startsidan.
+                options:
+                  media: bilder
+              - name: cardText
+                label: Text på startsidan
+                type: string
+                description: En kort rad under tjänstens namn på startsidan.
+                options:
+                  maxlength: 70
+              - name: seoDescription
+                label: Beskrivning för Google
+                type: text
+                options:
+                  maxlength: 170
+
+          - name: specialprojekt
+            label: Specialprojekt
+            type: object
+            fields:
+              - { name: eyebrow, component: eyebrow }
+              - name: intro
+                label: Ingress
+                type: text
+                description: Kort mening under rubriken. Döljs automatiskt om sidan inte ryms på skärmen.
+                options:
+                  maxlength: 120
+              - name: points
+                label: Punkter
+                type: string
+                list:
+                  min: 1
+                  max: 6
+                options:
+                  maxlength: 45
+              - name: image
+                label: Toppbild (bred, 16:9)
+                type: image
+                required: true
+                description: Visas överst på tjänstesidan.
+                options:
+                  media: bilder
+              - name: cardImage
+                label: Bild på startsidan (hög)
+                type: image
+                required: true
+                description: Visas på tjänstekortet på startsidan.
+                options:
+                  media: bilder
+              - name: cardText
+                label: Text på startsidan
+                type: string
+                description: En kort rad under tjänstens namn på startsidan.
+                options:
+                  maxlength: 70
+              - name: seoDescription
+                label: Beskrivning för Google
+                type: text
+                options:
+                  maxlength: 170
+
+  - name: foretag
+    label: Företag och kontakt
+    type: file
+    path: content/foretag.json
+    format: json
+    fields:
+      - name: name
+        label: Företagsnamn
+        type: string
+        required: true
+        options:
+          maxlength: 60
+      - name: orgnr
+        label: Organisationsnummer
+        type: string
+        options:
+          maxlength: 20
+      - name: taxText
+        label: Skatt och moms
+        type: string
+        description: T.ex. Godkänd för F-skatt · Momsregistrerad
+        options:
+          maxlength: 80
+      - name: street
+        label: Gatuadress
+        type: string
+        options:
+          maxlength: 60
+      - name: postal
+        label: Postnummer och ort
+        type: string
+        options:
+          maxlength: 40
+      - name: contactPerson
+        label: Kontaktperson
+        type: string
+        options:
+          maxlength: 40
+      - name: phone
+        label: Telefon
+        type: string
+        required: true
+        description: Skrivs som det ska visas, t.ex. 072-284 85 57. Ändras överallt på sajten.
+        pattern:
+          regex: "^[0-9 +()-]{6,20}$"
+          message: Bara siffror, mellanslag och bindestreck.
+      - name: email
+        label: E-post
+        type: string
+        required: true
+        description: Ändras överallt på sajten.
+        pattern:
+          regex: "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+          message: Skriv en giltig e-postadress.
+      - name: area
+        label: Verksamhetsområde
+        type: string
+        options:
+          maxlength: 40

@@ -109,7 +109,7 @@ Färgvariabler och gemensamma designvärden finns i början av `style.css`. Där
 
 ## Texter och bilder på startsidan
 
-Startsidans texter och bilder ligger i `content/startsida.json` och redigeras i Pages CMS under **Startsidan**. `scripts/build.mjs` fyller i `index.html` mellan markeringar som `<!-- cms:hem.title -->…<!-- /cms:hem.title -->`. Cloudflare kör bygget före varje publicering; kör `node scripts/build.mjs` lokalt efter en ändring.
+Texter och bilder ligger i `content/` och redigeras i Pages CMS: `startsida.json` (**Startsidan**, inkl. sökmotortexter), `tjanster.json` (**Tjänster**: ingress, punkter, bilder, kortrad, Google-beskrivning) och `foretag.json` (**Företag och kontakt**: telefon, e-post, adress, org.nr – används i sidfot, kontaktdelen, tjänstesidorna och mobilmenyn). Tjänsternas namn är fasta. `scripts/build.mjs` fyller i `index.html`, `tjanster/*.html` och `menu.js` mellan markeringar som `<!-- cms:hem.title -->…<!-- /cms:hem.title -->`. Cloudflare kör bygget före varje publicering; kör `node scripts/build.mjs` lokalt efter en ändring.
 
 Ändra inte text mellan markeringarna direkt i HTML-filen – den skrivs över av bygget. Utseendet (klasser och layout) ändras i `scripts/build.mjs` och CSS.
 

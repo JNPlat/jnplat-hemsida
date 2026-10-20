@@ -1,0 +1,60 @@
+{
+  "contactText": "Har du ett liknande projekt? Hör av dig så pratar vi om det.",
+  "items": {
+    "byggnadsplatslageri": {
+      "eyebrow": "Mitt hantverk",
+      "intro": "Jag gör allt inom byggnadsplåtslageri. Med kvalitet i fokus.",
+      "points": [
+        "Band- och skivtäckning",
+        "Fönsterbleck & fasadplåt",
+        "Vattenavrinning",
+        "Taksäkerhet",
+        "Skorstens- och andra beslag"
+      ],
+      "image": "images/byggnadsplatslageri-mobil.webp",
+      "cardImage": "images/byggnadsplatslageri-desktop.webp",
+      "cardText": "Tak, fasader, vattenavrinning och taksäkerhet i plåt.",
+      "seoDescription": "Traditionellt byggnadsplåtslageri med fokus på noggrant utförande, hållbarhet och detaljer."
+    },
+    "kopparslageri": {
+      "eyebrow": "Mitt hantverk",
+      "intro": "Koppar som formas och drivs för hand.",
+      "points": [
+        "Drivning och formning för hand",
+        "Kupoler, tornhuvar och spiror",
+        "Ornament och oxögon"
+      ],
+      "image": "images/kopparslageri-mobil.webp",
+      "cardImage": "images/kopparslageri-desktop.webp",
+      "cardText": "Koppar som formas och drivs för hand.",
+      "seoDescription": "Tillverkning och bearbetning av koppar för tak, fasader och arkitektoniska detaljer."
+    },
+    "restaurering": {
+      "eyebrow": "Mitt hantverk",
+      "intro": "Varsam restaurering där så mycket som möjligt av originalet bevaras.",
+      "points": [
+        "Lagning av befintlig plåt",
+        "Falsning som originalet",
+        "Nya delar efter förlagan",
+        "I samråd med antikvarie"
+      ],
+      "image": "images/restaurering-mobil.webp",
+      "cardImage": "images/restaurering-desktop.webp",
+      "cardText": "Varsam restaurering av plåt på äldre byggnader.",
+      "seoDescription": "Restaurering av äldre och kulturhistoriska byggnader med respekt för originalets uttryck."
+    },
+    "specialprojekt": {
+      "eyebrow": "Mitt hantverk",
+      "intro": "Unika former och detaljer i plåt när standardlösningar inte räcker.",
+      "points": [
+        "Från ritning till montering",
+        "Ovanliga former och övergångar",
+        "Nära samarbete med arkitekt och beställare"
+      ],
+      "image": "images/specialprojekt-mobil.webp",
+      "cardImage": "images/specialprojekt-desktop.webp",
+      "cardText": "Unika former och detaljer i plåt.",
+      "seoDescription": "Specialanpassade arbeten där traditionellt hantverk möter unika arkitektoniska lösningar."
+    }
+  }
+}

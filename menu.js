@@ -11,8 +11,10 @@
   const onHomePage = document.body.classList.contains("home-page");
   const currentService = document.body.dataset.service || "";
   const home = onHomePage ? "" : `${base}index.html`;
+  /* cms:kontakt */
   const phone = { href: "tel:0722848557", label: "072-284 85 57" };
   const mail = "info@jnplat.se";
+  /* /cms:kontakt */
 
   const sections = [
     ["#hem", "Hem"],
