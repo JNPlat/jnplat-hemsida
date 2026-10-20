@@ -14,6 +14,7 @@ Statisk webbplats för J. Norberg Plåtslageri AB. Publiceras som statiska filer
 | Utseende på tjänste- och projektsidor | `undersidor.css` |
 | Header, logotyp, navigering och headerhöjd | `header.css` |
 | Startsida: navigering | `script.js` |
+| Mobilmenyn (stående skärm, alla sidor) | `menu.js` |
 | Tjänstesidor: projektkort och bildgalleri | `service.js` |
 | Projektdetaljsida och galleri | `project.js` |
 | Gemensamma JavaScript-hjälpfunktioner | `site-utils.js` |
@@ -30,6 +31,7 @@ jnplat-hemsida/
 ├── style.css
 ├── undersidor.css
 ├── header.css
+├── menu.js
 ├── script.js
 ├── service.js
 ├── project.js
@@ -57,6 +59,7 @@ jnplat-hemsida/
 - `style.css` – startsidans sektioner.
 - `undersidor.css` – tjänste- och projektsidornas layout, projektkort och gallerier.
 - `header.css` – gemensam header, navigering och sidornas header-offset.
+- `menu.js` – mobilheaderns ringknapp och menyknapp samt helskärmsmenyn med tjänsterna som undermeny. Läses in på alla sidor (`data-base="../"` i undermappar).
 - `script.js` – startsidans navigering (aktiv länk vid scroll).
 - `service.js` – laddar projekt på tjänstesidorna och hanterar projektgalleriet.
 - `project.js` – laddar projektdetaljer och bildgalleri.
@@ -78,11 +81,12 @@ Header-höjden (`--header-height`) och sektionshöjden (`--screen-h`, byggd på 
 ## Bildversioner för stående och liggande skärm
 
 - **Herobilden** finns i två versioner: `images/hero-bild.webp` (bred, visas på stående skärm) och `images/hero-bild-liggande.webp` (nästan kvadratisk, visas på liggande skärm och dator). Byt mot egna versioner med samma filnamn.
+- **Kontaktbilden** finns som `images/st-johannes.webp` (hög, stående skärm) och `images/st-johannes-bred.webp` (16:9, liggande skärm och dator).
 - **Tjänstebilderna** finns som `*-desktop.webp` (hög) och `*-mobil.webp` (bred 16:9). Startsidans tjänstekort använder den breda versionen på mobil i liggande läge, tjänstesidornas toppbild använder alltid den breda.
 
-## Citat (Förtroende) och meriter (John Norberg)
+## Citat (Mitt löfte) och meriter (John Norberg)
 
-- **Citat** ligger i sektionen `#fortroende` i `index.html`. Det finns tre färdiga platser för konsult, plåtkonsult och antikvarie. Fyll i texten och ta bort ordet `hidden` så syns kortet. Är bara ett citat ifyllt visas det stort; fylls fler i blir alla kort lika stora automatiskt.
+- **Citat** ligger under "De jag arbetar med" i sektionen `#loftet` i `index.html`. Det finns tre färdiga platser för konsult, plåtkonsult och antikvarie. Fyll i texten och ta bort ordet `hidden` så syns kortet. Fler citat läggs till genom att kopiera ett helt `figure`-block. Ett citat fyller bredden; fler läggs på rad och sveps eller scrollas.
 - **Meriter** är en lista (`about-merits`) i sektionen `#om`. En `<li>` per merit.
 - **Undersidornas textstorlekar** (tjänstesidor, projektsida, galleri) använder samma variabler som startsidan: `--fs-h1`, `--fs-h2`, `--fs-h3` och `--fs-body` i `tokens.css`.
 

@@ -66,12 +66,30 @@
         </a>
 
         <a
-          href="#tjanster"
+          href="#loftet"
           class="nav-link"
-          data-section="tjanster"
+          data-section="loftet"
         >
-          Tjänster
+          Mitt löfte
         </a>
+
+        <!-- Tjänster med rullgardinsmeny på datorn (visas vid hovring) -->
+        <div class="nav-item has-dropdown">
+          <a
+            href="#tjanster"
+            class="nav-link"
+            data-section="tjanster"
+            aria-haspopup="true"
+          >
+            Tjänster
+          </a>
+          <div class="nav-dropdown">
+            <a href="tjanster/byggnadsplatslageri.html">Byggnadsplåtslageri</a>
+            <a href="tjanster/kopparslageri.html">Kopparslageri</a>
+            <a href="tjanster/restaurering.html">Restaurering</a>
+            <a href="tjanster/specialprojekt.html">Specialprojekt</a>
+          </div>
+        </div>
 
         <a
           href="#sa-jobbar-jag"
@@ -103,7 +121,6 @@
           data-section="kontakt"
         >
           <span class="header-contact-label">Kontakt</span>
-          <span class="header-contact-arrow" aria-hidden="true">→</span>
         </a>
 
       </nav>
@@ -134,7 +151,7 @@
             Direkt kontakt med mig som gör jobbet, från offert till faktura.
           </p>
 
-          <a href="#kontakt" class="btn">Kontakta mig <span aria-hidden="true">→</span></a>
+          <a href="#kontakt" class="btn">Kontakta mig</a>
 
           <p class="hero-phone">eller ring <a href="tel:0722848557">072-284 85 57</a></p>
 
@@ -142,11 +159,10 @@
 
         <div class="hero-image">
 
-          <!-- HEROBILD: hero-bild.webp visas på stående skärm (bred bild),
-               hero-bild-liggande.webp på liggande skärm (smalare, nästan kvadratisk).
-               Byt filerna mot egna versioner med samma namn. -->
+          <!-- HEROBILD: hela bilden (hero-bild.webp) på alla skärmar.
+               Liggande skärm: bilden ligger bakom texten.
+               Byt filen mot en egen version med samma namn. -->
           <picture>
-            <source media="(orientation: landscape)" srcset="images/hero-bild-liggande.webp" width="1441" height="1602">
             <img
               src="images/hero-bild.webp"
               alt="Plåtslageriarbete på tak"
@@ -167,17 +183,84 @@
 
       <div class="promise-inner">
 
-        <p class="eyebrow">Mitt löfte</p>
+        <div class="promise-text">
 
-        <h2>Du pratar direkt med plåtslagaren.</h2>
+          <p class="eyebrow">Mitt löfte</p>
 
-        <p>
-          När du anlitar J. Norberg Plåtslageri AB har du direkt kontakt med mig som gör jobbet, från offert till faktura. Det betyder att kunskap, erfarenhet och känsla för hantverket följer med genom hela projektet – utan onödiga mellanhänder.
-        </p>
+          <h2>Du pratar direkt med plåtslagaren.</h2>
 
-        <p>
-          Varje arbete utför jag med stor noggrannhet, respekt för det traditionella hantverket och höga krav på kvalitet.
-        </p>
+          <p>
+            När du anlitar J. Norberg Plåtslageri AB har du direkt kontakt med mig som gör jobbet, från offert till faktura. Det betyder att kunskap, erfarenhet och känsla för hantverket följer med genom hela projektet – utan onödiga mellanhänder.
+          </p>
+
+          <p>
+            Varje arbete utför jag med stor noggrannhet, respekt för det traditionella hantverket och höga krav på kvalitet.
+          </p>
+
+        </div>
+
+        <div class="trust-block">
+
+          <p class="eyebrow">De jag arbetar med</p>
+
+          <div class="trust-quotes">
+
+            <!-- =====================================================
+                 CITAT. Ändra bara texten i fälten.
+                 De tre korten med "hidden" är platser för citat från
+                 konsult, plåtkonsult och antikvarie. Fyll i texten och
+                 ta bort ordet hidden så syns kortet på sajten.
+                 Fler citat: kopiera ett helt figure-block. Korten
+                 läggs på rad och man sveper eller scrollar mellan dem.
+                 ===================================================== -->
+
+            <figure class="trust-quote">
+              <blockquote>
+                <p>Mycket kunnig och lösningsorienterad, en riktig konstnär med plåt.</p>
+              </blockquote>
+              <figcaption>
+                <span class="trust-name">Conny Lundell</span>
+                <span class="trust-role">Platschef, Kyrkans Byggmästarbolag AB</span>
+                <span class="trust-project">S:t Johannes kyrka</span>
+              </figcaption>
+            </figure>
+
+            <figure class="trust-quote" hidden>
+              <blockquote>
+                <p>Citat från konsult.</p>
+              </blockquote>
+              <figcaption>
+                <span class="trust-name">Namn</span>
+                <span class="trust-role">Konsult, företag</span>
+                <span class="trust-project">Projekt (valfritt)</span>
+              </figcaption>
+            </figure>
+
+            <figure class="trust-quote" hidden>
+              <blockquote>
+                <p>Citat från plåtkonsult.</p>
+              </blockquote>
+              <figcaption>
+                <span class="trust-name">Namn</span>
+                <span class="trust-role">Plåtkonsult, företag</span>
+                <span class="trust-project">Projekt (valfritt)</span>
+              </figcaption>
+            </figure>
+
+            <figure class="trust-quote" hidden>
+              <blockquote>
+                <p>Citat från antikvarie.</p>
+              </blockquote>
+              <figcaption>
+                <span class="trust-name">Namn</span>
+                <span class="trust-role">Antikvarie, företag</span>
+                <span class="trust-project">Projekt (valfritt)</span>
+              </figcaption>
+            </figure>
+
+          </div>
+
+        </div>
 
       </div>
 
@@ -234,6 +317,8 @@
                 Tak, fasader, vattenavrinning och taksäkerhet i plåt.
               </p>
 
+              <span class="service-more">Läs mer</span>
+
             </div>
 
           </a>
@@ -273,6 +358,8 @@
               <p>
                 Koppar som formas och drivs för hand.
               </p>
+
+              <span class="service-more">Läs mer</span>
 
             </div>
 
@@ -314,6 +401,8 @@
                 Varsam restaurering av plåt på äldre byggnader.
               </p>
 
+              <span class="service-more">Läs mer</span>
+
             </div>
 
           </a>
@@ -353,6 +442,8 @@
               <p>
                 Unika former och detaljer i plåt.
               </p>
+
+              <span class="service-more">Läs mer</span>
 
             </div>
 
@@ -401,74 +492,6 @@
           </li>
 
         </ol>
-
-      </div>
-
-    </section>
-
-    <section class="trust-section" id="fortroende">
-
-      <div class="trust-inner">
-
-        <div class="trust-head">
-          <p class="eyebrow">Förtroende</p>
-          <h2>De jag arbetar med</h2>
-        </div>
-
-        <div class="trust-quotes">
-
-          <!-- =====================================================
-               CITAT. Ändra bara texten i fälten.
-               De tre korten med "hidden" är platser för citat från
-               konsult, plåtkonsult och antikvarie. Fyll i texten och
-               ta bort ordet hidden så syns kortet på sajten.
-               ===================================================== -->
-
-          <figure class="trust-quote trust-quote--featured">
-            <blockquote>
-              <p>Mycket kunnig och lösningsorienterad, en riktig konstnär med plåt.</p>
-            </blockquote>
-            <figcaption>
-              <span class="trust-name">Conny Lundell</span>
-              <span class="trust-role">Platschef, Kyrkans Byggmästarbolag AB</span>
-              <span class="trust-project">S:t Johannes kyrka</span>
-            </figcaption>
-          </figure>
-
-          <figure class="trust-quote" hidden>
-            <blockquote>
-              <p>Citat från konsult.</p>
-            </blockquote>
-            <figcaption>
-              <span class="trust-name">Namn</span>
-              <span class="trust-role">Konsult, företag</span>
-              <span class="trust-project">Projekt (valfritt)</span>
-            </figcaption>
-          </figure>
-
-          <figure class="trust-quote" hidden>
-            <blockquote>
-              <p>Citat från plåtkonsult.</p>
-            </blockquote>
-            <figcaption>
-              <span class="trust-name">Namn</span>
-              <span class="trust-role">Plåtkonsult, företag</span>
-              <span class="trust-project">Projekt (valfritt)</span>
-            </figcaption>
-          </figure>
-
-          <figure class="trust-quote" hidden>
-            <blockquote>
-              <p>Citat från antikvarie.</p>
-            </blockquote>
-            <figcaption>
-              <span class="trust-name">Namn</span>
-              <span class="trust-role">Antikvarie, företag</span>
-              <span class="trust-project">Projekt (valfritt)</span>
-            </figcaption>
-          </figure>
-
-        </div>
 
       </div>
 
@@ -622,14 +645,19 @@
 
       <div class="contact-background">
 
-        <img
-          src="images/st-johannes.webp"
-          alt="Kopparplåt och tegel vid St Johannes"
-          width="1200"
-          height="2133"
-          loading="lazy"
-          decoding="async"
-        >
+        <!-- st-johannes-bred.webp (16:9) på liggande skärm och dator,
+             st-johannes.webp (hög) på stående skärm -->
+        <picture>
+          <source media="(orientation: landscape)" srcset="images/st-johannes-bred.webp" width="1672" height="941">
+          <img
+            src="images/st-johannes.webp"
+            alt="Kopparplåt och tegel vid St Johannes"
+            width="1200"
+            height="2133"
+            loading="lazy"
+            decoding="async"
+          >
+        </picture>
 
       </div>
 
@@ -707,6 +735,33 @@
 
   </main>
 
+  <footer class="site-footer">
+
+    <div class="container footer-inner">
+
+      <div class="footer-col">
+        <p class="footer-name">J. Norberg Plåtslageri AB</p>
+        <p>Org.nr 559603-7209</p>
+        <p>Godkänd för F-skatt · Momsregistrerad</p>
+      </div>
+
+      <div class="footer-col">
+        <p>Brädgårdsvägen 2</p>
+        <p>178 30 Ekerö</p>
+      </div>
+
+      <div class="footer-col">
+        <p><a href="tel:0722848557">072-284 85 57</a></p>
+        <p><a href="mailto:info@jnplat.se">info@jnplat.se</a></p>
+      </div>
+
+    </div>
+
+    <p class="container footer-copy">© 2026 J. Norberg Plåtslageri AB</p>
+
+  </footer>
+
+  <script src="menu.js"></script>
   <script src="script.js"></script>
 
 </body>

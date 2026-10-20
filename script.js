@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector(".site-header");
   const brand = document.querySelector(".brand");
-  const navLinks = [...document.querySelectorAll(".nav-link")];
-  const sections = ["hem", "tjanster", "sa-jobbar-jag", "om", "aktuellt", "kontakt"]
+  const sections = ["hem", "loftet", "tjanster", "sa-jobbar-jag", "om", "aktuellt", "kontakt"]
     .map((id) => document.getElementById(id))
     .filter(Boolean);
+
+  const navLinks = [...document.querySelectorAll(".nav-link")];
   const contactSection = document.getElementById("kontakt");
 
   let scrollTicking = false;
@@ -90,6 +91,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Rullgardinen under Tjänster stängs vid klick och öppnas igen först när
+  // muspekaren förts dit på nytt
+  document.querySelectorAll(".nav-item.has-dropdown").forEach((item) => {
+    item.addEventListener("click", () => {
+      item.classList.add("is-closed");
+      document.activeElement?.blur();
+    });
+    item.addEventListener("mouseleave", () => item.classList.remove("is-closed"));
+  });
+
   updateActiveSection();
 
   // Cross-page hash navigation: wait until the destination page has completed
@@ -126,6 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: true }
   );
 
+  // Efter ett klick på en flik eller prick: markera rätt när scrollen är klar
+  window.addEventListener("scrollend", updateActiveSection);
   window.addEventListener("resize", updateActiveSection);
   window.addEventListener("load", updateActiveSection);
 });

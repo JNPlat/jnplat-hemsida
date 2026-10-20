@@ -8,7 +8,6 @@
 .hero-section,
 .promise-section,
 .process-section,
-.trust-section,
 .services-section,
 .current-section,
 .about-section,
@@ -65,11 +64,16 @@
 }
 
 .hero-image picture,
-.about-image picture { display: contents; }
+.about-image picture,
+.contact-background picture { display: contents; }
 
 .hero-image img { object-position: 60% 45%; }
 .about-image img { object-position: center bottom; }
 .contact-background img { object-position: center 60%; }
+
+@media (orientation: landscape) {
+  .contact-background img { object-position: center 70%; }
+}
 
 .hero-content,
 .current-content,
@@ -91,7 +95,8 @@
   flex: 1 1 auto;
 }
 
-.hero-image { order: -1; height: clamp(200px, 30svh, 460px); }
+/* Stående: bilden fyller det som blir över av skärmen, aldrig mindre än förut */
+.hero-image { order: -1; flex: 1 0 clamp(200px, 30svh, 460px); }
 .hero-content h1 { margin-bottom: var(--s3); }
 .hero-text:last-child { margin-bottom: 0; }
 
@@ -115,7 +120,22 @@
 }
 .hero-text { font-size: var(--fs-lead); color: var(--ink); max-width: 480px; margin-bottom: var(--s3); }
 
-/* ---------- Löftet ---------- */
+/* Stående: bild, rubrik, ingress, knapp och telefonnummer ryms ovanför
+   mobilens adressrad. Sektionens bakgrund fortsätter bakom raden. */
+@media (orientation: portrait) {
+  .hero-section {
+    min-height: calc(var(--screen-h) + var(--bar-gap));
+    padding-bottom: var(--bar-gap);
+  }
+  .hero-image { flex: 1 0 200px; }
+  .hero-content { padding-block: var(--s2); }
+  .hero-content .eyebrow { display: none; }
+  .hero-content h1 { margin-bottom: var(--s2); font-size: clamp(32px, 9vw, 52px); }
+  .hero-text { margin-bottom: 12px; font-size: var(--fs-body); }
+  .hero-content .btn { margin-top: 0; }
+  .hero-phone { margin-top: var(--s1); }
+}
+/* ---------- Mitt löfte och de jag arbetar med ---------- */
 
 .promise-section {
   display: flex;
@@ -125,10 +145,84 @@
   border-bottom: 1px solid var(--line);
 }
 
-.promise-inner { width: 100%; max-width: 760px; margin: 0 auto; }
-.promise-inner h2 { margin-bottom: var(--s3); font-size: var(--fs-h2); }
-.promise-inner p:not(.eyebrow) { font-size: var(--fs-lead); line-height: 1.55; color: var(--ink-soft); }
-.promise-inner p:last-child { margin-bottom: 0; }
+.promise-inner {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--s4);
+}
+
+.promise-text h2 { margin-bottom: var(--s3); font-size: var(--fs-h2); }
+.promise-text p:not(.eyebrow) { font-size: var(--fs-lead); line-height: 1.55; color: var(--ink-soft); }
+.promise-text p:last-child { margin-bottom: 0; }
+
+.trust-block { min-width: 0; }
+.trust-block > .eyebrow { margin-bottom: var(--s2); }
+
+/* Citaten ligger på rad. Ett citat fyller bredden, fler sveps eller scrollas. */
+.trust-quotes {
+  display: flex;
+  gap: var(--s2);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  padding-bottom: var(--s1);
+}
+
+.trust-quote {
+  flex: 1 0 min(85%, 380px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s3);
+  margin: 0;
+  padding: var(--s3);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+}
+
+.trust-quote[hidden] { display: none; }
+
+.trust-quote blockquote { margin: 0; }
+
+.trust-quote blockquote p {
+  margin: 0;
+  font: 500 var(--fs-h3)/1.25 var(--serif);
+  color: var(--ink);
+}
+
+.trust-quote blockquote p::before {
+  content: "\201D";
+  display: block;
+  height: 0.55em;
+  font: 600 2.4em/1 var(--serif);
+  color: var(--copper);
+}
+
+.trust-quote figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: var(--s2);
+  border-top: 1px solid var(--line);
+}
+
+.trust-name { font: 600 var(--fs-body)/1.3 var(--sans); }
+.trust-role { font: 400 var(--fs-body)/1.4 var(--sans); color: var(--ink-soft); }
+
+.trust-project {
+  margin-top: var(--s1);
+  font: 600 0.72rem/1.2 var(--sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+
+.trust-project:empty { display: none; }
 
 /* ---------- Så jobbar jag ---------- */
 
@@ -168,88 +262,12 @@
 .process-steps h3 { margin-bottom: var(--s1); font-size: var(--fs-h3); }
 .process-steps p { margin: 0; font-size: var(--fs-body); line-height: 1.55; color: var(--ink-soft); }
 
-/* ---------- Förtroende ---------- */
-
-.trust-section {
-  display: flex;
-  align-items: center;
-  padding: var(--pad-v) var(--pad-h);
-  background: var(--paper-2);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.trust-inner { width: 100%; max-width: var(--max-width); margin: 0 auto; }
-.trust-head { margin-bottom: var(--s4); }
-.trust-head h2 { font-size: var(--fs-h2); }
-
-.trust-quotes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-  gap: var(--s3);
-}
-
-.trust-quote {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--s3);
-  margin: 0;
-  padding: var(--s3);
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-}
-
-.trust-quote[hidden] { display: none; }
-
-.trust-quote blockquote { margin: 0; }
-
-.trust-quote blockquote p {
-  margin: 0;
-  font: 500 var(--fs-h3)/1.25 var(--serif);
-  color: var(--ink);
-}
-
-.trust-quote blockquote p::before {
-  content: "\201D";
-  display: block;
-  height: 0.55em;
-  font: 600 2.4em/1 var(--serif);
-  color: var(--copper);
-}
-
-.trust-quote--featured { grid-column: 1 / -1; }
-.trust-quote--featured blockquote p { font-size: var(--fs-h2); line-height: 1.15; max-width: 28ch; }
-
-/* När fler citat är ifyllda blir alla kort lika stora */
-.trust-quotes:has(.trust-quote:not([hidden]) ~ .trust-quote:not([hidden])) .trust-quote--featured { grid-column: auto; }
-.trust-quotes:has(.trust-quote:not([hidden]) ~ .trust-quote:not([hidden])) .trust-quote blockquote p { font-size: calc(var(--fs-lead) * 1.15); line-height: 1.3; }
-
-.trust-quote figcaption {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding-top: var(--s2);
-  border-top: 1px solid var(--line);
-}
-
-.trust-name { font: 600 var(--fs-body)/1.3 var(--sans); }
-.trust-role { font: 400 var(--fs-body)/1.4 var(--sans); color: var(--ink-soft); }
-
-.trust-project {
-  margin-top: var(--s1);
-  font: 600 0.72rem/1.2 var(--sans);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--copper);
-}
-
-.trust-project:empty { display: none; }
-
 /* ---------- Tjänster: svepbara kort i stående ---------- */
 
-.services-section { display: flex; align-items: center; }
+/* Sektionen är en skärm hög: bilderna krymper eller växer så att
+   rubrik och kort alltid ryms utan att man behöver scrolla */
+.services-section { display: flex; flex-direction: column; }
+.services-section > .container { flex: 1 1 auto; display: flex; flex-direction: column; min-height: 0; }
 
 .services-head { padding: var(--pad-v) var(--pad-h) 0; }
 .services-head h2 { font-size: var(--fs-h2); }
@@ -260,11 +278,18 @@
   color: var(--ink-soft);
 }
 
+/* Korten delar rader (subgrid) så att bilder och textrutor linjerar
+   även när en beskrivning är kortare än de andra */
 .services-grid {
+  flex: 1 1 auto;
+  min-height: 0;
   width: 100%;
-  display: flex;
-  gap: var(--s2);
-  padding: var(--s3) var(--s2) var(--s4);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(78vw, 360px);
+  grid-template-rows: minmax(140px, 1fr) auto;
+  gap: 0 var(--s2);
+  padding: var(--s3) var(--s2);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-padding-inline: var(--s2);
@@ -274,9 +299,9 @@
 .services-grid::-webkit-scrollbar { display: none; }
 
 .service-card {
-  flex: 0 0 min(78vw, 360px);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
   scroll-snap-align: start;
   background: var(--card);
   border: 1px solid var(--line);
@@ -286,7 +311,7 @@
 
 .service-image {
   position: relative;
-  aspect-ratio: 10 / 11;
+  min-height: 0;
   overflow: hidden;
   background: var(--paper-2);
 }
@@ -303,6 +328,13 @@
   transition: transform 0.45s ease;
 }
 
+/* Fokus när korten är smala: tassen på kopparverket och drakens huvud.
+   Gäller de höga bilderna (inte de breda på låg liggande skärm). */
+@media (orientation: portrait), (min-height: 561px) {
+  .service-card[href*="kopparslageri"] .service-image img { object-position: 85% 50%; }
+  .service-card[href*="restaurering"] .service-image img { object-position: 80% 88%; }
+}
+
 .service-info { padding: var(--s3) var(--s3) var(--s3); }
 
 .service-info h3 {
@@ -317,6 +349,21 @@
   line-height: 1.5;
   color: var(--ink-soft);
 }
+
+/* "Läs mer" visar att kortet går att klicka på */
+.service-more {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--copper-dark);
+  font: 600 0.9rem/1.2 var(--sans);
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.service-card:hover .service-more,
+.service-card:focus-visible .service-more { text-decoration-color: var(--copper); }
 
 /* ---------- Aktuellt ---------- */
 
@@ -426,6 +473,12 @@
   background: var(--ink);
 }
 
+/* Bakgrunden fortsätter bakom mobilens adressrad innan sidfoten börjar */
+.contact-section {
+  min-height: calc(var(--screen-h) + var(--bar-gap));
+  padding-bottom: calc(var(--pad-v) + var(--bar-gap));
+}
+
 .contact-background {
   position: absolute;
   inset: 0;
@@ -489,18 +542,76 @@
 
 .contact-item a:hover { color: var(--copper); text-decoration-color: var(--copper); }
 
+/* ---------- Sidfot ---------- */
+
+.site-footer {
+  padding: var(--s4) 0 var(--s3);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-inner {
+  display: grid;
+  gap: var(--s3);
+}
+
+.footer-col p { margin: 0; color: rgba(243, 238, 230, .75); }
+.footer-col .footer-name { color: var(--paper); font-weight: 600; }
+
+.footer-col a {
+  color: var(--paper);
+  text-decoration: underline;
+  text-decoration-color: rgba(243, 238, 230, .35);
+  text-underline-offset: 4px;
+}
+
+.footer-col a:hover { text-decoration-color: var(--copper); }
+
+.footer-copy {
+  margin-top: var(--s4);
+  padding-top: var(--s2);
+  border-top: 1px solid rgba(243, 238, 230, .15);
+  color: rgba(243, 238, 230, .55);
+  font-size: 13px;
+}
+
+@media (orientation: landscape) {
+  .footer-inner { grid-template-columns: repeat(3, auto); justify-content: space-between; }
+}
+
 /* ======================================================
    LIGGANDE SKÄRM: text och bild bredvid varandra,
    varje sektion fyller skärmen under headern.
    ====================================================== */
 
 @media (orientation: landscape) {
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
+  /* Hela bilden täcker sektionen, texten ligger ovanpå till vänster.
+     Bredden räcker för rubriken på två rader. */
+  .hero-grid { position: relative; }
+
+  .hero-image { position: absolute; inset: 0; height: auto; }
+  .hero-image img { object-position: right 60%; }
+
+  .hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+      var(--paper) 0%,
+      rgba(243, 238, 230, .94) 28%,
+      rgba(243, 238, 230, .7) 44%,
+      rgba(243, 238, 230, 0) 62%);
   }
 
-  .hero-image { order: 0; height: auto; }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 auto;
+    width: min(58%, calc(var(--fs-h1) * 10.6 + var(--pad-h) * 2));
+    background: none;
+  }
   .hero-content h1 { margin-bottom: clamp(12px, 3vh, 28px); }
   .hero-text { margin-bottom: clamp(10px, 2.2vh, 22px); }
 
@@ -519,19 +630,14 @@
     border-top: 1px solid var(--line);
   }
 
-  /* Förtroende: rubrik vänster, citat höger */
-  .trust-inner {
-    display: grid;
-    grid-template-columns: minmax(0, 30fr) minmax(0, 70fr);
-    gap: clamp(24px, 4vw, 80px);
+  /* Mitt löfte: text vänster, citat höger */
+  .promise-inner {
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    gap: clamp(32px, 5vw, 96px);
     align-items: center;
   }
 
-  .trust-head { margin-bottom: 0; }
-  .trust-inner:has(.trust-quote:not([hidden]) ~ .trust-quote:not([hidden])) { display: block; }
-  .trust-inner:has(.trust-quote:not([hidden]) ~ .trust-quote:not([hidden])) .trust-head { margin-bottom: clamp(16px, 4vh, 40px); }
-  .trust-quotes:has(.trust-quote:not([hidden]) ~ .trust-quote:not([hidden])) { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); }
-  .trust-quotes { gap: clamp(12px, 2.4vh, 24px); }
+  .promise-text h2 { margin-bottom: clamp(12px, 3vh, 24px); }
   .trust-quote { gap: clamp(12px, 2.6vh, 24px); padding: clamp(16px, 3.4vh, 32px) clamp(18px, 2vw, 32px); }
 
   /* Tjänster: fyra kolumner, bild överst, text under */
@@ -615,14 +721,15 @@
   .service-card:hover .service-info h3 { color: var(--copper); }
 }
 
-/* Låg liggande skärm (mobil på sidan): tjänstekorten i två kolumner med
-   bilder i fast format, så att bilderna inte kläms ihop och långa
-   rubriker får plats. Sektionen får växa. */
+/* Låg liggande skärm (mobil på sidan): fyra kolumner som på datorn, med
+   mindre text så att långa rubriker får plats och allt ryms på en skärm. */
 @media (orientation: landscape) and (max-height: 560px) {
-  .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
-  .service-card:nth-child(2n) { border-right: 0; }
-  .service-card:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
-  .service-image { flex: 0 0 auto; aspect-ratio: 16 / 9; }
+  .services-head { padding-block: 10px 8px; }
+  .services-head h2 { font-size: clamp(24px, 7vh, 30px); }
+  .services-head .eyebrow { margin-bottom: 2px; }
+  .service-info { padding: 10px 12px 12px; }
+  .service-info h3 { margin-bottom: 4px; font-size: clamp(15px, 2.2vw, 19px); }
+  .service-info p { font-size: 13px; line-height: 1.4; }
 }
 
 /* Mjuk uppsnappning mellan skärmarna på riktiga liggande skärmar */

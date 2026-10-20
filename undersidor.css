@@ -741,6 +741,12 @@ body.lightbox-open{
 }
 
 body.project-gallery-open{ overflow: hidden; }
+/* html har overflow-x: clip, så låsningen på body når inte fönstret.
+   Lås html också, och låt inte scroll i galleriet fortsätta till sidan. */
+html:has(body.project-gallery-open),
+html:has(body.lightbox-open){ overflow: hidden; }
+.project-gallery-modal{ overscroll-behavior: contain; }
+.project-gallery-description[hidden]{ display: none; }
 
 /* Mobil och pekskärm: helskärm, bilden kant i kant och svep i stället för pilar */
 @media (max-width: 600px), (hover: none) {
@@ -1493,3 +1499,185 @@ body.project-gallery-open{ overflow: hidden; }
 @media (orientation: landscape) and (max-height: 560px) {
   .inner-page.service-page .service-showcase-top { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); }
 }
+
+/* ---------- En skärm per tjänstesida ----------
+   Bild, punkter, projekt och kontaktrad ryms på en skärm. Sidfoten nås
+   genom att scrolla. service.js lägger till .is-compact (döljer
+   överrubrik och ingress) bara på sidor där allt annars inte får plats. */
+.inner-page.service-page {
+  --service-tail: var(--bar-gap);
+}
+
+/* Mobil: lite extra så att sidfoten inte skymtar längst ned */
+@media (orientation: portrait) and (hover: none) {
+  .inner-page.service-page { --service-tail: calc(var(--bar-gap) + 80px); }
+}
+
+.inner-page.service-page .service-showcase {
+  height: calc(var(--screen-h) + var(--service-tail));
+  min-height: 0;
+  /* Bakgrunden fortsätter bakom mobilens adressrad innan sidfoten börjar */
+  padding-bottom: var(--service-tail);
+}
+
+.inner-page.service-page .service-showcase.is-tall {
+  height: auto;
+  min-height: calc(var(--screen-h) + var(--service-tail));
+}
+.inner-page.service-page .service-showcase.is-tall .service-showcase-top { flex: none; }
+@media (orientation: portrait) {
+  /* Sidan scrollar ändå: projektkorten får full storlek */
+  .inner-page.service-page .service-showcase.is-tall .service-projects {
+    flex: none;
+    height: min(calc(85vw * 2176 / 4608 + 4px), 264px);
+  }
+}
+
+.inner-page.service-page .service-showcase.is-compact .service-copy > .eyebrow,
+.inner-page.service-page .service-showcase.is-compact .service-copy .intro-lead { display: none; }
+.inner-page.service-page .service-showcase.is-compact .service-points { margin-top: 0; padding-top: 0; border-top: 0; }
+
+.inner-page .service-contact { padding-block: var(--s2); }
+
+@media (orientation: landscape) {
+  /* Toppen har samma storlek som förut men får krympa lite om skärmen är låg */
+  .inner-page.service-page .service-showcase-top { flex: 0 1 calc(44vw * 9 / 16); min-height: 0; }
+  .inner-page.service-page .service-image-hero { aspect-ratio: auto; }
+  .inner-page.service-page .service-copy { padding-block: clamp(14px, 3vh, 44px); }
+}
+
+@media (orientation: portrait) {
+  .inner-page.service-page .service-showcase { gap: 10px; }
+  .inner-page.service-page .service-showcase-top { flex: none; }
+  .inner-page.service-page .service-copy { padding: 14px 20px; }
+  .inner-page.service-page .service-points { margin-bottom: var(--s2); }
+
+  /* Kompakt på mobil: bara punkterna. Kontaktraden längre ned ersätter
+     Kontakta mig-knappen och svephinten. */
+  .inner-page.service-page .service-showcase.is-compact .service-points { margin-bottom: 0; }
+  .inner-page.service-page .service-showcase.is-compact .service-copy .text-link,
+  .inner-page.service-page .service-showcase.is-compact .service-copy > p.service-swipe-hint:not(.eyebrow):not(.intro-lead) { display: none; }
+
+  /* Projektbilden fyller det som blir över, men blir aldrig större än förut */
+  .inner-page.service-page .service-projects { display: flex; flex: 1 1 auto; min-height: 94px; }
+  .inner-page.service-page .service-projects .project-carousel { align-items: stretch; }
+
+  /* Korten har projektbildernas originalformat (4608 × 2176). Bredden
+     följer höjden, och kortet blir aldrig bredare än 85 % av skärmen. */
+  .inner-page.service-page .service-projects .project-carousel .project-card {
+    display: block;
+    flex: 0 0 auto;
+    height: 100%;
+    max-height: calc(85vw * 2176 / 4608);
+    aspect-ratio: 4608 / 2176;
+  }
+  .inner-page.service-page .service-projects .project-card-image {
+    height: 100%;
+    aspect-ratio: auto;
+    min-height: 90px;
+  }
+  .inner-page.service-page .service-projects .project-card-title {
+    padding: 8px 10px;
+    font-size: clamp(14px, 4vw, 20px);
+  }
+
+  /* "Se projektet" på bilden visar att kortet går att öppna */
+  .inner-page.service-page .service-projects .project-card-cta {
+    display: block;
+    width: fit-content;
+    margin-top: 3px;
+    font: 600 clamp(11px, 3.2vw, 13px)/1.2 var(--sans);
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 250, 242, .55);
+    text-underline-offset: 3px;
+  }
+
+  .inner-page .service-contact { gap: 10px; padding: 12px 20px 14px; }
+  .inner-page .service-contact p { font-size: 18px; }
+  .inner-page .service-contact-links { flex-wrap: nowrap; gap: 8px; }
+  .inner-page .service-contact-links .btn { padding: 10px 12px; font-size: .85rem; white-space: nowrap; }
+}
+
+/* Mobil på sidan: för lågt för en skärm, sidan får växa som förut */
+@media (orientation: landscape) and (max-height: 560px) {
+  .inner-page.service-page .service-showcase { height: auto; min-height: var(--screen-h); }
+  .inner-page.service-page .service-showcase-top { flex: none; }
+  .inner-page.service-page .service-image-hero { aspect-ratio: 16 / 9; }
+}
+
+/* ---------- Bläddra mellan tjänsterna i toppbilden (stående skärm) ----------
+   Pilar och prickar skapas i service.js. På liggande skärm finns flikarna. */
+.service-hero-arrow,
+.service-hero-dots { display: none; }
+
+@media (orientation: portrait) {
+  .inner-page.service-page .service-hero-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(42, 38, 34, .45);
+    color: #fffaf2;
+    transform: translateY(-50%);
+  }
+
+  .inner-page.service-page .service-hero-prev { left: 10px; }
+  .inner-page.service-page .service-hero-next { right: 10px; }
+
+  .inner-page.service-page .service-hero-arrow svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .inner-page.service-page .service-hero-dots {
+    position: absolute;
+    right: 12px;
+    bottom: 14px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Varje prick har en större tryckyta än den syns */
+  .inner-page.service-page .service-hero-dots a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 24px;
+  }
+
+  .inner-page.service-page .service-hero-dots a::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 250, 242, .55);
+  }
+
+  .inner-page.service-page .service-hero-dots a[aria-current="page"]::before {
+    width: 9px;
+    height: 9px;
+    background: #fffaf2;
+  }
+}
+
+/* Byte mellan tjänster på samma sida (service.js): nya innehållet glider in
+   från det håll man bläddrade åt */
+.inner-page.service-page .service-showcase {
+  transition: opacity .28s ease, transform .32s ease;
+}
+
+.inner-page.service-page .service-showcase.service-enter { opacity: 0; transition: none; }
+.inner-page.service-page .service-showcase.service-enter-right { transform: translateX(32px); }
+.inner-page.service-page .service-showcase.service-enter-left { transform: translateX(-32px); }

@@ -45,8 +45,8 @@
   --font-body-subpage-mobile: 15px;
 
   /* Layoutläge: stående är grundläget */
-  --header-height: 118px;
-  --header-logo-width: min(calc(100vw - 28px), 590px);
+  --header-height: 64px;
+  --header-logo-width: min(56vw, 230px);
   --screen-h: calc(100vh - var(--header-height));
   --fs-body: clamp(16px, 4.3vw, 18px);
   --fs-lead: clamp(18px, 4.8vw, 22px);
@@ -59,6 +59,14 @@
 
 @supports (height: 100svh) {
   :root { --screen-h: calc(100svh - var(--header-height)); }
+}
+
+/* Höjden på mobilens adressrad (0 på datorn). Sista sektionen före
+   sidfoten förlängs så mycket, så att dess bakgrund syns bakom raden
+   när den fälls ihop, innan sidfoten tar över. */
+:root { --bar-gap: 0px; }
+@supports (height: 100lvh) {
+  :root { --bar-gap: calc(100lvh - 100svh); }
 }
 
 /* Liggande skärm: allt skalas efter skärmhöjden så att en sektion ryms på en skärm */
@@ -179,4 +187,19 @@ button, input, textarea, select { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* Mjuk övergång mellan sidorna (startsida, tjänster, projekt). Headern står
+   kvar medan innehållet tonar över. Webbläsare utan stöd byter som vanligt. */
+@view-transition { navigation: auto; }
+
+.site-header { view-transition-name: site-header; }
+
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: .22s; }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
 }

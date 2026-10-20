@@ -64,7 +64,7 @@ body > .inner-main,
 
 .site-header .main-nav::-webkit-scrollbar { display: none; }
 
-.site-header .main-nav > .nav-link {
+.site-header .main-nav .nav-link {
   position: relative;
   flex: 0 0 auto;
   padding: 12px 0;
@@ -73,7 +73,7 @@ body > .inner-main,
   white-space: nowrap;
 }
 
-.site-header .main-nav > .nav-link::after {
+.site-header .main-nav .nav-link::after {
   content: "";
   position: absolute;
   left: 0;
@@ -84,15 +84,14 @@ body > .inner-main,
   transition: width 0.25s ease;
 }
 
-.site-header .main-nav > .nav-link.active { color: var(--copper-dark); }
-.site-header .main-nav > .nav-link.active::after { width: 100%; }
+.site-header .main-nav .nav-link.active { color: var(--copper-dark); }
+.site-header .main-nav .nav-link.active::after { width: 100%; }
 
-/* Kontakt är knappen från designsystemet. I stående läge ligger den fast
-   till höger så att den alltid syns även när menyn svepas. */
+/* Kontakt är knappen från designsystemet och ligger direkt efter de andra
+   länkarna. I stående läge fastnar den vid högerkanten när menyn svepas. */
 .site-header .main-nav > .header-contact {
   position: sticky;
   right: 0;
-  margin-left: auto;
   padding: 10px 12px;
   box-shadow: -28px 0 18px -6px var(--paper);
   gap: 6px;
@@ -122,13 +121,13 @@ body > .inner-main,
 .site-header .main-nav > .header-contact.active span { transform: translateX(3px); }
 
 @media (hover: hover) and (pointer: fine) {
-  .site-header .main-nav > .nav-link:hover { color: var(--copper-dark); }
-  .site-header .main-nav > .nav-link:hover::after { width: 100%; }
+  .site-header .main-nav .nav-link:not(.header-contact):hover { color: var(--copper-dark); }
+  .site-header .main-nav .nav-link:not(.header-contact):hover::after { width: 100%; }
 }
 
 /* Tjänstesidor har fler länkar: något mindre text, men Kontakt-knappen
    är lika stor på alla sidor */
-.inner-page.service-page .site-header .main-nav > .nav-link:not(.header-contact) {
+.inner-page.service-page .site-header .main-nav .nav-link:not(.header-contact) {
   font-size: clamp(10px, 2.75vw, 13px);
 }
 
@@ -162,16 +161,16 @@ body > .inner-main,
     padding: 0;
   }
 
-  .site-header .main-nav > .nav-link {
+  .site-header .main-nav .nav-link {
     padding: 12px 0;
     font-size: clamp(13px, 1.15vw, 15px);
   }
 
-  .inner-page.service-page .site-header .main-nav > .nav-link:not(.header-contact) {
+  .inner-page.service-page .site-header .main-nav .nav-link:not(.header-contact) {
     font-size: clamp(13px, 1.15vw, 15px);
   }
 
-  .site-header .main-nav > .nav-link::after { bottom: 2px; }
+  .site-header .main-nav .nav-link::after { bottom: 2px; }
 
   .site-header .main-nav > .header-contact {
     position: relative;
@@ -179,4 +178,212 @@ body > .inner-main,
     gap: 8px;
     box-shadow: none;
   }
+}
+
+/* ---------- Stående skärm: kompakt header ----------
+   Logga till vänster, ringknapp och menyknapp till höger (menu.js).
+   Flikarna ligger i helskärmsmenyn i stället. */
+.header-actions { display: none; }
+
+@media (orientation: portrait) {
+  .site-header .nav-wrap {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 max(12px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
+  }
+
+  .site-header .brand {
+    flex: 0 1 auto;
+    height: 48px;
+    justify-content: flex-start;
+  }
+
+  .site-header .brand img { object-position: left center; }
+  .site-header .main-nav { display: none; }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.header-call,
+.header-menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.header-call { width: 40px; height: 40px; background: var(--copper); color: #fff; }
+.header-call:hover, .header-call:focus-visible { background: var(--copper-dark); }
+
+.header-call svg,
+.header-menu-toggle svg,
+.site-menu svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Helskärmsmenyn ---------- */
+html.site-menu-open { overflow: hidden; }
+
+.site-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  padding: 0 max(20px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+  overflow-y: auto;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.site-menu[hidden] { display: none; }
+
+.site-menu-top {
+  display: flex;
+  flex: 0 0 var(--header-height);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-menu-brand { display: flex; width: var(--header-logo-width); height: 48px; }
+.site-menu-brand img { width: 100%; height: 100%; object-fit: contain; object-position: left center; filter: brightness(0) invert(1) sepia(.35); }
+
+.site-menu-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+}
+
+.site-menu-back {
+  margin-top: var(--s2);
+  color: #e8b48f;
+  font: 500 15px/1.3 var(--sans);
+}
+
+.site-menu-list,
+.site-menu-sub { margin: 0; padding: 0; list-style: none; }
+
+.site-menu-list { margin-top: var(--s3); }
+
+.site-menu-list > li > a {
+  display: block;
+  padding: 6px 0;
+  color: var(--paper);
+  font: 500 clamp(24px, 7vw, 32px)/1.2 var(--serif);
+}
+
+.site-menu-sub {
+  margin: 2px 0 8px 2px;
+  padding-left: 14px;
+  border-left: 1px solid var(--copper);
+}
+
+.site-menu-sub a {
+  display: block;
+  padding: 6px 0;
+  color: var(--line);
+  font: 400 16px/1.3 var(--sans);
+}
+
+.site-menu-sub a[aria-current="page"] { color: #e8b48f; font-weight: 600; }
+
+.site-menu a:hover,
+.site-menu a:focus-visible { color: #e8b48f; }
+
+.site-menu-contact {
+  display: flex;
+  gap: var(--s1);
+  margin-top: auto;
+  padding-top: var(--s4);
+}
+
+.site-menu-contact .btn--ghost { padding-inline: 14px; color: #e8b48f; }
+.site-menu-contact .btn--ghost:hover { color: #fff; }
+
+/* Menyn högerställd: lättare att nå med tummen när man håller telefonen
+   i en hand. Undermenyns kopparlinje ligger på höger sida. */
+.site-menu-back,
+.site-menu-list { text-align: right; }
+
+.site-menu-back { align-self: flex-end; }
+
+.site-menu-sub {
+  margin: 2px 2px 8px 0;
+  padding: 0 14px 0 0;
+  border-left: 0;
+  border-right: 1px solid var(--copper);
+}
+
+.site-menu-contact { justify-content: flex-end; }
+
+/* ---------- Rullgardinsmeny under Tjänster (datorn) ---------- */
+.site-header .nav-item { position: relative; display: flex; align-items: center; flex: 0 0 auto; }
+.nav-dropdown { display: none; }
+
+@media (orientation: landscape) {
+  .site-header .main-nav { overflow: visible; }
+
+  .nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: -18px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    min-width: 230px;
+    padding: 8px 0;
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    background: var(--card);
+    box-shadow: 0 14px 34px rgba(42, 38, 34, .14);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
+  }
+
+  /* Öppen vid hovring eller tangentbordsfokus, men inte efter ett klick
+     (script.js sätter .is-closed tills muspekaren lämnat menyn) */
+  .nav-item:not(.is-closed):hover .nav-dropdown,
+  .nav-item:has(:focus-visible) .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity .18s ease, transform .18s ease, visibility 0s;
+  }
+
+  .nav-dropdown a {
+    padding: 9px 18px;
+    color: var(--ink);
+    font: 500 14px/1.3 var(--sans);
+    white-space: nowrap;
+  }
+
+  .nav-dropdown a:hover,
+  .nav-dropdown a:focus-visible { background: var(--paper-2); color: var(--copper-dark); }
 }

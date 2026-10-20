@@ -1,15 +1,165 @@
 (async function () {
   const { serviceLabel, escapeHTML, escapeAttribute } = window.JNPlSite;
-  const serviceId = document.body.dataset.service;
-  const list = document.querySelector('[data-project-list]');
-  if (!list || !serviceId) return;
+  const serviceIds = window.JNPlSite.serviceIds;
+  let serviceId = document.body.dataset.service;
+  if (!document.querySelector('[data-project-list]') || !serviceId) return;
+
+  // Tjänstesidans innehåll som det ser ut i HTML-filen, innan något lagts till.
+  // Används när man byter tillbaka till den här tjänsten.
+  const initialPage = snapshotPage(document);
+
+  const galleryModal = createGalleryModal();
+  let activeProject = null;
+  let activeImages = [];
+  let imageIndex = 0;
+  let previousFocus = null;
+  let projectZoomScale = 1;
+  // Mjuk scroll bara när besökaren inte valt minskad rörelse
+  const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const scrollBehavior = () => reducedMotion() ? 'auto' : 'smooth';
+  let projectZoomX = 0;
+  let projectZoomY = 0;
+  let projectZoomDragging = false;
+  let projectZoomDragStartX = 0;
+  let projectZoomDragStartY = 0;
+  let projectZoomDragOriginX = 0;
+  let projectZoomDragOriginY = 0;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartCount = 0;
+  let touchMoved = false;
+
+  // Projektlistan hämtas en gång och delas av alla tjänster
+  let projects = null;
+  try {
+    const response = await fetch('../data/projects.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error('Kunde inte läsa projektlistan');
+    projects = await response.json();
+  } catch (error) {
+    projects = null;
+  }
+
+  /* ---------- Alla tjänster på en sida ----------
+     Byte mellan tjänster (svep, pilar, prickar, flikar och menyn) byter bara
+     innehållet på plats. Adressen uppdateras så att bakåtknappen och länkar
+     fungerar, och varje tjänst finns kvar som egen HTML-fil. De andra
+     tjänsterna och deras bilder laddas i bakgrunden direkt. */
+  const pages = new Map([[serviceId, Promise.resolve(initialPage)]]);
+  let switching = false;
+
+  function snapshotPage(doc) {
+    return {
+      title: doc.title,
+      description: doc.querySelector('meta[name="description"]')?.getAttribute('content') || '',
+      showcase: doc.querySelector('.service-showcase')?.outerHTML || ''
+    };
+  }
+
+  function loadPage(id) {
+    if (!pages.has(id)) {
+      const request = fetch(`${id}.html`)
+        .then(response => {
+          if (!response.ok) throw new Error('Kunde inte läsa tjänstesidan');
+          return response.text();
+        })
+        .then(html => snapshotPage(new DOMParser().parseFromString(html, 'text/html')))
+        .catch(error => {
+          pages.delete(id);
+          throw error;
+        });
+      pages.set(id, request);
+    }
+    return pages.get(id);
+  }
+
+  function preloadImage(src) {
+    if (src) new Image().src = new URL(src, location.href).href;
+  }
+
+  function preloadOtherServices() {
+    serviceIds.filter(id => id !== serviceId).forEach(id => {
+      loadPage(id).then(page => {
+        const template = document.createElement('template');
+        template.innerHTML = page.showcase;
+        template.content.querySelectorAll('img').forEach(img => preloadImage(img.getAttribute('src')));
+      }).catch(() => {});
+      (projects || [])
+        .filter(project => project.published !== false && project.service === id)
+        .forEach(project => preloadImage(`../${project.cardImage || project.hero || ''}`));
+    });
+  }
+
+  async function goToService(id, { push = true } = {}) {
+    if (id === serviceId || switching || !serviceIds.includes(id)) return;
+    switching = true;
+    let page;
+    try {
+      page = await loadPage(id);
+    } catch (error) {
+      window.location.href = `${id}.html`;
+      return;
+    }
+
+    // Åt vilket håll ligger den nya tjänsten (kortaste vägen runt)?
+    const count = serviceIds.length;
+    const steps = (serviceIds.indexOf(id) - serviceIds.indexOf(serviceId) + count) % count;
+    const fromRight = steps <= count / 2;
+
+    const template = document.createElement('template');
+    template.innerHTML = page.showcase;
+    const fresh = template.content.firstElementChild;
+    const old = document.querySelector('.service-showcase');
+    if (!reducedMotion()) fresh.classList.add('service-enter', fromRight ? 'service-enter-right' : 'service-enter-left');
+    old.replaceWith(fresh);
+
+    serviceId = id;
+    document.body.dataset.service = id;
+    document.title = page.title;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', page.description);
+    document.querySelectorAll('.main-nav [data-service-link]').forEach(link => {
+      const active = link.dataset.serviceLink === id;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+    document.querySelectorAll('.site-menu-sub a').forEach(link => {
+      if (link.pathname.endsWith(`/${id}.html`)) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+    if (push) history.pushState({ service: id }, '', `${id}.html`);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    enhanceShowcase();
+    // Läs av layouten med startläget innan det tas bort, så att övergången
+    // spelas upp (fungerar även i en flik som ligger i bakgrunden)
+    void fresh.offsetWidth;
+    fresh.classList.remove('service-enter', 'service-enter-right', 'service-enter-left');
+    switching = false;
+  }
+
+  // Länkar till en annan tjänst byter innehållet i stället för att ladda om
+  document.addEventListener('click', event => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest('a[href]');
+    if (!link || link.target === '_blank') return;
+    const url = new URL(link.href, location.href);
+    const match = url.origin === location.origin && url.pathname.match(/\/tjanster\/([a-z]+)\.html$/);
+    if (!match || !serviceIds.includes(match[1])) return;
+    event.preventDefault();
+    goToService(match[1]);
+  });
+
+  history.replaceState({ service: serviceId }, '');
+  window.addEventListener('popstate', () => {
+    const match = location.pathname.match(/\/tjanster\/([a-z]+)\.html$/);
+    if (match && serviceIds.includes(match[1])) goToService(match[1], { push: false });
+  });
 
   // Svep åt vänster eller höger på sidan för att gå till nästa eller föregående tjänst.
   // Svep i projektkarusellen, menyn och bildvisningen räknas inte.
-  const serviceIds = window.JNPlSite.serviceIds;
   let swipeStart = null;
   document.addEventListener('touchstart', event => {
-    const ignored = event.target.closest('.project-carousel, .project-gallery-modal, .project-image-zoom, .main-nav');
+    const ignored = event.target.closest('.project-carousel, .project-gallery-modal, .project-image-zoom, .main-nav, .site-menu');
     swipeStart = event.touches.length === 1 && !ignored
       ? { x: event.touches[0].clientX, y: event.touches[0].clientY }
       : null;
@@ -24,39 +174,47 @@
     const index = serviceIds.indexOf(serviceId);
     if (index < 0) return;
     const step = dx < 0 ? 1 : -1;
-    const nextId = serviceIds[(index + step + serviceIds.length) % serviceIds.length];
-    window.location.href = `${nextId}.html`;
+    goToService(serviceIds[(index + step + serviceIds.length) % serviceIds.length]);
   }, { passive: true });
-  document.querySelector('.service-copy')?.insertAdjacentHTML('beforeend',
-    '<p class="service-swipe-hint"><span aria-hidden="true">←</span> Svep för nästa tjänst <span aria-hidden="true">→</span></p>');
 
-  const galleryModal = createGalleryModal();
-  let activeProject = null;
-  let activeImages = [];
-  let imageIndex = 0;
-  let previousFocus = null;
-  let projectZoomScale = 1;
-  // Mjuk scroll bara när besökaren inte valt minskad rörelse
-  const scrollBehavior = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-  let projectZoomX = 0;
-  let projectZoomY = 0;
-  let projectZoomDragging = false;
-  let projectZoomDragStartX = 0;
-  let projectZoomDragStartY = 0;
-  let projectZoomDragOriginX = 0;
-  let projectZoomDragOriginY = 0;
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchStartCount = 0;
-  let touchMoved = false;
+  // Sidan ska rymmas på en skärm. Får inte allt plats döljs överrubrik
+  // och ingress (.is-compact), men bara på de sidor där det behövs.
+  // Ryms det inte ens då får sidan växa (.is-tall) i stället för att
+  // kontaktraden hamnar ovanpå sidfoten.
+  function fitShowcase() {
+    const showcase = document.querySelector('.service-showcase');
+    const copy = showcase?.querySelector('.service-copy');
+    if (!showcase || !copy) return;
+    // Kontaktraden ska sluta ovanför den extra bakgrunden längst ned
+    const overflows = () => {
+      const contentBottom = showcase.getBoundingClientRect().bottom - parseFloat(getComputedStyle(showcase).paddingBottom);
+      const last = showcase.lastElementChild.getBoundingClientRect().bottom;
+      return last > contentBottom + 1 || copy.scrollHeight > copy.clientHeight + 1;
+    };
+    showcase.classList.remove('is-compact', 'is-tall');
+    showcase.classList.toggle('is-compact', overflows());
+    showcase.classList.toggle('is-tall', overflows());
+  }
 
-  try {
-    const response = await fetch('../data/projects.json', { cache: 'no-store' });
-    if (!response.ok) throw new Error('Kunde inte läsa projektlistan');
-    const projects = await response.json();
+  function updateProjectCarouselArrows() {
+    const list = document.querySelector('[data-project-list]');
+    if (!list) return;
+    const hasOverflow = list.scrollWidth > list.clientWidth + 2;
+    list.closest('.service-projects')?.classList.toggle('has-project-overflow', hasOverflow);
+    document.querySelectorAll('.project-carousel-prev, .project-carousel-next').forEach(button => {
+      button.hidden = !hasOverflow;
+      button.setAttribute('aria-hidden', String(!hasOverflow));
+      button.tabIndex = hasOverflow ? 0 : -1;
+    });
+  }
+
+  function renderProjects(list) {
+    if (!projects) {
+      list.innerHTML = '<p class="empty-projects">Projektlistan kunde inte laddas just nu.</p>';
+      return;
+    }
     // Visa endast publicerade projekt som tillhör just den aktuella tjänsten.
     const visibleProjects = projects.filter(project => project.published !== false && project.service === serviceId);
-
     if (!visibleProjects.length) {
       list.innerHTML = '<p class="empty-projects">Nya projekt och referenser publiceras här löpande.</p>';
       return;
@@ -69,7 +227,7 @@
         : '';
       const description = project.description || project.longDescription || '';
       return `<button class="project-card" type="button" data-project-index="${index}" aria-label="Öppna bildgalleri för ${escapeAttribute(project.title)}">` +
-        `<div class="project-card-image">${imageMarkup}<span class="project-card-title">${escapeHTML(project.title)}</span></div>` +
+        `<div class="project-card-image">${imageMarkup}<span class="project-card-title">${escapeHTML(project.title)}<span class="project-card-cta">Se projektet</span></span></div>` +
         `<span class="project-card-info"><h3 class="project-card-description-title">${escapeHTML(project.title)}</h3><span class="project-card-description"><span class="project-card-description-text">${escapeHTML(description)}</span></span><span class="project-card-more">Se projektet <span aria-hidden="true">→</span></span></span></button>`;
     }).join('');
 
@@ -77,8 +235,6 @@
       button.addEventListener('click', () => openProjectGallery(visibleProjects[Number(button.dataset.projectIndex)], button));
     });
 
-    const previous = document.querySelector('.project-carousel-prev');
-    const next = document.querySelector('.project-carousel-next');
     const scrollByCard = direction => {
       const card = list.querySelector('.project-card');
       if (!card) return;
@@ -96,27 +252,53 @@
         list.scrollBy({ left: direction * step, behavior: scrollBehavior() });
       }
     };
-    previous?.addEventListener('click', () => scrollByCard(-1));
-    next?.addEventListener('click', () => scrollByCard(1));
-
-    const updateProjectCarouselArrows = () => {
-      const hasOverflow = list.scrollWidth > list.clientWidth + 2;
-      const container = list.closest('.service-projects');
-      container?.classList.toggle('has-project-overflow', hasOverflow);
-      [previous, next].forEach(button => {
-        if (!button) return;
-        button.hidden = !hasOverflow;
-        button.setAttribute('aria-hidden', String(!hasOverflow));
-        button.tabIndex = hasOverflow ? 0 : -1;
-      });
-    };
-    updateProjectCarouselArrows();
-    window.addEventListener('resize', updateProjectCarouselArrows);
+    const showcase = list.closest('.service-showcase');
+    showcase.querySelector('.project-carousel-prev')?.addEventListener('click', () => scrollByCard(-1));
+    showcase.querySelector('.project-carousel-next')?.addEventListener('click', () => scrollByCard(1));
     list.addEventListener('scroll', updateProjectCarouselArrows, { passive: true });
-    window.addEventListener('load', updateProjectCarouselArrows);
-  } catch (error) {
-    list.innerHTML = '<p class="empty-projects">Projektlistan kunde inte laddas just nu.</p>';
   }
+
+  // Lägger till svephint, pilar och prickar, projekt och anpassar höjden
+  // för den tjänst som visas just nu
+  function enhanceShowcase() {
+    const showcase = document.querySelector('.service-showcase');
+    showcase.querySelector('.service-copy')?.insertAdjacentHTML('beforeend',
+      '<p class="service-swipe-hint"><span aria-hidden="true">←</span> Svep för nästa tjänst <span aria-hidden="true">→</span></p>');
+
+    // Pilar och prickar på toppbilden (visas på stående skärm) visar att man
+    // kan svepa mellan tjänsterna – och går att trycka på.
+    const serviceHero = showcase.querySelector('.service-image-hero');
+    const serviceIndex = serviceIds.indexOf(serviceId);
+    if (serviceHero && serviceIndex >= 0) {
+      const neighbour = step => serviceIds[(serviceIndex + step + serviceIds.length) % serviceIds.length];
+      const arrow = (step, cls, label, path) =>
+        `<a class="service-hero-arrow ${cls}" href="${neighbour(step)}.html" aria-label="${label}: ${escapeAttribute(serviceLabel(neighbour(step)))}">` +
+        `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${path}"/></svg></a>`;
+      const dots = serviceIds.map(id =>
+        `<a href="${id}.html" aria-label="${escapeAttribute(serviceLabel(id))}"${id === serviceId ? ' aria-current="page"' : ''}></a>`).join('');
+      serviceHero.insertAdjacentHTML('beforeend',
+        arrow(-1, 'service-hero-prev', 'Föregående tjänst', 'M15 5l-7 7 7 7') +
+        arrow(1, 'service-hero-next', 'Nästa tjänst', 'M9 5l7 7-7 7') +
+        `<nav class="service-hero-dots" aria-label="Tjänster">${dots}</nav>`);
+    }
+
+    const list = showcase.querySelector('[data-project-list]');
+    if (list) renderProjects(list);
+    updateProjectCarouselArrows();
+    fitShowcase();
+  }
+
+  enhanceShowcase();
+  window.addEventListener('resize', () => {
+    updateProjectCarouselArrows();
+    fitShowcase();
+  });
+  window.addEventListener('load', () => {
+    updateProjectCarouselArrows();
+    fitShowcase();
+  });
+  document.fonts?.ready.then(fitShowcase);
+  preloadOtherServices();
 
   function createGalleryModal() {
     const modal = document.createElement('div');
@@ -236,6 +418,8 @@
       if (next) next.hidden = activeImages.length < 2;
     }
     galleryModal.querySelector('.project-gallery-count').textContent = `${imageIndex + 1} / ${activeImages.length}`;
+    // Texten om projektet visas bara tillsammans med första bilden
+    galleryModal.querySelector('.project-gallery-description').hidden = imageIndex !== 0;
     const thumbnails = galleryModal.querySelector('.project-gallery-thumbnails');
     const thumbButtons = galleryModal.querySelectorAll('[data-thumb-index]');
     thumbButtons.forEach((button, i) => {
