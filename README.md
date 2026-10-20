@@ -82,6 +82,7 @@ Header-höjden (`--header-height`) och sektionshöjden (`--screen-h`, byggd på 
 
 - **Herobilden** finns i två versioner: `images/hero-bild.webp` (bred, visas på stående skärm) och `images/hero-bild-liggande.webp` (nästan kvadratisk, visas på liggande skärm och dator). Byt mot egna versioner med samma filnamn.
 - **Kontaktbilden** finns som `images/st-johannes.webp` (hög, stående skärm) och `images/st-johannes-bred.webp` (16:9, liggande skärm och dator).
+- **Så jobbar jag** använder `images/sa-jobbar-jag.jpg` (3:2). Bilden ligger överst i stående och fyller vänstra halvan i liggande.
 - **Tjänstebilderna** finns som `*-desktop.webp` (hög) och `*-mobil.webp` (bred 16:9). Startsidans tjänstekort använder den breda versionen på mobil i liggande läge, tjänstesidornas toppbild använder alltid den breda.
 
 ## Citat (Mitt löfte) och meriter (John Norberg)

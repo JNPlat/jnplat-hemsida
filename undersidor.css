@@ -564,7 +564,7 @@ body.lightbox-open{
   line-height: 1.08;
 }
 
-/* Projektgalleri: mörk bildvisning där bilderna står i centrum.
+/* Projektgalleri: ljust uppslag på papper där bilderna står i centrum.
    Mobil och pekskärm använder galleriet; dator öppnar direkt i bildzoomen längre ned. */
 .project-gallery-modal[hidden]{ display: none; }
 
@@ -581,7 +581,9 @@ body.lightbox-open{
 .project-gallery-backdrop{
   position: absolute;
   inset: 0;
-  background: rgba(20, 17, 14, .92);
+  background: rgba(42, 38, 34, .55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .project-gallery-dialog{
@@ -595,9 +597,9 @@ body.lightbox-open{
   overflow: auto;
   padding: var(--s3);
   border-radius: var(--r);
-  background: var(--ink);
-  color: var(--paper);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, .35);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 24px 80px rgba(42, 38, 34, .3);
 }
 
 .project-gallery-top{
@@ -609,12 +611,12 @@ body.lightbox-open{
 
 .project-gallery-top .eyebrow{
   margin: 0 0 4px;
-  color: color-mix(in srgb, var(--copper) 70%, #fff);
+  color: var(--copper);
 }
 
 .project-gallery-top h2{
   margin: 0;
-  color: var(--paper);
+  color: var(--ink);
   font: 600 var(--fs-h3)/1.1 var(--serif);
 }
 
@@ -626,17 +628,17 @@ body.lightbox-open{
   width: 44px;
   height: 44px;
   padding: 0;
-  border: 1px solid rgba(243, 238, 230, .35);
+  border: 1px solid var(--line);
   border-radius: 50%;
   background: transparent;
-  color: var(--paper);
+  color: var(--ink);
   font: 300 26px/1 var(--sans);
   cursor: pointer;
   touch-action: manipulation;
   transition: background .2s ease;
 }
 
-.project-gallery-close:hover{ background: rgba(243, 238, 230, .12); }
+.project-gallery-close:hover{ background: var(--paper-2); }
 
 .project-gallery-stage{
   position: relative;
@@ -667,15 +669,15 @@ body.lightbox-open{
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: rgba(20, 17, 14, .55);
-  color: var(--paper);
+  background: rgba(243, 238, 230, .9);
+  color: var(--ink);
   font: 400 26px/1 var(--sans);
   cursor: pointer;
   transform: translateY(-50%);
   transition: background .2s ease;
 }
 
-.project-gallery-arrow:hover{ background: var(--copper); }
+.project-gallery-arrow:hover{ background: var(--copper); color: var(--paper); }
 .project-gallery-arrow[hidden]{ display: none; }
 .project-gallery-prev{ left: 10px; }
 .project-gallery-next{ right: 10px; }
@@ -687,19 +689,46 @@ body.lightbox-open{
   gap: var(--s2);
 }
 
-.project-gallery-description{
+.project-gallery-text{
   flex: 1 1 auto;
   min-width: 0;
   max-width: 62ch;
+}
+
+/* Två rader syns; Visa mer fäller ut resten */
+.project-gallery-description{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   margin: 0;
-  color: rgba(243, 238, 230, .8);
+  color: var(--ink-soft);
   font-size: var(--fs-body);
   line-height: 1.55;
 }
 
+.project-gallery-text.is-expanded .project-gallery-description{
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+.project-gallery-more[hidden]{ display: none; }
+.project-gallery-more{
+  margin-top: 4px;
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: var(--copper-dark);
+  font: 600 .9rem/1.2 var(--sans);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.project-gallery-more:hover{ color: var(--copper); }
+
 .project-gallery-count{
   flex: 0 0 auto;
-  color: rgba(243, 238, 230, .6);
+  color: var(--ink-soft);
   font: 500 .85rem/1 var(--sans);
   letter-spacing: .08em;
   font-variant-numeric: tabular-nums;
@@ -722,8 +751,8 @@ body.lightbox-open{
   overflow: hidden;
   border: 2px solid transparent;
   border-radius: 4px;
-  background: rgba(243, 238, 230, .08);
-  opacity: .5;
+  background: var(--paper-2);
+  opacity: .55;
   cursor: pointer;
   transition: opacity .2s ease, border-color .2s ease;
 }
@@ -795,6 +824,50 @@ html:has(body.lightbox-open){ overflow: hidden; }
     overflow: auto;
   }
   .project-gallery-description{ font-size: .9rem; }
+}
+
+/* Dator: uppslag med bilden till vänster och namn, text, räknare och
+   miniatyrer till höger. Inget ligger ovanpå bilden. Klick på bilden förstorar. */
+@media (min-width: 601px) and (hover: hover) {
+  .project-gallery-modal{ padding: clamp(16px, 3vw, 48px); }
+  .project-gallery-dialog{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(240px, 24vw, 340px);
+    grid-template-rows: auto auto minmax(0, 1fr);
+    gap: var(--s2) clamp(20px, 2.6vw, 40px);
+    width: min(1440px, 100%);
+    height: min(860px, calc(100vh - 2 * clamp(16px, 3vw, 48px)));
+    max-height: none;
+    padding: clamp(14px, 1.8vw, 28px);
+    overflow: hidden;
+  }
+  .project-gallery-stage{
+    grid-column: 1;
+    grid-row: 1 / 4;
+    height: auto;
+    min-height: 0;
+    border-radius: 4px;
+    background: var(--paper-2);
+  }
+  .project-gallery-main-image{ cursor: zoom-in; }
+  .project-gallery-top{ grid-column: 2; grid-row: 1; }
+  .project-gallery-bottom{
+    grid-column: 2;
+    grid-row: 2;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: var(--s1);
+  }
+  .project-gallery-thumbnails{
+    grid-column: 2;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-content: start;
+    min-height: 0;
+    overflow-y: auto;
+  }
+  .project-gallery-thumbnails button{ height: auto; aspect-ratio: 4 / 3; }
 }
 
 /*Fix: tjänstehero använder mobilbilden på små skärmar och håller bild/text i egna lager.*/
@@ -1605,6 +1678,47 @@ html:has(body.lightbox-open){ overflow: hidden; }
   .inner-page.service-page .service-image-hero { aspect-ratio: 16 / 9; }
 }
 
+/* Liggande/dator: projektkortet är bara bilden, med titel och "Se projektet"
+   på bilden som i stående. Projekttexten finns i galleriet. */
+@media (orientation: landscape) {
+  /* Raden fyller det som blir över; kortens bredd följer höjden */
+  .inner-page.service-page .service-projects {
+    flex: 1 1 auto;
+    height: clamp(150px, 26vh, 240px);
+    min-height: 120px;
+    max-height: 240px;
+  }
+  .inner-page.service-page .service-projects .project-carousel { height: 100%; }
+  .inner-page.service-page .service-projects .project-carousel .project-card {
+    display: block;
+    width: auto;
+    max-width: 78vw;
+    height: 100%;
+    aspect-ratio: 4608 / 2176;
+  }
+  .inner-page.service-page .service-projects .project-card-image { height: 100%; min-height: 0; }
+  .inner-page.service-page .service-projects .project-card-info { display: none; }
+  .inner-page.service-page .service-projects .project-card-title {
+    display: block;
+    position: absolute;
+    inset: auto 0 0;
+    margin: 0;
+    padding: 28px 16px 12px;
+    color: #fffaf2;
+    font: 600 clamp(18px, 1.5vw, 24px)/1.1 var(--serif);
+    background: linear-gradient(0deg, rgba(25,20,16,.7), transparent);
+  }
+  .inner-page.service-page .service-projects .project-card-cta {
+    display: block;
+    width: fit-content;
+    margin-top: 4px;
+    font: 600 13px/1.2 var(--sans);
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 250, 242, .55);
+    text-underline-offset: 3px;
+  }
+}
+
 /* ---------- Bläddra mellan tjänsterna i toppbilden (stående skärm) ----------
    Pilar och prickar skapas i service.js. På liggande skärm finns flikarna. */
 .service-hero-arrow,
@@ -1681,3 +1795,36 @@ html:has(body.lightbox-open){ overflow: hidden; }
 .inner-page.service-page .service-showcase.service-enter { opacity: 0; transition: none; }
 .inner-page.service-page .service-showcase.service-enter-right { transform: translateX(32px); }
 .inner-page.service-page .service-showcase.service-enter-left { transform: translateX(-32px); }
+
+/* Förstorad bild (dator): ljust papper, miniatyrraden under bilden i stället för ovanpå */
+.project-image-zoom{
+  padding: 16px 4vw;
+  background: rgba(243, 238, 230, .97);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.project-image-zoom-img{ max-height: calc(100vh - 120px); box-shadow: 0 8px 36px rgba(42, 38, 34, .18); }
+.project-image-zoom-bottom{
+  position: static;
+  width: min(100%, 1100px);
+  min-height: 0;
+  padding: 0;
+  background: none;
+}
+.project-image-zoom-close,
+.project-image-zoom-prev,
+.project-image-zoom-next{
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  background: rgba(243, 238, 230, .92);
+  transition: background .2s ease, color .2s ease;
+}
+.project-image-zoom-prev,
+.project-image-zoom-next{ width: 52px; height: 52px; font-size: 32px; }
+.project-image-zoom-close:hover,
+.project-image-zoom-prev:hover,
+.project-image-zoom-next:hover{ background: var(--copper); border-color: var(--copper); color: var(--paper); }
+.project-image-zoom-thumbnails button{ border-radius: 4px; background: var(--paper-2); }
+.project-image-zoom-thumbnails button.active{ border-color: var(--copper); }
+.project-image-zoom-count{ color: var(--ink-soft); }

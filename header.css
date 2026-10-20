@@ -263,8 +263,10 @@ html.site-menu-open { overflow: hidden; }
   justify-content: space-between;
 }
 
-.site-menu-brand { display: flex; width: var(--header-logo-width); height: 48px; }
-.site-menu-brand img { width: 100%; height: 100%; object-fit: contain; object-position: left center; filter: brightness(0) invert(1) sepia(.35); }
+/* Vit logga. Filen har tom yta runt loggan, så rutan visar bara loggdelen
+   (x 55–2000, y 100–440 av 2000 × 816). */
+.site-menu-brand { display: block; width: var(--header-logo-width); aspect-ratio: 1945 / 340; overflow: hidden; }
+.site-menu-brand img { display: block; width: 102.83%; max-width: none; height: auto; margin: -5.14% 0 0 -2.83%; }
 
 .site-menu-close {
   display: inline-flex;

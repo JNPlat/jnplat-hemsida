@@ -57,7 +57,7 @@
     <div class="site-menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Meny" hidden>
       <div class="site-menu-top">
         <a class="site-menu-brand" href="${home}#hem" aria-label="J. Norberg Plåtslageri AB – startsida">
-          <img src="${base}logo/J-NORBERG.svg" alt="">
+          <img src="${base}logo/J-NORBERG-vit.webp" alt="" width="2000" height="816">
         </a>
         <button class="site-menu-close" type="button" aria-label="Stäng menyn">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>

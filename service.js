@@ -307,9 +307,14 @@
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-modal', 'true');
     modal.setAttribute('aria-label', 'Projektgalleri');
-    modal.innerHTML = `<div class="project-gallery-backdrop" data-gallery-close></div><div class="project-gallery-dialog"><div class="project-gallery-top"><div><p class="eyebrow" data-gallery-service></p><h2 data-gallery-title></h2></div><button class="project-gallery-close" type="button" aria-label="Stäng galleri">×</button></div><div class="project-gallery-stage"><button class="project-gallery-arrow project-gallery-prev" type="button" aria-label="Föregående bild">‹</button><img class="project-gallery-main-image" alt=""><button class="project-gallery-arrow project-gallery-next" type="button" aria-label="Nästa bild">›</button></div><div class="project-gallery-bottom"><p class="project-gallery-description"></p><span class="project-gallery-count" aria-live="polite"></span></div><div class="project-gallery-thumbnails" aria-label="Alla projektbilder"></div></div>`;
+    modal.innerHTML = `<div class="project-gallery-backdrop" data-gallery-close></div><div class="project-gallery-dialog"><div class="project-gallery-top"><div><p class="eyebrow" data-gallery-service></p><h2 data-gallery-title></h2></div><button class="project-gallery-close" type="button" aria-label="Stäng galleri">×</button></div><div class="project-gallery-stage"><button class="project-gallery-arrow project-gallery-prev" type="button" aria-label="Föregående bild">‹</button><img class="project-gallery-main-image" alt=""><button class="project-gallery-arrow project-gallery-next" type="button" aria-label="Nästa bild">›</button></div><div class="project-gallery-bottom"><div class="project-gallery-text"><p class="project-gallery-description"></p><button class="project-gallery-more" type="button" aria-expanded="false" hidden>Visa mer</button></div><span class="project-gallery-count" aria-live="polite"></span></div><div class="project-gallery-thumbnails" aria-label="Alla projektbilder"></div></div>`;
     document.body.appendChild(modal);
     modal.querySelector('.project-gallery-close').addEventListener('click', closeGallery);
+    modal.querySelector('.project-gallery-more').addEventListener('click', event => {
+      const expanded = modal.querySelector('.project-gallery-text').classList.toggle('is-expanded');
+      event.currentTarget.textContent = expanded ? 'Visa mindre' : 'Visa mer';
+      event.currentTarget.setAttribute('aria-expanded', String(expanded));
+    });
     modal.querySelector('[data-gallery-close]').addEventListener('click', closeGallery);
     // Dator: klick på bilden öppnar bildzoomen. Pekskärm: tryck på vänster
     // eller höger halva av bilden för föregående eller nästa bild.
@@ -382,13 +387,10 @@
     galleryModal.hidden = false;
     document.body.classList.add('project-gallery-open');
     showImage(0);
-    if (isDesktopImageViewer()) {
-      galleryModal.querySelector('.project-gallery-dialog').classList.add('project-gallery-dialog-under-viewer');
-      openDesktopImageZoom();
-    } else {
-      galleryModal.querySelector('.project-gallery-dialog').classList.remove('project-gallery-dialog-under-viewer');
-      galleryModal.querySelector('.project-gallery-close').focus();
-    }
+    collapseGalleryText();
+    // Dator och mobil öppnar samma uppslag; på datorn förstorar ett klick på bilden.
+    galleryModal.querySelector('.project-gallery-dialog').classList.remove('project-gallery-dialog-under-viewer');
+    galleryModal.querySelector('.project-gallery-close').focus();
   }
 
   function showImage(index) {
@@ -418,8 +420,6 @@
       if (next) next.hidden = activeImages.length < 2;
     }
     galleryModal.querySelector('.project-gallery-count').textContent = `${imageIndex + 1} / ${activeImages.length}`;
-    // Texten om projektet visas bara tillsammans med första bilden
-    galleryModal.querySelector('.project-gallery-description').hidden = imageIndex !== 0;
     const thumbnails = galleryModal.querySelector('.project-gallery-thumbnails');
     const thumbButtons = galleryModal.querySelectorAll('[data-thumb-index]');
     thumbButtons.forEach((button, i) => {
@@ -447,6 +447,18 @@
     galleryModal.querySelector('.project-gallery-next').hidden = activeImages.length < 2;
   }
 
+  // Projekttexten visar två rader; Visa mer finns bara när texten är längre än så
+  function collapseGalleryText() {
+    const text = galleryModal.querySelector('.project-gallery-text');
+    const description = galleryModal.querySelector('.project-gallery-description');
+    const more = galleryModal.querySelector('.project-gallery-more');
+    text.classList.remove('is-expanded');
+    more.textContent = 'Visa mer';
+    more.setAttribute('aria-expanded', 'false');
+    description.hidden = !description.textContent;
+    more.hidden = description.scrollHeight <= description.clientHeight + 1;
+  }
+
   function isDesktopImageViewer() {
     return !window.matchMedia('(max-width: 600px), (hover: none)').matches;
   }
@@ -461,7 +473,7 @@
       zoom.hidden = true;
       zoom.innerHTML = '<button class="project-image-zoom-close" type="button" aria-label="Stäng bildvisning">×</button><button class="project-image-zoom-prev" type="button" aria-label="Föregående bild">‹</button><img class="project-image-zoom-img" alt=""><button class="project-image-zoom-next" type="button" aria-label="Nästa bild">›</button><div class="project-image-zoom-bottom"><div class="project-image-zoom-thumbnails" aria-label="Välj projektbild"></div><span class="project-image-zoom-count" aria-live="polite"></span></div>';
       galleryModal.appendChild(zoom);
-      zoom.querySelector('.project-image-zoom-close').addEventListener('click', closeGallery);
+      zoom.querySelector('.project-image-zoom-close').addEventListener('click', closeDesktopImageZoom);
       const zoomImage = zoom.querySelector('.project-image-zoom-img');
       let projectZoomWasDragged = false;
       zoomImage.addEventListener('click', event => {
@@ -573,7 +585,7 @@
       return;
     }
     if (zoom && !zoom.hidden) {
-      if (event.key === 'Escape') closeGallery();
+      if (event.key === 'Escape') closeDesktopImageZoom();
       if (event.key === 'ArrowLeft') { event.preventDefault(); showImage(imageIndex - 1); }
       if (event.key === 'ArrowRight') { event.preventDefault(); showImage(imageIndex + 1); }
       return;
