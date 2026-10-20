@@ -411,7 +411,7 @@
   right: 0;
   bottom: 0;
   padding: 6px 12px;
-  background: rgba(243, 238, 230, 0.94);
+  background: rgba(var(--paper-rgb), 0.94);
   color: var(--ink-soft);
   font: 400 11px/1.35 var(--sans);
 }
@@ -502,7 +502,7 @@
   display: flex;
   align-items: center;
   padding: var(--pad-v) var(--pad-h);
-  background: var(--ink);
+  background: var(--surface-dark);
 }
 
 /* Bakgrunden fortsätter bakom mobilens adressrad innan sidfoten börjar */
@@ -529,7 +529,7 @@
   max-width: 600px;
   padding: var(--s4) var(--s3);
   border-radius: var(--r);
-  background: rgba(243, 238, 230, .96);
+  background: rgba(var(--paper-rgb), .96);
   box-shadow: 0 18px 50px rgba(20, 17, 14, .28);
 }
 
@@ -578,8 +578,8 @@
 
 .site-footer {
   padding: var(--s4) 0 var(--s3);
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--surface-dark);
+  color: var(--on-dark);
   font-size: 14px;
   line-height: 1.6;
 }
@@ -590,10 +590,10 @@
 }
 
 .footer-col p { margin: 0; color: rgba(243, 238, 230, .75); }
-.footer-col .footer-name { color: var(--paper); font-weight: 600; }
+.footer-col .footer-name { color: var(--on-dark); font-weight: 600; }
 
 .footer-col a {
-  color: var(--paper);
+  color: var(--on-dark);
   text-decoration: underline;
   text-decoration-color: rgba(243, 238, 230, .35);
   text-underline-offset: 4px;
@@ -632,9 +632,9 @@
     inset: 0;
     background: linear-gradient(90deg,
       var(--paper) 0%,
-      rgba(243, 238, 230, .94) 28%,
-      rgba(243, 238, 230, .7) 44%,
-      rgba(243, 238, 230, 0) 62%);
+      rgba(var(--paper-rgb), .94) 28%,
+      rgba(var(--paper-rgb), .7) 44%,
+      rgba(var(--paper-rgb), 0) 62%);
   }
 
   .hero-content {

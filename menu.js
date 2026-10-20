@@ -5,6 +5,35 @@
    (data-base="../" på sidor i undermappar). Stil i header.css. */
 (function () {
   const base = document.currentScript?.dataset.base || "";
+
+  // ---------- Tema: Kopparbrun (ljust) och Ärggrön (mörkt) ----------
+  // Valet sparas i webbläsaren. Ett litet skript i varje sidas <head> sätter
+  // temat innan sidan ritas, så att den inte blinkar till i fel färg.
+  const THEMES = {
+    kopparbrun: { label: "Kopparbrun", color: "#f3eee6", logo: "logo/J-NORBERG.svg", menuLogo: "logo/J-NORBERG-vit.webp" },
+    argron: { label: "Ärggrön", color: "#3f4139", logo: "logo/J-NORBERG-mork.svg", menuLogo: "logo/J-NORBERG-mork.svg" }
+  };
+  const currentTheme = () => (document.documentElement.dataset.theme === "argron" ? "argron" : "kopparbrun");
+
+  function applyTheme(name) {
+    const theme = THEMES[name] ? name : "kopparbrun";
+    if (theme === "argron") document.documentElement.dataset.theme = "argron";
+    else delete document.documentElement.dataset.theme;
+    try { localStorage.setItem("jnplat-tema", theme); } catch (error) { /* privat läge */ }
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", THEMES[theme].color);
+    document.querySelectorAll(".brand img").forEach((img) => { img.src = base + THEMES[theme].logo; });
+    document.querySelectorAll(".site-menu-brand img").forEach((img) => { img.src = base + THEMES[theme].menuLogo; });
+    const other = theme === "argron" ? "kopparbrun" : "argron";
+    document.querySelectorAll(".theme-toggle").forEach((button) => {
+      button.dataset.target = other;
+      button.querySelector(".theme-toggle-label").textContent = THEMES[other].label;
+      button.setAttribute("aria-label", `Byt till ${THEMES[other].label} (${other === "argron" ? "mörkt" : "ljust"} utseende)`);
+    });
+    document.querySelectorAll(".site-menu-theme button").forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.theme === theme));
+    });
+  }
+
   const header = document.querySelector(".site-header .nav-wrap");
   if (!header) return;
 
@@ -45,6 +74,12 @@
   const back = document.getElementById("back-to-service");
   const backItem = back ? `<a class="site-menu-back" href="${back.getAttribute("href")}">← Tillbaka</a>` : "";
 
+  const themeButton = `<button class="theme-toggle" type="button"><span class="theme-toggle-swatch" aria-hidden="true"></span><span class="theme-toggle-label"></span></button>`;
+  const nav = header.querySelector(".main-nav");
+  const navContact = nav?.querySelector(".header-contact");
+  if (navContact) navContact.insertAdjacentHTML("beforebegin", themeButton);
+  else nav?.insertAdjacentHTML("beforeend", themeButton);
+
   header.insertAdjacentHTML("beforeend", `
     <div class="header-actions">
       <a class="header-call" href="${phone.href}" aria-label="Ring ${phone.label}">
@@ -67,6 +102,10 @@
       </div>
       ${backItem}
       <nav aria-label="Huvudmeny"><ul class="site-menu-list">${items}</ul></nav>
+      <div class="site-menu-theme" role="group" aria-label="Utseende">
+        <button type="button" data-theme="kopparbrun" aria-pressed="false"><span class="theme-dot" aria-hidden="true"></span>Kopparbrun</button>
+        <button type="button" data-theme="argron" aria-pressed="false"><span class="theme-dot" aria-hidden="true"></span>Ärggrön</button>
+      </div>
       <div class="site-menu-contact">
         <a class="btn" href="${phone.href}">Ring ${phone.label}</a>
         <a class="btn btn--ghost" href="mailto:${mail}" aria-label="Mejla ${mail}">
@@ -96,6 +135,13 @@
     document.documentElement.classList.remove("site-menu-open");
     if (restoreFocus) toggle.focus();
   }
+
+  applyTheme(currentTheme());
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest(".theme-toggle, .site-menu-theme button");
+    if (!button) return;
+    applyTheme(button.dataset.target || button.dataset.theme);
+  });
 
   toggle.addEventListener("click", openMenu);
   close.addEventListener("click", () => closeMenu());

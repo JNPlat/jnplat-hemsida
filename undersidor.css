@@ -19,7 +19,7 @@
   height: clamp(340px, 39vw, 540px);
   min-height: 0;
   overflow: hidden;
-  background: #e9e1d5;
+  background: var(--paper-2);
 }
 
 .detail-hero picture{
@@ -32,7 +32,7 @@
   height: 100%;
   min-width: 0;
   overflow: hidden;
-  background: #e9e1d5;
+  background: var(--paper-2);
 }
 
 .detail-hero picture img, .detail-hero > img{
@@ -142,7 +142,7 @@
 .project-card-image{
   aspect-ratio: 4/3;
   overflow: hidden;
-  background: #e4ddd3;
+  background: var(--paper-2);
 }
 
 .project-card-image img{
@@ -252,7 +252,7 @@
   margin: 0;
   aspect-ratio: 4/3;
   overflow: hidden;
-  background: #e4ddd3;
+  background: var(--paper-2);
   cursor: zoom-in;
 }
 
@@ -669,7 +669,7 @@ body.lightbox-open{
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: rgba(243, 238, 230, .9);
+  background: rgba(var(--paper-rgb), .9);
   color: var(--ink);
   font: 400 26px/1 var(--sans);
   cursor: pointer;
@@ -677,7 +677,7 @@ body.lightbox-open{
   transition: background .2s ease;
 }
 
-.project-gallery-arrow:hover{ background: var(--copper); color: var(--paper); }
+.project-gallery-arrow:hover{ background: var(--copper); color: var(--on-accent); }
 .project-gallery-arrow[hidden]{ display: none; }
 .project-gallery-prev{ left: 10px; }
 .project-gallery-next{ right: 10px; }
@@ -1173,7 +1173,7 @@ html:has(body.lightbox-open){ overflow: hidden; }
   background: rgba(255,255,255,.12);
   cursor: pointer;
 }
-.project-image-zoom-thumbnails button.active{ border-color: #c79a70; }
+.project-image-zoom-thumbnails button.active{ border-color: var(--copper); }
 .project-image-zoom-thumbnails img{ display: block; width: 100%; height: 100%; object-fit: cover; }
 .project-image-zoom-count{ color: #fffaf2; font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .project-image-zoom-prev[hidden],
@@ -1289,7 +1289,7 @@ html:has(body.lightbox-open){ overflow: hidden; }
   min-height: 0;
   padding: clamp(22px, 3vw, 44px);
   overflow: visible;
-  background: #eae2d7;
+  background: var(--paper-2);
 }
 .inner-page.service-page .service-copy > .eyebrow {
   margin: 0 0 12px;
@@ -1422,7 +1422,7 @@ html:has(body.lightbox-open){ overflow: hidden; }
   align-self: stretch;
   aspect-ratio: auto;
   overflow: hidden;
-  background: #d7c8b6;
+  background: var(--line);
 }
 .inner-page.service-page .service-projects .project-card-image img {
   position: absolute;
@@ -1444,7 +1444,7 @@ html:has(body.lightbox-open){ overflow: hidden; }
   min-height: 0;
   padding: 18px 22px;
   overflow: visible;
-  background: #eae2d7;
+  background: var(--paper-2);
 }
 .inner-page.service-page .service-projects .project-card-info h3 {
   margin: 0;
@@ -1800,7 +1800,7 @@ html:has(body.lightbox-open){ overflow: hidden; }
 /* Förstorad bild (dator): ljust papper, miniatyrraden under bilden i stället för ovanpå */
 .project-image-zoom{
   padding: 16px 4vw;
-  background: rgba(243, 238, 230, .97);
+  background: rgba(var(--paper-rgb), .97);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
@@ -1818,14 +1818,14 @@ html:has(body.lightbox-open){ overflow: hidden; }
   border: 1px solid var(--line);
   border-radius: 50%;
   color: var(--ink);
-  background: rgba(243, 238, 230, .92);
+  background: rgba(var(--paper-rgb), .92);
   transition: background .2s ease, color .2s ease;
 }
 .project-image-zoom-prev,
 .project-image-zoom-next{ width: 52px; height: 52px; font-size: 32px; }
 .project-image-zoom-close:hover,
 .project-image-zoom-prev:hover,
-.project-image-zoom-next:hover{ background: var(--copper); border-color: var(--copper); color: var(--paper); }
+.project-image-zoom-next:hover{ background: var(--copper); border-color: var(--copper); color: var(--on-accent); }
 .project-image-zoom-thumbnails button{ border-radius: 4px; background: var(--paper-2); }
 .project-image-zoom-thumbnails button.active{ border-color: var(--copper); }
 .project-image-zoom-count{ color: var(--ink-soft); }

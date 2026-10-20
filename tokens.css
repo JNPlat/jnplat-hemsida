@@ -21,6 +21,16 @@
   --patina: #5f8575;
   --line: #d9d0c1;
 
+  /* Temaroller (Kopparbrun = ljust, standard). Ärggrön skriver över dem nedan. */
+  --paper-rgb: 243, 238, 230;
+  --on-accent: #fff;
+  --accent-hover-bg: var(--copper-dark);
+  --accent-hover-fg: #fff;
+  --accent-light: #e8b48f;
+  --surface-dark: #2a2622;
+  --on-dark: #f3eee6;
+  color-scheme: light;
+
   /* Typsnitt */
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -55,6 +65,30 @@
   --fs-h3: 24px;
   --pad-v: var(--s4);
   --pad-h: 20px;
+}
+
+/* Ärggrön: mörkt tema enligt Designsystem Mörkt (PL 33 Ärggrön, #95b897).
+   Patina är enda accentfärgen; inga koppar- eller bruna toner. */
+:root[data-theme="argron"] {
+  --paper: #3f4139;
+  --paper-2: #383a33;
+  --card: #4a4c43;
+  --ink: #f3eee6;
+  --ink-soft: #d0cfc2;
+  --line: #5d5f54;
+  --copper: #95b897;
+  --copper-dark: #95b897;
+  --patina: #95b897;
+  --white: #4a4c43;
+
+  --paper-rgb: 63, 65, 57;
+  --on-accent: #23261f;
+  --accent-hover-bg: #f3eee6;
+  --accent-hover-fg: #23261f;
+  --accent-light: #95b897;
+  --surface-dark: #23261f;
+  --on-dark: #f3eee6;
+  color-scheme: dark;
 }
 
 @supports (height: 100svh) {
@@ -147,7 +181,7 @@ button, input, textarea, select { font: inherit; }
   border: 1px solid var(--copper);
   border-radius: var(--r);
   background: var(--copper);
-  color: #fff;
+  color: var(--on-accent);
   font: 600 0.95rem/1.1 var(--sans);
   text-decoration: none;
   cursor: pointer;
@@ -156,9 +190,9 @@ button, input, textarea, select { font: inherit; }
 
 .btn:hover,
 .btn:focus-visible {
-  background: var(--copper-dark);
-  border-color: var(--copper-dark);
-  color: #fff;
+  background: var(--accent-hover-bg);
+  border-color: var(--accent-hover-bg);
+  color: var(--accent-hover-fg);
 }
 
 .btn--ghost,
@@ -173,7 +207,7 @@ button, input, textarea, select { font: inherit; }
 .text-link:focus-visible {
   background: var(--copper);
   border-color: var(--copper);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .btn span,
