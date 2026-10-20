@@ -145,19 +145,25 @@ if (fs.existsSync(projectsFile)) {
         }
         if (typeof project.title !== "string" || !project.title.trim()) {
           errors.push(`${label} is missing a non-empty title.`);
+        } else if (project.title.length > 70) {
+          errors.push(`${label} has a title longer than 70 characters.`);
         }
         if (!allowedServices.has(project.service)) {
           errors.push(`${label} has an unknown service: "${project.service}".`);
         }
-        if (project.gallery !== undefined && !Array.isArray(project.gallery)) {
-          errors.push(`${label} gallery must be an array when provided.`);
+        if (project.images !== undefined && !Array.isArray(project.images)) {
+          errors.push(`${label} images must be an array.`);
         }
 
-        const imagePaths = [
-          project.hero,
-          project.cardImage,
-          ...(Array.isArray(project.gallery) ? project.gallery : [])
-        ].filter((imagePath) => typeof imagePath === "string" && imagePath.trim());
+        // Samma ordning som site-utils.js projectImages(): images, annars äldre fält.
+        const imagePaths = (Array.isArray(project.images)
+          ? project.images
+          : [project.hero, project.cardImage, ...(Array.isArray(project.gallery) ? project.gallery : [])]
+        ).filter((imagePath) => typeof imagePath === "string" && imagePath.trim())
+          .map((imagePath) => imagePath.trim().replace(/^\/+/, ""));
+        if (project.published !== false && !imagePaths.length) {
+          errors.push(`${label} is published but has no images.`);
+        }
         for (const imagePath of new Set(imagePaths)) {
           checked.projectImages++;
           const resolvedImage = path.resolve(root, imagePath);

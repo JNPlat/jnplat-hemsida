@@ -1,0 +1,45 @@
+name: Krymp uppladdade bilder
+
+# Bilder som läggs till på main (t.ex. från Pages CMS) krymps och committas tillbaka.
+# En push med GITHUB_TOKEN startar inte arbetsflödet igen.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "images/**"
+
+permissions:
+  contents: write
+
+jobs:
+  krymp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install sharp
+        run: npm install --no-save --no-package-lock sharp@0.33.5
+      - name: Krymp ändrade bilder
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then BEFORE="HEAD~1"; fi
+          git diff --name-only --diff-filter=AM "$BEFORE" HEAD -- images/ > changed.txt
+          cat changed.txt
+          if [ -s changed.txt ]; then xargs -d '\n' node scripts/krymp-bilder.mjs < changed.txt; fi
+          rm changed.txt
+      - name: Commit krympta bilder
+        run: |
+          if [ -n "$(git status --porcelain images/)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add images/
+            git commit -m "Krymp uppladdade bilder"
+            git push
+          fi

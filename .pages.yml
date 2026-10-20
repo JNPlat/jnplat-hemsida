@@ -1,0 +1,68 @@
+# Pages CMS (app.pagescms.org): redigering av sajtens innehåll.
+# Formulären styr bara innehåll. Utseendet ligger kvar i koden.
+# Uppladdade bilder krymps automatiskt (.github/workflows/krymp-bilder.yml).
+
+media:
+  input: images/projekt
+  output: images/projekt
+  extensions: [jpg, jpeg, png, webp]
+  rename: true
+
+content:
+  - name: projekt
+    label: Projekt
+    type: file
+    path: data/projects.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{title}"
+    fields:
+      - name: title
+        label: Projektnamn
+        type: string
+        required: true
+        description: "T.ex. Villa Ekerö · 2027. Max 70 tecken."
+        options:
+          maxlength: 70
+      - name: service
+        label: Tjänst
+        type: select
+        required: true
+        description: Projektet visas på den här tjänstesidan.
+        options:
+          values:
+            - name: byggnadsplatslageri
+              label: Byggnadsplåtslageri
+            - name: kopparslageri
+              label: Kopparslageri
+            - name: restaurering
+              label: Restaurering
+            - name: specialprojekt
+              label: Specialprojekt
+      - name: description
+        label: Text om projektet
+        type: text
+        description: De två första raderna syns direkt i galleriet, resten under Visa mer.
+        options:
+          maxlength: 1500
+      - name: images
+        label: Bilder
+        type: image
+        required: true
+        description: Första bilden blir projektkortets bild. Ordningen här är ordningen i galleriet.
+        options:
+          multiple:
+            max: 40
+          unique: true
+          extensions: [jpg, jpeg, png, webp]
+      - name: published
+        label: Visa på hemsidan
+        type: boolean
+        default: true
+        description: Stäng av för att spara projektet som utkast.
+      - name: id
+        label: Id
+        type: uuid
+        hidden: true

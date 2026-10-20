@@ -3,12 +3,8 @@
     "id": "bandtackning-fotranor-2021-2022",
     "title": "Gårdshus Enköping 2020 & 2021",
     "service": "byggnadsplatslageri",
-    "year": "2020–2021",
     "description": "Tidigare tegeltak. Bandtäckningen med fotrännor och taksäkerhet monterades på baksidan sommaren 2020, och framsidan med entrétak 2021. Ett roligt projekt där plåtslagarglädje fick ta plats med små fotrännor på takkuporna och en liten kinahatt på avloppsstosen.",
-    "longDescription": "Projektet omfattade bandtäckning med fotrännor. Arbetet utfördes under 2020–2021.",
-    "hero": "images/projekt/enkoping/1.jpg",
-    "cardImage": "images/projekt/enkoping/1.jpg",
-    "gallery": [
+    "images": [
       "images/projekt/enkoping/1.jpg",
       "images/projekt/enkoping/2.jpg",
       "images/projekt/enkoping/3.jpg",
@@ -16,19 +12,14 @@
       "images/projekt/enkoping/5.jpg",
       "images/projekt/enkoping/6.jpg"
     ],
-    "published": true,
-    "mockup": false
+    "published": true
   },
   {
     "id": "sollentuna-kyrka-kopparslageri-2020",
     "title": "Sollentuna kyrka · 2020",
     "service": "restaurering",
-    "year": "2020",
     "description": "Kyrkans torn och spira restaurerades sommaren 2020 då jag gick som anställd på Bång & Lewerth. Ett utmanande och lärorikt projekt där jag tog mitt gesällbrev.",
-    "longDescription": "Projektet omfattade restaureringsarbete med koppar vid Sollentuna kyrka och utfördes under 2020.",
-    "hero": "images/projekt/sollentuna-kyrka/1.jpg",
-    "cardImage": "images/projekt/sollentuna-kyrka/1.jpg",
-    "gallery": [
+    "images": [
       "images/projekt/sollentuna-kyrka/1.jpg",
       "images/projekt/sollentuna-kyrka/2.jpg",
       "images/projekt/sollentuna-kyrka/3.jpg",
@@ -36,19 +27,14 @@
       "images/projekt/sollentuna-kyrka/5.jpg",
       "images/projekt/sollentuna-kyrka/6.jpg"
     ],
-    "published": true,
-    "mockup": false
+    "published": true
   },
   {
     "id": "hogalidskyrkan-kopparslageri-2023",
     "title": "Högalidskyrkan · 2023",
     "service": "kopparslageri",
-    "year": "2023",
     "description": "Kyrkans båda kupoler restaurerades sommaren 2023 då jag gick som ledande montör på Bång & Lewerth. Oxögonen krävde kopparslageri där jag drev plåten med värme och mothåll.",
-    "longDescription": "Projektet omfattade kopparslageriarbete vid Högalidskyrkan och utfördes under 2023.",
-    "hero": "images/projekt/hogalidskyrkan/1.jpg",
-    "cardImage": "images/projekt/hogalidskyrkan/1.jpg",
-    "gallery": [
+    "images": [
       "images/projekt/hogalidskyrkan/1.jpg",
       "images/projekt/hogalidskyrkan/2.jpg",
       "images/projekt/hogalidskyrkan/3.jpg",
@@ -56,25 +42,19 @@
       "images/projekt/hogalidskyrkan/5.jpg",
       "images/projekt/hogalidskyrkan/6.jpg"
     ],
-    "published": true,
-    "mockup": false
+    "published": true
   },
   {
     "id": "kulturveckan-specialprojekt-2022",
     "title": "Kulturveckan · 2022",
     "service": "specialprojekt",
-    "year": "2022",
     "description": "Sommaren 2022 blev jag inbjuden som anställd på Bång & Lewerth att täcka in en plyfa på vilket sätt jag ville för att framhäva plåtslageriyrket. Jag gjorde förberedelserna på verkstaden och stod sedan och monterade det på plats. Tavlan ställdes senare ut på Kollektivet Livet.",
-    "longDescription": "Projektet genomfördes i samband med Kulturveckan 2022.",
-    "hero": "images/projekt/kulturveckan/1.jpg",
-    "cardImage": "images/projekt/kulturveckan/1.jpg",
-    "gallery": [
+    "images": [
       "images/projekt/kulturveckan/1.jpg",
       "images/projekt/kulturveckan/2.jpg",
       "images/projekt/kulturveckan/3.jpg",
       "images/projekt/kulturveckan/4.jpg"
     ],
-    "published": true,
-    "mockup": false
+    "published": true
   }
 ]

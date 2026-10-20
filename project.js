@@ -1,5 +1,5 @@
 (async function () {
-  const { serviceLabel, escapeHTML, escapeAttribute } = window.JNPlSite;
+  const { serviceLabel, escapeHTML, escapeAttribute, projectImages } = window.JNPlSite;
   const params = new URLSearchParams(window.location.search);
   const projectId = params.get('id');
   const content = document.getElementById('project-content');
@@ -28,9 +28,8 @@
     });
     document.title = `${project.title} | J. Norberg Plåtslageri AB`;
 
-    const hero = project.hero || (project.gallery && project.gallery[0]) || '';
-    gallery = (project.gallery || []).filter(Boolean);
-    if (hero && !gallery.includes(hero)) gallery.unshift(hero);
+    gallery = projectImages(project);
+    const hero = gallery[0] || '';
     const heroMarkup = hero ? `<img src="${escapeAttribute(hero)}" alt="${escapeAttribute(project.title)}" fetchpriority="high">` : '';
     const galleryMarkup = gallery.map((src, index) => `<button class="gallery-image" type="button" data-image-index="${index}" aria-label="Visa bild ${index + 1} i full storlek"><img src="${escapeAttribute(src)}" alt="${escapeAttribute(project.title)} – bild ${index + 1}" loading="lazy"></button>`).join('');
 

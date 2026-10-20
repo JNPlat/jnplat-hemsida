@@ -109,13 +109,13 @@ Färgvariabler och gemensamma designvärden finns i början av `style.css`. Där
 
 ## Lägg till eller ändra ett projekt
 
-1. Lägg bilderna i en lämplig undermapp i `images/projekt/`.
-2. Lägg till eller ändra projektobjektet i `data/projects.json`.
-3. Använd ett unikt `id`.
-4. `service` ska vara `byggnadsplatslageri`, `kopparslageri`, `restaurering` eller `specialprojekt`.
-5. Skriv bildsökvägar relativt webbplatsens rot, exempelvis `images/projekt/nytt-projekt/1.jpg`.
-6. Sätt `published` till `true` för att visa projektet och `false` för att dölja det.
-7. Använd `project-template.json.txt` som mall och kopiera själva JSON-objektet, inte HTML-kommentaren längst ned i mallfilen.
+**Enklast: Pages CMS.** Logga in på https://app.pagescms.org med GitHub-kontot, välj repot och gå till **Projekt**. Fyll i namn, tjänst, text och bilder och tryck Spara. Inställningarna finns i `.pages.yml`.
+
+- Första bilden i listan blir projektkortets bild; ordningen är galleriets ordning.
+- Uppladdade bilder krymps automatiskt till högst 2400 px och metadata (t.ex. GPS) tas bort (`.github/workflows/krymp-bilder.yml`, `scripts/krymp-bilder.mjs`).
+- Före varje publicering kör Cloudflare `scripts/validate-site.mjs` (se `build` i `wrangler.jsonc`). Hittar den ett fel publiceras inget och den förra versionen ligger kvar.
+
+**För hand:** lägg bilderna i `images/projekt/` och lägg till ett objekt i `data/projects.json` enligt `project-template.json.txt`. `service` ska vara `byggnadsplatslageri`, `kopparslageri`, `restaurering` eller `specialprojekt`. `images` skrivs relativt webbplatsens rot. `published: false` döljer projektet.
 
 ## Grundkontroller före publicering
 

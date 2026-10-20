@@ -1,5 +1,5 @@
 (async function () {
-  const { serviceLabel, escapeHTML, escapeAttribute } = window.JNPlSite;
+  const { serviceLabel, escapeHTML, escapeAttribute, projectImages } = window.JNPlSite;
   const serviceIds = window.JNPlSite.serviceIds;
   let serviceId = document.body.dataset.service;
   if (!document.querySelector('[data-project-list]') || !serviceId) return;
@@ -85,7 +85,7 @@
       }).catch(() => {});
       (projects || [])
         .filter(project => project.published !== false && project.service === id)
-        .forEach(project => preloadImage(`../${project.cardImage || project.hero || ''}`));
+        .forEach(project => { const first = projectImages(project)[0]; if (first) preloadImage(`../${first}`); });
     });
   }
 
@@ -221,7 +221,7 @@
     }
 
     list.innerHTML = visibleProjects.map((project, index) => {
-      const image = project.cardImage || project.hero || (project.gallery && project.gallery[0]);
+      const image = projectImages(project)[0];
       const imageMarkup = image
         ? `<img src="../${escapeAttribute(image)}" alt="${escapeAttribute(project.title)}" loading="lazy">`
         : '';
@@ -376,8 +376,7 @@
   function openProjectGallery(project, trigger) {
     activeProject = project;
     previousFocus = trigger || document.activeElement;
-    const hero = project.hero || project.cardImage || '';
-    activeImages = [...new Set([...(hero ? [hero] : []), ...((project.gallery || []).filter(Boolean))])];
+    activeImages = projectImages(project);
     if (!activeImages.length) return;
     imageIndex = 0;
     galleryModal.querySelector('[data-gallery-service]').textContent = serviceLabel(project.service);

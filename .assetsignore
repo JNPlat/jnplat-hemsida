@@ -3,6 +3,7 @@
 .github/
 .assetsignore
 wrangler.jsonc
+.pages.yml
 scripts/
 README.md
 CHANGELOG-KODGENOMGANG.md

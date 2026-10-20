@@ -29,7 +29,20 @@
     })[character]);
   }
 
+  // Projektets bilder i ordning; den första är projektkortets bild.
+  // Äldre fält (hero, cardImage, gallery) läses också. Inledande / tas bort
+  // eftersom sökvägarna används både från roten och från tjanster/.
+  function projectImages(project) {
+    const list = Array.isArray(project?.images)
+      ? project.images
+      : [project?.hero, project?.cardImage, ...(Array.isArray(project?.gallery) ? project.gallery : [])];
+    return [...new Set(list
+      .map((src) => (typeof src === "string" ? src.trim().replace(/^\/+/, "") : ""))
+      .filter(Boolean))];
+  }
+
   window.JNPlSite = Object.freeze({
+    projectImages,
     serviceLabel: (id) => services[id]?.label || "Projekt",
     servicePath: (id) => services[id]?.path || "index.html#tjanster",
     serviceIds: Object.freeze(Object.keys(services)),

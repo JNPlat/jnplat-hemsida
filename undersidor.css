@@ -697,6 +697,7 @@ body.lightbox-open{
 
 /* Två rader syns; Visa mer fäller ut resten */
 .project-gallery-description{
+  white-space: pre-line;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
