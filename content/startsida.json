@@ -51,12 +51,21 @@
     "image": "images/om-j-norberg-desktop.webp",
     "imageAlt": "John Norberg arbetar i plåtverkstaden",
     "merits": [
-      { "title": "SM-silver 2016", "text": "Andra plats i SM i plåtslageri." },
-      { "title": "Ambassadör för PVF", "text": "Plåt & Ventföretagen, branschens organisation." },
-      { "title": "Stipendium 2023", "text": "Utbildningsresa till VMZINC i Frankrike." }
+      {
+        "title": "SM-silver 2016",
+        "text": "Andra plats i SM i plåtslageri."
+      },
+      {
+        "title": "Ambassadör för PVF",
+        "text": "Plåt & Ventföretagen, branschens organisation."
+      },
+      {
+        "title": "Stipendium 2023",
+        "text": "Utbildningsresa till VMZINC i Frankrike."
+      }
     ],
     "projectsTitle": "10 år på Bång & Lewerth",
-    "projectsText": "Jag har restaurerat kulturhistoriskt värdefulla byggnader och haft förtroendet att arbeta på:",
+    "projectsText": "har jag restaurerat kulturhistoriskt värdefulla byggnader och haft förtroendet att arbeta på:",
     "projects": [
       "Högalidskyrkan",
       "S:t Johannes kyrka",
