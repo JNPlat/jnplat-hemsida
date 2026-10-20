@@ -425,7 +425,7 @@ html.site-menu-open { overflow: hidden; }
 .site-menu-theme {
   display: flex;
   gap: var(--s1);
-  margin-top: var(--s3);
+  margin-top: var(--s1);
 }
 .site-menu-theme button {
   flex: 1 1 0;
@@ -444,4 +444,15 @@ html.site-menu-open { overflow: hidden; }
 .site-menu-theme button[aria-pressed="true"] {
   border-color: var(--accent-light);
   background: rgba(243, 238, 230, .08);
+}
+
+/* Ärggrön: mobilmenyn visar den mörka SVG-loggan, som inte har någon tom
+   yta runt sig – ingen beskärning som för den vita loggan */
+:root[data-theme="argron"] .site-menu-brand { aspect-ratio: auto; overflow: visible; }
+:root[data-theme="argron"] .site-menu-brand img { width: 100%; height: auto; margin: 0; }
+
+/* Mobil på sidan: menyraden är trång, så temaknappen visar bara färgpricken */
+@media (orientation: landscape) and (max-height: 560px) {
+  .theme-toggle { padding: 7px; }
+  .theme-toggle-label { display: none; }
 }
