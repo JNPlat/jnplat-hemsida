@@ -745,8 +745,8 @@
   .about-master { margin-top: 0; padding: clamp(6px, 1.4vh, 16px) var(--s3); }
   .about-projects li { white-space: nowrap; }
   .about-projects { display: flex; flex-wrap: wrap; gap: 2px 18px; max-width: 640px; margin-bottom: clamp(8px, 2vh, 24px); line-height: 1.4; }
-  .about-projects-intro strong { display: inline; margin-right: .3em; }
-  .about-content .about-projects-intro { margin-bottom: clamp(2px, 0.6vh, 8px); }
+  .about-projects-intro strong { display: block; line-height: 1.05; }
+  .about-content .about-projects-intro { margin-bottom: clamp(0px, 0.3vh, 6px); }
   .about-master-year { font-size: calc(var(--fs-h2) * 0.85); }
 
   /* Kontakt: kortet till vänster, kopparbilden syns till höger */
