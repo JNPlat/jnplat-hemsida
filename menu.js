@@ -11,7 +11,7 @@
   // temat innan sidan ritas, så att den inte blinkar till i fel färg.
   const THEMES = {
     kopparbrun: { label: "Kopparbrun", color: "#f3eee6", logo: "logo/J-NORBERG.svg", menuLogo: "logo/J-NORBERG-vit.webp" },
-    argron: { label: "Ärggrön", color: "#3f4139", logo: "logo/J-NORBERG-mork.svg", menuLogo: "logo/J-NORBERG-mork.svg" }
+    argron: { label: "Ärggrön", color: "#3f4139", logo: "logo/J-NORBERG-mork.svg", menuLogo: "logo/J-NORBERG-vit.webp" }
   };
   const currentTheme = () => (document.documentElement.dataset.theme === "argron" ? "argron" : "kopparbrun");
 
@@ -28,9 +28,6 @@
       button.dataset.target = other;
       button.querySelector(".theme-toggle-label").textContent = THEMES[other].label;
       button.setAttribute("aria-label", `Byt till ${THEMES[other].label} (${other === "argron" ? "mörkt" : "ljust"} utseende)`);
-    });
-    document.querySelectorAll(".site-menu-theme button").forEach((button) => {
-      button.setAttribute("aria-pressed", String(button.dataset.theme === theme));
     });
   }
 
@@ -82,6 +79,7 @@
 
   header.insertAdjacentHTML("beforeend", `
     <div class="header-actions">
+      ${themeButton.replace("theme-toggle", "theme-toggle theme-toggle--header")}
       <a class="header-call" href="${phone.href}" aria-label="Ring ${phone.label}">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
       </a>
@@ -102,10 +100,6 @@
       </div>
       ${backItem}
       <nav aria-label="Huvudmeny"><ul class="site-menu-list">${items}</ul></nav>
-      <div class="site-menu-theme" role="group" aria-label="Utseende">
-        <button type="button" data-theme="kopparbrun" aria-pressed="false"><span class="theme-dot" aria-hidden="true"></span>Kopparbrun</button>
-        <button type="button" data-theme="argron" aria-pressed="false"><span class="theme-dot" aria-hidden="true"></span>Ärggrön</button>
-      </div>
       <div class="site-menu-contact">
         <a class="btn" href="${phone.href}">Ring ${phone.label}</a>
         <a class="btn btn--ghost" href="mailto:${mail}" aria-label="Mejla ${mail}">
@@ -138,9 +132,9 @@
 
   applyTheme(currentTheme());
   document.addEventListener("click", (event) => {
-    const button = event.target.closest(".theme-toggle, .site-menu-theme button");
+    const button = event.target.closest(".theme-toggle");
     if (!button) return;
-    applyTheme(button.dataset.target || button.dataset.theme);
+    applyTheme(button.dataset.target);
   });
 
   toggle.addEventListener("click", openMenu);
