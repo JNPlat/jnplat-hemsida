@@ -10,7 +10,8 @@
   // Kopparbrun är nylagd koppar, Ärggrön samma koppar om hundra år.
   // Valet sparas i webbläsaren. Ett litet skript i varje sidas <head> sätter
   // temat innan sidan ritas, så att den inte blinkar till i fel färg.
-  // Mobil: rutan visar kopparens ålder, "0 år" / "100 år". Dator: "Om 100 år →" / "← Nylagt".
+  // Båda knapparna visar kopparen just nu: "Nylagt" (Kopparbrun) eller "100 år" (Ärggrön).
+  // Mobil: två rader i en ruta, "Ny-/lagt" och "100/år".
   // Vid byte sprider sig den nya färgen från knappen; vid Ärggrön visas ett kort meddelande.
   const THEMES = {
     kopparbrun: { label: "Kopparbrun", color: "#f3eee6", logo: "logo/J-NORBERG.svg", menuLogo: "logo/J-NORBERG-vit.webp" },
@@ -33,10 +34,11 @@
         ? `Se kopparen om hundra år (${THEMES.argron.label}, mörkt utseende)`
         : `Tillbaka till nylagd koppar (${THEMES.kopparbrun.label}, ljust utseende)`);
       const years = button.querySelector(".theme-toggle-years");
-      // Rutan visar kopparens ålder just nu: nylagd = 0 år, ärggrön = 100 år
-      if (years) years.textContent = theme === "argron" ? "100" : "0";
+      const unit = button.querySelector(".theme-toggle-unit");
+      if (years) years.textContent = theme === "argron" ? "100" : "Ny-";
+      if (unit) unit.textContent = theme === "argron" ? "år" : "lagt";
       const label = button.querySelector(".theme-toggle-label");
-      if (label) label.innerHTML = other === "argron" ? '<span class="theme-toggle-om">Om </span>100 år →' : "← Nylagt";
+      if (label) label.textContent = theme === "argron" ? "100 år" : "Nylagt";
     });
   }
 
@@ -133,8 +135,8 @@
   const backItem = back ? `<a class="site-menu-back" href="${back.getAttribute("href")}">← Tillbaka</a>` : "";
 
   // Dator: textknapp. Mobil: ruta med kopparens ålder.
-  const themeButton = `<button class="theme-toggle" type="button"><span class="theme-toggle-label" aria-hidden="true"><span class="theme-toggle-om">Om </span>100 år →</span></button>`;
-  const themeBox = `<button class="theme-toggle theme-toggle--header" type="button"><span class="theme-toggle-years" aria-hidden="true">0</span><span class="theme-toggle-unit" aria-hidden="true">år</span></button>`;
+  const themeButton = `<button class="theme-toggle" type="button"><span class="theme-toggle-label" aria-hidden="true">Nylagt</span></button>`;
+  const themeBox = `<button class="theme-toggle theme-toggle--header" type="button"><span class="theme-toggle-years" aria-hidden="true">Ny-</span><span class="theme-toggle-unit" aria-hidden="true">lagt</span></button>`;
   const nav = header.querySelector(".main-nav");
   const navContact = nav?.querySelector(".header-contact");
   if (navContact) navContact.insertAdjacentHTML("beforebegin", themeButton);
