@@ -392,7 +392,7 @@ html.site-menu-open { overflow: hidden; }
 
 /* ---------- Temaknapp: Kopparbrun (nylagt) / Ärggrön (om hundra år) ----------
    Skapas i menu.js. Knapparna visar kopparen just nu: "Nylagt" / "Hundra år".
-   Mobil: ruta bredvid telefonen, "Ny-/lagt" eller "Hundra/år". */
+   Mobil: ruta bredvid telefonen, "Nylagt" eller "Hundra/år". */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -414,7 +414,7 @@ html.site-menu-open { overflow: hidden; }
   .theme-toggle { padding: 5px; font-size: 11px; }
 }
 
-/* Mobil (stående): ruta lika stor som telefonknappen, "Ny-/lagt" eller "Hundra/år" */
+/* Mobil (stående): ruta lika stor som telefonknappen, "Nylagt" eller "Hundra/år" */
 .theme-toggle--header {
   flex-direction: column;
   justify-content: center;
@@ -427,7 +427,8 @@ html.site-menu-open { overflow: hidden; }
   color: var(--ink);
 }
 .theme-toggle-years { font: 600 18px/1 var(--serif); }
-/* Två lika rader: "Ny-/lagt" och "Hundra/år" */
+/* "Nylagt" på en rad, "Hundra/år" på två lika rader */
+.theme-toggle-unit:empty { display: none; }
 .theme-toggle--header .theme-toggle-years,
 .theme-toggle--header .theme-toggle-unit {
   font: 600 12px/1.05 var(--serif);

@@ -11,7 +11,7 @@
   // Valet sparas i webbläsaren. Ett litet skript i varje sidas <head> sätter
   // temat innan sidan ritas, så att den inte blinkar till i fel färg.
   // Båda knapparna visar kopparen just nu: "Nylagt" (Kopparbrun) eller "Hundra år" (Ärggrön).
-  // Mobil: två rader i en ruta, "Ny-/lagt" och "Hundra/år".
+  // Mobil: ruta med "Nylagt" på en rad eller "Hundra/år" på två.
   // Vid byte sprider sig den nya färgen från knappen; vid Ärggrön visas ett kort meddelande.
   const THEMES = {
     kopparbrun: { label: "Kopparbrun", color: "#f3eee6", logo: "logo/J-NORBERG.svg", menuLogo: "logo/J-NORBERG-vit.webp" },
@@ -35,8 +35,8 @@
         : `Tillbaka till nylagd koppar (${THEMES.kopparbrun.label}, ljust utseende)`);
       const years = button.querySelector(".theme-toggle-years");
       const unit = button.querySelector(".theme-toggle-unit");
-      if (years) years.textContent = theme === "argron" ? "Hundra" : "Ny-";
-      if (unit) unit.textContent = theme === "argron" ? "år" : "lagt";
+      if (years) years.textContent = theme === "argron" ? "Hundra" : "Nylagt";
+      if (unit) unit.textContent = theme === "argron" ? "år" : "";
       const label = button.querySelector(".theme-toggle-label");
       if (label) label.textContent = theme === "argron" ? "Hundra år" : "Nylagt";
     });
@@ -136,7 +136,7 @@
 
   // Dator: textknapp. Mobil: ruta med kopparens ålder.
   const themeButton = `<button class="theme-toggle" type="button"><span class="theme-toggle-label" aria-hidden="true">Nylagt</span></button>`;
-  const themeBox = `<button class="theme-toggle theme-toggle--header" type="button"><span class="theme-toggle-years" aria-hidden="true">Ny-</span><span class="theme-toggle-unit" aria-hidden="true">lagt</span></button>`;
+  const themeBox = `<button class="theme-toggle theme-toggle--header" type="button"><span class="theme-toggle-years" aria-hidden="true">Nylagt</span><span class="theme-toggle-unit" aria-hidden="true"></span></button>`;
   const nav = header.querySelector(".main-nav");
   const navContact = nav?.querySelector(".header-contact");
   if (navContact) navContact.insertAdjacentHTML("beforebegin", themeButton);
