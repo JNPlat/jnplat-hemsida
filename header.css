@@ -391,8 +391,8 @@ html.site-menu-open { overflow: hidden; }
 }
 
 /* ---------- Temaknapp: Kopparbrun (nylagt) / Ärggrön (om hundra år) ----------
-   Skapas i menu.js. Knapparna visar kopparen just nu: "Nylagt" / "100 år".
-   Mobil: ruta bredvid telefonen, "Ny-/lagt" eller "100/år". */
+   Skapas i menu.js. Knapparna visar kopparen just nu: "Nylagt" / "Hundra år".
+   Mobil: ruta bredvid telefonen, "Ny-/lagt" eller "Hundra/år". */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -411,10 +411,10 @@ html.site-menu-open { overflow: hidden; }
 
 /* Mobil på sidan: menyraden är trång */
 @media (orientation: landscape) and (max-height: 560px) {
-  .theme-toggle { padding: 6px 10px; font-size: 12px; }
+  .theme-toggle { padding: 5px; font-size: 11px; }
 }
 
-/* Mobil (stående): ruta lika stor som telefonknappen, "Ny-/lagt" eller "100/år" */
+/* Mobil (stående): ruta lika stor som telefonknappen, "Ny-/lagt" eller "Hundra/år" */
 .theme-toggle--header {
   flex-direction: column;
   justify-content: center;
@@ -427,10 +427,10 @@ html.site-menu-open { overflow: hidden; }
   color: var(--ink);
 }
 .theme-toggle-years { font: 600 18px/1 var(--serif); }
-/* Kopparbrun: "Ny-/lagt" i två lika rader */
-.theme-toggle--header[data-target="argron"] .theme-toggle-years,
-.theme-toggle--header[data-target="argron"] .theme-toggle-unit {
-  font: 600 14px/1 var(--serif);
+/* Två lika rader: "Ny-/lagt" och "Hundra/år" */
+.theme-toggle--header .theme-toggle-years,
+.theme-toggle--header .theme-toggle-unit {
+  font: 600 12px/1.05 var(--serif);
   letter-spacing: 0;
   text-transform: none;
   color: var(--ink);

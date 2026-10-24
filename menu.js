@@ -10,8 +10,8 @@
   // Kopparbrun är nylagd koppar, Ärggrön samma koppar om hundra år.
   // Valet sparas i webbläsaren. Ett litet skript i varje sidas <head> sätter
   // temat innan sidan ritas, så att den inte blinkar till i fel färg.
-  // Båda knapparna visar kopparen just nu: "Nylagt" (Kopparbrun) eller "100 år" (Ärggrön).
-  // Mobil: två rader i en ruta, "Ny-/lagt" och "100/år".
+  // Båda knapparna visar kopparen just nu: "Nylagt" (Kopparbrun) eller "Hundra år" (Ärggrön).
+  // Mobil: två rader i en ruta, "Ny-/lagt" och "Hundra/år".
   // Vid byte sprider sig den nya färgen från knappen; vid Ärggrön visas ett kort meddelande.
   const THEMES = {
     kopparbrun: { label: "Kopparbrun", color: "#f3eee6", logo: "logo/J-NORBERG.svg", menuLogo: "logo/J-NORBERG-vit.webp" },
@@ -35,10 +35,10 @@
         : `Tillbaka till nylagd koppar (${THEMES.kopparbrun.label}, ljust utseende)`);
       const years = button.querySelector(".theme-toggle-years");
       const unit = button.querySelector(".theme-toggle-unit");
-      if (years) years.textContent = theme === "argron" ? "100" : "Ny-";
+      if (years) years.textContent = theme === "argron" ? "Hundra" : "Ny-";
       if (unit) unit.textContent = theme === "argron" ? "år" : "lagt";
       const label = button.querySelector(".theme-toggle-label");
-      if (label) label.textContent = theme === "argron" ? "100 år" : "Nylagt";
+      if (label) label.textContent = theme === "argron" ? "Hundra år" : "Nylagt";
     });
   }
 
