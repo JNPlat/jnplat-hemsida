@@ -1829,3 +1829,15 @@ html:has(body.lightbox-open){ overflow: hidden; }
 .project-image-zoom-thumbnails button{ border-radius: 4px; background: var(--paper-2); }
 .project-image-zoom-thumbnails button.active{ border-color: var(--copper); }
 .project-image-zoom-count{ color: var(--ink-soft); }
+
+/* Dator: projektkortet reagerar som tjänstekorten på startsidan – rubriken
+   byter till accentfärgen och "Se projektet" får tydlig understrykning.
+   Ljus accent (koppar/ärggrön) eftersom texten ligger på en mörk bildtoning. */
+@media (hover: hover) {
+  .inner-page.service-page .service-projects .project-card-title,
+  .inner-page.service-page .service-projects .project-card-cta { transition: color .2s ease, text-decoration-color .2s ease; }
+  .inner-page.service-page .service-projects .project-card:hover .project-card-title,
+  .inner-page.service-page .service-projects .project-card:focus-visible .project-card-title { color: var(--accent-light); }
+  .inner-page.service-page .service-projects .project-card:hover .project-card-cta,
+  .inner-page.service-page .service-projects .project-card:focus-visible .project-card-cta { text-decoration-color: currentColor; }
+}
