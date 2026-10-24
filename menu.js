@@ -7,8 +7,13 @@
   const base = document.currentScript?.dataset.base || "";
 
   // ---------- Tema: Kopparbrun (ljust) och Ärggrön (mörkt) ----------
+  // Kopparbrun är nylagd koppar, Ärggrön samma koppar om hundra år.
   // Valet sparas i webbläsaren. Ett litet skript i varje sidas <head> sätter
   // temat innan sidan ritas, så att den inte blinkar till i fel färg.
+  // Mobil: rutan visar "100 år" / "0 år". Dator: tidslinje 2026 ●── 2126.
+  // Vid byte sprider sig den nya färgen från knappen och ett kort meddelande visas.
+  const NOW = new Date().getFullYear();
+  const LATER = NOW + 100;
   const THEMES = {
     kopparbrun: { label: "Kopparbrun", color: "#f3eee6", logo: "logo/J-NORBERG.svg", menuLogo: "logo/J-NORBERG-vit.webp" },
     argron: { label: "Ärggrön", color: "#3f4139", logo: "logo/J-NORBERG-mork.svg", menuLogo: "logo/J-NORBERG-vit.webp" }
@@ -26,9 +31,53 @@
     const other = theme === "argron" ? "kopparbrun" : "argron";
     document.querySelectorAll(".theme-toggle").forEach((button) => {
       button.dataset.target = other;
-      button.querySelector(".theme-toggle-label").textContent = THEMES[other].label;
-      button.setAttribute("aria-label", `Byt till ${THEMES[other].label} (${other === "argron" ? "mörkt" : "ljust"} utseende)`);
+      button.setAttribute("aria-label", other === "argron"
+        ? `Se kopparen om hundra år (${THEMES.argron.label}, mörkt utseende)`
+        : `Tillbaka till nylagd koppar (${THEMES.kopparbrun.label}, ljust utseende)`);
+      const years = button.querySelector(".theme-toggle-years");
+      if (years) years.textContent = other === "argron" ? "100" : "0";
     });
+  }
+
+  // Meddelandet som glider fram efter bytet
+  function showThemeToast(theme) {
+    let toast = document.querySelector(".theme-toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.className = "theme-toast";
+      toast.setAttribute("role", "status");
+      document.body.appendChild(toast);
+    }
+    toast.textContent = theme === "argron"
+      ? `År ${LATER}. Kopparen har fått sin patina.`
+      : `År ${NOW}. Nylagd koppar.`;
+    toast.classList.remove("is-visible");
+    void toast.offsetWidth;
+    toast.classList.add("is-visible");
+    clearTimeout(showThemeToast.timer);
+    showThemeToast.timer = setTimeout(() => toast.classList.remove("is-visible"), 2400);
+  }
+
+  // Den nya färgen sprider sig i en cirkel från knappen, som ärg över plåt
+  function switchTheme(name, button) {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!document.startViewTransition || reduce || !button) {
+      applyTheme(name);
+      showThemeToast(name);
+      return;
+    }
+    const rect = button.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    const root = document.documentElement;
+    root.style.setProperty("--theme-x", `${x}px`);
+    root.style.setProperty("--theme-y", `${y}px`);
+    root.style.setProperty("--theme-r", `${radius}px`);
+    root.classList.add("theme-transition");
+    const transition = document.startViewTransition(() => applyTheme(name));
+    transition.finished.finally(() => root.classList.remove("theme-transition"));
+    transition.ready.then(() => showThemeToast(name)).catch(() => showThemeToast(name));
   }
 
   const header = document.querySelector(".site-header .nav-wrap");
@@ -71,7 +120,9 @@
   const back = document.getElementById("back-to-service");
   const backItem = back ? `<a class="site-menu-back" href="${back.getAttribute("href")}">← Tillbaka</a>` : "";
 
-  const themeButton = `<button class="theme-toggle" type="button"><span class="theme-toggle-swatch" aria-hidden="true"></span><span class="theme-toggle-label"></span></button>`;
+  // Dator: tidslinje mellan årtalen. Mobil: ruta med antal år.
+  const themeButton = `<button class="theme-toggle" type="button"><span class="theme-toggle-year" aria-hidden="true">${NOW}</span><span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-knob"></span></span><span class="theme-toggle-year" aria-hidden="true">${LATER}</span></button>`;
+  const themeBox = `<button class="theme-toggle theme-toggle--header" type="button"><span class="theme-toggle-years" aria-hidden="true">100</span><span class="theme-toggle-unit" aria-hidden="true">år</span></button>`;
   const nav = header.querySelector(".main-nav");
   const navContact = nav?.querySelector(".header-contact");
   if (navContact) navContact.insertAdjacentHTML("beforebegin", themeButton);
@@ -79,7 +130,7 @@
 
   header.insertAdjacentHTML("beforeend", `
     <div class="header-actions">
-      ${themeButton.replace("theme-toggle", "theme-toggle theme-toggle--header")}
+      ${themeBox}
       <a class="header-call" href="${phone.href}" aria-label="Ring ${phone.label}">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
       </a>
@@ -134,7 +185,7 @@
   document.addEventListener("click", (event) => {
     const button = event.target.closest(".theme-toggle");
     if (!button) return;
-    applyTheme(button.dataset.target);
+    switchTheme(button.dataset.target, button);
   });
 
   toggle.addEventListener("click", openMenu);

@@ -390,49 +390,102 @@ html.site-menu-open { overflow: hidden; }
   .nav-dropdown a:focus-visible { background: var(--paper-2); color: var(--copper-dark); }
 }
 
-/* ---------- Temaknapp: Kopparbrun (ljust) / Ärggrön (mörkt) ----------
-   Skapas i menu.js. Dator: knapp i menyraden. Mobil: rund knapp bredvid telefonen i headern. */
+/* ---------- Temaknapp: Kopparbrun (nylagt) / Ärggrön (om hundra år) ----------
+   Skapas i menu.js. Dator: tidslinje mellan årtalen i menyraden.
+   Mobil: ruta bredvid telefonen med antal år ("100 år" / "0 år"). */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  padding: 8px 4px;
+  border: 0;
   background: transparent;
-  color: var(--ink);
-  font: 500 14px/1 var(--sans);
+  color: var(--ink-soft);
+  font: 500 13px/1 var(--sans);
+  font-variant-numeric: tabular-nums;
   white-space: nowrap;
   cursor: pointer;
-  transition: border-color .2s ease, background .2s ease;
 }
-.theme-toggle:hover,
-.theme-toggle:focus-visible { border-color: var(--copper); background: var(--paper-2); }
-.theme-toggle-swatch {
-  width: 14px;
-  height: 14px;
-  flex: 0 0 14px;
+.theme-toggle-track {
+  position: relative;
+  width: 44px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line);
+  transition: background .2s ease;
+}
+.theme-toggle-knob {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
   border-radius: 50%;
-  border: 1px solid rgba(var(--paper-rgb), .5);
+  background: #b4693c;
+  transition: left .5s ease, background .5s ease;
 }
-/* Pricken visar temat man byter till */
-.theme-toggle[data-target="argron"] .theme-toggle-swatch { background: #95b897; }
-.theme-toggle[data-target="kopparbrun"] .theme-toggle-swatch { background: #b4693c; }
+/* Kopparbrun: pricken vid nu-året. Ärggrön: vid året om hundra år. */
+.theme-toggle[data-target="kopparbrun"] .theme-toggle-knob { left: calc(100% - 12px); background: #95b897; }
+.theme-toggle[data-target="argron"] .theme-toggle-year:first-child,
+.theme-toggle[data-target="kopparbrun"] .theme-toggle-year:last-child { color: var(--ink); font-weight: 600; }
+.theme-toggle:hover .theme-toggle-track,
+.theme-toggle:focus-visible .theme-toggle-track { background: var(--ink-soft); }
 
-
-/* Mobil på sidan: menyraden är trång, så temaknappen visar bara färgpricken */
+/* Mobil på sidan: menyraden är trång, bara linjen och pricken syns */
 @media (orientation: landscape) and (max-height: 560px) {
-  .theme-toggle { padding: 7px; }
-  .theme-toggle-label { display: none; }
+  .theme-toggle-year { display: none; }
+  .theme-toggle-track { width: 32px; }
 }
 
-/* Mobil (stående): temaknappen bredvid telefonen, samma storlek. Bara färgpricken syns. */
+/* Mobil (stående): ruta lika stor som telefonknappen, "100 år" / "0 år" */
 .theme-toggle--header {
+  flex-direction: column;
   justify-content: center;
+  gap: 1px;
   width: 40px;
   height: 40px;
   padding: 0;
+  border: 1px solid var(--line);
   border-radius: var(--r);
+  color: var(--ink);
 }
-.theme-toggle--header .theme-toggle-label { display: none; }
-.theme-toggle--header .theme-toggle-swatch { width: 18px; height: 18px; flex-basis: 18px; }
+.theme-toggle-years { font: 600 18px/1 var(--serif); }
+.theme-toggle-unit {
+  font: 600 8px/1 var(--sans);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--patina);
+}
+.theme-toggle--header[data-target="kopparbrun"] .theme-toggle-unit { color: #d08a5c; }
+
+/* Bytet: den nya färgen sprider sig i en cirkel från knappen, som ärg över plåt.
+   Headern ritas med resten av sidan så att allt byter färg i samma våg. */
+html.theme-transition .site-header { view-transition-name: none; }
+html.theme-transition::view-transition-old(root) { animation: none; }
+html.theme-transition::view-transition-new(root) { animation: theme-spread .9s cubic-bezier(.4, 0, .2, 1); }
+@keyframes theme-spread {
+  from { clip-path: circle(0 at var(--theme-x) var(--theme-y)); }
+  to { clip-path: circle(var(--theme-r) at var(--theme-x) var(--theme-y)); }
+}
+
+/* Meddelandet efter bytet */
+.theme-toast {
+  position: fixed;
+  left: 50%;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 3000;
+  max-width: calc(100vw - 32px);
+  padding: 10px 18px;
+  border-radius: var(--r);
+  background: var(--surface-dark);
+  color: var(--on-dark);
+  font: 600 18px/1.25 var(--serif);
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+  opacity: 0;
+  transform: translate(-50%, 16px);
+  pointer-events: none;
+  transition: opacity .35s ease, transform .35s ease;
+}
+.theme-toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
