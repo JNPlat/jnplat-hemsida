@@ -422,26 +422,23 @@ html.site-menu-open { overflow: hidden; }
   width: 40px;
   height: 40px;
   padding: 0;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: var(--r);
+  background: var(--paper-2);
   color: var(--ink);
 }
-.theme-toggle-years { font: 600 18px/1 var(--serif); }
-/* "Nylagt" på en rad, "Hundra/år" på två lika rader */
-.theme-toggle-unit:empty { display: none; }
+:root[data-theme="argron"] .theme-toggle--header { background: var(--card); }
+.theme-toggle--header:hover,
+.theme-toggle--header:focus-visible { background: var(--line); }
+/* Små versaler: "NYLAGT" på en rad, "HUNDRA / ÅR" på två */
 .theme-toggle--header .theme-toggle-years,
 .theme-toggle--header .theme-toggle-unit {
-  font: 600 12px/1.05 var(--serif);
-  letter-spacing: 0;
-  text-transform: none;
+  font: 600 8px/1.15 var(--sans);
+  letter-spacing: .08em;
+  text-transform: uppercase;
   color: var(--ink);
 }
-.theme-toggle-unit {
-  font: 600 8px/1 var(--sans);
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--copper);
-}
+.theme-toggle-unit:empty { display: none; }
 
 /* Bytet: den nya färgen sprider sig i en cirkel från knappen, som ärg över plåt.
    Headern ritas med resten av sidan så att allt byter färg i samma våg. */
