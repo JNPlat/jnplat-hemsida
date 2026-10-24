@@ -391,51 +391,28 @@ html.site-menu-open { overflow: hidden; }
 }
 
 /* ---------- Temaknapp: Kopparbrun (nylagt) / Ärggrön (om hundra år) ----------
-   Skapas i menu.js. Dator: tidslinje mellan årtalen i menyraden.
+   Skapas i menu.js. Dator: textknapp i menyraden, "Om 100 år →" / "← Nylagt".
    Mobil: ruta bredvid telefonen med kopparens ålder ("0 år" / "100 år"). */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 4px;
-  border: 0;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
   background: transparent;
-  color: var(--ink-soft);
-  font: 500 13px/1 var(--sans);
-  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  font: 500 14px/1 var(--sans);
   white-space: nowrap;
   cursor: pointer;
+  transition: border-color .2s ease, background .2s ease;
 }
-.theme-toggle-track {
-  position: relative;
-  width: 44px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--line);
-  transition: background .2s ease;
-}
-.theme-toggle-knob {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 12px;
-  height: 12px;
-  margin-top: -6px;
-  border-radius: 50%;
-  background: #b4693c;
-  transition: left .5s ease, background .5s ease;
-}
-/* Kopparbrun: pricken vid nu-året. Ärggrön: vid året om hundra år. */
-.theme-toggle[data-target="kopparbrun"] .theme-toggle-knob { left: calc(100% - 12px); background: #95b897; }
-.theme-toggle[data-target="argron"] .theme-toggle-year:first-child,
-.theme-toggle[data-target="kopparbrun"] .theme-toggle-year:last-child { color: var(--ink); font-weight: 600; }
-.theme-toggle:hover .theme-toggle-track,
-.theme-toggle:focus-visible .theme-toggle-track { background: var(--ink-soft); }
+.theme-toggle:hover,
+.theme-toggle:focus-visible { border-color: var(--copper); background: var(--paper-2); }
 
-/* Mobil på sidan: menyraden är trång, bara linjen och pricken syns */
+/* Mobil på sidan: menyraden är trång */
 @media (orientation: landscape) and (max-height: 560px) {
-  .theme-toggle-year { display: none; }
-  .theme-toggle-track { width: 32px; }
+  .theme-toggle { padding: 6px 7px; font-size: 12px; }
+  .theme-toggle-om { display: none; }
 }
 
 /* Mobil (stående): ruta lika stor som telefonknappen, "0 år" / "100 år" */
