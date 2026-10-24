@@ -10,7 +10,7 @@
   // Kopparbrun är nylagd koppar, Ärggrön samma koppar om hundra år.
   // Valet sparas i webbläsaren. Ett litet skript i varje sidas <head> sätter
   // temat innan sidan ritas, så att den inte blinkar till i fel färg.
-  // Mobil: rutan visar "100 år" / "0 år". Dator: tidslinje 2026 ●── 2126.
+  // Mobil: rutan visar kopparens ålder, "0 år" / "100 år". Dator: tidslinje 2026 ●── 2126.
   // Vid byte sprider sig den nya färgen från knappen och ett kort meddelande visas.
   const NOW = new Date().getFullYear();
   const LATER = NOW + 100;
@@ -35,7 +35,8 @@
         ? `Se kopparen om hundra år (${THEMES.argron.label}, mörkt utseende)`
         : `Tillbaka till nylagd koppar (${THEMES.kopparbrun.label}, ljust utseende)`);
       const years = button.querySelector(".theme-toggle-years");
-      if (years) years.textContent = other === "argron" ? "100" : "0";
+      // Rutan visar kopparens ålder just nu: nylagd = 0 år, ärggrön = 100 år
+      if (years) years.textContent = theme === "argron" ? "100" : "0";
     });
   }
 
@@ -122,7 +123,7 @@
 
   // Dator: tidslinje mellan årtalen. Mobil: ruta med antal år.
   const themeButton = `<button class="theme-toggle" type="button"><span class="theme-toggle-year" aria-hidden="true">${NOW}</span><span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-knob"></span></span><span class="theme-toggle-year" aria-hidden="true">${LATER}</span></button>`;
-  const themeBox = `<button class="theme-toggle theme-toggle--header" type="button"><span class="theme-toggle-years" aria-hidden="true">100</span><span class="theme-toggle-unit" aria-hidden="true">år</span></button>`;
+  const themeBox = `<button class="theme-toggle theme-toggle--header" type="button"><span class="theme-toggle-years" aria-hidden="true">0</span><span class="theme-toggle-unit" aria-hidden="true">år</span></button>`;
   const nav = header.querySelector(".main-nav");
   const navContact = nav?.querySelector(".header-contact");
   if (navContact) navContact.insertAdjacentHTML("beforebegin", themeButton);

@@ -392,7 +392,7 @@ html.site-menu-open { overflow: hidden; }
 
 /* ---------- Temaknapp: Kopparbrun (nylagt) / Ärggrön (om hundra år) ----------
    Skapas i menu.js. Dator: tidslinje mellan årtalen i menyraden.
-   Mobil: ruta bredvid telefonen med antal år ("100 år" / "0 år"). */
+   Mobil: ruta bredvid telefonen med kopparens ålder ("0 år" / "100 år"). */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -438,7 +438,7 @@ html.site-menu-open { overflow: hidden; }
   .theme-toggle-track { width: 32px; }
 }
 
-/* Mobil (stående): ruta lika stor som telefonknappen, "100 år" / "0 år" */
+/* Mobil (stående): ruta lika stor som telefonknappen, "0 år" / "100 år" */
 .theme-toggle--header {
   flex-direction: column;
   justify-content: center;
@@ -455,9 +455,8 @@ html.site-menu-open { overflow: hidden; }
   font: 600 8px/1 var(--sans);
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--patina);
+  color: var(--copper);
 }
-.theme-toggle--header[data-target="kopparbrun"] .theme-toggle-unit { color: #d08a5c; }
 
 /* Bytet: den nya färgen sprider sig i en cirkel från knappen, som ärg över plåt.
    Headern ritas med resten av sidan så att allt byter färg i samma våg. */
