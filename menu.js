@@ -196,6 +196,19 @@
   }
 
   applyTheme(currentTheme());
+
+  // Sidor kan visas igen utan att laddas om: via Tillbaka (webbläsarens snabbcache),
+  // som förladdad sida (prerender) eller när temat bytts i en annan flik.
+  // Läs då om det sparade valet så att alla sidor har samma tema.
+  function syncSavedTheme() {
+    let saved = null;
+    try { saved = localStorage.getItem("jnplat-tema"); } catch (error) { /* privat läge */ }
+    if (saved && saved !== currentTheme()) applyTheme(saved);
+  }
+  window.addEventListener("pageshow", syncSavedTheme);
+  window.addEventListener("storage", (event) => { if (event.key === "jnplat-tema") syncSavedTheme(); });
+  document.addEventListener("prerenderingchange", syncSavedTheme);
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") syncSavedTheme(); });
   document.addEventListener("click", (event) => {
     const button = event.target.closest(".theme-toggle");
     if (!button) return;
