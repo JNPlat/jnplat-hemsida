@@ -89,6 +89,24 @@ content:
             max: 40
           unique: true
           extensions: [jpg, jpeg, png, webp]
+      - name: imagePosition
+        label: Bildens placering i kortet
+        type: select
+        description: Kortet visar en del av första bilden. Välj vilken del som ska synas.
+        default: "50% 50%"
+        options:
+          values:
+            - { name: "50% 50%", label: "Mitten" }
+            - { name: "50% 25%", label: "Lite upptill" }
+            - { name: "50% 0%", label: "Upptill" }
+            - { name: "50% 75%", label: "Lite nedtill" }
+            - { name: "50% 100%", label: "Nedtill" }
+            - { name: "0% 50%", label: "Vänster" }
+            - { name: "100% 50%", label: "Höger" }
+            - { name: "0% 0%", label: "Uppe till vänster" }
+            - { name: "100% 0%", label: "Uppe till höger" }
+            - { name: "0% 100%", label: "Nere till vänster" }
+            - { name: "100% 100%", label: "Nere till höger" }
       - name: published
         label: Visa på hemsidan
         type: boolean

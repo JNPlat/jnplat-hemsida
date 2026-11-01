@@ -223,7 +223,7 @@
     list.innerHTML = visibleProjects.map((project, index) => {
       const image = projectImages(project)[0];
       const imageMarkup = image
-        ? `<img src="../${escapeAttribute(image)}" alt="${escapeAttribute(project.title)}" loading="lazy">`
+        ? `<img src="../${escapeAttribute(image)}" alt="${escapeAttribute(project.title)}" loading="lazy"${imagePositionStyle(project)}>`
         : '';
       const description = project.description || project.longDescription || '';
       return `<button class="project-card" type="button" data-project-index="${index}" aria-label="Öppna bildgalleri för ${escapeAttribute(project.title)}">` +
@@ -371,6 +371,12 @@
       touchMoved = false;
     }, { passive: true });
     return modal;
+  }
+
+  // Bildens placering i projektkortet (väljs i Pages CMS). Bara "x% y%" godkänns.
+  function imagePositionStyle(project) {
+    const value = typeof project.imagePosition === "string" ? project.imagePosition.trim() : "";
+    return /^(100|\d{1,2})% (100|\d{1,2})%$/.test(value) ? ` style="object-position: ${value}"` : "";
   }
 
   function openProjectGallery(project, trigger) {

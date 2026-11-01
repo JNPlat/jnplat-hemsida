@@ -154,6 +154,10 @@ if (fs.existsSync(projectsFile)) {
         if (!allowedServices.has(project.service)) {
           errors.push(`${label} has an unknown service: "${project.service}".`);
         }
+        if (project.imagePosition !== undefined && project.imagePosition !== "" &&
+            !/^(100|\d{1,2})% (100|\d{1,2})%$/.test(String(project.imagePosition).trim())) {
+          errors.push(`${label} has an invalid imagePosition: "${project.imagePosition}".`);
+        }
         if (project.images !== undefined && !Array.isArray(project.images)) {
           errors.push(`${label} images must be an array.`);
         }
