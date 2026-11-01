@@ -74,5 +74,33 @@
     ],
     "imagePosition": "50% 50%",
     "published": true
+  },
+  {
+    "title": "St: Johannes Kyrka · 2024 & 2025 -2026",
+    "service": "restaurering",
+    "description": "Utfört som anställd på Bång & Lewerth som ledande montör. Saknar tyvärr mycket bilder, men här är lite smått och gott. 2024 restaurerade jag och balanserade visarna på klocktornet och patinerade om löken. 2025 - 2026 restaurerades taket om i sin helhet.",
+    "images": [
+      "images/projekt/stjohannesrestaurering/IMG_0157.webp",
+      "images/projekt/stjohannesrestaurering/IMG_0145.webp",
+      "images/projekt/stjohannesrestaurering/IMG_0529.webp",
+      "images/projekt/stjohannesrestaurering/IMG_0528.webp",
+      "images/projekt/stjohannesrestaurering/IMG_0095.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2067.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2066.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2266.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2276.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2383.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2384.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2386.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2389.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2586.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2588.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2584.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2739.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2740.webp",
+      "images/projekt/stjohannesrestaurering/IMG_2741.webp"
+    ],
+    "imagePosition": "50% 0%",
+    "published": true
   }
 ]
