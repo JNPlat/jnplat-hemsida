@@ -216,10 +216,11 @@ function startsida(c, f, t) {
       `</div>`
     ].filter(Boolean).join("\n")),
 
-    "aktuellt.image": [
+    // Bilden är valfri: utan bild skrivs ingenting och CSS döljer bildytan.
+    "aktuellt.image": clean(akt.image) ? [
       img(akt.image, akt.imageAlt, "Aktuellt, bild"),
       optional(akt.imageCredit, `<figcaption>${inline(akt.imageCredit)}</figcaption>`)
-    ].filter(Boolean).join("\n"),
+    ].filter(Boolean).join("\n") : "",
     "aktuellt.eyebrow": eyebrow(akt.eyebrow),
     "aktuellt.title": `<h2>${esc(clean(akt.title))}</h2>`,
     "aktuellt.text": paragraphs(akt.text),

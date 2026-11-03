@@ -320,7 +320,13 @@ content:
             type: text
             options:
               maxlength: 500
-          - { name: image, component: bild }
+          - name: image
+            label: Bild
+            type: image
+            description: Valfritt. Lämna tom så visas bara texten.
+            options:
+              media: bilder
+              extensions: [jpg, jpeg, png, webp]
           - { name: imageAlt, component: bildtext }
           - name: imageCredit
             label: Fotograf / källa

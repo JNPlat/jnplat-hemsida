@@ -427,6 +427,11 @@
 .current-content p:not(.eyebrow) { margin-bottom: var(--s3); }
 .current-content .btn { margin-top: var(--s1); }
 
+/* Aktuellt utan bild: dölj bildytan, texten tar hela sektionen */
+.current-gallery:not(:has(img)) { display: none; }
+.current-project:not(:has(.current-gallery img)) { min-height: var(--screen-h); }
+.current-project:not(:has(.current-gallery img)) .current-content { flex: 1 1 auto; }
+
 /* ---------- Om ---------- */
 
 .about-section { box-shadow: inset 0 1px 0 var(--line); }
@@ -731,6 +736,11 @@
 
   .current-gallery { order: 1; height: auto; }
   .current-content { order: 0; }
+
+  .current-project:not(:has(.current-gallery img)) { grid-template-columns: minmax(0, 1fr); }
+  .current-project:not(:has(.current-gallery img)) .current-content {
+    padding-inline: max(var(--pad-h), calc((100% - 680px) / 2));
+  }
 
   /* Om: bild vänster, text höger */
   .about-grid {
