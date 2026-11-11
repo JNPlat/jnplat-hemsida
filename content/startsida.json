@@ -7,7 +7,7 @@
   },
   "hem": {
     "eyebrow": "Kommande 2027",
-    "title": "Rätt lösning för byggnader som ska stå i hundra år",
+    "title": "För byggnader som står i hundra år",
     "text": "Stora som små jobb, på villor lika gärna som kyrkor. Direkt kontakt med mig som gör jobbet, från offert till faktura.",
     "image": "images/hero-bild.webp",
     "imageAlt": "Plåtslageriarbete på tak"
@@ -98,12 +98,7 @@
   "aktuellt": {
     "eyebrow": "Pågående arbete",
     "title": "Villa Bergabo",
-    "text": "Just nu arbetar jag med restaureringen av koppardetaljerna på Villa Bergabo på Södra Djurgården. Arbetet omfattar demontering av den befintliga kopparen, renovering och anpassning av underlaget samt återmontering av detaljerna.",
-    "image": "",
-    "imageAlt": "",
-    "imageCredit": "",
-    "linkText": "",
-    "linkUrl": ""
+    "text": "Just nu arbetar jag med restaureringen av koppardetaljerna på Villa Bergabo på Södra Djurgården. Arbetet omfattar demontering av den befintliga kopparen, renovering och anpassning av underlaget samt återmontering av detaljerna."
   },
   "kontakt": {
     "eyebrow": "Hör av dig",
